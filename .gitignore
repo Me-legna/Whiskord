@@ -1,2 +1,29 @@
 Pipfile
 Pipfile.lock
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node.js files
+node_modules/
+
+# SQLite database file
+*.sqlite
+*.db
+
+# Flask
+instance/
+.env
+
+# React
+build/
+
+# Logs
+logs/
+*.log
+
+# Other
+.DS_Store
+*.swp

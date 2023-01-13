@@ -16,6 +16,7 @@ WTForms = "*"
 Flask-Migrate = "*"
 Flask-Login = "==0.5.0"
 alembic = "*"
+eventlet = "*"
 
 [dev-packages]
 
