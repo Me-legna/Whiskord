@@ -3,7 +3,7 @@
 This is the starter for the Flask React project.
 
 ## Getting started
-1. Change Directory to flask-app for backend setup
+1. Clone this repository (only this branch)
 
 2. Install dependencies
 
@@ -77,10 +77,10 @@ one line:
 # build command - enter all in one line
 npm install --prefix react-app &&
 npm run build --prefix react-app &&
-pip install --prefix flask-app -r requirements.txt &&
+pip install -r requirements.txt &&
 pip install psycopg2 &&
-flask --prefix flask-app db upgrade &&
-flask --prefix flask-app seed all
+flask db upgrade &&
+flask seed all
 ```
 
 This script will install dependencies for the frontend, and run the build
