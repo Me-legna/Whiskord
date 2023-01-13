@@ -221,6 +221,12 @@ user's information.
 
 Returns all the servers where the current user is a member.
 
+```
+Make two of these.
+One where Servers is_private and is_dm == False
+Another where is_private == True
+```
+
 * Require Authentication: True
 * Request
   * Method: GET
