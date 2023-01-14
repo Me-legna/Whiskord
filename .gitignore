@@ -1,7 +1,6 @@
+# Python files
 Pipfile
 Pipfile.lock
-
-# Python files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -12,6 +11,8 @@ node_modules/
 # SQLite database file
 *.sqlite
 *.db
+dev.db 
+app/dev.db
 
 # Flask
 instance/
@@ -19,6 +20,7 @@ instance/
 
 # React
 build/
+react-app/package-lock.json
 
 # Logs
 logs/
