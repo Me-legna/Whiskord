@@ -1,1 +1,26 @@
-/* TODO Add site wide styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex; 
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none; 
+}
+
+nav a.active {
+    color: #007bff; 
+    font-weight: bold; 
+}
