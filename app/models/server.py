@@ -1,13 +1,17 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import Integer, String, Float, Boolean, DateTime, Enum
-from sqlalchemy.orm import relationship, validates
-from .channels import Channel
-from .user import User
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.schema import Column, ForeignKey
+# from sqlalchemy.types import Integer, String, Float, Boolean, DateTime, Enum
+# from sqlalchemy.orm import relationship, validates
+# from .channels import Channel
+# from .user import User
 
-
-
+server_members = db.Table(
+    "server_members",
+    db.Model.metadata,
+    db.Column("users", db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
+    db.Column("servers", db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')), primary_key=True)
+)
 
 class Server(db.Model):
     __tablename__ = 'servers'
