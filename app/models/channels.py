@@ -23,7 +23,7 @@ class Channel(db.Model):
     is_private = db.Column(db.Boolean, nullable=False)
 
     server = db.relationship("Server", back_populates="channels")
-    message = db.relationship("Message", back_populates="channels", cascade="all, delete")
+    messages = db.relationship("Message", back_populates="channels", cascade="all, delete")
     members = db.relationship("ChannelMember", secondary=channel_members, back_populates="channels")
 
     def to_dict(self):
