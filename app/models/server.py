@@ -8,6 +8,7 @@ server_members = db.Table(
     db.Column("servers", db.Integer, db.ForeignKey(add_prefix_for_prod('servers.id')), primary_key=True)
 )
 
+
 class Server(db.Model):
     __tablename__ = 'servers'
 
@@ -25,6 +26,48 @@ class Server(db.Model):
     members = db.relationship('User', secondary=server_members, backpopulates='servers')
     channels = db.relationship('Channel', backpopulates='server')
 
+    @property
+    def new_name(self):
+        return self.name
+
+    @property
+    def new_owner(self):
+        return self.ownerId
+
+    @property
+    def new_capacity(self):
+        return self.capacity
+
+    @property
+    def new_image(self):
+        return self.image_url
+
+    @new_name.setter
+    def new_name(self, name):
+        self.name = name
+
+    @new_owner.setter
+    def new_owner(self, ownerId):
+        self.ownerId = ownerId
+
+    @new_capacity.setter
+    def new_capacity(self, capacity):
+        self.capacity = capacity
+
+    @new_image.setter
+    def new_image(self, image_url):
+        self.image_url = image_url
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'ownerId': self.ownerId,
+            'image_url': self.image_url,
+            'is_private': self.is_private,
+            'is_dm': self.is_dm,
+            'capacity': self.capacity
+        }
 
 # from sqlalchemy.ext.declarative import declarative_base
 # from sqlalchemy.schema import Column, ForeignKey, MetaData, Table
@@ -56,3 +99,46 @@ class Server(db.Model):
 
 #     members = relationship('User', secondary=server_members, backpopulates='servers')
 #     channels = relationship('Channel', backpopulates='server')
+
+#     @property
+#     def new_name(self):
+#         return self.name
+
+#     @property
+#     def new_owner(self):
+#         return self.ownerId
+
+#     @property
+#     def new_capacity(self):
+#         return self.capacity
+
+#     @property
+#     def new_image(self):
+#         return self.image_url
+
+#     @new_name.setter
+#     def new_name(self, name):
+#         self.name = name
+
+#     @new_owner.setter
+#     def new_owner(self, ownerId):
+#         self.ownerId = ownerId
+
+#     @new_capacity.setter
+#     def new_capacity(self, capacity):
+#         self.capacity = capacity
+
+#     @new_image.setter
+#     def new_image(self, image_url):
+#         self.image_url = image_url
+
+#     def to_dict(self):
+#         return {
+#             'id': self.id,
+#             'name': self.name,
+#             'ownerId': self.ownerId,
+#             'image_url': self.image_url,
+#             'is_private': self.is_private,
+#             'is_dm': self.is_dm,
+#             'capacity': self.capacity
+#         }
