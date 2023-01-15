@@ -15,7 +15,7 @@ class Message(db.Model):
     channel_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('channels.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
 
-    user = db.relationship('User', back_popualates='messages')
+    user = db.relationship('User', back_populates='messages')
     channel = db.relationship('Channel', back_populates='messages')
 
     def to_dict(self):

@@ -1,5 +1,5 @@
 from app.models import db, Channel, environment, SCHEMA
-from .users import demo, marnie, bobbie
+# from .users import demo, marnie, bobbie
 
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
@@ -27,9 +27,11 @@ def seed_channels():
     db.session.add(marnie_channel)
     db.session.add(bobbie_channel)
 
-    demo_channel.members.append(demo)
-    marnie_channel.members.append(marnie)
-    bobbie_channel.members.append(bobbie)
+    # demo_channel.members.append(d)
+
+    # demo_channel.members.append(demo)
+    # marnie_channel.members.append(marnie)
+    # bobbie_channel.members.append(bobbie)
     
     db.session.commit()
 

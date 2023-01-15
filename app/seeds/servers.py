@@ -1,5 +1,6 @@
 from app.models import db, User, Server, environment, SCHEMA
-from .users import demo, marnie, bobbie
+# from .users import demo, marnie, bobbie, test
+# import users
 
 
 # Adds a demo user, you can add other users here if you want
@@ -13,13 +14,18 @@ def seed_servers():
     bobbie_server = Server(
         name='Bobbie Server', owner_id=3, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=True, capacity=100)
 
+
     db.session.add(demo_server)
     db.session.add(marnie_server)
     db.session.add(bobbie_server)
 
-    demo_server.members.append(demo)
-    marnie_server.members.append(marnie)
-    marnie_server.members.append(bobbie)
+    demo_server.members.append(User.query.get(1))
+    marnie_server.members.append(User.query.get(2))
+    bobbie_server.members.append(User.query.get(2))
+
+    # demo_server.members.append(users.demo)
+    # marnie_server.members.append(users.marnie)
+    # marnie_server.members.append(users.bobbie)
 
 
     db.session.commit()
