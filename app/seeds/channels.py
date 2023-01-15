@@ -5,24 +5,23 @@ from app.models import db, Channel, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
     demo_channel = Channel(
-        name = 'channel1',
-        server_id = 1,
-        type = 'Text',
-        is_private = True
-        )
+        name='channel1',
+        server_id=1,
+        type='Text',
+        is_private=True
+    )
     marnie_channel = Channel(
-        name = 'channel2',
-        server_id = 2,
-        type = 'Text',
-        is_private = True
-        )
+        name='channel2',
+        server_id=2,
+        type='Text',
+        is_private=True
+    )
     bobbie_channel = Channel(
-        name = 'channel3',
-        server_id = 3,
-        type = 'Text',
-        is_private = True
-        )
-
+        name='channel3',
+        server_id=3,
+        type='Text',
+        is_private=True
+    )
 
     db.session.add(demo_channel)
     db.session.add(marnie_channel)
@@ -53,7 +52,10 @@ def seed_channels():
 def undo_channels():
 
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.channel_members RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM channel_members")
         db.session.execute("DELETE FROM channels")

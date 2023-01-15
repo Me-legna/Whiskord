@@ -14,7 +14,6 @@ def seed_servers():
     bobbie_server = Server(
         name='Bobbie Server', owner_id=3, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=True, capacity=100)
 
-
     db.session.add(demo_server)
     db.session.add(marnie_server)
     db.session.add(bobbie_server)
@@ -30,9 +29,7 @@ def seed_servers():
     # marnie_server.members.append(users.marnie)
     # marnie_server.members.append(users.bobbie)
 
-
     db.session.commit()
-
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
@@ -43,7 +40,10 @@ def seed_servers():
 # it will reset the primary keys for you as well.
 def undo_servers():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.server_members RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM server_members")
         db.session.execute("DELETE FROM servers")
