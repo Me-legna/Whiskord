@@ -11,6 +11,9 @@ channel_members = db.Table(
         extend_existing=True
 )
 
+if environment == "production":
+    channel_members.schema = SCHEMA
+
 class Channel(db.Model):
     __tablename__ = "channels"
 
