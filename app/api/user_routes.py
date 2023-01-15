@@ -25,7 +25,7 @@ def user(id):
     return user.to_dict()
 
 
-@user_routes.route('/api/session', methods=['GET'])
+@user_routes.route('/session', methods=['GET'])
 @login_required
 def get_current_user():
     """
