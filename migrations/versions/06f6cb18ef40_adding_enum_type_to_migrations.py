@@ -1,8 +1,8 @@
-"""setting up initial whiskord tables
+"""adding enum type to migrations
 
-Revision ID: dcbf70ceadaf
+Revision ID: 06f6cb18ef40
 Revises: 
-Create Date: 2023-01-15 01:09:22.291147
+Create Date: 2023-01-15 03:25:33.936464
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dcbf70ceadaf'
+revision = '06f6cb18ef40'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('server_id', sa.Integer(), nullable=False),
-    sa.Column('type', sa.Enum('Text', 'Voice'), nullable=False),
+    sa.Column('type', sa.Enum('Text', 'Voice', name='channel_types'), nullable=False),
     sa.Column('is_private', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['server_id'], ['servers.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -62,7 +62,7 @@ def upgrade():
     )
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('content', sa.Text(length=2000), nullable=False),
+    sa.Column('content', sa.String(length=2000), nullable=False),
     sa.Column('is_edited', sa.Boolean(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('channel_id', sa.Integer(), nullable=False),
