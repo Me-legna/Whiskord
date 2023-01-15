@@ -22,8 +22,8 @@ class Server(db.Model):
     is_dm = db.Column(db.Boolean, default=False, nullable=False)
     capacity = db.Column(db.Integer, nullable=False)
 
-    members = db.relationship('User', secondary=server_members, backpopulates='servers')
-    channels = db.relationship('Channel', backpopulates='server', cascade='all, delete')
+    members = db.relationship('User', secondary=server_members, back_populates='servers')
+    channels = db.relationship('Channel', back_populates='server', cascade='all, delete')
 
     def to_dict(self):
         return {

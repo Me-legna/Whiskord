@@ -11,12 +11,14 @@ node_modules/
 # SQLite database file
 *.sqlite
 *.db
-dev.db 
+dev.db
 app/dev.db
 
 # Flask
 instance/
 .env
+.venv
+dev.db
 
 # React
 build/
