@@ -141,3 +141,24 @@ def delete_server(server_id):
     db.session.commit()
 
     return jsonify({'message': "Successfully deleted", 'statusCode': 200}), 200
+
+
+@server_routes.route('/<int:server_id>/channels', methods=['GET'])
+@login_required
+def get_server_channels(server_id):
+    """
+    Get all Channels the Current Server that Current User is a member
+    """
+    server = Server.query.get(server_id)
+
+    # check if server exists
+    if server is None:
+        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is a member of server
+    if current_user not in server.members:
+        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
+
+    channels = [channel.to_dict() for channel in server.channels]
+
+    return jsonify({'Channels': channels})
