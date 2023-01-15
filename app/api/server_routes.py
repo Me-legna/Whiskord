@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Server
+from app.modals.db import db
 
 server_routes = Blueprint('servers', __name__)
 
@@ -58,4 +59,37 @@ def get_server(server_id):
             'Channels': channels
         }
     })
+
+
+@server_routes.route("/servers", methods=["POST"])
+@login_required
+def create_server():
+    """
+    Creates and returns a new server.
+    """
+    data = request.get_json()
+    name = data.get("name")
+    image_url = data.get("image_url")
+
+    owner_id = current_user.id
+    is_private = False
+    is_dm = False
+    capacity = 500000
+
+    # Perform validation on the data, MOVE TO WTF FORMS LATER
+    errors = []
+    if not name:
+        errors.append("Server Name is required")
+    elif len(name) < 2 or len(name) > 100:
+        errors.append("Name must be between 2 and 100 in length")
+
+    if errors:
+        return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
+
+    # Create the new server
+    server = Server(name=name, owner_id=owner_id, image_url=image_url, is_private=is_private, is_dm=is_dm, capacity=capacity)
+    db.session.add(server)
+    db.session.commit()
+
+    return jsonify(server.to_dict()), 201
 
