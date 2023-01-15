@@ -12,6 +12,7 @@ eventlet==0.30.2
 flask-cors==3.0.8
 flask-login==0.5.0
 flask-migrate==3.0.1
+flask-socketio==5.7.2
 flask-sqlalchemy==2.5.1
 flask-wtf==0.15.1
 flask==2.0.1

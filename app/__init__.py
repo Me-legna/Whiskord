@@ -4,12 +4,12 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from .models import db, User, Server, Channel
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
-
+from .socket import socketio
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -30,6 +30,8 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 db.init_app(app)
 Migrate(app, db)
+# initialize the app with the socket instance
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -89,3 +91,8 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+    
+
+# at the bottom of the file, use this to run the app
+if __name__ == '__main__':
+    socketio.run(app)
