@@ -19,9 +19,12 @@ def seed_servers():
     db.session.add(marnie_server)
     db.session.add(bobbie_server)
 
-    demo_server.members.append(User.query.get(1))
-    marnie_server.members.append(User.query.get(2))
-    bobbie_server.members.append(User.query.get(2))
+    user_1 = User.query.get(1)
+    user_2 = User.query.get(2)
+
+    demo_server.members.append(user_1)
+    marnie_server.members.append(user_2)
+    bobbie_server.members.append(user_2)
 
     # demo_server.members.append(users.demo)
     # marnie_server.members.append(users.marnie)
@@ -42,6 +45,7 @@ def undo_servers():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
     else:
+        db.session.execute("DELETE FROM server_members")
         db.session.execute("DELETE FROM servers")
-        
+
     db.session.commit()
