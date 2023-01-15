@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Server
-from app.modals.db import db
+from app.models.db import db
 
 server_routes = Blueprint('servers', __name__)
 
@@ -93,3 +93,51 @@ def create_server():
 
     return jsonify(server.to_dict()), 201
 
+
+@server_routes.route("/<int:server_id>", methods=["PUT"])
+@login_required
+def update_server(server_id):
+    server = Server.query.get(server_id)
+    if server is None:
+        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
+
+    if server.owner_id != current_user.id:
+        return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
+
+    data = request.get_json()
+    name = data.get("name")
+    image_url = data.get("image_url")
+
+    # Perform validation on the data, MOVE TO WTF FORMS LATER
+    errors = []
+    if not name:
+        errors.append("Server Name is required")
+    elif len(name) < 2 or len(name) > 100:
+        errors.append("Name must be between 2 and 100 in length")
+
+    if errors:
+        return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
+
+    # Update the server
+    server.name = name
+    server.image_url = image_url
+    db.session.commit()
+
+    return jsonify(server.to_dict()), 200
+
+@server_routes.route("/<int:server_id>", methods=["DELETE"])
+@login_required
+def delete_server(server_id):
+    server = Server.query.get(server_id)
+
+    # Move to WTForms later
+    if server is None:
+        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
+
+    if server.owner_id != current_user.id:
+        return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
+
+    db.session.delete(server)
+    db.session.commit()
+
+    return jsonify({'message': "Successfully deleted", 'statusCode': 200}), 200
