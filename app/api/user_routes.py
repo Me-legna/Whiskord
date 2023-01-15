@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, Server
+from app.models import User
 
 user_routes = Blueprint('users', __name__)
 
@@ -22,15 +22,13 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
-    current_user_logged_in = Server.query.filter(Server.members.any(id=id)).all()
     return user.to_dict()
 
 
-# @user_routes.route('/session', methods=['GET'])
-# @login_required
-# def get_current_user():
-#     """
-#     Returns the information about the current user that is logged in.
-#     """
-#     return jsonify(current_user.to_dict())
-#  current_user.id
+@user_routes.route('/session', methods=['GET'])
+@login_required
+def get_current_user():
+    """
+    Returns the information about the current user that is logged in.
+    """
+    return jsonify(current_user.to_dict())
