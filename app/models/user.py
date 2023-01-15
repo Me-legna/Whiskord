@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .channels import channel_members
+from .channel import channel_members
 from .server import server_members
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin

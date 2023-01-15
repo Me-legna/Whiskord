@@ -7,7 +7,8 @@ channel_members = db.Table(
     db.Column("users", db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')), primary_key=True),
     db.Column("channels", db.Integer, db.ForeignKey(
-        add_prefix_for_prod('channels.id')), primary_key=True)
+        add_prefix_for_prod('channels.id')), primary_key=True),
+        extend_existing=True
 )
 
 class Channel(db.Model):
@@ -23,8 +24,8 @@ class Channel(db.Model):
     is_private = db.Column(db.Boolean, nullable=False)
 
     server = db.relationship("Server", back_populates="channels")
-    messages = db.relationship("Message", back_populates="channels", cascade="all, delete")
-    members = db.relationship("ChannelMember", secondary=channel_members, back_populates="channels")
+    messages = db.relationship("Message", back_populates="channel", cascade="all, delete")
+    members = db.relationship("User", secondary=channel_members, back_populates="channels")
 
     def to_dict(self):
         return {
@@ -34,6 +35,7 @@ class Channel(db.Model):
             'type': self.type,
             'is_private': self.is_private
         }
+
 
 
 # --------------------------------------------------------------
