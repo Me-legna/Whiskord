@@ -20,7 +20,7 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     server_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("servers.id")), nullable=False)
-    type = db.Column(db.Enum('Text', 'Voice'), nullable=False)
+    type = db.Column(db.Enum('Text', 'Voice', name='channel_types', create_type=False), nullable=False)
     is_private = db.Column(db.Boolean, nullable=False)
 
     server = db.relationship("Server", back_populates="channels")
