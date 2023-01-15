@@ -1,40 +1,44 @@
 from app.models import db, Channel, User, environment, SCHEMA
 # from .users import demo, marnie, bobbie
 
+
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
     demo_channel = Channel(
-        name = 'channel1',
-        server_id = 1,
-        type = 'Text',
-        is_private = True
-        )
+        name='channel1',
+        server_id=1,
+        type='Text',
+        is_private=True
+    )
     marnie_channel = Channel(
-        name = 'channel2',
-        server_id = 2,
-        type = 'Text',
-        is_private = True
-        )
+        name='channel2',
+        server_id=2,
+        type='Text',
+        is_private=True
+    )
     bobbie_channel = Channel(
-        name = 'channel3',
-        server_id = 3,
-        type = 'Text',
-        is_private = True
-        )
-
+        name='channel3',
+        server_id=3,
+        type='Text',
+        is_private=True
+    )
 
     db.session.add(demo_channel)
     db.session.add(marnie_channel)
     db.session.add(bobbie_channel)
 
-    demo_channel.members.append(User.query.get(1))
-    marnie_channel.members.append(User.query.get(2))
-    bobbie_channel.members.append(User.query.get(3))
+    user_1 = User.query.get(1)
+    user_2 = User.query.get(2)
+    user_3 = User.query.get(3)
+
+    demo_channel.members.append(user_1)
+    marnie_channel.members.append(user_2)
+    bobbie_channel.members.append(user_3)
 
     # demo_channel.members.append(demo)
     # marnie_channel.members.append(marnie)
     # bobbie_channel.members.append(bobbie)
-    
+
     db.session.commit()
 
 
@@ -44,10 +48,16 @@ def seed_channels():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
+
 def undo_channels():
+
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.channel_members RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.channels RESTART IDENTITY CASCADE;")
     else:
+        db.session.execute("DELETE FROM channel_members")
         db.session.execute("DELETE FROM channels")
 
     db.session.commit()

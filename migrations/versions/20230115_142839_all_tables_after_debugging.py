@@ -1,16 +1,19 @@
-"""adding enum type to migrations
+"""all tables after debugging
 
-Revision ID: 06f6cb18ef40
-Revises: 
-Create Date: 2023-01-15 03:25:33.936464
+Revision ID: 45f04e34d3bf
+Revises:
+Create Date: 2023-01-15 14:28:39.746495
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '06f6cb18ef40'
+revision = '45f04e34d3bf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -71,6 +74,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
