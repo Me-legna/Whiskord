@@ -1,8 +1,8 @@
-"""adding enum type to migrations
+"""all tables after debugging
 
-Revision ID: ab3d31bfe594
+Revision ID: 1142bd061e38
 Revises: 
-Create Date: 2023-01-15 03:38:29.145253
+Create Date: 2023-01-15 17:02:44.979171
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ab3d31bfe594'
+revision = '1142bd061e38'
 down_revision = None
 branch_labels = None
 depends_on = None
