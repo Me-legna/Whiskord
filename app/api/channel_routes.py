@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Channel
+from app.models import Channel, User
 from app.models.message import Message
 from app.models.db import db
 from app.forms import ChannelForm
@@ -97,6 +97,58 @@ def delete_channel(channel_id):
     db.session.delete(channel)
     db.session.commit()
     return jsonify({'message': "Successfully deleted", 'statusCode': 200}), 200
+
+
+@channel_routes.route('/<int:channel_id>/members')
+@login_required
+def get_channel_members(channel_id):
+    """
+    Get all Members of the Current Channel
+    """
+    # Get the channel to ensure the user is a member and the channel exists
+    channel = Channel.query.get(channel_id)
+    if channel is None:
+        return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
+
+    # Make sure user is a member of the channel
+    if current_user not in channel.members:
+        return jsonify({'message': "You are not a member of this channel", 'statusCode': 403}), 403
+
+    # Get the members for the channel
+    members = [user.to_dict() for user in channel.members]
+
+    return jsonify({'Members': members})
+
+
+@channel_routes.route('/<int:channel_id>/members', methods=['POST'])
+@login_required
+def add_channel_member(channel_id):
+    """
+    Add a Member to the Current Channel
+    """
+    # Get the channel to ensure the user is a member and the channel exists
+    channel = Channel.query.get(channel_id)
+    if channel is None:
+        return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
+
+    # Make sure user is a member of the channel
+    if current_user not in channel.members:
+        return jsonify({'message': "You are not a member of this channel", 'statusCode': 403}), 403
+
+    # Get the user id from the request body
+    data = request.get_json()
+    user_id = data.get('userId')
+
+    # Get the user to add to the channel
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'message': "User couldn't be found", 'statusCode': 404}), 404
+
+    # Add the user to the channel
+    channel.members.append(user)
+    db.session.commit()
+
+    return jsonify({'message': "Successfully added user to channel", 'statusCode': 200}), 200
 
 
 @channel_routes.route('/<int:channel_id>/messages')

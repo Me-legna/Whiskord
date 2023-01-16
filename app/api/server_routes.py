@@ -63,7 +63,7 @@ def get_server(server_id):
     })
 
 
-@server_routes.route("/servers", methods=["POST"])
+@server_routes.route("/", methods=["POST"])
 @login_required
 def create_server():
     """
@@ -172,6 +172,73 @@ def delete_server(server_id):
     return jsonify({'message': "Successfully deleted", 'statusCode': 200}), 200
 
 
+@server_routes.route('/<int:server_id>/members', methods=['POST'])
+@login_required
+def add_member(server_id):
+    """
+    Add a member to the server
+    """
+    server = Server.query.get(server_id)
+
+    # check if server exists
+    if server is None:
+        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is a member of server
+    if current_user not in server.members:
+        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
+
+    data = request.get_json()
+    user_id = data.get("user_id")
+
+    # check if user exists
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'message': "User couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is already a member
+    if user in server.members:
+        return jsonify({'message': "User is already a member of this server", 'statusCode': 400}), 400
+
+    server.members.append(user)
+    db.session.commit()
+
+    return jsonify({'message': "Successfully added member", 'statusCode': 200}), 200
+
+@server_routes.route('/<int:server_id>/members', methods=['DELETE'])
+@login_required
+def remove_member(server_id):
+    """
+    Remove a member from the server
+    """
+    server = Server.query.get(server_id)
+
+    # check if server exists
+    if server is None:
+        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is a member of server
+    if current_user not in server.members:
+        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
+
+    data = request.get_json()
+    user_id = data.get("user_id")
+
+    # check if user exists
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'message': "User couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is a member
+    if user not in server.members:
+        return jsonify({'message': "User is not a member of this server", 'statusCode': 400}), 400
+
+    server.members.remove(user)
+    db.session.commit()
+
+    return jsonify({'message': "Successfully removed member", 'statusCode': 200}), 200
+
+
 @server_routes.route('/<int:server_id>/channels', methods=['GET'])
 @login_required
 def get_server_channels(server_id):
@@ -237,37 +304,3 @@ def create_channel(server_id):
     # db.session.commit()
 
     # return jsonify(channel.to_dict()), 201
-
-
-@server_routes.route('/<int:server_id>/members', methods=['POST'])
-@login_required
-def add_member(server_id):
-    """
-    Add a member to the server
-    """
-    server = Server.query.get(server_id)
-
-    # check if server exists
-    if server is None:
-        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
-
-    # check if user is a member of server
-    if current_user not in server.members:
-        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
-
-    data = request.get_json()
-    user_id = data.get("user_id")
-
-    # check if user exists
-    user = User.query.get(user_id)
-    if user is None:
-        return jsonify({'message': "User couldn't be found", 'statusCode': 404}), 404
-
-    # check if user is already a member
-    if user in server.members:
-        return jsonify({'message': "User is already a member of this server", 'statusCode': 400}), 400
-
-    server.members.append(user)
-    db.session.commit()
-
-    return jsonify({'message': "Successfully added member", 'statusCode': 200}), 200
