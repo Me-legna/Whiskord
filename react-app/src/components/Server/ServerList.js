@@ -13,11 +13,11 @@ export default function ServerList() {
         fetchData();
     }, [])
   return (
-    <div>
+    <div className='server-list'>
       <h1>Server List</h1>
       <ul>
         {servers.map(server => (
-          <li key={server.id}>
+          <li className='server-list-dropdown' key={server.id}>
             {server.name}
           </li>
         ))}
