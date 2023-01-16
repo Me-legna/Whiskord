@@ -184,10 +184,6 @@ def add_member(server_id):
     if server is None:
         return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
 
-    # check if user is a member of server
-    if current_user not in server.members:
-        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
-
     data = request.get_json()
     user_id = data.get("user_id")
 
@@ -199,6 +195,10 @@ def add_member(server_id):
     # check if user is already a member
     if user in server.members:
         return jsonify({'message': "User is already a member of this server", 'statusCode': 400}), 400
+
+    # Check if the current user is authorized to edit members in the server
+    if server.owner_id != current_user.id:
+        return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
 
     server.members.append(user)
     db.session.commit()
@@ -213,16 +213,16 @@ def remove_member(server_id):
     """
     server = Server.query.get(server_id)
 
+    data = request.get_json()
+    user_id = data.get("user_id")
+
     # check if server exists
     if server is None:
         return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
 
-    # check if user is a member of server
-    if current_user not in server.members:
-        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
-
-    data = request.get_json()
-    user_id = data.get("user_id")
+    # Check if the current user is authorized to edit members in the server
+    if server.owner_id != current_user.id:
+        return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
 
     # check if user exists
     user = User.query.get(user_id)

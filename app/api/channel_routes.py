@@ -131,13 +131,18 @@ def add_channel_member(channel_id):
     if channel is None:
         return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
 
-    # Make sure user is a member of the channel
-    if current_user not in channel.members:
-        return jsonify({'message': "You are not a member of this channel", 'statusCode': 403}), 403
+    # Make sure user is not already a member of the channel
+    if current_user in channel.members:
+        return jsonify({'message': "You are already a member of this channel", 'statusCode': 403}), 403
+
+    # Check if the user is authorized to add members to the channel
+    if channel.server.owner_id != current_user.id:
+        return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
+
 
     # Get the user id from the request body
     data = request.get_json()
-    user_id = data.get('userId')
+    user_id = data.get('user_id')
 
     # Get the user to add to the channel
     user = User.query.get(user_id)
@@ -149,6 +154,37 @@ def add_channel_member(channel_id):
     db.session.commit()
 
     return jsonify({'message': "Successfully added user to channel", 'statusCode': 200}), 200
+
+
+@channel_routes.route('/<int:channel_id>/members/<int:user_id>', methods=['DELETE'])
+@login_required
+def remove_channel_member(channel_id, user_id):
+    """
+    Remove a Member from the Current Channel
+    """
+    # Get the channel to ensure the user is a member and the channel exists
+    channel = Channel.query.get(channel_id)
+    if channel is None:
+        return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
+
+    # Make sure user is a member of the channel
+    if current_user not in channel.members:
+        return jsonify({'message': "You are not a member of this channel", 'statusCode': 403}), 403
+
+    # Check if the user is authorized to remove members from the channel
+    if channel.server.owner_id != current_user.id:
+        return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
+
+    # Get the user to remove from the channel
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'message': "User couldn't be found", 'statusCode': 404}), 404
+
+    # Remove the user from the channel
+    channel.members.remove(user)
+    db.session.commit()
+
+    return jsonify({'message': "Successfully removed user from channel", 'statusCode': 200}), 200
 
 
 @channel_routes.route('/<int:channel_id>/messages')
