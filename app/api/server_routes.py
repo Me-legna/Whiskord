@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Server
-from app.models.db import db
-from app.forms import ServerForm
+from app.models import Server, Channel, User, db
+# from app.models.db import db
+from app.forms import ServerForm, ChannelForm
 from validation_to_error_formatter import validation_errors_to_error_messages
 
 server_routes = Blueprint('servers', __name__)
@@ -160,7 +160,6 @@ def update_server(server_id):
 def delete_server(server_id):
     server = Server.query.get(server_id)
 
-    # Move to WTForms later
     if server is None:
         return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
 
@@ -192,3 +191,83 @@ def get_server_channels(server_id):
     channels = [channel.to_dict() for channel in server.channels]
 
     return jsonify({'Channels': channels})
+
+
+@server_routes.route("/<int:server_id>/channels", methods=["POST"])
+@login_required
+def create_channel(server_id):
+    """
+    Creates and returns a new channel.
+    """
+    # data = request.get_json()
+    # name = data.get("name")
+    # type = data.get("type")
+    # is_private = data.get("is_private")
+
+    # # Perform validation on the data, maybe move to WTForms
+    # errors = []
+    # if not name:
+    #     errors.append("Channel Name is required")
+    # elif len(name) < 1 or len(name) > 100:
+    #     errors.append("Name must be between 1 and 100 in length")
+
+    # if not type:
+    #     errors.append("Type is required")
+
+    # if errors:
+    #     return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
+
+    form = ChannelForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        channel = Channel(
+            name=form.data['name'],
+            server_id=server_id,
+            type=form.data['type'],
+            is_private=form.data['is_private']
+        )
+        db.session.add(channel)
+        db.session.commit()
+        return channel.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+    # # Create the new channel
+    # channel = Channel(name=name, type=type, is_private=is_private)
+    # db.session.add(channel)
+    # db.session.commit()
+
+    # return jsonify(channel.to_dict()), 201
+
+
+@server_routes.route('/<int:server_id>/members', methods=['POST'])
+@login_required
+def add_member(server_id):
+    """
+    Add a member to the server
+    """
+    server = Server.query.get(server_id)
+
+    # check if server exists
+    if server is None:
+        return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is a member of server
+    if current_user not in server.members:
+        return jsonify({'message': "User is not a member of this server", 'statusCode': 403}), 403
+
+    data = request.get_json()
+    user_id = data.get("user_id")
+
+    # check if user exists
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'message': "User couldn't be found", 'statusCode': 404}), 404
+
+    # check if user is already a member
+    if user in server.members:
+        return jsonify({'message': "User is already a member of this server", 'statusCode': 400}), 400
+
+    server.members.append(user)
+    db.session.commit()
+
+    return jsonify({'message': "Successfully added member", 'statusCode': 200}), 200

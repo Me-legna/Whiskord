@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from app.models import Channel
 from app.models.message import Message
 from app.models.db import db
+from app.forms import ChannelForm
+from validation_to_error_formatter import validation_errors_to_error_messages
 
 channel_routes = Blueprint('channels', __name__)
 
@@ -32,38 +34,6 @@ def get_channel(channel_id):
     })
 
 
-@channel_routes.route("/", methods=["POST"])
-@login_required
-def create_channel():
-    """
-    Creates and returns a new channel.
-    """
-    data = request.get_json()
-    name = data.get("name")
-    type = data.get("type")
-    is_private = data.get("is_private")
-
-    # Perform validation on the data, maybe move to WTForms
-    errors = []
-    if not name:
-        errors.append("Channel Name is required")
-    elif len(name) < 1 or len(name) > 100:
-        errors.append("Name must be between 1 and 100 in length")
-
-    if not type:
-        errors.append("Type is required")
-
-    if errors:
-        return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
-
-    # Create the new channel
-    channel = Channel(name=name, type=type, is_private=is_private)
-    db.session.add(channel)
-    db.session.commit()
-
-    return jsonify(channel.to_dict()), 201
-
-
 @channel_routes.route("/<int:channel_id>", methods=["PUT"])
 @login_required
 def update_channel(channel_id):
@@ -78,29 +48,39 @@ def update_channel(channel_id):
     if not current_user.id == channel.server.owner_id:
         return jsonify({'message': 'Unauthorized', 'statusCode': 401}), 401
 
-    # get json data from request
-    data = request.get_json()
-    name = data.get("name")
-    type = data.get("type")
-    is_private = data.get("is_private")
+    # # get json data from request
+    # data = request.get_json()
+    # name = data.get("name")
+    # type = data.get("type")
+    # is_private = data.get("is_private")
 
-    # Perform validation on the data, MOVE TO WTF FORMS LATER
-    errors = []
-    if not name:
-        errors.append("Channel Name is required")
-    elif len(name) < 1 or len(name) > 100:
-        errors.append("Name must be between 1 and 100 in length")
+    # # Perform validation on the data, MOVE TO WTF FORMS LATER
+    # errors = []
+    # if not name:
+    #     errors.append("Channel Name is required")
+    # elif len(name) < 1 or len(name) > 100:
+    #     errors.append("Name must be between 1 and 100 in length")
 
-    if errors:
-        return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
+    # if errors:
+    #     return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
 
-    # update the channel
-    channel.name = name
-    channel.type = type
-    channel.is_private = is_private
-    db.session.commit()
+    form = ChannelForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        channel.name = form.data['name']
+        channel.type = form.data['type']
+        channel.is_private = form.data['is_private']
+        db.session.commit()
+        return channel.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-    return jsonify({'Channel': channel.to_dict()}), 200
+    # # update the channel
+    # channel.name = name
+    # channel.type = type
+    # channel.is_private = is_private
+    # db.session.commit()
+
+    # return jsonify({'Channel': channel.to_dict()}), 200
 
 
 @channel_routes.route("/<int:channel_id>", methods=["DELETE"])
