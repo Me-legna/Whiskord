@@ -183,7 +183,13 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOAD_PUBLIC_SERVERS: {
-            const newState = { ...state, allPublicServers: { byId: {}, allIds: [] } }
+            const newState = {
+                ...state,
+                allPublicServers: {
+                    byId: { ...state.allPublicServers.byId },
+                    allIds: [...state.allPublicServers.allIds]
+                }
+            }
 
             action.payload.forEach(server => {
                 newState.allPublicServers.byId[server.id] = server;
@@ -193,7 +199,13 @@ export default function reducer(state = initialState, action) {
             return newState
         }
         case LOAD_PRIVATE_SERVERS: {
-            const newState = { ...state, allPrivateServers: { byId: {}, allIds: [] } }
+            const newState = {
+                ...state,
+                allPrivateServers: {
+                    byId: { ...state.allPrivateServers.byId },
+                    allIds: [...state.allPrivateServers.allIds]
+                }
+            }
 
             action.payload.forEach(server => {
                 newState.allPrivateServers.byId[server.id] = server;
@@ -203,7 +215,10 @@ export default function reducer(state = initialState, action) {
             return newState
         }
         case LOAD_SERVER_DETAILS: {
-            const newState = { ...state, singleServer: {} }
+            const newState = {
+                ...state,
+                singleServer: {}
+            }
 
             newState.singleServer = action.payload
 
@@ -217,7 +232,10 @@ export default function reducer(state = initialState, action) {
             if (newServer.is_private) {
                 newState = {
                     ...state,
-                    allPrivateServers: { byId: {}, allIds: [] },
+                    allPrivateServers: {
+                        byId: { ...state.allPrivateServers.byId },
+                        allIds: [...state.allPrivateServers.allIds]
+                    },
                     singleServer: {}
                 };
 
@@ -228,7 +246,10 @@ export default function reducer(state = initialState, action) {
             } else {
                 newState = {
                     ...state,
-                    allPublicServers: { byId: {}, allIds: [] },
+                    allPublicServers: {
+                        byId: { ...state.allPublicServers.byId },
+                        allIds: [...state.allPublicServers.allIds]
+                    },
                     singleServer: {}
                 };
 
@@ -247,7 +268,10 @@ export default function reducer(state = initialState, action) {
             if (newServer.is_private) {
                 newState = {
                     ...state,
-                    allPrivateServers: { byId: {}, allIds: [] },
+                    allPrivateServers: {
+                        byId: { ...state.allPrivateServers.byId },
+                         allIds: [...state.allPrivateServers.allIds]
+                        },
                     singleServer: {}
                 };
 
@@ -258,7 +282,10 @@ export default function reducer(state = initialState, action) {
             } else {
                 newState = {
                     ...state,
-                    allPublicServers: { byId: {}, allIds: [] },
+                    allPublicServers: {
+                        byId: { ...state.allPublicServers.byId },
+                        allIds: [...state.allPublicServers.allIds]
+                    },
                     singleServer: {}
                 };
 
@@ -274,7 +301,10 @@ export default function reducer(state = initialState, action) {
             if (action.conditional) {
                 newState = {
                     ...state,
-                    allPrivateServers: { byId: {}, allIds: [] },
+                    allPrivateServers: {
+                        byId: { ...state.allPrivateServers.byId },
+                        allIds: [...state.allPrivateServers.allIds]
+                    },
                     singleServer: {}
                 };
 
@@ -283,7 +313,10 @@ export default function reducer(state = initialState, action) {
             } else {
                 newState = {
                     ...state,
-                    allPublicServers: { byId: {}, allIds: [] },
+                    allPublicServers: {
+                        byId: { ...state.allPublicServers.byId },
+                        allIds: [...state.allPublicServers.allIds]
+                    },
                     singleServer: {}
                 };
                 delete newState.allPublicServers.byId[action.payload];
