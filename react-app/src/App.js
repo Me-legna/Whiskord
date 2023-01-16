@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import Homepage from './components/HomePage';
 import Chat from './components/chat/Chat';
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <Homepage />
         </Route>
       </Switch>
     </BrowserRouter>
