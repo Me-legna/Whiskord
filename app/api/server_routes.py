@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Server
 from app.models.db import db
+from app.forms import ServerForm
+from validation_to_error_formatter import validation_errors_to_error_messages
 
 server_routes = Blueprint('servers', __name__)
 
@@ -67,31 +69,47 @@ def create_server():
     """
     Creates and returns a new server.
     """
-    data = request.get_json()
-    name = data.get("name")
-    image_url = data.get("image_url")
+    # data = request.get_json()
+    # name = data.get("name")
+    # image_url = data.get("image_url")
 
-    owner_id = current_user.id
-    is_private = False
-    is_dm = False
-    capacity = 500000
+    # owner_id = current_user.id
+    # is_private = False
+    # is_dm = False
+    # capacity = 500000
 
-    # Perform validation on the data, MOVE TO WTF FORMS LATER
-    errors = []
-    if not name:
-        errors.append("Server Name is required")
-    elif len(name) < 2 or len(name) > 100:
-        errors.append("Name must be between 2 and 100 in length")
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        server = Server(
+            name=form.data['name'],
+            owner_id=current_user.id,
+            image_url=form.data['image_url'],
+            is_private=form.data['is_private'],
+            is_dm=form.data['is_dm'],
+            capacity=form.data['capacity']
+        )
+        db.session.add(server)
+        db.session.commit()
+        return server.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-    if errors:
-        return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
+    # # Perform validation on the data, MOVE TO WTF FORMS LATER
+    # errors = []
+    # if not name:
+    #     errors.append("Server Name is required")
+    # elif len(name) < 2 or len(name) > 100:
+    #     errors.append("Name must be between 2 and 100 in length")
 
-    # Create the new server
-    server = Server(name=name, owner_id=owner_id, image_url=image_url, is_private=is_private, is_dm=is_dm, capacity=capacity)
-    db.session.add(server)
-    db.session.commit()
+    # if errors:
+    #     return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
 
-    return jsonify(server.to_dict()), 201
+    # # Create the new server
+    # server = Server(name=name, owner_id=owner_id, image_url=image_url, is_private=is_private, is_dm=is_dm, capacity=capacity)
+    # db.session.add(server)
+    # db.session.commit()
+
+    # return jsonify(server.to_dict()), 201
 
 
 @server_routes.route("/<int:server_id>", methods=["PUT"])
@@ -104,26 +122,38 @@ def update_server(server_id):
     if server.owner_id != current_user.id:
         return jsonify({'message': "Unauthorized", 'statusCode': 401}), 401
 
-    data = request.get_json()
-    name = data.get("name")
-    image_url = data.get("image_url")
+    # data = request.get_json()
+    # name = data.get("name")
+    # image_url = data.get("image_url")
 
-    # Perform validation on the data, MOVE TO WTF FORMS LATER
-    errors = []
-    if not name:
-        errors.append("Server Name is required")
-    elif len(name) < 2 or len(name) > 100:
-        errors.append("Name must be between 2 and 100 in length")
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        server.name = form.data['name']
+        server.image_url = form.data['image_url'],
+        server.is_private = form.data['is_private']
+        server.is_dm = form.data['is_dm']
+        server.capacity = form.data['capacity']
+        db.session.commit()
+        return server.to_dict(), 200
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-    if errors:
-        return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
+    # # Perform validation on the data, MOVE TO WTF FORMS LATER
+    # errors = []
+    # if not name:
+    #     errors.append("Server Name is required")
+    # elif len(name) < 2 or len(name) > 100:
+    #     errors.append("Name must be between 2 and 100 in length")
 
-    # Update the server
-    server.name = name
-    server.image_url = image_url
-    db.session.commit()
+    # if errors:
+    #     return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
 
-    return jsonify(server.to_dict()), 200
+    # # Update the server
+    # server.name = name
+    # server.image_url = image_url
+    # db.session.commit()
+
+    # return jsonify(server.to_dict()), 200
 
 @server_routes.route("/<int:server_id>", methods=["DELETE"])
 @login_required
