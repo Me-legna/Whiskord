@@ -88,8 +88,8 @@ npm start
 To use Whiskord, you need to sign up for an account (or use the demo user). You can then create or join a server. Once you're in a server, you can create or join channels and start communicating with other users.
 
 ## 📝 Documentation
-- [API Documentation](https://whiskord.herokuapp.com/api/docs)
-- [Database Schema](https://whiskord.herokuapp.com/api/schema)
+- [API Documentation](https://github.com/Me-legna/Whiskord/wiki/API-Documentation)
+- [Database Schema](https://github.com/Me-legna/Whiskord/wiki/Database-Schema)
 
 ## 🤝 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
