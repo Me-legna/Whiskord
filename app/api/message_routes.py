@@ -4,7 +4,7 @@ from app.models import Message
 from app.models.db import db
 from app.models.channel import Channel
 from app.forms.message_form import MessageForm
-from validation_to_error_formatter import validation_errors_to_error_messages
+from .validation_to_error_formatter import validation_errors_to_error_messages
 
 message_routes = Blueprint('messages', __name__)
 

@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Server, Channel, User, db
 # from app.models.db import db
 from app.forms import ServerForm, ChannelForm
-from validation_to_error_formatter import validation_errors_to_error_messages
+from .validation_to_error_formatter import validation_errors_to_error_messages
 
 server_routes = Blueprint('servers', __name__)
 
