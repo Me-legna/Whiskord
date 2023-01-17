@@ -59,14 +59,14 @@ export default function SingleServer() {
                 {/* edit and delete buttons for server and channels */}
                 {user && user?.id === serverOwner ? (
                     <div>
-                        <div className='button'>{<OpenModalButton
+                        {/* <div className='button'>{<OpenModalButton
                             modalComponent={<DeleteChannelForm />}
                             buttonText="Delete Channel" />}
                         </div>
                         <div className='button'>{<OpenModalButton
                             modalComponent={<EditChannelForm />}
                             buttonText="Edit Channel" />}
-                        </div>
+                        </div> */}
                         <div className='button'>{<OpenModalButton
                             modalComponent={<EditServerForm />}
                             buttonText="Edit Sever" />}

@@ -3,9 +3,8 @@ import { NavLink } from 'react-router-dom';
 import '../../index.css';
 // import homepage.css;
 
-function HomePage() {
+function UnderConstruction() {
    return (
-
     <div className='home-page-main-div'>
         <div className='home-page-header'>
             <NavLink exact to="/">
@@ -17,7 +16,6 @@ function HomePage() {
             <NavLink className="undeveloped-feat" exact to="feature under review page">Contact Support</NavLink>
             <NavLink className="login-redirect" exact to="login-page">Login</NavLink>
         </div>
-
     </div>
    )
 }

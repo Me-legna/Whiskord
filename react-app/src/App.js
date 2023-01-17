@@ -10,7 +10,8 @@ import User from './components/Users/User';
 import { authenticate } from './store/session';
 import Homepage from './components/HomePage/index';
 import Chat from './components/chat/Chat';
-
+import SingleServer from './components/Servers/SingleServer';
+import ServerList from './components/Servers/ServerList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +40,12 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path="/servers/list" exact={true}>
+          <ServerList />
+        </Route>
+        <Route path="/servers" exact={true}>
+          <SingleServer />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
