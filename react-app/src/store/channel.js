@@ -350,5 +350,7 @@ export default function channelReducer(state = {}, action) {
                     allIds: newMemberState.members.allIds.filter(id => id !== deletedMember.id)
                 }
             }
+            default:
+                return state
         }
 }
