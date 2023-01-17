@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { publicServers } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "../../../Icon"
 
-export default function ServerList() {
-  const serversObj = useSelector((state) => state.servers.allPublicServers.byId
-  );
-  const servers = Object.values(serversObj);
+export default function ServerList({clickHandler}) {
+  // const serversObj = useSelector((state) => console.log(state.servers.allPublicServers.byId));
+  // const serversObj = useSelector((state) => state.servers.allPublicServers.byId);
+  // const servers = Object.values(serversObj);
   // console.log("servers", serversObj);
   const dispatch = useDispatch();
 
@@ -17,19 +18,25 @@ export default function ServerList() {
   //     setSelectedServer(server);
   //     setShowMenu((prev) => !prev);
   // }
-  if (!servers) {
-    return null
-  }
+  // if (!servers) {
+  //   return null
+  // }
 
-  return  (
+  return (
     <div className="server-list">
-      <ul>
-        {servers.map(server => (
+      <h1>Hello</h1>
+      {/* {servers.map(server => (
+        <Icon
+        imageUrl={server.img_url}
+        isServer={true}
+        clickEvent={clickHandler(server.id)}
+        />
+      ))} */}
+      {/* <ul>
           <li className='server-list' key={server.id}>
             {server.name}
           </li>
-        ))}
-      </ul>
+          </ul> */}
       {/* {showMenu && (
         <ul className='server-list-dropdown'>
             <li>Invite People</li>
