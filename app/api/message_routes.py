@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Message
 from app.models.db import db
 
-message_routes = Blueprint('channels', __name__)
+message_routes = Blueprint('messages', __name__)
 
 @message_routes.route('/', methods=['POST'])
 @login_required

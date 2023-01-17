@@ -61,7 +61,7 @@ def get_server(server_id):
     })
 
 
-@server_routes.route("/servers", methods=["POST"])
+@server_routes.route("/", methods=["POST"])
 @login_required
 def create_server():
     """
