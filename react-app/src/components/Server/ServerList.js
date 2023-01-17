@@ -3,8 +3,8 @@ import React, { useState, useEffect} from 'react';
 
 export default function ServerList() {
     const [servers, setServers] = useState([]);
-    const [showMenu, setShowMenu] = useState(false);
-    const [selectedServer, setSelectedServer] = useState(null);
+    // const [showMenu, setShowMenu] = useState(false);
+    // const [selectedServer, setSelectedServer] = useState(null);
 
 
     useEffect(() => {
@@ -16,22 +16,22 @@ export default function ServerList() {
         fetchData();
     }, [])
 
-    const toggleMenu = (server) => {
-        setSelectedServer(server);
-        setShowMenu((prev) => !prev);
-    }
+    // const toggleMenu = (server) => {
+    //     setSelectedServer(server);
+    //     setShowMenu((prev) => !prev);
+    // }
 
   return (
     <div className='server-list'>
       <h1>Server List</h1>
       <ul>
         {servers.map(server => (
-          <li className='server-list-dropdown' key={server.id}>
+          <li className='server-list' key={server.id}>
             {server.name}
           </li>
         ))}
       </ul>
-      {showMenu && (
+      {/* {showMenu && (
         <ul className='server-list-dropdown'>
             <li>Invite People</li>
             <li>Mute Server</li>
@@ -42,7 +42,7 @@ export default function ServerList() {
             <li>Edit server</li>
             <li>Leave Server</li>
             </ul>
-      )}
+      )} */}
 
     </div>
   );
