@@ -1,64 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/Users/UsersList';
-import User from './components/Users/User';
+import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from './store/session';
-import Homepage from './components/HomePage/index';
-import Chat from './components/chat/Chat';
-import SingleServer from './components/Servers/SingleServer';
-import ServerList from './components/Servers/ServerList';
+import LandingPage from './components/LandingPage/index';
+import Routing from './Routing';
+import HomePage from './components/HomePage';
+import NavBar from './components/LandingPage/Navigation/NavBar';
+import LogoutButton from './components/auth/LogoutButton';
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const [loaded, setLoaded] = useState(false);
+    const user = useSelector(state => state.session.user)
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+    useEffect(() => {
+        dispatch(authenticate()).then(() => setLoaded(true));
+    }, [dispatch]);
+    // useEffect(() => {
+    //     (async () => {
+    //         await dispatch(authenticate());
+    //         setLoaded(true);
+    //     })();
+    // }, [dispatch]);
 
-  return (
-    <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path="/chat" exact={true}>
-          <Chat />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path="/servers/list" exact={true}>
-          <ServerList />
-        </Route>
-        <Route path="/servers" exact={true}>
-          <SingleServer />
-        </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <Route path="/" exact={true}>
-          <Homepage />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+    if (!loaded) {
+        return null;
+    }
+
+    return (
+        <>
+            {
+                (user)
+                    ?
+                    <div>
+                        <HomePage />
+                        <LogoutButton />
+                    </div>
+                    :
+                    <NavBar />
+            }
+            <Routing user={user} />
+        </>
+    );
 }
 
 export default App;

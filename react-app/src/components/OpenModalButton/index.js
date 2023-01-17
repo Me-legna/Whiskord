@@ -1,7 +1,5 @@
 import React from 'react';
-import { useModal, ModalProvider } from '../../Context/Modal.js';
-
-
+import { useModal } from '../../context/Modal';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
@@ -18,9 +16,7 @@ function OpenModalButton({
   };
 
   return (
-    <div>
-      <button className='button new-button' onClick={onClick}>{buttonText}</button>
-    </div>
+    <button className='open-modal-button clickable' onClick={onClick}>{buttonText}</button>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { publicServers } from "../../store/server";
+import { publicServers } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ServerList() {

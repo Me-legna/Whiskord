@@ -270,8 +270,8 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     allPrivateServers: {
                         byId: { ...state.allPrivateServers.byId },
-                         allIds: [...state.allPrivateServers.allIds]
-                        },
+                        allIds: [...state.allPrivateServers.allIds]
+                    },
                     singleServer: {}
                 };
 
