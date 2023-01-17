@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import '../../index.css';
 // import homepage.css;
 
-
 function HomePage() {
    return (
 

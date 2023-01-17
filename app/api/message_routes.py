@@ -2,8 +2,11 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Message
 from app.models.db import db
+from app.models.channel import Channel
+from app.forms.message_form import MessageForm
+from validation_to_error_formatter import validation_errors_to_error_messages
 
-message_routes = Blueprint('channels', __name__)
+message_routes = Blueprint('messages', __name__)
 
 @message_routes.route('/', methods=['POST'])
 @login_required
@@ -11,25 +14,46 @@ def create_message():
     """
     Create a Message
     """
-    data = request.get_json()
-    message = data.get('message')
-    channel_id = data.get('channel_id')
+    # data = request.get_json()
+    # message = data.get('message')
+    # channel_id = data.get('channel_id')
 
-    # Validate input
-    errors = []
-    if not message:
-        errors.append("Message is required")
-    if len(message) > 2000:
-        errors.append("Message must be less than 2000 in length")
-    if errors:
-        return jsonify({'message': "Validation Error", 'statusCode': 400, 'errors': errors}), 400
+    form = MessageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    # Create new message
-    new_message = Message(message=message, channel_id=channel_id, user_id=current_user.id)
-    db.session.add(new_message)
-    db.session.commit()
+    if form.validate_on_submit():
+        # Check if channel exists
+        channel_id=form.data['channel_id']
+        channel = Channel.query.get(channel_id)
+        if channel is None:
+            return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
 
-    return jsonify({'message': new_message.to_dict()}), 201
+        new_message = Message(
+            message=form.data['message'],
+            channel_id=form.data['channel_id'],
+            user_id=current_user.id
+        )
+        db.session.add(new_message)
+        db.session.commit()
+        return new_message.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+    # # Validate input
+    # errors = []
+    # if not message:
+    #     errors.append("Message is required")
+    # if len(message) > 2000:
+    #     errors.append("Message must be less than 2000 in length")
+    # if errors:
+    #     return jsonify({'message': "Validation Error", 'statusCode': 400, 'errors': errors}), 400
+
+    # # Create new message
+    # new_message = Message(message=message, channel_id=channel_id, user_id=current_user.id)
+    # db.session.add(new_message)
+    # db.session.commit()
+
+    # return jsonify({'message': new_message.to_dict()}), 201
 
 
 @message_routes.route('/<int:message_id>', methods=['PUT'])
@@ -38,8 +62,9 @@ def edit_message(message_id):
     """
     Edit a Message
     """
-    data = request.get_json()
-    new_message = data.get('message')
+
+    # data = request.get_json()
+    # new_message = data.get('message')
 
     message = Message.query.get(message_id)
 
@@ -51,16 +76,27 @@ def edit_message(message_id):
     if message.user_id != current_user.id:
         return jsonify({'message': "You are not authorized to edit this message", 'statusCode': 403}), 403
 
-    # Validate message data
-    errors = new_message.validate(data)
-    if errors:
-        return jsonify({'message': 'Validation Error', 'statusCode': 400, 'errors': errors}), 400
+    # # Validate message data
+    # errors = new_message.validate(data)
+    # if errors:
+    #     return jsonify({'message': 'Validation Error', 'statusCode': 400, 'errors': errors}), 400
 
-    message.message = data.get('message')
-    message.is_edited = True
-    db.session.commit()
+    # Validate input
+    form = MessageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        message.content = form.data['content']
+        message.is_edited = True
+        db.session.commit()
+        return message.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    return jsonify(message.to_dict()), 200
+
+    # message.message = data.get('message')
+    # message.is_edited = True
+    # db.session.commit()
+
+    # return jsonify(message.to_dict()), 200
 
 
 @message_routes.route("/<int:message_id>", methods=["DELETE"])
