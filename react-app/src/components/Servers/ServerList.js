@@ -3,10 +3,10 @@ import { publicServers } from "../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ServerList() {
-  const serversObj = useSelector((state) =>
-    console.log("state", state.servers.allPublicServers.byId)
+  const serversObj = useSelector((state) => state.servers.allPublicServers.byId
   );
-  const servers = serversObj?.values();
+  const servers = Object.values(serversObj);
+  // console.log("servers", serversObj);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,8 +17,11 @@ export default function ServerList() {
   //     setSelectedServer(server);
   //     setShowMenu((prev) => !prev);
   // }
+  if (!servers) {
+    return null
+  }
 
-  return servers && (
+  return  (
     <div className="server-list">
       <ul>
         {servers.map(server => (
