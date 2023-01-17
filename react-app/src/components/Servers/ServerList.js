@@ -1,20 +1,15 @@
 import React, { useState, useEffect} from 'react';
+import { publicServers } from '../../store/server';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function ServerList() {
     const [servers, setServers] = useState([]);
-    // const [showMenu, setShowMenu] = useState(false);
-    // const [selectedServer, setSelectedServer] = useState(null);
-
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        async function fetchData() {
-            const res = await fetch('/api/servers/');
-            const data = await res.json();
-            setServers(data.servers);
-        }
-        fetchData();
-    }, [])
+        dispatch(publicServers())
+    }, [dispatch])
 
     // const toggleMenu = (server) => {
     //     setSelectedServer(server);
@@ -23,7 +18,6 @@ export default function ServerList() {
 
   return (
     <div className='server-list'>
-      <h1>Server List</h1>
       <ul>
         {servers.map(server => (
           <li className='server-list' key={server.id}>
@@ -43,7 +37,6 @@ export default function ServerList() {
             <li>Leave Server</li>
             </ul>
       )} */}
-
     </div>
   );
 }
