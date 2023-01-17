@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getChannelMembers} from '../../store/members';
+import { getChannelMembers } from '../../../../store/channel';
 
 
 
@@ -16,7 +16,7 @@ export default function ChannelMembers({channel}) {
     return (
         <div>
             <ul>
-                {members.allIds.map((memberId) => {
+                {members?.allIds.map((memberId) => {
                     const member = members.byId[memberId];
                     return (
                         <li key={member.id}>

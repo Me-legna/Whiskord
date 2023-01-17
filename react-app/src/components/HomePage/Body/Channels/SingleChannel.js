@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getChannelDetails } from "../../store/channel";
+import { getChannelDetails } from "../../../../store/channel";
 
 
 export default function SingleChannel({ channel }) {
@@ -13,8 +13,8 @@ export default function SingleChannel({ channel }) {
 
   return (
     <div>
-      <h1>{singleChannel.name}</h1>
-      <p>{singleChannel.description}</p>
+      {/* <h1>{singleChannel.name}</h1>
+      <p>{singleChannel.description}</p> */}
     </div>
   );
 }

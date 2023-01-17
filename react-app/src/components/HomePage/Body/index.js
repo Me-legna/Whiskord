@@ -1,3 +1,4 @@
+import Channels from "./Channels"
 import Members from "./Members"
 
 function Body({variable}) {
@@ -10,6 +11,7 @@ function Body({variable}) {
                     ? <PrivateServers />
                     : <Channels />
             */}
+            <Channels />
             </div>
 
 
