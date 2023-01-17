@@ -11,12 +11,13 @@ import { authenticate } from './store/session';
 import Homepage from './components/HomePage/index';
 import Chat from './components/chat/Chat';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -30,22 +31,22 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/chat' exact={true}>
+        <Route path="/chat" exact={true}>
           <Chat />
         </Route>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route path="/" exact={true}>
           <Homepage />
         </Route>
       </Switch>
