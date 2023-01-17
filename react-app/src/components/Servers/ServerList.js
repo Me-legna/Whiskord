@@ -1,23 +1,25 @@
-import React, { useState, useEffect} from 'react';
-import { publicServers } from '../../store/server';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React, { useState, useEffect } from "react";
+import { publicServers } from "../../store/server";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ServerList() {
-    const [servers, setServers] = useState([]);
-    const dispatch = useDispatch();
+  const serversObj = useSelector((state) =>
+    console.log("state", state.servers.allPublicServers.byId)
+  );
+  const servers = serversObj?.values();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(publicServers())
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(publicServers());
+  }, [dispatch]);
 
-    // const toggleMenu = (server) => {
-    //     setSelectedServer(server);
-    //     setShowMenu((prev) => !prev);
-    // }
+  // const toggleMenu = (server) => {
+  //     setSelectedServer(server);
+  //     setShowMenu((prev) => !prev);
+  // }
 
-  return (
-    <div className='server-list'>
+  return servers && (
+    <div className="server-list">
       <ul>
         {servers.map(server => (
           <li className='server-list' key={server.id}>
