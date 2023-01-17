@@ -50,7 +50,7 @@ export const publicServers = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(loadPublicServers(data));
+        dispatch(loadPublicServers(data.Servers));
 
     } else if (response.status < 500) {
         const data = await response.json();
@@ -72,7 +72,7 @@ export const privateServers = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(loadPrivateServers(data));
+        dispatch(loadPrivateServers(data.Servers));
 
     } else if (response.status < 500) {
         const data = await response.json();
@@ -93,7 +93,7 @@ export const serverDetails = (serverId) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(getServerDetails(data));
+        dispatch(getServerDetails(data.Server));
 
     } else if (response.status < 500) {
         const data = await response.json();
