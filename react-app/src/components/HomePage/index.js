@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { publicServers } from "../../store/server"
 import { privateServers } from "../../store/server";
 import { serverDetails } from "../../store/server"
+import { getChannelDetails } from "../../store/channel"
+import { useHistory, useParams } from "react-router-dom";
 
 
 
@@ -23,8 +25,6 @@ function HomePage() {
 
     // useSelector for single server details
     const singleServerDetails = useSelector(state => state.servers.singleServer)
-
-
 
     //handler to load single server if serverIcon clicked
     // takes in serverId

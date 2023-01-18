@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { publicServers, serverDetails } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Icon from "../../../Icon"
 
 export default function ServerList({ clickHandler }) {
@@ -20,11 +21,14 @@ export default function ServerList({ clickHandler }) {
       {servers.map((server, idx) => {
         // if(!idx) dispatch(serverDetails(server.id))
         return (
-          <Icon
-            imageUrl={server.img_url}
-            isServer={true}
-            clickEvent={() => clickHandler(server.id)}
-          />
+          <div>
+            <Icon
+              imageUrl={server.img_url}
+              isServer={true}
+              clickEvent={() => clickHandler(server.id)}
+            />
+            <NavLink to={`/servers/${server.id}`}>{server.name}</NavLink>
+          </div>
         )})}
     </div>
   );

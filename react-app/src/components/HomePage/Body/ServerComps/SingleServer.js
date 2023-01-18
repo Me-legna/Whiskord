@@ -1,8 +1,8 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import { useHistory } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { userParams, NavLink, useParams } from "react-router-dom";
-// import { serverDetails } from "../../../../store/server";
+import { useDispatch, useSelector } from "react-redux";
+import { userParams, NavLink, useParams } from "react-router-dom";
+import { serverDetails } from "../../../../store/server";
 // import ServerList from "./ServerList";
 // // import delete and edit channel form
 // // import delete and edit server form
@@ -10,6 +10,21 @@
 // // import members list component
 // // import member form
 
+export default function SingleServer() {
+  const dispatch = useDispatch();
+
+  const { serverId } = useParams();
+
+  useEffect(() => {
+    dispatch(serverDetails(serverId));
+  }, [dispatch, serverId]);
+
+  return (
+    <div>
+      {/* <h1>Single Server</h1> */}
+    </div>
+  )
+}
 // export default function SingleServer() {
 //   const { serverId } = useParams();
 //   const serverName = useSelector((state) => console.log(state));

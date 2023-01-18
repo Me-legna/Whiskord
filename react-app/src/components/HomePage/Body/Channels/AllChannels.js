@@ -2,10 +2,13 @@ import { NavLink } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 export default function AllChannels({ channels, handleSetChannel }) {
-    // const channels2 = useSelector((state) => state.channels);
+    // const channels = useSelector((state) => state.channel.allChannels);
   return (
     <div>
-      <h4>Channels</h4>
+      {
+        (channels.allIds.length > 0) &&
+        <h4>Channels</h4>
+      }
       <ul>
         {channels?.allIds?.map((channelId) => {
           const channel = channels?.byId[channelId];
