@@ -41,6 +41,11 @@ function Routing({ user }) {
                     <User />
                 </ProtectedRoute>
 
+                {/* Server Channels Page */}
+                <ProtectedRoute path="/home/:serverId" >
+                    <HomePage />
+                </ProtectedRoute>
+
                 {/* Home/Application Pages */}
                 <ProtectedRoute path="/home">
                     <HomePage />
@@ -53,11 +58,6 @@ function Routing({ user }) {
 
                 <ProtectedRoute path="/home/@me/:channelId" >
                     {/* <SinglePrivateChannel /> */}
-                </ProtectedRoute>
-
-                {/* Server Channels Page */}
-                <ProtectedRoute path="/home/:serverId" >
-                    <AllChannels />
                 </ProtectedRoute>
 
                 <ProtectedRoute path="/home/:serverId/:channelId" >
