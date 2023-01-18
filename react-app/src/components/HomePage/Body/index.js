@@ -5,7 +5,7 @@ import ServerList from "./ServerComps/ServerList";
 import SingleServer from "./ServerComps/SingleServer";
 import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
-
+import Header from "../Header";
 import "../HomePage.css";
 
 function Body({ variable }) {
@@ -20,12 +20,16 @@ function Body({ variable }) {
       <div className="server-list-container">
         <ServerList />
       </div>
+      {/* <Header server={singleServerDetails} /> */}
       {/* <div><SingleServer /></div> */}
       <div className="channel-list-container">
         {/* Channels / Private Servers */}
         {/*
                 (variable)
-                    ? <PrivateServers />
+                History.push(/home/@me)
+                ? <PrivateServers />
+
+                History.push(/home/channels)
                     : <Channels />
             */}
             <h3>Channel Name</h3>

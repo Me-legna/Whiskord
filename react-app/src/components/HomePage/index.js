@@ -10,6 +10,7 @@ import { getChannelDetails } from "../../store/channel"
 import { useHistory, useParams } from "react-router-dom";
 
 import "./HomePage.css";
+import ServerList from "./Body/ServerComps/ServerList";
 
 function HomePage() {
   //[variable, setVariable] = useState(true)
@@ -31,8 +32,8 @@ function HomePage() {
     //handler to load single server if serverIcon clicked
     // takes in serverId
     // use thunk to load server info by id
-    const loadServer = async(serverId) => {
-        return dispatch(serverDetails(serverId))
+    const loadServer = (serverId) => {
+        dispatch(serverDetails(serverId))
     }
 
 
@@ -51,13 +52,14 @@ function HomePage() {
                         />
                     </div>
                 */}
+                <ServerList clickHandler={loadServer} />
         <div>
           {" "}
           {/* when clicked Create Server */}
           {/* <Icon iconImage={"+"} /> */}
         </div>
       </div>
-      <Header server={singleServerDetails} />
+      {/* <Header server={singleServerDetails} /> */}
       <Body /> {/* variable={variable} */}
     </div>
   );

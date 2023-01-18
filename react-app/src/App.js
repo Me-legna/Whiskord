@@ -28,6 +28,7 @@ function App() {
 
     return (
         <div>
+            <Routing user={user} />
             {
                 (user)
                     ?
@@ -39,7 +40,6 @@ function App() {
                     <NavBar />
             }
 
-            <Routing user={user} />
         </div>
     );
 }

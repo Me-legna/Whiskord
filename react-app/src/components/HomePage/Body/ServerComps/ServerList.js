@@ -27,7 +27,7 @@ export default function ServerList({ clickHandler }) {
               isServer={true}
               clickEvent={() => clickHandler(server.id)}
             />
-            <NavLink to={`/servers/${server.id}`}>{server.name}</NavLink>
+            <NavLink to={`/home/${server.id}`}>{server.name}</NavLink>
           </div>
         )})}
     </div>
