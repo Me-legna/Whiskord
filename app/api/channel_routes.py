@@ -22,7 +22,7 @@ def get_channel(channel_id):
     messages = [message.to_dict() for message in channel.messages]
 
     return jsonify({
-        'Channels': {
+        'Channel': {
             'id': channel.id,
             'name': channel.name,
             'server': channel.server.to_dict(),
