@@ -33,6 +33,11 @@ function Routing({ user }) {
                 </ProtectedRoute>
                 <ProtectedRoute path="/servers/:serverId" >
                     <SingleServer />
+                    <HomePage />
+                </ProtectedRoute>
+                <ProtectedRoute path="/channels/:channelId" >
+                    <SingleServer />
+                    <HomePage />
                 </ProtectedRoute>
                 <ProtectedRoute path="/channels" >
                     <Channels />

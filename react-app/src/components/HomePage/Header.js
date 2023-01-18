@@ -17,7 +17,7 @@ export default function Header() {
 
         <div className='server-main-page-header'>
             <div className='server-name'>{myServer.name}</div>
-            <div className='channel-name'>{myChannel.name}</div>
+            {myChannel && <div className='channel-name'>{myChannel.name}</div>}
         </div>
     )
 }
