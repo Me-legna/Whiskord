@@ -5,7 +5,7 @@ import { useSelector} from 'react-redux'
 export default function Header() {
 
     const myServer= useSelector(state => state.servers.singleServer)
-    const myChannel = useSelector(state => state.channels.channelDetails)
+    const myChannel = useSelector(state => state.channel.channelDetails)
     // const myChannel = useSelector(state => console.log(state))
 
 

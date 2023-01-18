@@ -270,7 +270,7 @@ export const deleteChannelMember =
   };
 
 const initialState = {
-  channels: {
+  allChannels: {
     byId: {},
     allIds: [],
   },
@@ -285,14 +285,14 @@ const initialState = {
 export default function channelReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CHANNELS:
-      const allChannels = {};
+      const loadAllChannels = {};
       action.payload?.forEach((channel) => {
-        allChannels[channel.id] = channel;
+        loadAllChannels[channel.id] = channel;
       });
       return {
         ...state,
-        channels: {
-          byId: allChannels,
+        allChannels: {
+          byId: loadAllChannels,
           allIds: action.payload.map((channel) => channel.id),
         },
       };
@@ -306,7 +306,7 @@ export default function channelReducer(state = initialState, action) {
       const newChannel = action.payload;
       return {
         ...state,
-        channels: {
+        allChannels: {
           byId: {
             ...state.channels.byId,
             [newChannel.id]: newChannel,
@@ -318,7 +318,7 @@ export default function channelReducer(state = initialState, action) {
       const updatedChannel = action.payload;
       return {
         ...state,
-        channels: {
+        allChannels: {
           byId: {
             ...state.channels.byId,
             [updatedChannel.id]: updatedChannel,
@@ -332,7 +332,7 @@ export default function channelReducer(state = initialState, action) {
       delete newState.channels.byId[deletedChannel.id];
       return {
         ...newState,
-        channels: {
+        allChannels: {
           byId: newState.channels.byId,
           allIds: newState.channels.allIds.filter(
             (id) => id !== deletedChannel.id

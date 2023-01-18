@@ -18,7 +18,7 @@ export default function ServerList({ clickHandler }) {
   return (
     <div className="server-list">
       {servers.map((server, idx) => {
-        if(!idx) dispatch(serverDetails(server.id))
+        // if(!idx) dispatch(serverDetails(server.id))
         return (
           <Icon
             imageUrl={server.img_url}

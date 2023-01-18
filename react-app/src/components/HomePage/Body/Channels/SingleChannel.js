@@ -5,11 +5,12 @@ import { getChannelDetails } from "../../../../store/channel";
 
 export default function SingleChannel({ channel }) {
   const dispatch = useDispatch();
-  const singleChannel = useSelector((state) => state?.channel?.channelDetails);
-
+  const singleChannel = useSelector((state) => state.channel.channelDetails);
+  // const state = useSelector((state) => state);
+  // console.log("singleChannel", state.channel)
   useEffect(() => {
-    dispatch(getChannelDetails(channel?.id));
-  }, [dispatch, channel?.id, singleChannel]);
+    if(singleChannel) dispatch(getChannelDetails(singleChannel.id));
+  }, [dispatch, singleChannel.id]);
 
   return (
     <div>

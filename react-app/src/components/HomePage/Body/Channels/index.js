@@ -8,12 +8,11 @@ import ChannelMembers from "./ChannelMembers";
 export default function Channels() {
   const dispatch = useDispatch();
   const [channel, setChannel] = useState({});
-  
-  const serverId = useSelector((state) => state?.servers?.singleServer?.id);
-  // const channels = useSelector((state) => state?.servers.singleServer?.channels);
-  const channels = useSelector((state) => state?.channel?.channels);
 
-  console.log(channels)
+  const serverId = useSelector((state) => state.servers.singleServer.id);
+  // const channels = useSelector((state) => state?.servers.singleServer?.channels);
+  const channels = useSelector((state) => state.channel.allChannels);
+
 
   useEffect(() => {
     dispatch(getChannels(serverId));

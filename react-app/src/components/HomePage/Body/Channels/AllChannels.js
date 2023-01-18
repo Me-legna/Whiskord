@@ -5,7 +5,7 @@ export default function AllChannels({ channels, handleSetChannel }) {
     // const channels2 = useSelector((state) => state.channels);
   return (
     <div>
-      <h2>Channels</h2>
+      <h4>Channels</h4>
       <ul>
         {channels?.allIds?.map((channelId) => {
           const channel = channels?.byId[channelId];
