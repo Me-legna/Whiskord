@@ -32,9 +32,9 @@ const NavBar = () => {
             Chat
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <LogoutButton />
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
