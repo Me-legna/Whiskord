@@ -32,13 +32,13 @@ function App() {
                 (user)
                     ?
                     <div>
-                        <HomePage />
+                        {/* <HomePage /> */}
                         <LogoutButton />
                     </div>
                     :
                     <NavBar />
             }
-            
+
             <Routing user={user} />
         </div>
     );
