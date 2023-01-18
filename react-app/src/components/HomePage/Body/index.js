@@ -6,84 +6,123 @@ import Members from "./Members";
 import ServerList from "./ServerComps/ServerList";
 import SingleServer from "./ServerComps/SingleServer";
 import { getChannelDetails } from "../../../store/channel";
+import { getChannels } from "../../../store/channel";
+import AllChannels from "./Channels/AllChannels";
 import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
+import Chat from "../../Chat/Chat";
 import Header from "../Header";
 import "../HomePage.css";
 
 function Body({ variable }) {
     const dispatch = useDispatch();
 
-  const [channel, setChannel] = useState({});
-  const handleSetChannel = (channel) => {
-    setChannel(channel);
-  };
+    
+    //   const [channel, setChannel] = useState({});
+    //   const handleSetChannel = (channel) => {
+    //     setChannel(channel);
+    //   };
+    
+    //   const { serverId, channelId } = useParams();
 
-  const { serverId, channelId } = useParams();
+    const state = useSelector((state) => state);
 
-  useEffect(() => {
-    dispatch(getChannelDetails(channelId));
-    }, [dispatch, channelId, serverId]);
-
-  const state = useSelector((state) => state);
-
-  const singleServer = useSelector((state) => state.servers.singleServer);
-
-  const channelDetails = useSelector((state) => state?.channel?.channelDetails);
-
-  const channelName = channelDetails?.name;
+    const serverId = useSelector((state) => state?.servers?.singleServer.id);   
+    
+    const channelId = useSelector((state) => state?.channel?.channelDetails?.id);
 
 
-    console.log('channelId', channelId)
-  console.log('channelDetails', channelDetails)
-  console.log('state', state)
+    const singleServer = useSelector((state) => state?.servers?.singleServer);
 
-  return (
-    <div className="main-body">
-      {/* Main Div */}
-      <div className="server-list-container">
-        <ServerList />
-      </div>
-      {/* <Header server={singleServerDetails} /> */}
-      {/* <div><SingleServer /></div> */}
-      <div className="channel-list-container">
-        {/* Channels / Private Servers */}
-        {/*
-                (variable)
-                History.push(/home/@me)
-                ? <PrivateServers />
+    const allChannels = useSelector((state) => state?.channel?.allChannels);
 
-                History.push(/home/channels)
-                    : <Channels />
-            */}
-        <h3>{singleServer.name}</h3>
-        <Channels handleSetChannel={handleSetChannel} />
-      </div>
-      <div className="messages-container">
-        { (channelDetails && channelName) ?
-            <div>
-                <h3>
-                    <i className="fa-regular fa-hashtag" ></i>
-                    &nbsp;
-                    {channelName}
-                </h3>
-            </div>
-            :
-            <h3>{singleServer.name}</h3>
+    const channelDetails = useSelector((state) => state?.channel?.channelDetails);
+
+
+    const channelName = channelDetails?.name;
+
+    useEffect(() => {
+        if(channelId){
+            dispatch(getChannelDetails(channelId));
         }
-        <SingleChannel channel={channel} />
-        {/* Messages */}
-        {/* <Messages /> */}
-      </div>
-      <div className="member-list-container">
-        {/*if Channel Private- Channel Members
-                else Server Members
-            */}
-            <h3>Members</h3>
-        <ChannelMembers channel={channel} />
-      </div>
-    </div>
-  );
+        if(serverId){
+            dispatch(getChannels(serverId));
+        }
+        }, [dispatch, channelId, serverId]);
+
+
+
+    // console.log('channelId', channelId)
+    // console.log('channel', channel)
+    // console.log('channels', channels)
+    // console.log('channelDetails', channelDetails)
+    // console.log('singleServer--------', singleServer)
+    // console.log('state', state)
+
+    return (
+        <div className="main-body">
+        {/* Main Div */}
+        <div className="server-list-container">
+            <ServerList />
+        </div>
+        {/* <Header server={singleServerDetails} /> */}
+        {/* <div><SingleServer /></div> */}
+        <div className="channel-list-container">
+            {/* Channels / Private Servers */}
+            {/*
+                    (variable)
+                    History.push(/home/@me)
+                    ? <PrivateServers />
+
+                    History.push(/home/channels)
+                        : <Channels />
+                */}
+            <h3>{singleServer.name}</h3>
+            { (singleServer) && 
+                <AllChannels channels={allChannels} />
+            }
+            {/* <Channels handleSetChannel={handleSetChannel} /> */}
+        </div>
+        <div className="messages-container">
+            { (channelDetails && channelName) ?
+                <div>
+                    <h3>
+                        <i className="fa-regular fa-hashtag" ></i>
+                        &nbsp;
+                        {channelName}
+                    </h3>
+                </div>
+                :
+                <h3>{singleServer.name}</h3>
+            }
+            {channelDetails && 
+            <div>
+                <SingleChannel channel={channelDetails} />
+                <Chat />
+            </div>
+            }
+            {/* Messages */}
+            {/* <Messages /> */}
+        </div>
+        <div className="member-list-container">
+            {/*if Channel Private- Channel Members
+                    else Server Members
+                */}
+
+            { (channelDetails.Members) &&
+                <div>
+                    
+                    <h3>
+                        <i className="fa-solid fa-user-group"></i>
+                        &nbsp;
+                        Members
+                    </h3>
+                    <ChannelMembers channel={channelDetails} />
+                </div>
+            }
+        </div>
+        </div>
+    );
 }
 
 export default Body;

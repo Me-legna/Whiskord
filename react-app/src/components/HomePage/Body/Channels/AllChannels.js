@@ -5,7 +5,7 @@ import { getChannelDetails } from "../../../../store/channel";
 
 // import { useSelector } from "react-redux";
 
-export default function AllChannels({ channels, handleSetChannel }) {
+export default function AllChannels({ channels }) {
     const dispatch = useDispatch();
 
     const state = useSelector(state => state)
@@ -23,39 +23,35 @@ export default function AllChannels({ channels, handleSetChannel }) {
         dispatch(getChannelDetails(channelId))
         // handleRoute(channelId)
     }
+
+    // console.log('ALLCHANNEL channels', channels)
     
   return (
     <div>
       {
         (channels?.allIds?.length > 0) &&
-        <h4>Text Channels</h4>
+        <h6>TEXT-CHANNELS</h6>
       }
-      <ul>
+      <div>
         {channels?.allIds?.map((channelId) => {
           const channel = channels?.byId[channelId];
           console.log({ channel });
           // replace navLink with button
           return (
-            <li key={channel.id}>
+            // <li key={channel.id}>
                 <button onClick={() => {
-                    handleSetChannel(channel)
                     handleRoute(channelId)
                     handleClick(channelId)
                 }}>
-                  <i className="fa-regular fa-hashtag"></i>
+                  <i className="fa-solid fa-hashtag"></i>
                   &nbsp;
                   {channel.name}
                 </button>
-              {/* <NavLink
-                to={`/channels/${channel.id}`}
-                onClick={() => handleSetChannel(channel)}
-              >
-                {channel.name}
-              </NavLink> */}
-            </li>
+
+            // </li>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@
     color: #f5f5f5;
     font-size: 1.5rem;
     font-weight: 500;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     display: flex;
     align-items: center;
     /* justify-content: space-between; */
@@ -21,15 +21,29 @@
     border-right: 0.2px solid #f5f5f5;
     background: #333333;
     height: 100%;
+    padding: 0.5rem;
 }
 .channel-list-container{
      border-right: 0.2px solid #f5f5f5;
     background: #333333;
     height: 100%;
+    padding: 0.5rem;
 }
+
+.channel-list-container button {
+   width: 100%;
+   text-align: left;
+   font-weight: bold;
+   padding: 0.25rem;
+}
+
 .messages-container{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
      border-right: 0.2px solid #f5f5f5;
     background: #333333;
+    padding: 0.5rem;
 
     height: 100%;
 }
@@ -37,4 +51,5 @@
      border-right: 0.2px solid #f5f5f5;
     background: #333333;
     height: 100%;
+    padding: 0.5rem;
 }
