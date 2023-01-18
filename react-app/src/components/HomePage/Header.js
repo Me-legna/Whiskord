@@ -5,7 +5,7 @@ import { useSelector} from 'react-redux'
 export default function Header() {
 
     const myServer= useSelector(state => state.servers.singleServer)
-    const myChannel = useSelector(state => state.channels.channelDetails)
+    const myChannel = useSelector(state => state.channel.channelDetails)
     // const myChannel = useSelector(state => console.log(state))
 
 
@@ -17,7 +17,7 @@ export default function Header() {
 
         <div className='server-main-page-header'>
             <div className='server-name'>{myServer.name}</div>
-            <div className='channel-name'>{myChannel.name}</div>
+            {myChannel && <div className='channel-name'>{myChannel.name}</div>}
         </div>
     )
 }

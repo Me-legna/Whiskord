@@ -1,41 +1,51 @@
-import Channels from "./Channels"
-import Members from "./Members"
-import ServerList from "./ServerComps/ServerList"
-import SingleServer from "./ServerComps/SingleServer"
+import React, { useEffect, useState } from "react";
+import Channels from "./Channels";
+import Members from "./Members";
+import ServerList from "./ServerComps/ServerList";
+import SingleServer from "./ServerComps/SingleServer";
+import ChannelMembers from "./Channels/ChannelMembers";
+import SingleChannel from "./Channels/SingleChannel";
 
-function Body({variable}) {
+import "../HomePage.css";
 
-    return (
-        <div> {/* Main Div */}
-            <div>
-                <ServerList />
-            </div>
-            <div>
-                {/* <SingleServer /> */}
-            </div>
+function Body({ variable }) {
+  const [channel, setChannel] = useState({});
+  const handleSetChannel = (channel) => {
+    setChannel(channel);
+  };
 
-            <div> {/* Channels / Private Servers */}
-                {/*
+  return (
+    <div className="main-body">
+      {/* Main Div */}
+      <div className="server-list-container">
+        <ServerList />
+      </div>
+      {/* <div><SingleServer /></div> */}
+      <div className="channel-list-container">
+        {/* Channels / Private Servers */}
+        {/*
                 (variable)
                     ? <PrivateServers />
                     : <Channels />
             */}
-            <Channels />
-            </div>
-
-
-            <div>{/* Messages */}
-                {/* <Messages /> */}
-            </div>
-
-
-            <div>{/*if Channel Private- Channel Members
+            <h3>Channel Name</h3>
+        <Channels handleSetChannel={handleSetChannel} />
+      </div>
+      <div className="messages-container">
+        <h3>Messages</h3>
+        <SingleChannel channel={channel} />
+        {/* Messages */}
+        {/* <Messages /> */}
+      </div>
+      <div className="member-list-container">
+        {/*if Channel Private- Channel Members
                 else Server Members
             */}
-                <Members />
-            </div>
-        </div>
-    )
+            <h3>Members</h3>
+        <ChannelMembers channel={channel} />
+      </div>
+    </div>
+  );
 }
 
-export default Body
+export default Body;

@@ -1,30 +1,32 @@
-import Body from "./Body"
-import Header from "./Header"
+import Body from "./Body";
+import Header from "./Header";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { publicServers } from "../../store/server"
+import { publicServers } from "../../store/server";
 import { privateServers } from "../../store/server";
 import { serverDetails } from "../../store/server"
+import { getChannelDetails } from "../../store/channel"
+import { useHistory, useParams } from "react-router-dom";
 
-
+import "./HomePage.css";
 
 function HomePage() {
-    //[variable, setVariable] = useState(true)
-    //grab "public servers" list
+  //[variable, setVariable] = useState(true)
+  //grab "public servers" list
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    // useEffect (() => {
-    //     dispatch(publicServers())
-    //     dispatch(privateServers())
-    // }, [dispatch])
-
-
-    // useSelector for single server details
-    const singleServerDetails = useSelector(state => state.servers.singleServer)
+  // useEffect (() => {
+  //     dispatch(publicServers())
+  //     dispatch(privateServers())
+  // }, [dispatch])
 
 
+  // useSelector for single server details
+  const singleServerDetails = useSelector(
+    (state) => state.servers.singleServer
+  );
 
     //handler to load single server if serverIcon clicked
     // takes in serverId
@@ -42,20 +44,23 @@ function HomePage() {
                 </div>
                 {
                 /* map public servers then render -
+
                     <div> //when clicked, set variable to false and load single server?
                         <Icon
                         iconImage=server.image_url
                         />
                     </div>
                 */}
-                <div> {/* when clicked Create Server */}
-                    {/* <Icon iconImage={"+"} /> */}
-                </div>
-            </div>
-            <Header server={singleServerDetails} />
-            <Body /> {/* variable={variable} */}
+        <div>
+          {" "}
+          {/* when clicked Create Server */}
+          {/* <Icon iconImage={"+"} /> */}
         </div>
-    )
+      </div>
+      <Header server={singleServerDetails} />
+      <Body /> {/* variable={variable} */}
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;

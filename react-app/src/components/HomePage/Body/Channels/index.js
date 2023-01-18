@@ -5,29 +5,27 @@ import AllChannels from "./AllChannels";
 import SingleChannel from "./SingleChannel";
 import ChannelMembers from "./ChannelMembers";
 
-export default function Channels() {
+export default function Channels({ handleSetChannel }) {
   const dispatch = useDispatch();
-  const [channel, setChannel] = useState({});
-  
-  const serverId = useSelector((state) => state?.servers?.singleServer?.id);
+  // const [channel, setChannel] = useState({});
+  // const serverId = useSelector((state) => state.servers.singleServer.id);
+  const serverId = useSelector((state) => 1);
   // const channels = useSelector((state) => state?.servers.singleServer?.channels);
-  const channels = useSelector((state) => state?.channel?.channels);
-
-  console.log(channels)
+  const channels = useSelector((state) => state.channel.allChannels);
 
   useEffect(() => {
     dispatch(getChannels(serverId));
-  }, [dispatch, serverId, channels]);
+  }, [dispatch, serverId]);
 
-  const handleSetChannel = (channel) => {
-    setChannel(channel);
-  };
+  // const handleSetChannel = (channel) => {
+  //   setChannel(channel);
+  // };
 
   return (
     <div>
       <AllChannels channels={channels} handleSetChannel={handleSetChannel} />
-      <SingleChannel channel={channel} />
-      <ChannelMembers channel={channel} />
+      {/* <SingleChannel channel={channel} />
+      <ChannelMembers channel={channel} /> */}
     </div>
   );
 }
