@@ -1,10 +1,21 @@
 import Body from "./Body"
 import Header from "./Header"
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { publicServers } from "../../store/server"
+import { privateServers } from "../../store/server";
 
 
 function HomePage() {
     //[variable, setVariable] = useState(true)
     //grab "public servers" list
+    const dispatch = useDispatch();
+
+    // useEffect (() => {
+    //     dispatch(publicServers())
+    //     dispatch(privateServers())
+    // }, [dispatch])
+
     //handler to load single server if serverIcon clicked
     return (
         // <h1>Replace This h1</h1>
@@ -25,7 +36,7 @@ function HomePage() {
                     {/* <Icon iconImage={"+"} /> */}
                 </div>
             </div>
-            <Header /> {/* server={loadedServer} */}
+            {/* <Header /> server={loadedServer} */}
             <Body  /> {/* variable={variable} */}
         </div>
     )

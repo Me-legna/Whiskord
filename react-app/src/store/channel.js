@@ -83,9 +83,10 @@ export const getChannels = (serverId) => async (dispatch) => {
   }
 };
 
-export const getChannelDetails = (serverId, channelId) => async (dispatch) => {
+export const getChannelDetails = (serverId=1, channelId) => async (dispatch) => {
   const response = await fetch(
-    `/api/servers/${serverId}/channels/${channelId}`,
+    // `/api/servers/${serverId}/channels/${channelId}`,
+    `/api/channels/${channelId}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +96,8 @@ export const getChannelDetails = (serverId, channelId) => async (dispatch) => {
 
   if (response.ok) {
     const data = response.json();
-    dispatch(loadChannelDetails(data.Channel));
+    console.log('CHANNEL DETAILS: ', data, 'CHANNEL DETAILS')
+    dispatch(loadChannelDetails(data?.Channel));
   } else if (response.status < 500) {
     const data = response.json();
 
@@ -107,7 +109,7 @@ export const getChannelDetails = (serverId, channelId) => async (dispatch) => {
   }
 };
 
-export const createNewChannel = (serverId, channel) => async (dispatch) => {
+export const createNewChannel = (serverId=1, channel) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}/channels`, {
     method: "POST",
     headers: {
@@ -131,7 +133,7 @@ export const createNewChannel = (serverId, channel) => async (dispatch) => {
 };
 
 export const editChannel =
-  (serverId, channelId, updatedChannel) => async (dispatch) => {
+  (serverId=1, channelId, updatedChannel) => async (dispatch) => {
     const response = await fetch(
       `/api/servers/${serverId}/channels/${channelId}`,
       {
@@ -158,7 +160,7 @@ export const editChannel =
     }
   };
 
-export const deleteChannel = (serverId, channelId) => async (dispatch) => {
+export const deleteChannel = (serverId=1, channelId) => async (dispatch) => {
   const response = await fetch(
     `/api/servers/${serverId}/channels/${channelId}`,
     {
@@ -184,7 +186,7 @@ export const deleteChannel = (serverId, channelId) => async (dispatch) => {
   }
 };
 
-export const getChannelMembers = (serverId, channelId) => async (dispatch) => {
+export const getChannelMembers = (serverId=1, channelId) => async (dispatch) => {
   const response = await fetch(
     // check with backend if this is the correct route
     // `/api/servers/${serverId}/channels/${channelId}/members`,
@@ -212,7 +214,7 @@ export const getChannelMembers = (serverId, channelId) => async (dispatch) => {
 };
 
 export const addChannelMember =
-  (serverId, channelId, userId) => async (dispatch) => {
+  (serverId=1, channelId, userId) => async (dispatch) => {
     const response = await fetch(
     //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
       `/api/channels/${channelId}/members/${userId}`,
@@ -240,7 +242,7 @@ export const addChannelMember =
   };
 
 export const deleteChannelMember =
-  (serverId, channelId, userId) => async (dispatch) => {
+  (serverId=1, channelId, userId) => async (dispatch) => {
     const response = await fetch(
     //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
       `/api/channels/${channelId}/members/${userId}`,
@@ -280,11 +282,11 @@ const initialState = {
   },
 };
 
-export default function channelReducer(state = {}, action) {
+export default function channelReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CHANNELS:
       const allChannels = {};
-      action.payload.forEach((channel) => {
+      action.payload?.forEach((channel) => {
         allChannels[channel.id] = channel;
       });
       return {
@@ -339,7 +341,7 @@ export default function channelReducer(state = {}, action) {
       };
     case LOAD_CHANNEL_MEMBERS:
       const allMembers = {};
-      action.payload.forEach((member) => {
+      action.payload?.forEach((member) => {
         allMembers[member.id] = member;
       });
       return {
