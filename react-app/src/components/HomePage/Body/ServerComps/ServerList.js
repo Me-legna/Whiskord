@@ -1,47 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { publicServers } from "../../../../store/server";
+import React, { useEffect } from "react";
+import { publicServers, serverDetails } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
+import Icon from "../../../Icon"
 
-export default function ServerList() {
-  const serversObj = useSelector((state) => state.servers.allPublicServers.byId
-  );
+export default function ServerList({ clickHandler }) {
+  const serversObj = useSelector((state) => state.servers.allPublicServers.byId);
   const servers = Object.values(serversObj);
-  // console.log("servers", serversObj);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(publicServers());
   }, [dispatch]);
 
-  // const toggleMenu = (server) => {
-  //     setSelectedServer(server);
-  //     setShowMenu((prev) => !prev);
-  // }
-  if (!servers) {
-    return null
-  }
 
-  return  (
+
+  return (
     <div className="server-list">
-      <ul>
-        {servers.map(server => (
-          <li className='server-list' key={server.id}>
-            {server.name}
-          </li>
-        ))}
-      </ul>
-      {/* {showMenu && (
-        <ul className='server-list-dropdown'>
-            <li>Invite People</li>
-            <li>Mute Server</li>
-            <li>Notification Settings</li>
-            <li>Hide Muted Channels</li>
-            <li>Server Settings</li>
-            <li>Privacy Settings</li>
-            <li>Edit server</li>
-            <li>Leave Server</li>
-            </ul>
-      )} */}
+      {servers.map((server, idx) => {
+        if(!idx) dispatch(serverDetails(server.id))
+        return (
+          <Icon
+            imageUrl={server.img_url}
+            isServer={true}
+            clickEvent={() => clickHandler(server.id)}
+          />
+        )})}
     </div>
   );
 }

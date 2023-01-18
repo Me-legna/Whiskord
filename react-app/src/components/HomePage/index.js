@@ -1,14 +1,18 @@
 import Body from "./Body"
 import Header from "./Header"
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { publicServers } from "../../store/server"
 import { privateServers } from "../../store/server";
+import { serverDetails } from "../../store/server"
+
 
 
 function HomePage() {
     //[variable, setVariable] = useState(true)
     //grab "public servers" list
+
     const dispatch = useDispatch();
 
     // useEffect (() => {
@@ -16,10 +20,22 @@ function HomePage() {
     //     dispatch(privateServers())
     // }, [dispatch])
 
+
+    // useSelector for single server details
+    const singleServerDetails = useSelector(state => state.servers.singleServer)
+
+
+
     //handler to load single server if serverIcon clicked
+    // takes in serverId
+    // use thunk to load server info by id
+    const loadServer = async(serverId) => {
+        return dispatch(serverDetails(serverId))
+    }
+
+
     return (
-        // <h1>Replace This h1</h1>
-        <div>{/* main div */}
+        <div className='home-page-main-div'>{/* main div */}
             <div> {/* SideBar */}
                 <div> {/* Top Icon, when div clicked set variable to true */}
                     {/* <Icon iconImage={"logoHere"} /> */}
@@ -36,8 +52,8 @@ function HomePage() {
                     {/* <Icon iconImage={"+"} /> */}
                 </div>
             </div>
-            {/* <Header /> server={loadedServer} */}
-            <Body  /> {/* variable={variable} */}
+            <Header server={singleServerDetails} />
+            <Body /> {/* variable={variable} */}
         </div>
     )
 }
