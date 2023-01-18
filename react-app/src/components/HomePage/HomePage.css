@@ -1,0 +1,40 @@
+ .home-page-main-div{
+    height: 100vh;
+ }
+ h3{
+    color: #f5f5f5;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-body{
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 1fr 0.5fr;
+    gap: 0px;
+    height: 100%;
+}
+.server-list-container{
+    border-right: 0.2px solid #f5f5f5;
+    background: #333333;
+    height: 100%;
+}
+.channel-list-container{
+     border-right: 0.2px solid #f5f5f5;
+    background: #333333;
+    height: 100%;
+}
+.messages-container{
+     border-right: 0.2px solid #f5f5f5;
+    background: #333333;
+
+    height: 100%;
+}
+.member-list-container{
+     border-right: 0.2px solid #f5f5f5;
+    background: #333333;
+    height: 100%;
+}

@@ -10,6 +10,7 @@ import ServerList from "../src/components/HomePage/Body/ServerComps/ServerList"
 import SingleServer from "../src/components/HomePage/Body/ServerComps/SingleServer";
 import User from "../src/components/Users/User";
 import UsersList from "../src/components/Users/UsersList";
+import Channels from "../src/components/HomePage/Body/Channels";
 
 
 
@@ -32,6 +33,9 @@ function Routing({ user }) {
                 </ProtectedRoute>
                 <ProtectedRoute path="/servers/:serverId" >
                     <SingleServer />
+                </ProtectedRoute>
+                <ProtectedRoute path="/channels" >
+                    <Channels />
                 </ProtectedRoute>
                 <ProtectedRoute path="/users" exact={true}>
                     <UsersList />
