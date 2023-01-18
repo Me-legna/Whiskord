@@ -1,20 +1,23 @@
+import React, {useEffect} from 'react'
+import { useSelector} from 'react-redux'
 
 
-function Header({ server }) {
-    //useSelector for current channel/private server?
+export default function Header() {
+
+    const myServer= useSelector(state => state.servers.singleServer)
+    const myChannel = useSelector(state => state.channels.channelDetails)
+    // const myChannel = useSelector(state => console.log(state))
+
+
+    useEffect(() => {
+    },[myServer,myChannel]);
+
     return (
-        <h1>Replace This h1</h1>
-        // <div>
-        //     <div>
-        //         {server.name}
-        //     </div>
-        //     {
-        //         (server.is_private)
-        //             ? (<div>{privateServerName}</div>)
-        //             : (<div>{channelName}</div>)
-        //     }
-        // </div>
+        // <h1>Replace This h1</h1>
+
+        <div className='server-main-page-header'>
+            <div className='server-name'>{myServer.name}</div>
+            <div className='channel-name'>{myChannel.name}</div>
+        </div>
     )
 }
-
-export default Header
