@@ -18,7 +18,7 @@ function PrivateServers() {
     }, [dispatch]);
 
     const privateServerDetails = async (serverId) => {
-        dispatch(serverDetails()).then(()=> history.push('/home/@me'))
+        dispatch(serverDetails(serverId)).then(()=> history.push(`/home/@me/${serverId}`))
 
     }
 

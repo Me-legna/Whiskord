@@ -16,7 +16,7 @@ export default function ServerList({ clickHandler }) {
   }, [dispatch]);
 
   const publicServerDetails = (serverId) => {
-    dispatch(serverDetails(serverId)).then(() => history.push('/home/channels'))
+    dispatch(serverDetails(serverId)).then(() => history.push(`/home/channels/${serverId}`))
   }
 
   return (
