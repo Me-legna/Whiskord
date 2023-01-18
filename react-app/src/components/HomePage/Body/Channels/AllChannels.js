@@ -8,7 +8,7 @@ export default function AllChannels({ channels, handleSetChannel }) {
       <h2>Channels</h2>
       <ul>
         {channels?.allIds?.map((channelId) => {
-          const channel = channels.byId[channelId];
+          const channel = channels?.byId[channelId];
           console.log({channel})
           // replace navLink with button
           return (
