@@ -95,10 +95,11 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
       },
     }
   );
-
+  
   if (response.ok) {
     const data = await response.json();
     dispatch(loadChannelDetails(data?.Channel));
+    
   } else if (response.status < 500) {
     const data = await response.json();
 
@@ -316,6 +317,7 @@ export default function channelReducer(state = initialState, action) {
       };
     case LOAD_CHANNEL_DETAILS:
       const channel = action.payload;
+      // console.log('STORE CHANNEL DETAILS', channel)
       return {
         ...state,
         channelDetails: channel,

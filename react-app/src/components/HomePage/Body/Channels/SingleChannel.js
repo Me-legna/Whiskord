@@ -9,13 +9,14 @@ export default function SingleChannel({ channel }) {
   // console.log("singleChannel", state.channels)
   useEffect(() => {
     // if (singleChannel) dispatch(getChannelDetails(channel.id));
+
   }, [dispatch, channel.id]);
 
   console.log(singleChannel);
   return (
     <div>
-      <h1>{singleChannel.name}</h1>
-      <p>{singleChannel.description}</p>
+      {/* <h1>{singleChannel?.name}</h1> */}
+      {/* <p>{singleChannel?.description}</p> */}
     </div>
   );
 }

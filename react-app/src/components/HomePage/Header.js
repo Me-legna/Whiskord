@@ -16,8 +16,8 @@ export default function Header() {
         // <h1>Replace This h1</h1>
 
         <div className='server-main-page-header'>
-            <div className='server-name'>{myServer.name}</div>
-            {myChannel && <div className='channel-name'>{myChannel.name}</div>}
+            {/* <div className='server-name'>{myServer.name}</div>
+            {myChannel && <div className='channel-name'>{myChannel.name}</div>} */}
         </div>
     )
 }

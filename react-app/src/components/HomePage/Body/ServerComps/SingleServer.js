@@ -19,6 +19,8 @@ export default function SingleServer() {
     dispatch(serverDetails(serverId));
   }, [dispatch, serverId]);
 
+  console.log('single server', serverId)
+
   return (
     <div>
       {/* <h1>Single Server</h1> */}
