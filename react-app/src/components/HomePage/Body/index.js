@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Channels from "./Channels";
 import Members from "./Members";
 import ServerList from "./ServerComps/ServerList";
-import SingleServer from "./ServerComps/SingleServer";
+
 import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
-import Header from "../Header";
+// import Header from "../Header";
+import EditChannelForm from "./Channels/EditChannelForm";
+
 import "../HomePage.css";
 
 function Body({ variable }) {
@@ -13,6 +16,13 @@ function Body({ variable }) {
   const handleSetChannel = (channel) => {
     setChannel(channel);
   };
+
+ // grab the channel/server from the redux store.
+ const myServer = useSelector(state => state.servers.singleServer)
+
+ //setting current user and server owner
+ const currentUser = useSelector(state => state.session.user);
+ const serverOwner = myServer.owner_id;
 
   return (
     <div className="main-body">
@@ -38,6 +48,10 @@ function Body({ variable }) {
       <div className="messages-container">
         <h3>Messages</h3>
         <SingleChannel channel={channel} />
+        {/* conditional rendering so only server owner can see edit/delete forms */}
+        {currentUser && currentUser?.id === serverOwner ? (
+          <EditChannelForm channel={channel} />
+        ) : (<div></div>)}
         {/* Messages */}
         {/* <Messages /> */}
       </div>

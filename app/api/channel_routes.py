@@ -68,7 +68,7 @@ def update_channel(channel_id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         channel.name = form.data['name']
-        channel.type = form.data['type']
+        # channel.type = form.data['type']
         channel.is_private = form.data['is_private']
         db.session.commit()
         return channel.to_dict(), 201
