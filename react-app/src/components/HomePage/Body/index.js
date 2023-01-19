@@ -122,10 +122,9 @@ function Body() {
 
        {currentUser && currentUser?.id === serverOwner ? (
           <div>
-            <IconModal modalComponent={}
-            {/* <EditChannelForm channel={channel} />
+            <EditChannelForm channel={channel} />
             <CreateChannel channel={channel} />
-            <DeleteChannelForm /> */}
+            <DeleteChannelForm />
           </div>
         ) : (<></>)}
             {(channelDetails && channelName) &&

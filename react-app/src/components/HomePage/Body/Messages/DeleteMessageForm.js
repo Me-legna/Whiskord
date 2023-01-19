@@ -25,8 +25,6 @@ export default function DeleteMessage() {
             });
     }
 
-
-
     return (
         <div>
             <div className='form-header'>
