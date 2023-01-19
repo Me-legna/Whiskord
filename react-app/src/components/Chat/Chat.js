@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
+import './Chat.css'
 let socket;
 
 const Chat = () => {
-    const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
-    const user = useSelector(state => state.session.user)
+    const prevMessages = useSelector(state => state?.channel?.channelDetails?.Messages)
+    const [chatInput, setChatInput] = useState("");
+    const user = useSelector(state => state?.session?.user)
+    const channel_id = useSelector(state => state?.channel?.channelDetails?.id)
+
 
     useEffect(() => {
         // open socket connection
         // create websocket
         socket = io();
-
+        // const channel_id = useSelector(state => state.channel.id)
+        socket.emit('join', channel_id)
+    
+        // get previous messages from server
+        // ???
+    
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
+            
         })
-        // when component unmounts, disconnect
+        // when component unmounts, leave & disconnect
         return (() => {
+            socket.emit('leave', channel_id)
             socket.disconnect()
         })
     }, [])
@@ -25,18 +36,68 @@ const Chat = () => {
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     };
-
+    
     const sendChat = (e) => {
         e.preventDefault()
-        socket.emit("chat", { user: user.username, msg: chatInput });
+        // const channel_id = useSelector(state => state.channel.id)
+        socket.emit("chat", { user: user.username, msg: chatInput, channel_id });
+        // dispatch(addMessage)
         setChatInput("")
     }
+    
 
     return (user && (
         <div>
-            <div>
+            <div className="previous-messages-container">
+            {prevMessages?.map((message, ind) => (
+                <div key={ind} className='message-container'>
+                    <h1 className="message-profile-avatar">
+                        <i className="fa-solid fa-circle-user"></i>
+                    </h1>
+                    <div className='message-all-text'>
+                        <div className="message-name-and-date">
+                            {/* {message.user.username} */}
+                            <div className="message-name">
+                                {message.user.username}
+                            </div>
+                            &nbsp;
+                            &nbsp;
+                            <div className="message-date">
+                                {new Date(message.created_at).toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}
+                            </div>
+                        {/* {`${message.user.username}: ${new Date(message.created_at).toLocaleString()}`} */}
+                        </div>
+                        <div className='message-content'>
+                            {message.content}
+                        </div>
+                    </div>
+                </div>
+            ))}
+            </div>
+
+            <div className='new-messages-container'>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind} className='message-container'>
+                        <h1 className="message-profile-avatar">
+                            <i className="fa-solid fa-circle-user"></i>
+                        </h1>
+                        <div className='message-all-text'>
+                            <div className="message-name-and-date">
+                                <div className="message-name">
+                                    {message.user}
+                                </div>
+                                &nbsp;
+                                &nbsp;
+                                <div className="message-date">
+                                    {new Date().toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}
+                                </div>
+                                {/* {`${message.user}: ${new Date().toLocaleString()}`} */}
+                            </div>
+                            <div className='message-content'>
+                                {`${message.msg}`}
+                            </div>
+                        </div>
+                    </div>
                 ))}
             </div>
             <form onSubmit={sendChat}>
