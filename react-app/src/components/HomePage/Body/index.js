@@ -23,6 +23,7 @@ import CreatePrivateServerForm from "./ServerComps/CreatePrivateServerForm";
 import EditChannelForm from "./Channels/EditChannelForm";
 import DeleteChannelForm from "./Channels/DeleteChannelForm";
 import CreateChannel from "./Channels/CreateChannelForm";
+import CreateMessageForm from "./Messages/CreateMessageForm";
 
 
 function Body() {
@@ -123,7 +124,7 @@ function Body() {
             <CreateChannel channel={channel} />
             <DeleteChannelForm />
           </div>
-        ) : (<div></div>)}
+        ) : (<></>)}
             {(channelDetails && channelName) &&
             <div>
                 <SingleChannel channel={channelDetails} />
@@ -134,6 +135,12 @@ function Body() {
       <div className="messages-container">
         <h3>Messages</h3>
         <SingleChannel channel={channel} />
+        {currentUser ? (
+          <div>
+            <CreateMessageForm />
+          </div>
+
+        ) : (<></>)}
         {/* Messages */}
         {/* <Messages /> */}
       </div>
@@ -142,7 +149,7 @@ function Body() {
                 else Server Members
             */}
         <h3>Members</h3>
-        { (channelDetails.Members) &&
+        { (channelDetails?.Members) &&
                 <div>
                     <h3>
                         <i className="fa-solid fa-user-group"></i>
