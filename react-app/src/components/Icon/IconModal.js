@@ -21,7 +21,7 @@ function IconModal({
   return (
     <div className={`open-modal-button icon-img ${isServer ? 'server-icon' : ''}`} onClick={onClick}>
       {
-        faIcon ?
+        !faIcon ?
           <i className={`icon-img ${faIcon} ${isServer ? 'server-icon' : ''}`} ></i>
           :
           <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />

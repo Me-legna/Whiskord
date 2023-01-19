@@ -70,6 +70,8 @@ export const getChannels = (serverId) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+  
+  console.log('GETTING HERE --------')
 
   if (response.ok) {
     const data = await response.json();

@@ -43,10 +43,6 @@ function Routing() {
                 </ProtectedRoute>
 
 
-                {/* Home/Application Pages */}
-                <ProtectedRoute path="/home">
-                    <HomePage />
-                </ProtectedRoute>
 
                 {/* Private Channels Page */}
                 <ProtectedRoute path="/home/@me" >
@@ -57,13 +53,21 @@ function Routing() {
                     {/* <SinglePrivateChannel /> */}
                 </ProtectedRoute>
 
-                {/* Server Channels Page */}
-                <ProtectedRoute path="/home/:serverId" >
-                    <AllChannels />
-                </ProtectedRoute>
-
                 <ProtectedRoute path="/home/:serverId/:channelId" >
                     <SingleChannel />
+                    <HomePage />
+                </ProtectedRoute>
+
+                {/* Server Channels Page */}
+                <ProtectedRoute path="/home/:serverId" >
+                    {console.log('IN ROUTER')}
+                    <HomePage />
+                </ProtectedRoute>
+
+
+                {/* Home/Application Pages */}
+                <ProtectedRoute path="/home">
+                    <HomePage />
                 </ProtectedRoute>
 
                 {/* Error Page */}

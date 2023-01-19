@@ -8,17 +8,24 @@ export default function ChannelMembers({ channel }) {
   const serverId = useSelector((state) => state?.servers?.singleServer?.id);
 
   useEffect(() => {
-    // dispatch(getChannelMembers(serverId, channel.id));
+    dispatch(getChannelMembers(serverId, channel.id));
   }, [dispatch, channel.id, serverId]);
 
   return (
     <div>
-      <ul>
         {members?.allIds?.map((memberId) => {
           const member = members.byId[memberId];
-          return <li key={member.id}>{member.username}</li>;
+          return (
+          <div key={member.id} className='members-individual-container'>
+
+              <i className="fa-solid fa-circle-user"></i>
+              &nbsp;
+              &nbsp;
+              {member.username}
+
+          </div>
+          )
         })}
-      </ul>
     </div>
   );
 }

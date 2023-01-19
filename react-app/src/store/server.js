@@ -105,7 +105,7 @@ export const serverDetails = (serverId) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(getServerDetails(data.Server));
+        dispatch(getServerDetails(data));
 
     } else if (response.status < 500) {
         const data = await response.json();
@@ -263,7 +263,7 @@ export default function reducer(state = initialState, action) {
                 singleServer: {}
             }
 
-            newState.singleServer = action.payload
+            newState.singleServer = action.payload.Server
 
             return newState
         }

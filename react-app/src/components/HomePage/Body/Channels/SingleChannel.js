@@ -7,16 +7,16 @@ export default function SingleChannel({ channel }) {
   const singleChannel = useSelector((state) => state.channels.channelDetails);
   // const state = useSelector((state) => state);
   // console.log("singleChannel", state.channels)
-  useEffect(() => {
-    // if (singleChannel) dispatch(getChannelDetails(channel.id));
+  // useEffect(() => {
+  //   // if (singleChannel) dispatch(getChannelDetails(channel.id));
 
-  }, [dispatch, channel.id]);
+  // }, [dispatch, channel.id]);
 
   console.log(singleChannel);
   return (
-    <div>
+    <>
       {/* <h1>{singleChannel?.name}</h1> */}
       {/* <p>{singleChannel?.description}</p> */}
-    </div>
+    </>
   );
 }
