@@ -5,6 +5,8 @@ const LOAD_SERVER_DETAILS = 'server/LOAD_SERVER_DETAILS';
 const CREATE_SERVER = 'server/CREATE_SERVER';
 const UPDATE_SERVER = 'server/UPDATE_SERVER';
 const DELETE_SERVER = 'server/DELETE_SERVER';
+const ADD_SERVER_MEMBER = 'server/ADD_SERVER_MEMBER';
+const REMOVE_SERVER_MEMBER = 'server/REMOVE_SERVER_MEMBER';
 
 
 //action creators
@@ -38,6 +40,16 @@ const deleteServer = (deletedServerId, is_private) => ({
     payload: deletedServerId,
     conditional: is_private
 });
+
+const addServerMember = (userId) => ({
+    type: ADD_SERVER_MEMBER,
+    payload: userId
+})
+
+const removeServerMember = (memberId) => ({
+    type: REMOVE_SERVER_MEMBER,
+    payload: memberId
+})
 
 
 //thunks
@@ -116,9 +128,10 @@ export const addServer = (newServer) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const data = response.json();
-
+        const data = await response.json();
         dispatch(createServer(data));
+
+        return data
     } else if (response.status < 500) {
         const data = await response.json();
 
@@ -140,7 +153,7 @@ export const editServer = (serverId, updatedServer) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const data = response.json();
+        const data = await response.json();
 
         dispatch(updateServer(data));
     } else if (response.status < 500) {
@@ -164,6 +177,34 @@ export const destroyServer = (serverId, is_private) => async (dispatch) => {
 
     if (response.ok) {
         dispatch(deleteServer(serverId, is_private));
+    }
+}
+
+export const appendServerMember = (serverId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/${serverId}/members`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({user_id:userId})
+    })
+
+    if (response.ok) {
+        dispatch(addServerMember(userId));
+    }
+}
+
+export const destroyServerMember = (serverId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/servers/${serverId}/members`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({user_id:userId})
+    })
+
+    if (response.ok) {
+        dispatch(removeServerMember(userId));
     }
 }
 
@@ -322,6 +363,20 @@ export default function reducer(state = initialState, action) {
                 delete newState.allPublicServers.byId[action.payload];
                 newState.allPublicServers.allIds = newState.allPrivateServers.allIds.filter(id => +id !== +action.payload)
             }
+
+            return newState
+        }
+        case ADD_SERVER_MEMBER: {
+            const newState = {...state, singleServer: {...state.singleServer}}
+
+            newState.singleServer.Members.push(action.payload)
+
+            return newState
+        }
+        case REMOVE_SERVER_MEMBER: {
+            const newState = {...state, singleServer: {...state.singleServer}}
+
+            newState.singleServer.Members = newState.singleServer.Members.filter((memberId) => memberId !== action.payload)
 
             return newState
         }

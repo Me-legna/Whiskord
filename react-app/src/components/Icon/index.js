@@ -1,5 +1,4 @@
 import React from 'react';
-import { useModal } from '../../context/Modal';
 import './Icon.css'
 
 //set up to be resuable component to use for serverIcon, privateServerIcon userMessageIcon, memberIcon, createServerIcon
@@ -8,21 +7,20 @@ import './Icon.css'
 
 function Icon({
     imageUrl, //image to render
-    isServer=false, //give css class for hover effect if True
-    clickEvent=null, //pass a custom clickevent for Icon
-    component=null //can pass a component to load modal
-}){
+    isServer = false, //give css class for hover effect if True
+    clickEvent = null, //pass a custom clickevent for Icon
+    faIcon = null //can pass className for fa-icon
+}) {
 
-    const { setModalContent, setOnModalClose } = useModal();
-
-    const onClick = () => {
-        if (component !== null) setModalContent(component);
-        if (typeof clickEvent === 'function') clickEvent();
-        else return () => null
-    };
     return (
-        <div className={`icon-img ${isServer ? 'server-icon' : ''}`} onClick={onClick}>
-            <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />
+        <div className={`icon-img ${isServer ? 'server-icon' : ''}`} onClick={clickEvent ? clickEvent : () => null}>
+            {
+                faIcon
+                    ?
+                    <i className={faIcon} ></i>
+                    :
+                    <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />
+            }
         </div>
     )
 }

@@ -28,8 +28,8 @@ export default function SingleServer() {
 // export default function SingleServer() {
 //   const { serverId } = useParams();
 //   const serverName = useSelector((state) => console.log(state));
-//   // const channelName = useSelector((state) => state.channels.id);
-//   // const serverChannels = useSelector((state) => state.channels.server);
+//   // const channelName = useSelector((state) => state.channelss.id);
+//   // const serverChannels = useSelector((state) => state.channelss.server);
 //   // const serverChannelsArr = Object.values(serverChannels);
 //   const user = useSelector((state) => state.session.user);
 //   // const serverOwner = useSelector((state) => state.singleServer.owner_id);

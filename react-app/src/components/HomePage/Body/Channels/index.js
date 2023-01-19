@@ -11,7 +11,7 @@ export default function Channels({ handleSetChannel }) {
   // const serverId = useSelector((state) => state.servers.singleServer.id);
   const serverId = useSelector((state) => 1);
   // const channels = useSelector((state) => state?.servers.singleServer?.channels);
-  const channels = useSelector((state) => state.channel.allChannels);
+  const channels = useSelector((state) => state.channels.allChannels);
 
   // useEffect(() => {
   //   dispatch(getChannels(serverId));

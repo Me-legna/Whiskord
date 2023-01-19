@@ -4,7 +4,7 @@ import { getChannelMembers } from "../../../../store/channel";
 
 export default function ChannelMembers({ channel }) {
   const dispatch = useDispatch();
-  const members = useSelector((state) => state.channel.members);
+  const members = useSelector((state) => state.channels.members);
   const serverId = useSelector((state) => state?.servers?.singleServer?.id);
 
   useEffect(() => {

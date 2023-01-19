@@ -109,7 +109,7 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
 };
 
 export const createNewChannel =
-  (serverId = 1, channel) =>
+  (serverId, channel) =>
   async (dispatch) => {
     const response = await fetch(`/api/servers/${serverId}/channels`, {
       method: "POST",
@@ -118,10 +118,12 @@ export const createNewChannel =
       },
       body: JSON.stringify(channel),
     });
-
+    console.log('response', response)
     if (response.ok) {
       const data = await response.json();
-      dispatch(createChannel(data.Channel));
+      console.log('data', data)
+      dispatch(createChannel(data));
+      return data
     } else if (response.status < 500) {
       const data = await response.json();
 
@@ -312,37 +314,39 @@ export default function channelReducer(state = initialState, action) {
       };
     case CREATE_CHANNEL:
       const newChannel = action.payload;
-      return {
+      const newChannelState = {
         ...state,
         allChannels: {
           byId: {
-            ...state.channels.byId,
-            [newChannel.id]: newChannel,
+            ...state.allChannels.byId,
           },
-          allIds: [...state.channels.allIds, newChannel.id],
+          allIds: [...state.allChannels.allIds, newChannel.id],
         },
       };
+      newChannelState.allChannels.byId[newChannel.id] = newChannel
+      return newChannelState
+
     case UPDATE_CHANNEL:
       const updatedChannel = action.payload;
       return {
         ...state,
         allChannels: {
           byId: {
-            ...state.channels.byId,
+            ...state.byId,
             [updatedChannel.id]: updatedChannel,
           },
-          allIds: [...state.channels.allIds],
+          allIds: [...state.allIds],
         },
       };
     case DELETE_CHANNEL:
       const deletedChannel = action.payload;
       const newState = { ...state };
-      delete newState.channels.byId[deletedChannel.id];
+      delete newState.byId[deletedChannel.id];
       return {
         ...newState,
         allChannels: {
-          byId: newState.channels.byId,
-          allIds: newState.channels.allIds.filter(
+          byId: newState.byId,
+          allIds: newState.allIds.filter(
             (id) => id !== deletedChannel.id
           ),
         },

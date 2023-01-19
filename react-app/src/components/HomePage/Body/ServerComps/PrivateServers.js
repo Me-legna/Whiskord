@@ -26,6 +26,7 @@ function PrivateServers() {
         <div className="private-servers-list">
             {servers.map((server, idx) => {
                 // if(!idx) dispatch(serverDetails(server.id))
+                console.log('private', server)
                 return (
                     <div>
                         <Icon

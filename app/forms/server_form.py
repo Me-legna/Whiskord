@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, url
 
 class ServerForm(FlaskForm):
     name = StringField('Server Name', validators=[DataRequired(), Length(min=2, max=100)])
-    image_url = StringField('Server Image URL', validators=[url()])
+    image_url = StringField('Server Image URL', validators=[])
     is_private = BooleanField('Server Privacy', validators=[DataRequired()])
     is_dm = BooleanField('Server Type', validators=[DataRequired()])
     capacity = IntegerField('Server Capacity', validators=[DataRequired()])

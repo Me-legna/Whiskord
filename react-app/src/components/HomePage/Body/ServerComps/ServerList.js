@@ -23,6 +23,7 @@ export default function ServerList({ clickHandler }) {
     <div className="server-list">
       {servers.map((server, idx) => {
         // if(!idx) dispatch(serverDetails(server.id))
+        console.log('public', server)
         return (
           <div>
             <Icon
