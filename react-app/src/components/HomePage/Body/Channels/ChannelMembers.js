@@ -8,8 +8,8 @@ export default function ChannelMembers({ channel }) {
   const serverId = useSelector((state) => state?.servers?.singleServer?.id);
 
   useEffect(() => {
-    dispatch(getChannelMembers(serverId, channel.id));
-  }, [dispatch, channel.id]);
+    // dispatch(getChannelMembers(serverId, channel.id));
+  }, [dispatch, channel.id, serverId]);
 
   return (
     <div>

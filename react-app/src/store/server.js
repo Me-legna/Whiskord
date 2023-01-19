@@ -126,7 +126,7 @@ export const addServer = (newServer) => async (dispatch) => {
         },
         body: JSON.stringify(newServer)
     });
-
+    console.log('response', response)
     if (response.ok) {
         const data = await response.json();
         data.Members = [data.owner_id]

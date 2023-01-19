@@ -28,7 +28,7 @@ function PrivateServers() {
                 // if(!idx) dispatch(serverDetails(server.id))
                 console.log('private', server)
                 return (
-                    <div>
+                    <div key={server.id}>
                         <Icon
                             imageUrl={server.img_url}
                             clickEvent={() => privateServerDetails(server.id)}

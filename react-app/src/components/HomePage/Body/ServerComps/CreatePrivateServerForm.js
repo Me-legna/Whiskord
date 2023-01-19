@@ -1,40 +1,34 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addServer } from "../../../../store/server";
-import { createNewChannel } from "../../../../store/channel";
+import { addServer, appendServerMember, serverDetails } from "../../../../store/server";
+import { addChannelMember, createNewChannel } from "../../../../store/channel";
 
 function CreatePrivateServerForm() {
     const user = useSelector(state => state.session.user)
     const [name, setName] = useState('');
-    const [imageUrl, setImageUrl] = useState('https://bit.ly/3CZn1ML');
     const [isDM, setIsDM] = useState(false)
     const [capacity, setCapacity] = useState(2)
     const [numSelected, setNumSelected] = useState(0)
-    const [seclectedUsers, setSeclectedUsers] = useState([])
+    const [selectedUsers, setSelectedUsers] = useState([])
+    const [selectedUserIds, setSelectedUserIds] = useState([])
     const [users, setUsers] = useState([]);
     const dispatch = useDispatch()
     const history = useHistory()
     // setAllUsers(users)
 
 
+
     const createServer = async (e) => {
         const ownerId = user.id
         e.preventDefault()
 
-        if (numSelected === 0) await setName('Unnamed')
-        if (numSelected === 1) await setIsDM(true)
-        else await setIsDM(false)
-
-        if (isDM) await setCapacity(2)
-        else await setCapacity(10)
-
         const newServer = {
             name,
             ownerId,
-            image_url: imageUrl,
-            is_private: false,
-            is_dm: false,
+            image_url: 'https://bit.ly/3CZn1ML',
+            is_private: true,
+            is_dm: isDM,
             capacity
         }
 
@@ -44,17 +38,40 @@ function CreatePrivateServerForm() {
             name,
             server_id: server.id,
             type: 'Text',
-            is_private: false
+            is_private: 'False',
+            server: newServer
         }
 
-        dispatch(createNewChannel(server.id, newChannel))
-            .then((channel) => history.push(`/home/channels/${server.id}/${channel.id}`))
+        const channel = await dispatch(createNewChannel(server.id, newChannel))
 
-        console.log('newServer', newServer)
-        console.log('newChannel', newChannel)
+        selectedUserIds.forEach(async userId => {
+            await dispatch(appendServerMember(server.id, userId))
+            await dispatch(addChannelMember(channel.id, userId))
+        })
+
+        await dispatch(serverDetails(server.id))
+            .then(() => history.push(`/home/@me/${channel.id}`))
+
+
+        console.log('newServer', server)
+        // console.log('newChannel', channel)
 
     }
 
+    useEffect(() => {
+        if (numSelected === 0) setName('Unnamed')
+        else {
+            let groupName = ''
+
+            selectedUsers.forEach(user => groupName += `${user}, `)
+            setName(groupName)
+        }
+        if (numSelected === 1) setIsDM(true)
+        else setIsDM(false)
+
+        if (isDM) setCapacity(2)
+        else setCapacity(10)
+    }, [numSelected, selectedUsers,isDM])
 
     useEffect(() => {
         async function fetchData() {
@@ -68,10 +85,12 @@ function CreatePrivateServerForm() {
 
     function userSelected(e, user) {
         if (e.target.checked) {
-            seclectedUsers.push(user.id)
+            selectedUsers.push(user.username)
+            selectedUserIds.push(user.id)
             setNumSelected(numSelected + 1)
         } else {
-            setSeclectedUsers(seclectedUsers.filter(id => id !== user.id))
+            setSelectedUsers(selectedUsers.filter(username => username !== user.username))
+            setSelectedUserIds(selectedUserIds.filter(id => id !== user.id))
             setNumSelected(numSelected - 1)
         }
     }
@@ -108,7 +127,7 @@ function CreatePrivateServerForm() {
                 <fieldset>
                     {userComponents}
                 </fieldset>
-                <button type="submit" disabled={numSelected >= 9}></button>
+                <button type="submit" disabled={numSelected >= 9}>{numSelected === 1 ? 'Create DM' : 'Create Group'}</button>
             </form>
         </div>
     )

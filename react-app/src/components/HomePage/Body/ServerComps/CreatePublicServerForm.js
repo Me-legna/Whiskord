@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addServer } from "../../../../store/server";
+import { addServer, appendServerMember, serverDetails } from "../../../../store/server";
 import { addChannelMember, createNewChannel } from "../../../../store/channel";
 import { useHistory } from "react-router-dom";
 
@@ -22,16 +22,13 @@ function CreatePublicServerForm() {
     const createServer = async (e) => {
         const ownerId = user.id
         e.preventDefault()
-        console.log('name', name)
-        console.log('ownerId', ownerId)
-        console.log('imageUrl', imageUrl)
 
         const newServer = {
             name,
             ownerId,
             image_url: 'https://bit.ly/3CZn1ML',
-            is_private: 'False',
-            is_dm: 'False',
+            is_private: false,
+            is_dm: false,
             capacity: 1000
         }
 
@@ -41,16 +38,19 @@ function CreatePublicServerForm() {
             name: 'general',
             server_id: server.id,
             type: 'Text',
-            is_private: 'False'
+            is_private: 'False',
+            server: newServer
         }
         console.log('server', server)
 
         const channel = await dispatch(createNewChannel(server.id, newChannel))
         console.log('channel', channel)
 
+        await dispatch(appendServerMember(server.id, ownerId))
         await dispatch(addChannelMember(channel.id, ownerId))
-            .then(() => history.push(`/home/channels/${server.id}/${channel.id}`))
 
+        await dispatch(serverDetails(server.id))
+            .then(() => history.push(`/home/channels/${server.id}/${channel.id}`))
     }
 
 

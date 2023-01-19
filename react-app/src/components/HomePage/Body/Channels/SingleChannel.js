@@ -8,7 +8,7 @@ export default function SingleChannel({ channel }) {
   // const state = useSelector((state) => state);
   // console.log("singleChannel", state.channels)
   useEffect(() => {
-    if (singleChannel) dispatch(getChannelDetails(channel.id));
+    // if (singleChannel) dispatch(getChannelDetails(channel.id));
   }, [dispatch, channel.id]);
 
   console.log(singleChannel);
