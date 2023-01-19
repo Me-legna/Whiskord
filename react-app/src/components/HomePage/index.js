@@ -20,10 +20,10 @@ function HomePage() {
 
   const dispatch = useDispatch();
 
-  // useEffect (() => {
-  //     dispatch(publicServers())
-  //     dispatch(privateServers())
-  // }, [dispatch])
+  useEffect (() => {
+      dispatch(publicServers())
+      dispatch(privateServers())
+  }, [dispatch])
 
 
   // useSelector for single server details

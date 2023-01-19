@@ -13,12 +13,19 @@ export default function ChannelMembers({ channel }) {
 
   return (
     <div>
-      <ul>
         {members?.allIds?.map((memberId) => {
           const member = members.byId[memberId];
-          return <li key={member.id}>{member.username}</li>;
+          return (
+          <div key={member.id} className='members-individual-container'>
+
+              <i className="fa-solid fa-circle-user"></i>
+              &nbsp;
+              &nbsp;
+              {member.username}
+
+          </div>
+          )
         })}
-      </ul>
     </div>
   );
 }

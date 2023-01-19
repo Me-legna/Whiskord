@@ -7,6 +7,7 @@ import ServerList from "./ServerComps/ServerList";
 import SingleServer from "./ServerComps/SingleServer";
 import { getChannelDetails } from "../../../store/channel";
 import { getChannels } from "../../../store/channel";
+import { publicServers, serverDetails } from "../../../store/server"; 
 import AllChannels from "./Channels/AllChannels";
 import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
@@ -49,6 +50,12 @@ function Body({ variable }) {
             dispatch(getChannels(serverId));
         }
         }, [dispatch, channelId, serverId]);
+    
+    useEffect(() => {
+        dispatch(publicServers());
+        console.log('publicServers')
+
+    },[dispatch])
 
 
 
@@ -63,6 +70,9 @@ function Body({ variable }) {
         <div className="main-body">
         {/* Main Div */}
             <div className="server-list-container">
+                <button onClick={() => dispatch(publicServers())}>
+                    <i className="fa-solid fa-arrows-rotate"></i>
+                </button>
                 <ServerList />
             </div>
         {/* <Header server={singleServerDetails} /> */}
