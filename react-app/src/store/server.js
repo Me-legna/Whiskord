@@ -129,6 +129,8 @@ export const addServer = (newServer) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        data.Members = [data.owner_id]
+        data.Channels = []
         dispatch(createServer(data));
 
         return data
