@@ -27,7 +27,8 @@ export default function ServerList({ clickHandler }) {
         return (
           <div key={server.id}>
             <Icon
-              imageUrl={server.img_url}
+              // imageUrl={server.img_url}
+              faIcon={`fa-solid fa-circle-${server.name[0].toLowerCase()}`}
               isServer={true}
               clickEvent={() => publicServerDetails(server.id)}
             />

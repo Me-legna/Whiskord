@@ -7,6 +7,7 @@ import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
 import Header from "../Header";
 import "../HomePage.css";
+import Icon from "../../Icon";
 
 function Body({ variable }) {
   const [channel, setChannel] = useState({});
@@ -18,7 +19,9 @@ function Body({ variable }) {
     <div className="main-body">
       {/* Main Div */}
       <div className="server-list-container">
+        <Icon faIcon="fa-solid fa-shield-cat" isServer={true}/>
         <ServerList />
+        <Icon faIcon="fa-solid fa-plus" isServer={true}/>
       </div>
       {/* <Header server={singleServerDetails} /> */}
       {/* <div><SingleServer /></div> */}
@@ -32,7 +35,7 @@ function Body({ variable }) {
                 History.push(/home/channels)
                     : <Channels />
             */}
-            <h3>Channel Name</h3>
+        <h3>Channel Name</h3>
         <Channels handleSetChannel={handleSetChannel} />
       </div>
       <div className="messages-container">
@@ -45,7 +48,7 @@ function Body({ variable }) {
         {/*if Channel Private- Channel Members
                 else Server Members
             */}
-            <h3>Members</h3>
+        <h3>Members</h3>
         <ChannelMembers channel={channel} />
       </div>
     </div>

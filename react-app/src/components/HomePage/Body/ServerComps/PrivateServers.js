@@ -30,7 +30,8 @@ function PrivateServers() {
                 return (
                     <div key={server.id}>
                         <Icon
-                            imageUrl={server.img_url}
+                            // imageUrl={server.img_url}
+                            faIcon={`fa-solid fa-circle-${server.name[0].toLowerCase()}`}
                             clickEvent={() => privateServerDetails(server.id)}
                         />
                         {/* <NavLink to={`/home/@me`}>{server.name}</NavLink> */}
