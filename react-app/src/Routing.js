@@ -12,10 +12,11 @@ import UsersList from "../src/components/Users/UsersList";
 import PrivateServers from "./components/HomePage/Body/ServerComps/PrivateServers";
 import SingleChannel from "./components/HomePage/Body/Channels/SingleChannel";
 import AllChannels from "./components/HomePage/Body/Channels/AllChannels";
+import ServerList from "./components/HomePage/Body/ServerComps/ServerList";
 
 
 
-function Routing({ user }) {
+function Routing() {
     return (
         <>
             <Switch>
@@ -41,10 +42,6 @@ function Routing({ user }) {
                     <User />
                 </ProtectedRoute>
 
-                {/* Server Channels Page */}
-                <ProtectedRoute path="/home/:serverId" >
-                    <HomePage />
-                </ProtectedRoute>
 
                 {/* Home/Application Pages */}
                 <ProtectedRoute path="/home">
@@ -58,6 +55,11 @@ function Routing({ user }) {
 
                 <ProtectedRoute path="/home/@me/:channelId" >
                     {/* <SinglePrivateChannel /> */}
+                </ProtectedRoute>
+
+                {/* Server Channels Page */}
+                <ProtectedRoute path="/home/:serverId" >
+                    <AllChannels />
                 </ProtectedRoute>
 
                 <ProtectedRoute path="/home/:serverId/:channelId" >

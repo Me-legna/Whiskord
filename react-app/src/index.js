@@ -12,21 +12,21 @@ const store = configureStore();
 
 function Root() {
     return (
-        <ModalProvider>
-            <ReduxProvider store={store}>
+        <ReduxProvider store={store}>
+            <ModalProvider>
                 <BrowserRouter>
                     <App />
                     <Modal />
                 </BrowserRouter>
-            </ReduxProvider>
-        </ModalProvider>
+            </ModalProvider>
+        </ReduxProvider>
     );
 }
 
 
 ReactDOM.render(
     <React.StrictMode>
-            <Root />
+        <Root />
     </React.StrictMode>,
     document.getElementById('root')
 );
