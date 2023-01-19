@@ -37,7 +37,7 @@ const getChannelMessages = (channelId) => async (dispatch) => {
 //create messages thunk
 //adding fetch detail to show we only need content of the message being sent from the message itself
 
-const createMessage = (channelId, messageContent) => async (dispatch) => {
+export const createMessage = (channelId, messageContent) => async (dispatch) => {
     const response = await fetch('/api/messages', {
         method: 'POST',
         headers: {
