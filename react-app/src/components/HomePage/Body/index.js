@@ -62,9 +62,9 @@ function Body({ variable }) {
     return (
         <div className="main-body">
         {/* Main Div */}
-        <div className="server-list-container">
-            <ServerList />
-        </div>
+            <div className="server-list-container">
+                <ServerList />
+            </div>
         {/* <Header server={singleServerDetails} /> */}
         {/* <div><SingleServer /></div> */}
         <div className="channel-list-container">
@@ -95,7 +95,7 @@ function Body({ variable }) {
                 :
                 <h3>{singleServer.name}</h3>
             }
-            {channelDetails && 
+            {(channelDetails && channelName) &&
             <div>
                 <SingleChannel channel={channelDetails} />
                 <Chat />
