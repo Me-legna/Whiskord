@@ -37,6 +37,14 @@ function Body({ variable }) {
     const allChannels = useSelector((state) => state?.channel?.allChannels);
 
     const channelDetails = useSelector((state) => state?.channel?.channelDetails);
+    
+     // grab the channel/server from the redux store.
+ const myServer = useSelector(state => state.servers.singleServer)
+
+ //setting current user and server owner
+ const currentUser = useSelector(state => state.session.user);
+ const serverOwner = myServer.owner_id;
+
 
 
     const channelName = channelDetails?.name;
@@ -95,6 +103,13 @@ function Body({ variable }) {
                 :
                 <h3>{singleServer.name}</h3>
             }
+            {currentUser && currentUser?.id === serverOwner ? (
+          <div>
+            <EditChannelForm channel={channel} />
+            <CreateChannel channel={channel} />
+            <DeleteChannelForm /> 
+          </div>
+        ) : (<div></div>)}
             {(channelDetails && channelName) &&
             <div>
                 <SingleChannel channel={channelDetails} />
@@ -123,6 +138,7 @@ function Body({ variable }) {
         </div>
         </div>
     );
+
 }
 
 export default Body;
