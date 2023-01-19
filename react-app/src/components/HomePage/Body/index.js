@@ -29,7 +29,7 @@ import CreatePrivateServerForm from "./ServerComps/CreatePrivateServerForm";
 
 function Body() {
   const [channel, setChannel] = useState({});
-  const [isPrivate, setIsPrivate] = useState(true)
+  const [isPrivate, setIsPrivate] = useState(false)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -78,7 +78,7 @@ function Body() {
         dispatch(privateServers())
         }
         else dispatch(getChannels(serverId))
-    }, [dispatch])
+    }, [dispatch, isPrivate, singleServer])
 
     useEffect(() => {
         if(channelId){
@@ -131,32 +131,29 @@ function Body() {
                 }
             </div>
 
-            {currentUser && currentUser?.id === serverOwner ? (
-                <div>
-                    <EditChannelForm channel={channel} />
-                    <CreateChannel channel={channel} />
-                    <DeleteChannelForm />
-                </div>
-                ) : (<></>)}
-                    {(channelDetails && channelName) &&
-                    <div>
-                        <SingleChannel channel={channelDetails} />
-                        <Chat />
-                    </div>
-            }
 
             <div className="messages-container">
-                <h3>Messages</h3>
-                <SingleChannel channel={channel} />
-                {/* Messages */}
-                {/* <Messages /> */}
+
+                {currentUser && currentUser?.id === serverOwner ? (
+                    <>
+                        {/* <EditChannelForm channel={channel} />
+                        <CreateChannel channel={channel} />
+                        <DeleteChannelForm /> */}
+                    </>
+                    ) : (<></>)}
+                        {(channelDetails && channelName) &&
+                        <>
+                            <h3>{channelName}</h3>
+                            <SingleChannel channel={channelDetails} />
+                            <Chat />
+                        </>
+                }
             </div>
 
             <div className="member-list-container">
                 {/*if Channel Private- Channel Members
                         else Server Members
                     */}
-                <h3>Members</h3>
                 { (channelDetails?.Members) &&
                         <div>
 

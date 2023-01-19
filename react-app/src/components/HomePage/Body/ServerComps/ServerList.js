@@ -28,7 +28,7 @@ export default function ServerList({ clickHandler }) {
           <div key={server.id}>
             <Icon
               // imageUrl={server.img_url}
-              faIcon={`fa-solid fa-circle-${server.name[0].toLowerCase()}`}
+              serverLetter={`${server.name[0]}`}
               isServer={true}
               clickEvent={() => clickHandler(server.id)}
             />
@@ -38,9 +38,10 @@ export default function ServerList({ clickHandler }) {
                   dispatch(serverDetails(server.id))
                   .then(() => history.push(`/home/${server.id}`))
               }}>
-                {server.name}
+                {/* <i className={`fa-solid fa-circle-h`}></i> */}
+                {/* {server.name} */}
+                {server.name[0]}
               </button>
-            
             </NavLink>
           </div>
         )})}
