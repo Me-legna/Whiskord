@@ -15,9 +15,9 @@ export default function ServerList({ clickHandler }) {
     dispatch(publicServers());
   }, [dispatch]);
 
-  const publicServerDetails = (serverId) => {
-    dispatch(serverDetails(serverId)).then(() => history.push(`/home/channels/${serverId}`))
-  }
+  // const publicServerDetails = (serverId) => {
+  //   dispatch(serverDetails(serverId)).then(() => history.push(`/home/channels/${serverId}`))
+  // }
 
   return (
     <div className="server-list">
@@ -30,7 +30,7 @@ export default function ServerList({ clickHandler }) {
               // imageUrl={server.img_url}
               faIcon={`fa-solid fa-circle-${server.name[0].toLowerCase()}`}
               isServer={true}
-              clickEvent={() => publicServerDetails(server.id)}
+              clickEvent={() => clickHandler(server.id)}
             />
             {/* <NavLink to={`/home/${server.id}`}>{server.name}</NavLink> */}
           </div>
