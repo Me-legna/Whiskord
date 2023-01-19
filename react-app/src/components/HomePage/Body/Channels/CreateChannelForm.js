@@ -16,8 +16,6 @@ export default function CreateChannel(){
     const [isPrivate, setIsPrivate] = useState(false);
 
     const enterName= (e) => setName(e.target.value);
-    const enterType= (e) => setType(e.target.value);
-    const enterIsPrivate= (e) => setIsPrivate(e.target.value);
 
     //errors
     const [errors, setErrors] = useState([]);

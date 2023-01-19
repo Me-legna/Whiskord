@@ -55,6 +55,7 @@ function Body({ variable }) {
           <div>
             <EditChannelForm channel={channel} />
             <CreateChannel channel={channel} />
+            <DeleteChannelForm /> 
           </div>
         ) : (<div></div>)}
         {/* Messages */}
