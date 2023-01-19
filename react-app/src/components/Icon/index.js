@@ -1,3 +1,4 @@
+import React from 'react';
 import './Icon.css'
 
 //set up to be resuable component to use for serverIcon, privateServerIcon userMessageIcon, memberIcon, createServerIcon
@@ -6,12 +7,19 @@ import './Icon.css'
 
 function Icon({
     imageUrl, //image to render
-    isServer=false, //give css class for hover effect if True
-    clickEvent=null //pass a custom clickevent for Icon
-}){
+    isServer = false, //give css class for hover effect if True
+    clickEvent = null, //pass a custom clickevent for Icon
+    faIcon = null //can pass className for fa-icon
+}) {
+
     return (
-        <div className={`icon-img ${isServer ? 'server-icon' : ''}`} onClick={clickEvent ? clickEvent : ()=> null}>
-            <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />
+        <div className={`icon-img ${isServer ? 'server-icon' : ''}`} onClick={clickEvent ? clickEvent : () => null}>
+            {
+                faIcon ?
+                    <i className={`icon-img ${faIcon} ${isServer ? 'server-icon' : ''}`} ></i>
+                    :
+                    <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />
+            }
         </div>
     )
 }

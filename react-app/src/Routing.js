@@ -15,7 +15,7 @@ import AllChannels from "./components/HomePage/Body/Channels/AllChannels";
 
 
 
-function Routing({ user }) {
+function Routing() {
     return (
         <>
             <Switch>

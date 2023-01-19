@@ -51,14 +51,16 @@ const loadChannelMembers = (members) => ({
   payload: members,
 });
 
-const addChannelMemberAction = (member) => ({
+const addChannelMemberAction = (userId) => ({
   type: ADD_CHANNEL_MEMBER,
-  payload: member,
+  // payload: member,
+  payload: userId,
 });
 
-const removeChannelMember = (member) => ({
+const removeChannelMember = (memberId) => ({
   type: REMOVE_CHANNEL_MEMBER,
-  payload: member,
+  // payload: member,
+  payload: memberId,
 });
 
 //thunks
@@ -110,173 +112,181 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
 };
 
 export const createNewChannel =
-  (serverId = 1, channel) =>
-  async (dispatch) => {
-    const response = await fetch(`/api/servers/${serverId}/channels`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(channel),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      dispatch(createChannel(data.Channel));
-    } else if (response.status < 500) {
-      const data = await response.json();
-
-      if (data.errors) {
-        return data.errors;
-      }
-    } else {
-      return ["An error occurred. Please try again."];
-    }
-  };
-
-export const editChannel =
-  (serverId = 1, channelId, updatedChannel) =>
-  async (dispatch) => {
-    const response = await fetch(
-      `/api/servers/${serverId}/channels/${channelId}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedChannel),
-      }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-
-      dispatch(updateChannel(data.Channel));
-    } else if (response.status < 500) {
-      const data = await response.json();
-
-      if (data.errors) {
-        return data.errors;
-      }
-    } else {
-      return ["An error occurred. Please try again."];
-    }
-  };
-
-export const deleteChannel =
-  (serverId = 1, channelId) =>
-  async (dispatch) => {
-    const response = await fetch(
-      `/api/servers/${serverId}/channels/${channelId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-
-      dispatch(deleteChannelAction(data.Channel));
-    } else if (response.status < 500) {
-      const data = await response.json();
-
-      if (data.errors) {
-        return data.errors;
-      }
-    } else {
-      return ["An error occurred. Please try again."];
-    }
-  };
-
-export const getChannelMembers =
-  (serverId = 1, channelId) =>
-  async (dispatch) => {
-    const response = await fetch(
-      // check with backend if this is the correct route
-      // `/api/servers/${serverId}/channels/${channelId}/members`,
-      `/api/channels/${channelId}/members`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-
-      dispatch(loadChannelMembers(data.Members));
-    } else if (response.status < 500) {
-      const data = await response.json();
-
-      if (data.errors) {
-        return data.errors;
-      }
-    } else {
-      return ["An error occurred. Please try again."];
-    }
-  };
-
-export const addChannelMember =
-  (serverId = 1, channelId, userId) =>
-  async (dispatch) => {
-    const response = await fetch(
-      //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
-      `/api/channels/${channelId}/members/${userId}`,
-      {
+  (serverId, channel) =>
+    async (dispatch) => {
+      const response = await fetch(`/api/servers/${serverId}/channels`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(channel),
+      });
+      console.log('response', response)
+      if (response.ok) {
+        const data = await response.json();
+        console.log('data', data)
+        dispatch(createChannel(data));
+        return data
+      } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
       }
-    );
+    };
 
-    if (response.ok) {
-      const data = await response.json();
+export const editChannel =
+  (serverId = 1, channelId, updatedChannel) =>
+    async (dispatch) => {
+      const response = await fetch(
+        `/api/servers/${serverId}/channels/${channelId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedChannel),
+        }
+      );
 
-      dispatch(addChannelMemberAction(data.Member));
-    } else if (response.status < 500) {
-      const data = await response.json();
+      if (response.ok) {
+        const data = await response.json();
 
-      if (data.errors) {
-        return data.errors;
+        dispatch(updateChannel(data.Channel));
+      } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
       }
-    } else {
-      return ["An error occurred. Please try again."];
-    }
-  };
+    };
+
+export const deleteChannel =
+  (serverId = 1, channelId) =>
+    async (dispatch) => {
+      const response = await fetch(
+        `/api/servers/${serverId}/channels/${channelId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        dispatch(deleteChannelAction(data.Channel));
+      } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
+      }
+    };
+
+export const getChannelMembers =
+  (serverId = 1, channelId) =>
+    async (dispatch) => {
+      const response = await fetch(
+        // check with backend if this is the correct route
+        // `/api/servers/${serverId}/channels/${channelId}/members`,
+        `/api/channels/${channelId}/members`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        dispatch(loadChannelMembers(data.Members));
+      } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
+      }
+    };
+
+export const addChannelMember =
+  (channelId, userId) =>
+    async (dispatch) => {
+      const response = await fetch(
+        //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
+        // `/api/channels/${channelId}/members/${userId}`,
+        `/api/channels/${channelId}/members`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({user_id: userId})
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // dispatch(addChannelMemberAction(data.Member));
+        dispatch(addChannelMemberAction(userId));
+      } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
+      }
+    };
 
 export const deleteChannelMember =
-  (serverId = 1, channelId, userId) =>
-  async (dispatch) => {
-    const response = await fetch(
-      //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
-      `/api/channels/${channelId}/members/${userId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
+  (channelId, userId) =>
+    async (dispatch) => {
+      const response = await fetch(
+        //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
+        // `/api/channels/${channelId}/members/${userId}`,
+        `/api/channels/${channelId}/members`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: userId })
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+
+        // dispatch(removeChannelMember(data.Member));
+        dispatch(removeChannelMember(userId));
+      } else if (response.status < 500) {
+        const data = await response.json();
+
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        return ["An error occurred. Please try again."];
       }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-
-      dispatch(removeChannelMember(data.Member));
-    } else if (response.status < 500) {
-      const data = await response.json();
-
-      if (data.errors) {
-        return data.errors;
-      }
-    } else {
-      return ["An error occurred. Please try again."];
-    }
-  };
+    };
 
 const initialState = {
   allChannels: {
@@ -314,41 +324,44 @@ export default function channelReducer(state = initialState, action) {
       };
     case CREATE_CHANNEL:
       const newChannel = action.payload;
-      return {
+      const newChannelState = {
         ...state,
         allChannels: {
-          byId: {
-            ...state.channels.byId,
-            [newChannel.id]: newChannel,
-          },
-          allIds: [...state.channels.allIds, newChannel.id],
+          byId: {...state.allChannels.byId},
+          allIds: [...state.allChannels.allIds, newChannel.id],
         },
       };
+
+      newChannelState.allChannels.byId[newChannel.id] = newChannel
+      return newChannelState
+
     case UPDATE_CHANNEL:
       const updatedChannel = action.payload;
-      return {
+      const updatedChannelState = {
         ...state,
         allChannels: {
-          byId: {
-            ...state.channels.byId,
-            [updatedChannel.id]: updatedChannel,
-          },
-          allIds: [...state.channels.allIds],
+          byId: {...state.allChannels.byId},
+          allIds: [...state.allChannels.allIds, newChannel.id],
         },
       };
+
+      updatedChannelState.allChannels.byId[updatedChannel.id] = updatedChannel;
+      return updatedChannelState
+
     case DELETE_CHANNEL:
       const deletedChannel = action.payload;
-      const newState = { ...state };
-      delete newState.channels.byId[deletedChannel.id];
-      return {
-        ...newState,
+      const newState = {
+        ...state,
         allChannels: {
-          byId: newState.channels.byId,
-          allIds: newState.channels.allIds.filter(
+          byId: { ...state.allChannels.byId },
+          allIds: state.allChannels.allIds.filter(
             (id) => id !== deletedChannel.id
           ),
         },
       };
+      delete newState.byId[deletedChannel.id];
+      return newState
+
     case LOAD_CHANNEL_MEMBERS:
       const allMembers = {};
       action.payload?.forEach((member) => {
@@ -362,30 +375,31 @@ export default function channelReducer(state = initialState, action) {
         },
       };
     case ADD_CHANNEL_MEMBER:
-      const newMember = action.payload;
-      return {
+      const newMemberId = action.payload;
+      const newMembersState = {
         ...state,
         members: {
-          byId: {
-            ...state.members.byId,
-            [newMember.id]: newMember,
-          },
-          allIds: [...state.members.allIds, newMember.id],
+          byId: {...state.members.byId},
+          allIds: [...state.members.allIds, newMemberId],
         },
       };
+
+      newMembersState.members.byId[newMemberId] = newMemberId
+      return newMembersState
+
     case REMOVE_CHANNEL_MEMBER:
-      const deletedMember = action.payload;
-      const newMemberState = { ...state };
-      delete newMemberState.members.byId[deletedMember.id];
-      return {
-        ...newMemberState,
+      const deletedMemberId = action.payload;
+      const newMemberState = {
+        ...state,
         members: {
-          byId: newMemberState.members.byId,
-          allIds: newMemberState.members.allIds.filter(
-            (id) => id !== deletedMember.id
-          ),
+          byId: {...state.members.byId},
+          allIds: state.members.allIds.filter(id => id !== deletedMemberId),
         },
       };
+
+      delete newMemberState.members.byId[deletedMemberId];
+
+      return newMemberState
     default:
       return state;
   }

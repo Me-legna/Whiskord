@@ -5,6 +5,7 @@
 // import SingleChannel from "./SingleChannel";
 // import ChannelMembers from "./ChannelMembers";
 
+
 // export default function Channels({ handleSetChannel }) {
 //   const dispatch = useDispatch();
 //   // const [channel, setChannel] = useState({});
@@ -13,6 +14,7 @@
 //   // const serverName = useSelector((state) => state.servers.singleServer.name);
 //   // const channels = useSelector((state) => state?.servers.singleServer?.channels);
 //   const channels = useSelector((state) => state?.channel?.allChannels);
+
 
 //   useEffect(() => {
 //     dispatch(getChannels(serverId));
