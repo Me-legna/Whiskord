@@ -6,8 +6,6 @@ import "../Channels/channels.css";
 import Select from 'react-select'
 
 
-
-
 export default function EditChannelForm() {
     const dispatch = useDispatch();
     const history = useHistory();

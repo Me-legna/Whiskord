@@ -8,6 +8,8 @@ import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
 // import Header from "../Header";
 import EditChannelForm from "./Channels/EditChannelForm";
+import DeleteChannelForm from "./Channels/DeleteChannelForm";
+import CreateChannel from "./Channels/CreateChannelForm";
 
 import "../HomePage.css";
 
@@ -50,7 +52,10 @@ function Body({ variable }) {
         <SingleChannel channel={channel} />
         {/* conditional rendering so only server owner can see edit/delete forms */}
         {currentUser && currentUser?.id === serverOwner ? (
-          <EditChannelForm channel={channel} />
+          <div>
+            <EditChannelForm channel={channel} />
+            <CreateChannel channel={channel} />
+          </div>
         ) : (<div></div>)}
         {/* Messages */}
         {/* <Messages /> */}
