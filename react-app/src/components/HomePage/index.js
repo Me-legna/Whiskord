@@ -6,11 +6,13 @@ import { useEffect } from "react";
 import { publicServers } from "../../store/server";
 import { privateServers } from "../../store/server";
 import { serverDetails } from "../../store/server"
+import { singleServer } from "../../store/server"
 import { getChannelDetails } from "../../store/channel"
 import { useHistory, useParams } from "react-router-dom";
 
 import "./HomePage.css";
 import ServerList from "./Body/ServerComps/ServerList";
+import SingleServer from "./Body/ServerComps/SingleServer";
 
 function HomePage() {
   //[variable, setVariable] = useState(true)
@@ -53,6 +55,7 @@ function HomePage() {
                     </div>
                 */}
                 <ServerList clickHandler={loadServer} />
+                <SingleServer />
         <div>
           {" "}
           {/* when clicked Create Server */}
