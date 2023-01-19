@@ -32,7 +32,16 @@ export default function ServerList({ clickHandler }) {
               isServer={true}
               clickEvent={() => clickHandler(server.id)}
             />
-            {/* <NavLink to={`/home/${server.id}`}>{server.name}</NavLink> */}
+            <NavLink to={`/home/${server.id}`}>
+              <button onClick={() => {
+                  // setIsPrivate(false)
+                  dispatch(serverDetails(server.id))
+                  .then(() => history.push(`/home/${server.id}`))
+              }}>
+                {server.name}
+              </button>
+            
+            </NavLink>
           </div>
         )})}
     </div>

@@ -80,7 +80,7 @@ export default function CreateChannel(){
                     <label>Server</label>
                         <input className='channel-form-input'
                             type="text"
-                            placeholder={`Server #: ${serverId}`}
+                            // placeholder={`Server #: ${serverId}`}
                             value={serverId}
                         />
                     <label>Channel Type</label>

@@ -2,21 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import './Chat.css'
+import { createMessage } from "../../store/message";
+
 let socket;
 
 const Chat = () => {
+    const dispatch = useDispatch()
+
     const [messages, setMessages] = useState([]);
-    const prevMessages = useSelector(state => state?.channel?.channelDetails?.Messages)
+    const prevMessages = useSelector(state => state?.channels?.channelDetails?.Messages)
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state?.session?.user)
-    const channel_id = useSelector(state => state?.channel?.channelDetails?.id)
+    const channel_id = useSelector(state => state?.channels?.channelDetails?.id)
 
 
     useEffect(() => {
         // open socket connection
         // create websocket
         socket = io();
-        // const channel_id = useSelector(state => state.channel.id)
+
+        // join room for channel
         socket.emit('join', channel_id)
     
         // get previous messages from server
@@ -39,9 +44,11 @@ const Chat = () => {
     
     const sendChat = (e) => {
         e.preventDefault()
-        // const channel_id = useSelector(state => state.channel.id)
+        
         socket.emit("chat", { user: user.username, msg: chatInput, channel_id });
-        // dispatch(addMessage)
+
+        // on message send, create message in db
+        dispatch(createMessage(channel_id, chatInput))
         setChatInput("")
     }
     

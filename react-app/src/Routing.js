@@ -59,6 +59,7 @@ function Routing() {
 
                 {/* Server Channels Page */}
                 <ProtectedRoute path="/home/:serverId" >
+                    <SingleServer/>
                     <AllChannels />
                 </ProtectedRoute>
 
