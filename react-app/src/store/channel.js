@@ -51,14 +51,16 @@ const loadChannelMembers = (members) => ({
   payload: members,
 });
 
-const addChannelMemberAction = (member) => ({
+const addChannelMemberAction = (userId) => ({
   type: ADD_CHANNEL_MEMBER,
-  payload: member,
+  // payload: member,
+  payload: userId,
 });
 
-const removeChannelMember = (member) => ({
+const removeChannelMember = (memberId) => ({
   type: REMOVE_CHANNEL_MEMBER,
-  payload: member,
+  // payload: member,
+  payload: memberId,
 });
 
 //thunks
@@ -222,23 +224,26 @@ export const getChannelMembers =
     };
 
 export const addChannelMember =
-  (serverId = 1, channelId, userId) =>
+  (channelId, userId) =>
     async (dispatch) => {
       const response = await fetch(
         //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
-        `/api/channels/${channelId}/members/${userId}`,
+        // `/api/channels/${channelId}/members/${userId}`,
+        `/api/channels/${channelId}/members`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify({user_id: userId})
         }
       );
 
       if (response.ok) {
         const data = await response.json();
 
-        dispatch(addChannelMemberAction(data.Member));
+        // dispatch(addChannelMemberAction(data.Member));
+        dispatch(addChannelMemberAction(userId));
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -251,23 +256,26 @@ export const addChannelMember =
     };
 
 export const deleteChannelMember =
-  (serverId = 1, channelId, userId) =>
+  (channelId, userId) =>
     async (dispatch) => {
       const response = await fetch(
         //   `/api/servers/${serverId}/channels/${channelId}/members/${userId}`,
-        `/api/channels/${channelId}/members/${userId}`,
+        // `/api/channels/${channelId}/members/${userId}`,
+        `/api/channels/${channelId}/members`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify({ user_id: userId })
         }
       );
 
       if (response.ok) {
         const data = await response.json();
 
-        dispatch(removeChannelMember(data.Member));
+        // dispatch(removeChannelMember(data.Member));
+        dispatch(removeChannelMember(userId));
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -365,29 +373,29 @@ export default function channelReducer(state = initialState, action) {
         },
       };
     case ADD_CHANNEL_MEMBER:
-      const newMember = action.payload;
+      const newMemberId = action.payload;
       const newMembersState = {
         ...state,
         members: {
           byId: {...state.members.byId},
-          allIds: [...state.members.allIds, newMember.id],
+          allIds: [...state.members.allIds, newMemberId],
         },
       };
 
-      newMembersState.members.byId[newMember.id] = newMember
+      newMembersState.members.byId[newMemberId] = newMemberId
       return newMembersState
 
     case REMOVE_CHANNEL_MEMBER:
-      const deletedMember = action.payload;
+      const deletedMemberId = action.payload;
       const newMemberState = {
         ...state,
         members: {
           byId: {...state.members.byId},
-          allIds: [...state.members.allIds, newMember.id],
+          allIds: state.members.allIds.filter(id => id !== deletedMemberId),
         },
       };
 
-      delete newMemberState.members.byId[deletedMember.id];
+      delete newMemberState.members.byId[deletedMemberId];
 
       return newMemberState
     default:

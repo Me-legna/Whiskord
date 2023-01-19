@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { addServer } from "../../../../store/server";
-import { createNewChannel } from "../../../../store/channel";
+import { addChannelMember, createNewChannel } from "../../../../store/channel";
 import { useHistory } from "react-router-dom";
 
 function CreatePublicServerForm() {
@@ -48,17 +48,8 @@ function CreatePublicServerForm() {
         const channel = await dispatch(createNewChannel(server.id, newChannel))
         console.log('channel', channel)
 
-        // .then((server) => {
-        //     dispatch(createNewChannel(server.id, )).then((channel) => console.log('channel', channel))
-        // })
-        // .catch((data) => setErrors(data.errors))
-
-        //     .then((channel) => history.push(`/home/channels/${server.id}/${channel.id}`))
-        //     .catch((data) => setErrors(data.errors))
-
-
-        // console.log('newServer', newServer)
-        // console.log('newChannel', newChannel)
+        await dispatch(addChannelMember(channel.id, ownerId))
+            .then(() => history.push(`/home/channels/${server.id}/${channel.id}`))
 
     }
 
