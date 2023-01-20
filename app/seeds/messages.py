@@ -2,25 +2,168 @@ from app.models import db, environment, SCHEMA
 from ..models.message import Message
 # Adds a demo user, you can add other users here if you want
 def seed_messages():
-    demo_message = Message(
-        content = "This is my message 1",
+    thor_message = Message(
+        content = "I'm not online, I'm just in the 'clouds'",
         user_id = 1,
         channel_id = 1
         )
-    marnie_message = Message(
-        content = "This is my message 2",
+    thor_message = Message(
+        content = "Why was the JavaScript developer always calm? He knew how to handle promises.'",
+        user_id = 1,
+        channel_id = 1
+        )
+    thor_message = Message(
+        content = "I told my wife I was a programmer, she said 'Prove it.' So I wrote 'Hello World' on the kitchen whiteboard.",
+        user_id = 1,
+        channel_id = 1
+        )
+    flash_message = Message(
+        content = "Python is an easier language to learn. No brackets, no main. Life changes when you get errors for writing an extra space ????????",
         user_id = 2,
         channel_id = 2
         )
-    bobbie_message = Message(
-        content = "This is my message 3",
+    flash_message = Message(
+        content = "Why was the computer cold? It left its Windows open",
+        user_id = 2,
+        channel_id = 2
+        )
+    flash_message = Message(
+        content = "Why did the programmer go to the doctor? He had a case of the loops.",
+        user_id = 2,
+        channel_id = 2
+        )
+    avenger_message = Message(
+        content = "What do we want? An end to acronyms. When do we want it? ASAP!",
         user_id = 3,
         channel_id = 3
         )
+    avenger_message = Message(
+        content = "Why did the developer go bankrupt? He used up all his cache.",
+        user_id = 3,
+        channel_id = 3
+        )
+    avenger_message = Message(
+        content = "The developer's favorite hobby? Debugging.",
+        user_id = 3,
+        channel_id = 3
+        )
+    superman_message = Message(
+        content = "Why don't scientists trust atoms? Because they make up everything!",
+        user_id = 4,
+        channel_id = 4
+        )
+    superman_message = Message(
+        content = "What is the best thing about living in Switzerland? I do not know, but the flag is a big plus.",
+        user_id = 4,
+        channel_id = 4
+        )
+    superman_message = Message(
+        content = "What is the difference between a fish and a piano? You cannot tuna fish.",
+        user_id = 4,
+        channel_id = 4
+        )
+    zenith_message = Message(
+        content = "Why did the belt go to jail? For holding up the pants!",
+        user_id = 5,
+        channel_id = 5
+        )
+    zenith_message = Message(
+        content = "A SQL query walks into a bar and sees two tables. He approaches them and asks 'Can I join you?",
+        user_id = 5,
+        channel_id = 5
+        )
+    zenith_message = Message(
+        content = "Coding is just a bunch of if statements and coffee breaks!",
+        user_id = 5,
+        channel_id = 5
+        )
+    hulk_message = Message(
+        content = "How do you explain the movie Inception? when you run a VM inside another VM, inside another VM, inside another VM…, everything runs real slow.",
+        user_id = 6,
+        channel_id = 6
+        )
+    hulk_message = Message(
+        content = "A developer's favorite phrase is 'It works on my machine",
+        user_id = 6,
+        channel_id = 6
+        )
+    hulk_message = Message(
+        content = "Coding is like a game of hide and seek, except you're the one hiding and the bugs are seeking.",
+        user_id = 6,
+        channel_id = 6
+        )
+    blackpanther_message = Message(
+        content = "I'm not a millennial, I'm a member of the 'Zoomer' generation",
+        user_id = 7,
+        channel_id = 7
+        )
+    blackpanther_message = Message(
+        content = "Knock, knock Who is it? very long pause...Java.",
+        user_id = 7,
+        channel_id = 7
+        )
+    blackpanther_message = Message(
+        content = "Why did the two Java methods get a divorce? they had constant arguments.",
+        user_id = 7,
+        channel_id = 7
+        )
+    wanda_message = Message(
+        content = "A good plan today is better than a perfect plan tomorrow.",
+        user_id = 8,
+        channel_id = 8
+        )
+    wanda_message = Message(
+        content = "To understand recursion, you must first understand recursion.",
+        user_id = 8,
+        channel_id = 8
+        )
+    wanda_message = Message(
+        content = "A coder's to-do list is like a never-ending story.",
+        user_id = 8,
+        channel_id = 8
+        )
+    spiderman_message = Message(
+        content = "What is the object-oriented way to become wealthy? Inheritance.",
+        user_id = 9,
+        channel_id = 9
+        )
+    spiderman_message = Message(
+        content = "Why did the developer go to the gym? To get some byte-lifting in.",
+        user_id = 9,
+        channel_id = 9
+        )
+    spiderman_message = Message(
+        content = "Coding is like a science experiment, except the only thing blowing up is my computer.",
+        user_id = 9,
+        channel_id = 9
+        )
+    batman_message = Message(
+        content = "Why did the chicken go to the seance? To talk to the other side!",
+        user_id = 10,
+        channel_id = 10
+        )
+    batman_message = Message(
+        content = "How do you tell HTML from HTML5? Try it out in Internet Explorer. Did it work? No? It is HTML5.",
+        user_id = 10,
+        channel_id = 10
+        )
+    batman_message = Message(
+        content = "Coding is like a puzzle, but with more coffee and less sleep.",
+        user_id = 10,
+        channel_id = 10
+        )
 
-    db.session.add(demo_message)
-    db.session.add(marnie_message)
-    db.session.add(bobbie_message)
+
+    db.session.add(thor_message)
+    db.session.add(flash_message)
+    db.session.add(avenger_message)
+    db.session.add(superman_message)
+    db.session.add(zenith_message)
+    db.session.add(hulk_message)
+    db.session.add(blackpanther_message)
+    db.session.add(wanda_message)
+    db.session.add(spiderman_message)
+    db.session.add(batman_message)
     db.session.commit()
 
 
