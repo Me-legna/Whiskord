@@ -12,6 +12,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [isEditing, setIsEditing] = useState("");
     const [edittedMessage, setEdittedMessage] = useState("");
+    const [isDeleting, setIsDeleting] = useState("")
 
     const prevMessages = useSelector(state => state?.channels?.channelDetails?.Messages)
 
@@ -66,7 +67,7 @@ const Chat = () => {
     const sendChat = async (e) => {
         e.preventDefault()
 
-        if(!chatInput || !user) return
+        if (!chatInput || !user) return
 
         // send message to server/socket and then to other users
         socket.emit("chat", { user: user.username, msg: chatInput, channel_id });
@@ -89,8 +90,8 @@ const Chat = () => {
     }
 
     const deleteSubmitHandler = (messageId) => {
-        let decision = window.confirm("Are you sure you want to delete this message?")
-        if (!decision) return
+        // let decision = window.confirm("Are you sure you want to delete this message?")
+        // if (!decision) return
 
         dispatch(destroyMessage(messageId, channel_id, user.id))
         // setMessages(prevMessages => prevMessages.filter(message => message.id !== messageId))
@@ -103,77 +104,86 @@ const Chat = () => {
     return (user && (
         <div>
             <div className="previous-messages-container">
-            {Object.values(dbMessages)?.map((message, ind) => (
-                message.channel_id === channel_id &&
-                <div key={ind} className='message-container'>
-                    <div className="message-data-all">
-                        <h1 className="message-profile-avatar">
-                            <i className="fa-solid fa-circle-user"></i>
-                        </h1>
-                        <div className='message-all-text'>
-                            <div className="message-name-and-date">
-                                {/* {message.user.username} */}
-                                <div className="message-name">
-                                    {message.user.username}
+                {Object.values(dbMessages)?.map((message, ind) => (
+                    message.channel_id === channel_id &&
+                    <div key={ind} className='message-container'>
+                        <div className="message-data-all">
+                            <h1 className="message-profile-avatar">
+                                <i className="fa-solid fa-circle-user"></i>
+                            </h1>
+                            <div className='message-all-text'>
+                                <div className="message-name-and-date">
+                                    {/* {message.user.username} */}
+                                    <div className="message-name">
+                                        {message.user.username}
+                                    </div>
+                                    &nbsp;
+                                    &nbsp;
+                                    <div className="message-date">
+                                        {new Date(message.created_at).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                    </div>
+                                    {/* {`${message.user.username}: ${new Date(message.created_at).toLocaleString()}`} */}
                                 </div>
-                                &nbsp;
-                                &nbsp;
-                                <div className="message-date">
-                                    {new Date(message.created_at).toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}
-                                </div>
-                            {/* {`${message.user.username}: ${new Date(message.created_at).toLocaleString()}`} */}
-                            </div>
-                            <div className='message-content'>
-                                {/* have isEditing state variable
+                                <div className='message-content'>
+                                    {/* have isEditing state variable
                                     when true, display input box with submit button
                                     once submitted (on submit), set isEditing to false, send PUT request to server
 
                                     on cancel, set isEditing to false
                                 */}
-                                { ( isEditing === message.id )  ?
+                                    {(isEditing === message.id) ?
 
-                                    <div>
-                                        {/* {() => setEdittedMessage(message.content)} */}
-                                        <form onSubmit={(e) => {
-                                            e.preventDefault()
+                                        <div>
+                                            {/* {() => setEdittedMessage(message.content)} */}
+                                            <form onSubmit={(e) => {
+                                                e.preventDefault()
 
-                                            editSubmitHandler(message.id, edittedMessage, channel_id, user.id)
-                                            setIsEditing('')
-                                        }}>
-                                            <input
-                                                value={edittedMessage}
-                                                onChange={(e) => setEdittedMessage(e.target.value)}
-                                            />
-                                            <button type="submit">Update</button>
-                                        </form>
-                                    </div>
-                                :
-                                <div>
-                                    {message.content}
+                                                editSubmitHandler(message.id, edittedMessage, channel_id, user.id)
+                                                setIsEditing('')
+                                            }}>
+                                                <input
+                                                    value={edittedMessage}
+                                                    onChange={(e) => setEdittedMessage(e.target.value)}
+                                                />
+                                                <button type="submit">Update</button>
+                                            </form>
+                                            <button onClick={() => setIsEditing(false)}>Cancel</button>
+                                        </div>
+                                        :
+                                        <div>
+                                            {message.content}
+                                        </div>
+                                    }
                                 </div>
-                                }
                             </div>
                         </div>
-                    </div>
 
-                    <div>
-                        {user.id && user.id === message.user_id && (
-                            <div className="messages-edit-delete-buttons">
-                                <button onClick={() => {
-                                    setIsEditing(message.id)
-                                    setEdittedMessage(message.content)
-                                }}>
-                                    <i className="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                &nbsp;
-                                <button onClick={() => deleteSubmitHandler(message.id)}>
-                                    <i className="fa-solid fa-trash-can"></i>
-                                </button>
-                            </div>
-                        )}
+                        <div>
+                            {user.id && user.id === message.user_id && (
+                                <div className="messages-edit-delete-buttons">
+                                    <button onClick={() => {
+                                        setIsEditing(message.id)
+                                        setEdittedMessage(message.content)
+                                    }}>
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    &nbsp;
+                                    {!isDeleting
+                                        ?
+                                        <button onClick={() => setIsDeleting(true)}>
+                                            <i className="fa-solid fa-trash-can"></i>
+                                        </button>
+                                        :
+                                        <>
+                                        <button onClick={() => deleteSubmitHandler(false)}>Delete</button>
+                                        <button onClick={() => setIsDeleting(false)}>Cancel</button>
+                                        </>
+                                    }
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
             </div>
             {/*
              */}
