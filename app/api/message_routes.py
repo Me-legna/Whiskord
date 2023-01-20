@@ -29,7 +29,7 @@ def create_message():
             return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
 
         new_message = Message(
-            message=form.data['message'],
+            content=form.data['content'],
             channel_id=form.data['channel_id'],
             user_id=current_user.id
         )

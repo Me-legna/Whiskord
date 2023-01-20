@@ -32,17 +32,19 @@ export default function ServerList({ clickHandler }) {
               isServer={true}
               clickEvent={() => clickHandler(server.id)}
             />
-            <NavLink to={`/home/${server.id}`}>
-              <button onClick={() => {
-                  // setIsPrivate(false)
-                  dispatch(serverDetails(server.id))
-                  .then(() => history.push(`/home/${server.id}`))
-              }}>
-                {/* <i className={`fa-solid fa-circle-h`}></i> */}
-                {/* {server.name} */}
-                {server.name[0]}
-              </button>
-            </NavLink>
+            <div className="server-list-button">
+              <NavLink to={`/home/${server.id}`}>
+                <button onClick={() => {
+                    // setIsPrivate(false)
+                    dispatch(serverDetails(server.id))
+                    .then(() => history.push(`/home/${server.id}`))
+                }}>
+                  {/* <i className={`fa-solid fa-circle-h`}></i> */}
+                  {/* {server.name} */}
+                  {server.name[0]}
+                </button>
+              </NavLink>
+            </div>
           </div>
         )})}
     </div>

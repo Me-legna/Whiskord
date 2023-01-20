@@ -193,8 +193,50 @@ function Body() {
                     </h3>
                     <ChannelMembers channel={channelDetails} />
                 </div>
-            }
-      </div>
+
+                }
+            </div>
+
+
+            <div className="messages-container">
+
+                {currentUser && currentUser?.id === serverOwner ? (
+                    <>
+                        {/* <EditChannelForm channel={channel} />
+                        <CreateChannel channel={channel} />
+                        <DeleteChannelForm /> */}
+                    </>
+                    ) : (<></>)}
+                        {(channelDetails && channelName) &&
+                        <>
+                            <h3>
+                                <i className="fa-solid fa-hashtag"></i>
+                                &nbsp;
+                                {channelName}
+                            </h3>
+                            <SingleChannel channel={channelDetails} />
+                            <Chat />
+                        </>
+                }
+            </div>
+
+            <div className="member-list-container">
+                {/*if Channel Private- Channel Members
+                        else Server Members
+                    */}
+                { (channelDetails?.Members) &&
+                        <div>
+
+                            <h3>
+                                <i className="fa-solid fa-user-group"></i>
+                                &nbsp;
+                                Members
+                            </h3>
+                            <ChannelMembers channel={channelDetails} />
+                        </div>
+                    }
+            </div>
+
     </div>
   );
 }

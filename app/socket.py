@@ -35,7 +35,13 @@ def handle_chat(data):
     channel_id = data["channel_id"]
     join_room(channel_id)
     emit("chat", data, room=channel_id)
-    # leave_room(channel_id)
+
+
+# @socketio.on("edit")
+# def handle_edit(data):
+#     channel_id = data["channel_id"]
+#     join_room(channel_id)
+#     emit("edit", data, room=channel_id)
 
 
 @socketio.on("leave")
