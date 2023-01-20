@@ -1,0 +1,36 @@
+
+.message-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.message-profile-avatar {
+    width: 50px;
+    margin-right: 0.05rem;
+}
+
+
+.message-all-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.message-name-and-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-name {
+    font-weight: bolder;
+}
+
+.message-date {
+    font-size: smaller;
+    font-weight: lighter;
+}

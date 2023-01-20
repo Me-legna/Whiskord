@@ -19,10 +19,10 @@ export default function EditChannelForm() {
     ];
 
     // grab the channel from the redux store.
-    const myChannel = useSelector(state => state.channels.channelDetails)
+    const myChannel = useSelector(state => state?.channels?.channelDetails)
 
     //hooks
-    const [name, setName] = useState(myChannel.name);
+    const [name, setName] = useState(myChannel?.name || '');
     const [is_private, setIsPrivate] = useState(false);
 
     // setting errors here so that all field are filled out.
@@ -35,7 +35,7 @@ export default function EditChannelForm() {
     // use effect errors
     useEffect(() => {
         const errors = [];
-        if (name.length === 0) errors.push('Please provide a name for your channel.');
+        if (name?.length === 0) errors.push('Please provide a name for your channel.');
         // use params to grab serverId
         setErrors(errors); // set errors to the array of errors
     }, [name])
@@ -74,13 +74,13 @@ export default function EditChannelForm() {
 
                 <form className='edit-channel-form-body' onSubmit={handleSubmit}>
                     <label>Edit Channel Name</label>
-                        <input className='edit-channel-form-input'>
+                        <input className='edit-channel-form-input'
                             type="text"
                             placeholder={myChannel.name}
                             required
                             value={name}
                             onChange={setName}
-                        </input>
+                        />
                     <label> Channel Privacy Status </label>
                         <Select
                         options={options}

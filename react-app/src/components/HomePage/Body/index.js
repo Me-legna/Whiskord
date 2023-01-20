@@ -7,6 +7,7 @@ import ServerList from "./ServerComps/ServerList";
 import SingleServer from "./ServerComps/SingleServer";
 import { getChannelDetails } from "../../../store/channel";
 import { getChannels } from "../../../store/channel";
+import { publicServers, serverDetails, privateServers } from "../../../store/server"; 
 import AllChannels from "./Channels/AllChannels";
 import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
@@ -15,7 +16,15 @@ import Header from "../Header";
 import "../HomePage.css";
 import Icon from "../../Icon";
 import PrivateServers from "./ServerComps/PrivateServers";
+
 import { privateServers, serverDetails } from "../../../store/server";
+
+import { editChannel } from "../../../store/channel";
+import EditChannelForm from './Channels/EditChannelForm'
+import CreateChannel from './Channels/CreateChannelForm'
+import DeleteChannelForm from './Channels/DeleteChannelForm'
+
+
 import { useHistory } from "react-router-dom";
 import IconModal from "../../Icon/IconModal";
 import CreatePublicServerForm from "./ServerComps/CreatePublicServerForm";
@@ -28,7 +37,7 @@ import CreateMessageForm from "./Messages/CreateMessageForm";
 
 function Body() {
   const [channel, setChannel] = useState({});
-  const [isPrivate, setIsPrivate] = useState(true)
+  const [isPrivate, setIsPrivate] = useState(false)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -36,29 +45,33 @@ function Body() {
 
  const state = useSelector((state) => state);
 
+
     const serverId = useSelector((state) => state?.servers?.singleServer.id);
 
     const channelId = useSelector((state) => state?.channel?.channelDetails?.id);
 
 
+
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
-    const allChannels = useSelector((state) => state?.channel?.allChannels);
+    const allChannels = useSelector((state) => state?.channels?.allChannels);
 
-    const channelDetails = useSelector((state) => state?.channel?.channelDetails);
+    const channelDetails = useSelector((state) => state?.channels?.channelDetails);
+
 
      // grab the channel/server from the redux store.
- const myServer = useSelector(state => state.servers.singleServer)
+    const myServer = useSelector(state => state.servers.singleServer)
 
- //setting current user and server owner
- const currentUser = useSelector(state => state.session.user);
- const serverOwner = myServer.owner_id;
+    //setting current user and server owner
+    const currentUser = useSelector(state => state.session.user);
+    const serverOwner = myServer.owner_id;
 
     const channelName = channelDetails?.name;
 
     const handleSetChannel = (channel) => {
-    setChannel(channel);
-  };
+        setChannel(channel);
+    };
+
 
   const publicServerDetails = (serverId) => {
     setIsPrivate(false)
@@ -69,18 +82,37 @@ function Body() {
     useEffect(() => {
     if (isPrivate) {
       dispatch(privateServers())
+
     }
-    else dispatch(getChannels())
-  }, [dispatch])
+
+    const logoClick = () => {
+        setIsPrivate(!isPrivate)
+        history.push('/home/@me')
+    }
+
+
+    useEffect(() => {
+        if (isPrivate) {
+        dispatch(privateServers())
+        }
+        else dispatch(getChannels(serverId))
+    }, [dispatch, isPrivate, singleServer])
 
     useEffect(() => {
         if(channelId){
             dispatch(getChannelDetails(channelId));
         }
         if(serverId){
+            console.log('GETTING TO HERE (IN DISPATCH CALL')
             dispatch(getChannels(serverId));
         }
         }, [dispatch, channelId, serverId]);
+    
+    useEffect(() => {
+        dispatch(publicServers());
+        console.log('publicServers')
+
+    },[dispatch])
 
 
 
@@ -165,6 +197,43 @@ function Body() {
     </div>
   );
 
+
+            <div className="messages-container">
+
+                {currentUser && currentUser?.id === serverOwner ? (
+                    <>
+                        {/* <EditChannelForm channel={channel} />
+                        <CreateChannel channel={channel} />
+                        <DeleteChannelForm /> */}
+                    </>
+                    ) : (<></>)}
+                        {(channelDetails && channelName) &&
+                        <>
+                            <h3>{channelName}</h3>
+                            <SingleChannel channel={channelDetails} />
+                            <Chat />
+                        </>
+                }
+            </div>
+
+            <div className="member-list-container">
+                {/*if Channel Private- Channel Members
+                        else Server Members
+                    */}
+                { (channelDetails?.Members) &&
+                        <div>
+
+                            <h3>
+                                <i className="fa-solid fa-user-group"></i>
+                                &nbsp;
+                                Members
+                            </h3>
+                            <ChannelMembers channel={channelDetails} />
+                        </div>
+                    }
+            </div>
+    </div>
+    );
 }
 
 export default Body;

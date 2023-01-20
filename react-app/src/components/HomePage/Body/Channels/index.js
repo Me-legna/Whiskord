@@ -13,7 +13,7 @@
 //   // const serverId = useSelector((state) => 1);
 //   // const serverName = useSelector((state) => state.servers.singleServer.name);
 //   // const channels = useSelector((state) => state?.servers.singleServer?.channels);
-//   const channels = useSelector((state) => state?.channel?.allChannels);
+//   const channels = useSelector((state) => state?.channels?.allChannels);
 
 
 //   useEffect(() => {
