@@ -28,13 +28,13 @@ function App() {
 
     return (
         <div>
-            {
+            {/* {
                 (!user)
                     ?
                     <NavBar />
                     :
                     <></>
-            }
+            } */}
             <Routing />
             {user ?
                 <div>

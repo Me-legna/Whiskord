@@ -10,14 +10,17 @@ import RolesBanner from './RolesBanner';
 function LandingPage() {
   return (
     <div>
-      {/* <div>
+      <div className='splash-background-container'>
         <NavBar />
-      </div> */}
-      <div>
         <SplashBanner />
-        <TextChannelBanner />
-        <VoiceChatBanner />
-        <RolesBanner />
+      </div>
+
+      <div>
+        <div>
+          <TextChannelBanner />
+          <VoiceChatBanner />
+          <RolesBanner />
+        </div>
       </div>
     </div>
   );

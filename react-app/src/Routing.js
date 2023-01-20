@@ -60,7 +60,7 @@ function Routing() {
 
                 {/* Server Channels Page */}
                 <ProtectedRoute path="/home/:serverId" >
-                    {console.log('IN ROUTER')}
+                    {/* {console.log('IN ROUTER')} */}
                     <HomePage />
                 </ProtectedRoute>
 

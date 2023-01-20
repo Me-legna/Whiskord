@@ -26,7 +26,7 @@ export default function AllChannels({ channels }) {
         // handleRoute(channelId)
     }
 
-    console.log('ALLCHANNEL channels', channels)
+    // console.log('ALLCHANNEL channels', channels)
     
   return (
     <div>
