@@ -1,6 +1,7 @@
+import { useHistory } from 'react-router-dom';
 import splash_section_primary_image_1 from '../../images/LandingPage/splash-section-primary-image-1.svg';
 import splash_section_image_2 from '../../images/LandingPage/splash-section-image-2.svg';
-import { useHistory } from 'react-router-dom';
+import splash_section_background_image from '../../images/LandingPage/splash-section-background-clouds-and-stars.svg';
 
 
 function SplashBanner() {

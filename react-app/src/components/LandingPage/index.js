@@ -10,9 +10,9 @@ import RolesBanner from './RolesBanner';
 function LandingPage() {
   return (
     <div>
-      {/* <div>
+      <div>
         <NavBar />
-      </div> */}
+      </div>
       <div>
         <SplashBanner />
         <TextChannelBanner />
