@@ -7,7 +7,7 @@ import ServerList from "./ServerComps/ServerList";
 import SingleServer from "./ServerComps/SingleServer";
 import { getChannelDetails } from "../../../store/channel";
 import { getChannels } from "../../../store/channel";
-import { publicServers, serverDetails, privateServers } from "../../../store/server"; 
+import { publicServers, serverDetails, privateServers } from "../../../store/server";
 import AllChannels from "./Channels/AllChannels";
 import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
@@ -79,16 +79,17 @@ function Body() {
   }
 
 
-    useEffect(() => {
-    if (isPrivate) {
-      dispatch(privateServers())
+    // useEffect(() => {
+    // if (isPrivate) {
+    //   dispatch(privateServers())
 
-    }
+    // }
 
     const logoClick = () => {
         setIsPrivate(!isPrivate)
         history.push('/home/@me')
     }
+
 
 
     useEffect(() => {
@@ -107,7 +108,7 @@ function Body() {
             dispatch(getChannels(serverId));
         }
         }, [dispatch, channelId, serverId]);
-    
+
     useEffect(() => {
         dispatch(publicServers());
         console.log('publicServers')
@@ -196,44 +197,6 @@ function Body() {
       </div>
     </div>
   );
-
-
-            <div className="messages-container">
-
-                {currentUser && currentUser?.id === serverOwner ? (
-                    <>
-                        {/* <EditChannelForm channel={channel} />
-                        <CreateChannel channel={channel} />
-                        <DeleteChannelForm /> */}
-                    </>
-                    ) : (<></>)}
-                        {(channelDetails && channelName) &&
-                        <>
-                            <h3>{channelName}</h3>
-                            <SingleChannel channel={channelDetails} />
-                            <Chat />
-                        </>
-                }
-            </div>
-
-            <div className="member-list-container">
-                {/*if Channel Private- Channel Members
-                        else Server Members
-                    */}
-                { (channelDetails?.Members) &&
-                        <div>
-
-                            <h3>
-                                <i className="fa-solid fa-user-group"></i>
-                                &nbsp;
-                                Members
-                            </h3>
-                            <ChannelMembers channel={channelDetails} />
-                        </div>
-                    }
-            </div>
-    </div>
-    );
 }
 
 export default Body;
