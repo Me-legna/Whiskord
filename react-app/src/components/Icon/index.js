@@ -14,10 +14,11 @@ function Icon({
 
     return (
         <div className={`icon-img ${isServer ? 'server-icon' : ''}`} onClick={clickEvent ? clickEvent : () => null}>
-            {/* {
+
+            {
                 !faIcon ?
-                    // <i className={`icon-img ${faIcon} ${isServer ? 'server-icon' : ''}`} ></i>
-                    
+                    <i className={`icon-img ${faIcon} ${isServer ? 'server-icon' : ''}`} ></i>
+
                     :
                     <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />
             } */}

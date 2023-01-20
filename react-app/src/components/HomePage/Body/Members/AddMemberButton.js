@@ -9,7 +9,8 @@ import OpenModalButton from "../OpenModalButton";
 //     return (
 //         <div>
 //         {user && user.id === serverOwner ? (
-//             <div className='button'>{<OpenModalButton
+//             <div className='button'>{
+    //             <OpenModalButton
 //                 modalComponent={<DeleteChannelForm />}
 //                 buttonText="Delete Channel" />}
 //             </div>
