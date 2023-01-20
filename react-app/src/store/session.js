@@ -13,6 +13,7 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
+console.log("ITS ME------")
 export const authenticate = () => async (dispatch) => {
     const response = await fetch('/api/auth/', {
         headers: {
@@ -29,6 +30,7 @@ export const authenticate = () => async (dispatch) => {
     }
 }
 
+console.log("IM THE PROBLEM-----")
 export const login = (email, password) => async (dispatch) => {
     const response = await fetch('/api/auth/login', {
         method: 'POST',

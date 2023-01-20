@@ -17,21 +17,16 @@ import "../HomePage.css";
 import Icon from "../../Icon";
 import PrivateServers from "./ServerComps/PrivateServers";
 
-import { privateServers, serverDetails } from "../../../store/server";
+// import { privateServers, serverDetails } from "../../../store/server";
 
 import { editChannel } from "../../../store/channel";
 import EditChannelForm from './Channels/EditChannelForm'
 import CreateChannel from './Channels/CreateChannelForm'
 import DeleteChannelForm from './Channels/DeleteChannelForm'
-
-
 import { useHistory } from "react-router-dom";
 import IconModal from "../../Icon/IconModal";
 import CreatePublicServerForm from "./ServerComps/CreatePublicServerForm";
 import CreatePrivateServerForm from "./ServerComps/CreatePrivateServerForm";
-import EditChannelForm from "./Channels/EditChannelForm";
-import DeleteChannelForm from "./Channels/DeleteChannelForm";
-import CreateChannel from "./Channels/CreateChannelForm";
 import CreateMessageForm from "./Messages/CreateMessageForm";
 
 

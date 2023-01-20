@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authenticate } from './store/session';
+import authenticate  from './store/session';
 import LogoutButton from '../src/components/auth/LogoutButton'
 import Routing from './Routing';
 import HomePage from './components/HomePage';
 import NavBar from './components/LandingPage/Navigation/NavBar';
+
+
 
 function App() {
     const dispatch = useDispatch();

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useModal } from '../../context/Modal';
+import React from "react";
+import { useModal } from "../../context/Modal";
 
 function IconModal({
   imageUrl, //image to render
@@ -13,19 +13,27 @@ function IconModal({
   const { setModalContent, setOnModalClose } = useModal();
 
   const onClick = () => {
-    if (typeof onButtonClick === 'function') onButtonClick();
-    if (typeof onModalClose === 'function') setOnModalClose(onModalClose);
+    if (typeof onButtonClick === "function") onButtonClick();
+    if (typeof onModalClose === "function") setOnModalClose(onModalClose);
     setModalContent(modalComponent);
   };
 
   return (
-    <div className={`open-modal-button icon-img ${isServer ? 'server-icon' : ''}`} onClick={onClick}>
-      {
-        !faIcon ?
-          <i className={`icon-img ${faIcon} ${isServer ? 'server-icon' : ''}`} ></i>
-          :
-          <img src={imageUrl} alt='icon' className={`icon-img ${isServer ? 'server-icon' : ''}`} />
-      }
+    <div
+      className={`open-modal-button icon-img ${isServer ? "server-icon" : ""}`}
+      onClick={onClick}
+    >
+      {!faIcon ? (
+        <i
+          className={`icon-img ${faIcon} ${isServer ? "server-icon" : ""}`}
+        ></i>
+      ) : (
+        <img
+          src={imageUrl}
+          alt="icon"
+          className={`icon-img ${isServer ? "server-icon" : ""}`}
+        />
+      )}
     </div>
   );
 }
