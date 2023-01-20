@@ -21,7 +21,7 @@ export default function CreateMessage(){
     const [selectEdit, setSelectEdit] = useState('');
     const choices = [
         {value:'true', label:'Edited'},
-        {value:'false', label:'Not Edited'}
+        {value:'false', label:''}
     ];
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export default function CreateMessage(){
                         type={choices}
                         placeholder='Select if message is edited'
                         value={selectEdit}
-                        onChange={setSelectEdit => setEdited(setSelectEdit)}
+                        onChange={selectEdit => setSelectEdit(selectEdit)}
                     />
                 </form>
            </section>
