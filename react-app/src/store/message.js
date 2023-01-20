@@ -30,7 +30,7 @@ const deleteChannelMessage = (messageId) => ({
 
 //thunks
 export const getChannelMessages = (channelId) => async (dispatch) => {
-    const response = await fetch(`/api/channels/${channelId}`)
+    const response = await fetch(`/api/channels/${channelId}/messages`)
 
     if (response.ok) {
         const data = await response.json();
@@ -48,8 +48,8 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
 }
 
 export const createMessage = (channelId, messageContent, user_id) => async (dispatch) => {
-    console.log('GETTING TO CREATE MESSAGE THUNK')
-    console.log('createMessage thunk', {channelId}, {messageContent})
+    // console.log('GETTING TO CREATE MESSAGE THUNK')
+    // console.log('createMessage thunk', {channelId}, {messageContent})
 
     const response = await fetch('/api/messages/', {
         method: 'POST',
@@ -78,14 +78,20 @@ export const createMessage = (channelId, messageContent, user_id) => async (disp
     }
 }
 
-export const editMessage = (messageId, messageContent) => async (dispatch) => {
-    const response = await fetch(`/api/messages${messageId}`, {
+export const editMessage = (messageId, messageContent, channelId, user_id ) => async (dispatch) => {
+    console.log('GETTING TO EDIT MESSAGE THUNK')
+    console.log('editMessage thunk', {messageId}, {messageContent}, {channelId}, {user_id})
+
+    const response = await fetch(`/api/messages/${messageId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             content: messageContent,
+            channel_id: channelId,
+            user_id: user_id,
+            is_edited: 'True'
         })
     })
 
@@ -132,7 +138,7 @@ export default function messageReducer(state = initialState, action) {
                 allIds: []
             }
 
-            channelMessages.forEach(message => {
+            channelMessages?.forEach(message => {
                 newState.byId[message.id] = message
                 newState.allIds.push(message.id)
             });
@@ -167,7 +173,7 @@ export default function messageReducer(state = initialState, action) {
                 allIds: [...state.allIds]
             }
             delete newState.byId[messageId]
-            newState.allIds = newState.filter(id => id !== messageId)
+            newState.allIds = Object.keys(newState.allIds)?.filter(id => id !== messageId)
 
             return newState
         }

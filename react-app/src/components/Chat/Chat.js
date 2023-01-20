@@ -10,12 +10,13 @@ const Chat = () => {
     const dispatch = useDispatch()
 
     const [messages, setMessages] = useState([]);
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState("");
     const [edittedMessage, setEdittedMessage] = useState("");
 
     const prevMessages = useSelector(state => state?.channels?.channelDetails?.Messages)
 
     const dbMessages = useSelector(state => state?.messages?.byId)
+    const [testMessages, setTestMessages] = useState(dbMessages)
 
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state?.session?.user)
@@ -32,13 +33,18 @@ const Chat = () => {
     
         // get previous messages from server
         // ???
+        // dispatch(getChannelMessages(channel_id))
     
         socket.on("chat", (chat) => {
-            console.log('before sending message', {messages}, {chat})
-            setMessages(messages => [...messages, chat])
-            console.log('after setting message', {messages}, {chat})
-            // dispatch(createMessage(channel_id, chatInput))
+            setMessages(messages => [...messages, chat])    
+            dispatch(getChannelMessages(channel_id))
         })
+
+        // socket.on("edit", () => {
+        //     // setMessages(messages => [...messages, chat])    
+        //     dispatch(getChannelMessages(channel_id))
+        // })
+
         // when component unmounts, leave & disconnect
         return (() => {
             socket.emit('leave', channel_id)
@@ -46,33 +52,58 @@ const Chat = () => {
         })
     }, [])
 
+    useEffect(() => {
+        dispatch(getChannelMessages(channel_id))
+        console.log('dbMessages -----', dbMessages)
+        setTestMessages(dbMessages)
+    }, [dispatch, testMessages])
+
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     };
     
-    const sendChat = (e) => {
+    const sendChat = async (e) => {
         e.preventDefault()
+
+        if(!chatInput || !user) return
         
         // send message to server/socket and then to other users
         socket.emit("chat", { user: user.username, msg: chatInput, channel_id });
 
         // on message send, create message in db
-        dispatch(createMessage(channel_id, chatInput, user.id))
+        const newChat = await dispatch(createMessage(channel_id, chatInput, user.id))
 
         // reset chatInput
         setChatInput("")
     }
 
     const editSubmitHandler = (messageId, messageContent) => {
-        dispatch(editMessage(messageId, messageContent))
+        dispatch(editMessage(messageId, messageContent, channel_id, user.id))
+        setMessages(prevMessages => prevMessages.map(message => 
+            message.id === messageId ? {...message, content: messageContent} : message
+        ))
+        // send message to server/socket and then to other users
+        socket.emit("chat", { channel_id });
+
     }
+
+    const deleteSubmitHandler = (messageId) => {
+        let decision = window.confirm("Are you sure you want to delete this message?")
+        if (!decision) return
+
+        dispatch(destroyMessage(messageId, channel_id, user.id))
+        setMessages(prevMessages => prevMessages.filter(message => message.id !== messageId))
+        socket.emit("chat", { channel_id });
+    }
+
+    
     
 
     return (user && (
         <div>
             <div className="previous-messages-container">
-            {prevMessages?.map((message, ind) => (
+            {Object.values(dbMessages)?.map((message, ind) => (
                 <div key={ind} className='message-container'>
                     <div className="message-data-all">
                         <h1 className="message-profile-avatar">
@@ -98,14 +129,21 @@ const Chat = () => {
 
                                     on cancel, set isEditing to false
                                 */}
-                                { isEditing ?
+                                { ( isEditing === message.id )  ?
+                                    
                                     <div>
-                                        <form onSubmit={editSubmitHandler}>
+                                        {/* {() => setEdittedMessage(message.content)} */}
+                                        <form onSubmit={(e) => {
+                                            e.preventDefault()
+
+                                            editSubmitHandler(message.id, edittedMessage, channel_id, user.id)
+                                            setIsEditing('')
+                                        }}>
                                             <input
                                                 value={edittedMessage}
-                                                onChange={setEdittedMessage}
+                                                onChange={(e) => setEdittedMessage(e.target.value)}
                                             />
-                                            <button type="submit">Send</button>
+                                            <button type="submit">Update</button>
                                         </form>
                                     </div>
                                 :
@@ -120,11 +158,14 @@ const Chat = () => {
                     <div>
                         {user.id && user.id === message.user_id && (
                             <div className="messages-edit-delete-buttons">
-                                <button >
+                                <button onClick={() => {
+                                    setIsEditing(message.id) 
+                                    setEdittedMessage(message.content)
+                                }}>
                                     <i className="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 &nbsp;
-                                <button>
+                                <button onClick={() => deleteSubmitHandler(message.id)}>
                                     <i className="fa-solid fa-trash-can"></i>
                                 </button>
                             </div>
@@ -133,8 +174,10 @@ const Chat = () => {
                 </div>
             ))}
             </div>
+            {/* 
+             */}
 
-            <div className='new-messages-container'>
+            {/* <div className='new-messages-container'>
                 {messages.map((message, ind) => (
                     <div key={ind} className='message-container'>
                         <div className="message-data-all">
@@ -151,7 +194,6 @@ const Chat = () => {
                                     <div className="message-date">
                                         {new Date().toLocaleString([], {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}
                                     </div>
-                                    {/* {`${message.user}: ${new Date().toLocaleString()}`} */}
                                 </div>
                                 <div className='message-content'>
                                     {`${message.msg}`}
@@ -162,6 +204,8 @@ const Chat = () => {
                     </div>
                 ))}
             </div>
+            */}
+
             <div className="chat-form">
                 <form onSubmit={sendChat}>
                     <input
@@ -170,7 +214,8 @@ const Chat = () => {
                     />
                     <button type="submit">Send</button>
                 </form>
-            </div>
+            </div> 
+
         </div>
     )
     )
