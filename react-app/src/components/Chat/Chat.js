@@ -175,7 +175,10 @@ const Chat = () => {
                                         </button>
                                         :
                                         <>
-                                        <button onClick={() => deleteSubmitHandler(false)}>Delete</button>
+                                        <button onClick={() => {
+                                            setIsDeleting(false)
+                                            deleteSubmitHandler(message.id)
+                                        }}>Delete</button>
                                         <button onClick={() => setIsDeleting(false)}>Cancel</button>
                                         </>
                                     }
