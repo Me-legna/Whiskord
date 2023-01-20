@@ -3,6 +3,9 @@ import { publicServers, serverDetails } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import Icon from "../../../Icon"
+import { resetMessageState } from "../../../../store/message";
+import { resetChannelState } from "../../../../store/channel";
+import { resetServerDetails } from "../../../../store/server";
 
 export default function ServerList() {
   const serversObj = useSelector((state) => state.servers.allPublicServers.byId);
@@ -16,7 +19,11 @@ export default function ServerList() {
   }, [dispatch]);
 
   const publicServerDetails = (serverId) => {
-    dispatch(serverDetails(serverId)).then(() => history.push(`/home/${serverId}`))
+    dispatch(resetMessageState())
+    dispatch(resetChannelState())
+    dispatch(resetServerDetails())
+    dispatch(serverDetails(serverId))
+    .then(() => history.push(`/home/${serverId}`))
   }
 
   return (

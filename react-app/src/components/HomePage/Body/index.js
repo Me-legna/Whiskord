@@ -5,7 +5,7 @@ import Channels from "./Channels";
 import Members from "./Members";
 import ServerList from "./ServerComps/ServerList";
 import SingleServer from "./ServerComps/SingleServer";
-import { getChannelDetails } from "../../../store/channel";
+import { getChannelDetails, getChannelMembers } from "../../../store/channel";
 import { getChannels } from "../../../store/channel";
 import { publicServers, serverDetails, privateServers } from "../../../store/server";
 import AllChannels from "./Channels/AllChannels";
@@ -25,6 +25,7 @@ import { useHistory } from "react-router-dom";
 import IconModal from "../../Icon/IconModal";
 import CreatePublicServerForm from "./ServerComps/CreatePublicServerForm";
 import CreatePrivateServerForm from "./ServerComps/CreatePrivateServerForm";
+import { getChannelMessages } from "../../../store/message";
 
 
 function Body() {
@@ -80,16 +81,24 @@ function Body() {
     useEffect(() => {
         if (isPrivate) {
             dispatch(privateServers())
+            // history.push(`/home/@me/$`)
         }
         else {
             console.log('Here we get all channels')
             dispatch(getChannels(serverId))
+            dispatch(getChannelDetails(channelId))
+            history.push(`/home/${serverId}/${channelId}`)
         }
-    }, [dispatch, isPrivate, singleServer, serverId])
 
-    useEffect(()=> {
-        dispatch(getChannelDetails(channelId))
-    },[dispatch,channelId])
+        return (()=>{
+            console.log('dismounting body')
+        })
+    }, [dispatch, history, isPrivate, singleServer, serverId, channelId])
+
+    // useEffect(()=> {
+    //     dispatch(getChannelDetails(channelId))
+    //     history.push(`/home/${serverId}/${channelId}`)
+    // },[dispatch,channelId])
 
     useEffect(() => {
         dispatch(publicServers());
@@ -142,14 +151,21 @@ function Body() {
 
             <div className="messages-container">
 
-                {currentUser && currentUser?.id === serverOwner ? (
+                {/* {currentUser && currentUser?.id === serverOwner ? (
                     <>
-                        {/* <EditChannelForm channel={channel} />
+                        <EditChannelForm channel={channel} />
                         <CreateChannel channel={channel} />
-                        <DeleteChannelForm /> */}
+                        <DeleteChannelForm />
                     </>
-                ) : (<></>)}
-                {(channelDetails && channelName) &&
+                ) : (<></>)} */}
+                <h3>
+                    <i className="fa-solid fa-hashtag"></i>
+                    &nbsp;
+                    {channelName}
+                </h3>
+                {/* <SingleChannel channel={channelDetails} /> */}
+                <Chat />
+                {/* {(channelDetails && channelName) &&
                     <>
                         <h3>
                             <i className="fa-solid fa-hashtag"></i>
@@ -159,7 +175,7 @@ function Body() {
                         <SingleChannel channel={channelDetails} />
                         <Chat />
                     </>
-                }
+                } */}
             </div>
 
             <div className="member-list-container">

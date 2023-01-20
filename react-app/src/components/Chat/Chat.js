@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import './Chat.css'
-import { createMessage, editMessage, destroyMessage, getChannelMessages } from "../../store/message";
+import { createMessage, editMessage, destroyMessage, getChannelMessages, resetMessageState } from "../../store/message";
+import { getChannelMembers, resetChannelDetails } from "../../store/channel";
 
 let socket;
 
@@ -14,15 +15,22 @@ const Chat = () => {
     const [edittedMessage, setEdittedMessage] = useState("");
     const [isDeleting, setIsDeleting] = useState("")
 
-    const prevMessages = useSelector(state => state?.channels?.channelDetails?.Messages)
+    // const prevMessages = useSelector(state => state?.channels?.channelDetails?.Messages)
 
-    const dbMessages = useSelector(state => state?.messages?.byId)
-    const [testMessages, setTestMessages] = useState(dbMessages)
+    const dbMessagesById = useSelector(state => state?.messages?.byId)
+    const dbMessages = Object.values(dbMessagesById)
+    // const [testMessages, setTestMessages] = useState(dbMessages)
 
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state?.session?.user)
-    const channel_id = useSelector(state => state?.channels?.channelDetails?.id)
+    const channel = useSelector(state => state.channels.channelDetails)
+    const channel_id = channel.id
 
+
+    useEffect(() => {
+        dispatch(getChannelMessages(channel_id))
+        dispatch(getChannelMembers(channel_id))
+    }, [dispatch, channel_id]);
 
     useEffect(() => {
         // open socket connection
@@ -38,6 +46,7 @@ const Chat = () => {
 
         socket.on("chat", (chat) => {
             // setMessages(messages => [...messages, chat])
+            console.log('printing???')
             dispatch(getChannelMessages(channel_id))
         })
 
@@ -50,14 +59,16 @@ const Chat = () => {
         return (() => {
             socket.emit('leave', channel_id)
             socket.disconnect()
+            dispatch(resetMessageState())
+            dispatch(resetChannelDetails())
         })
     }, [])
 
-    useEffect(() => {
-        dispatch(getChannelMessages(channel_id))
-        console.log('dbMessages -----', dbMessages)
-        setTestMessages(dbMessages)
-    }, [dispatch, testMessages])
+    // useEffect(() => {
+    //     // dispatch(getChannelMessages(channel_id))
+    //     // console.log('dbMessages -----', dbMessages)
+    //     setTestMessages(dbMessages)
+    // }, [dispatch, dbMessages])
 
 
     const updateChatInput = (e) => {
@@ -104,7 +115,7 @@ const Chat = () => {
     return (user && (
         <div>
             <div className="previous-messages-container">
-                {Object.values(dbMessages)?.map((message, ind) => (
+                {dbMessages?.map((message, ind) => (
                     message.channel_id === channel_id &&
                     <div key={ind} className='message-container'>
                         <div className="message-data-all">

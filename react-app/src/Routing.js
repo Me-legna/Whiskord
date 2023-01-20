@@ -43,6 +43,23 @@ function Routing() {
                 </ProtectedRoute>
 
 
+Body
+    route 1>
+        serverList
+    route 1/>
+
+    route2>
+        channels/
+        privateServers
+    route2/>
+
+    route3>
+        messages
+    route3>
+
+    route5>
+        members
+    route5>
 
                 {/* Private Channels Page */}
                 <ProtectedRoute path="/home/@me" >
@@ -54,8 +71,8 @@ function Routing() {
                 </ProtectedRoute>
 
                 <ProtectedRoute path="/home/:serverId/:channelId" >
-                    <SingleChannel />
                     <HomePage />
+                    {/* <Chat /> */}
                 </ProtectedRoute>
 
                 {/* Server Channels Page */}
@@ -66,7 +83,7 @@ function Routing() {
 
 
                 {/* Home/Application Pages */}
-                <ProtectedRoute path="/home">
+                <ProtectedRoute path="/home" exact={true}>
                     <HomePage />
                 </ProtectedRoute>
 
