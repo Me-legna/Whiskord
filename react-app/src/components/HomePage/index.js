@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Body from "./Body";
 // import Header from "./Header";
 // import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +17,8 @@ import "./HomePage.css";
 // import Icon from "../Icon";
 // import CreatePublicServerForm from "./Body/ServerComps/CreatePublicServerForm";
 // import CreatePrivateServerForm from "./Body/ServerComps/CreatePrivateServerForm";
+
+// const singleServer = useSelector(state => state.servers.singleServer)
 
 function HomePage() {
   //[variable, setVariable] = useState(true)

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import Icon from "../../../Icon"
 
-export default function ServerList({ clickHandler }) {
+export default function ServerList() {
   const serversObj = useSelector((state) => state.servers.allPublicServers.byId);
   const servers = Object.values(serversObj);
 
@@ -15,9 +15,9 @@ export default function ServerList({ clickHandler }) {
     dispatch(publicServers());
   }, [dispatch]);
 
-  // const publicServerDetails = (serverId) => {
-  //   dispatch(serverDetails(serverId)).then(() => history.push(`/home/channels/${serverId}`))
-  // }
+  const publicServerDetails = (serverId) => {
+    dispatch(serverDetails(serverId)).then(() => history.push(`/home/${serverId}`))
+  }
 
   return (
     <div className="server-list">
@@ -30,7 +30,7 @@ export default function ServerList({ clickHandler }) {
               // imageUrl={server.img_url}
               serverLetter={`${server.name[0]}`}
               isServer={true}
-              clickEvent={() => clickHandler(server.id)}
+              clickEvent={() => publicServerDetails(server.id)}
             />
             <div className="server-list-button">
               <NavLink to={`/home/${server.id}`}>
