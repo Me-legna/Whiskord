@@ -1,9 +1,9 @@
 //constants
-const LOAD_CHANNEL_MESSAGES = 'server/LOAD_CHANNEL_MESSAGES'
-const CREATE_CHANNEL_MESSAGE = 'server/CREATE_CHANNEL_MESSAGE'
-const UPDATE_CHANNEL_MESSAGE = 'server/UPDATE_CHANNEL_MESSAGE'
-const DELETE_CHANNEL_MESSAGE = 'server/DELETE_CHANNEL_MESSAGE'
-
+const LOAD_CHANNEL_MESSAGES = 'message/LOAD_CHANNEL_MESSAGES'
+const CREATE_CHANNEL_MESSAGE = 'message/CREATE_CHANNEL_MESSAGE'
+const UPDATE_CHANNEL_MESSAGE = 'message/UPDATE_CHANNEL_MESSAGE'
+const DELETE_CHANNEL_MESSAGE = 'message/DELETE_CHANNEL_MESSAGE'
+const RESET_MESSAGE_STATE = 'message/RESET_MESSAGE_STATE'
 
 //action creators
 const loadChannelMessages = (messages) => ({
@@ -26,6 +26,9 @@ const deleteChannelMessage = (messageId) => ({
     payload: messageId
 })
 
+export const resetMessageState = () => ({
+    type: RESET_MESSAGE_STATE
+})
 
 
 //thunks
@@ -176,6 +179,10 @@ export default function messageReducer(state = initialState, action) {
             newState.allIds = Object.keys(newState.allIds)?.filter(id => id !== messageId)
 
             return newState
+        }
+        case RESET_MESSAGE_STATE:{
+
+            return initialState
         }
         default:
             return state

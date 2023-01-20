@@ -7,6 +7,7 @@ const UPDATE_SERVER = 'server/UPDATE_SERVER';
 const DELETE_SERVER = 'server/DELETE_SERVER';
 const ADD_SERVER_MEMBER = 'server/ADD_SERVER_MEMBER';
 const REMOVE_SERVER_MEMBER = 'server/REMOVE_SERVER_MEMBER';
+const RESET_SERVER_DETAILS = 'server/RESET_SERVER_DETAILS'
 
 
 //action creators
@@ -49,6 +50,10 @@ const addServerMember = (userId) => ({
 const removeServerMember = (memberId) => ({
     type: REMOVE_SERVER_MEMBER,
     payload: memberId
+})
+
+export const resetServerDetails = () => ({
+    type: RESET_SERVER_DETAILS
 })
 
 
@@ -379,6 +384,11 @@ export default function reducer(state = initialState, action) {
             const newState = {...state, singleServer: {...state.singleServer}}
 
             newState.singleServer.Members = newState.singleServer.Members.filter((memberId) => memberId !== action.payload)
+
+            return newState
+        }
+        case RESET_SERVER_DETAILS:{
+            const newState = { ...state, singleServer: {} }
 
             return newState
         }

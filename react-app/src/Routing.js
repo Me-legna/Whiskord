@@ -13,68 +13,14 @@ import PrivateServers from "./components/HomePage/Body/ServerComps/PrivateServer
 import SingleChannel from "./components/HomePage/Body/Channels/SingleChannel";
 import AllChannels from "./components/HomePage/Body/Channels/AllChannels";
 import ServerList from "./components/HomePage/Body/ServerComps/ServerList";
+import LogoutButton from "./components/auth/LogoutButton";
 
 
 
 function Routing() {
     return (
         <>
-            <Switch>
-                {/* Landing Page */}
-                <Route path="/" exact={true}>
-                    <LandingPage />
-                </Route>
 
-                {/* Auth Pages */}
-                <ProtectedRoute path="/chat" exact={true}>
-                    <Chat />
-                </ProtectedRoute>
-                <Route path="/login" exact={true}>
-                    <LoginForm />
-                </Route>
-                <Route path="/sign-up" exact={true}>
-                    <SignUpForm />
-                </Route>
-                <ProtectedRoute path="/users" exact={true}>
-                    <UsersList />
-                </ProtectedRoute>
-                <ProtectedRoute path="/users/:userId" exact={true}>
-                    <User />
-                </ProtectedRoute>
-
-
-
-                {/* Private Channels Page */}
-                <ProtectedRoute path="/home/@me" >
-                    <PrivateServers />
-                </ProtectedRoute>
-
-                <ProtectedRoute path="/home/@me/:channelId" >
-                    {/* <SinglePrivateChannel /> */}
-                </ProtectedRoute>
-
-                <ProtectedRoute path="/home/:serverId/:channelId" >
-                    <SingleChannel />
-                    <HomePage />
-                </ProtectedRoute>
-
-                {/* Server Channels Page */}
-                <ProtectedRoute path="/home/:serverId" >
-                    {/* {console.log('IN ROUTER')} */}
-                    <HomePage />
-                </ProtectedRoute>
-
-
-                {/* Home/Application Pages */}
-                <ProtectedRoute path="/home">
-                    <HomePage />
-                </ProtectedRoute>
-
-                {/* Error Page */}
-                <Route path='/'>
-                    <NotFoundPage />
-                </Route>
-            </Switch>
         </>
     )
 }

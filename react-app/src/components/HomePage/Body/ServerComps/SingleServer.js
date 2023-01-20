@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userParams, NavLink, useParams } from "react-router-dom";
+import { getChannelDetails } from "../../../../store/channel";
 import { serverDetails } from "../../../../store/server";
 // import ServerList from "./ServerList";
 // // import delete and edit channel form
@@ -17,6 +18,7 @@ export default function SingleServer() {
 
   useEffect(() => {
     dispatch(serverDetails(serverId));
+    // dispatch(getChannelDetails())
   }, [dispatch, serverId]);
 
   console.log('single server', serverId)

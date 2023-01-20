@@ -9,6 +9,8 @@ const DELETE_CHANNEL = "channel/DELETE_CHANNEL";
 const LOAD_CHANNEL_MEMBERS = "channel/LOAD_CHANNEL_MEMBERS";
 const ADD_CHANNEL_MEMBER = "channel/ADD_CHANNEL_MEMBER";
 const REMOVE_CHANNEL_MEMBER = "channel/REMOVE_CHANNEL_MEMBER";
+const RESET_CHANNEL_DETAILS = 'channel/RESET_CHANNEL_DETAILS'
+const RESET_CHANNEL_STATE = 'channel/RESET_CHANNEL_STATE'
 
 //action creators
 const loadChannels = (channels) => ({
@@ -63,6 +65,14 @@ const removeChannelMember = (memberId) => ({
   payload: memberId,
 });
 
+export const resetChannelDetails = () => ({
+  type: RESET_CHANNEL_DETAILS
+})
+
+export const resetChannelState = () => ({
+  type: RESET_CHANNEL_STATE
+})
+
 //thunks
 export const getChannels = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}/channels`, {
@@ -70,7 +80,7 @@ export const getChannels = (serverId) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
-  
+
   console.log('GETTING HERE --------')
 
   if (response.ok) {
@@ -97,11 +107,11 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
       },
     }
   );
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(loadChannelDetails(data?.Channel));
-    
+
   } else if (response.status < 500) {
     const data = await response.json();
 
@@ -198,7 +208,7 @@ export const deleteChannel =
     };
 
 export const getChannelMembers =
-  (serverId = 1, channelId) =>
+  (channelId) =>
     async (dispatch) => {
       const response = await fetch(
         // check with backend if this is the correct route
@@ -402,6 +412,18 @@ export default function channelReducer(state = initialState, action) {
       delete newMemberState.members.byId[deletedMemberId];
 
       return newMemberState
+
+    case RESET_CHANNEL_DETAILS:
+      const resetDetails = {
+        ...state,
+        channelDetails: {},
+      };
+
+      return resetDetails
+    case RESET_CHANNEL_STATE:
+      
+      return initialState
+
     default:
       return state;
   }
