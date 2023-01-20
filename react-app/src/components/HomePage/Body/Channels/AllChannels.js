@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getChannelDetails } from "../../../../store/channel";
+import { getChannelMessages } from "../../../../store/message";
 
 // import { useSelector } from "react-redux";
 
@@ -21,6 +22,7 @@ export default function AllChannels({ channels }) {
 
     const handleClick = (channelId) => {
         dispatch(getChannelDetails(channelId))
+        dispatch(getChannelMessages(channelId))
         // handleRoute(channelId)
     }
 
@@ -40,8 +42,8 @@ export default function AllChannels({ channels }) {
           return (
             // <li key={channel.id}>
                 <button onClick={() => {
-                    handleRoute(channelId)
                     handleClick(channelId)
+                    handleRoute(channelId)
                 }}>
                   <i className="fa-solid fa-hashtag"></i>
                   &nbsp;
