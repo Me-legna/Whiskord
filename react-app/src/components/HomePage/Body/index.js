@@ -13,17 +13,10 @@ import ChannelMembers from "./Channels/ChannelMembers";
 import SingleChannel from "./Channels/SingleChannel";
 import Chat from "../../Chat/Chat";
 import Header from "../Header";
-import "../HomePage.css";
+// import "../HomePage.css";
 import Icon from "../../Icon";
-import PrivateServers from "./ServerComps/PrivateServers";
 
-import { privateServers, serverDetails } from "../../../store/server";
-
-import { editChannel } from "../../../store/channel";
-import EditChannelForm from './Channels/EditChannelForm'
-import CreateChannel from './Channels/CreateChannelForm'
-import DeleteChannelForm from './Channels/DeleteChannelForm'
-
+import PrivateServers from "./ServerComps/PrivateServers";  
 
 import { useHistory } from "react-router-dom";
 import IconModal from "../../Icon/IconModal";
@@ -155,9 +148,9 @@ function Body() {
 
        {currentUser && currentUser?.id === serverOwner ? (
           <div>
-            <EditChannelForm channel={channel} />
+            {/* <EditChannelForm channel={channel} />
             <CreateChannel channel={channel} />
-            <DeleteChannelForm />
+            <DeleteChannelForm /> */}
           </div>
         ) : (<></>)}
             {(channelDetails && channelName) &&
