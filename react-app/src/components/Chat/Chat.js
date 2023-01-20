@@ -30,18 +30,18 @@ const Chat = () => {
 
         // join room for channel
         socket.emit('join', channel_id)
-    
+
         // get previous messages from server
         // ???
         // dispatch(getChannelMessages(channel_id))
-    
+
         socket.on("chat", (chat) => {
-            setMessages(messages => [...messages, chat])    
+            setMessages(messages => [...messages, chat])
             dispatch(getChannelMessages(channel_id))
         })
 
         // socket.on("edit", () => {
-        //     // setMessages(messages => [...messages, chat])    
+        //     // setMessages(messages => [...messages, chat])
         //     dispatch(getChannelMessages(channel_id))
         // })
 
@@ -62,12 +62,12 @@ const Chat = () => {
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     };
-    
+
     const sendChat = async (e) => {
         e.preventDefault()
 
         if(!chatInput || !user) return
-        
+
         // send message to server/socket and then to other users
         socket.emit("chat", { user: user.username, msg: chatInput, channel_id });
 
@@ -80,7 +80,7 @@ const Chat = () => {
 
     const editSubmitHandler = (messageId, messageContent) => {
         dispatch(editMessage(messageId, messageContent, channel_id, user.id))
-        setMessages(prevMessages => prevMessages.map(message => 
+        setMessages(prevMessages => prevMessages.map(message =>
             message.id === messageId ? {...message, content: messageContent} : message
         ))
         // send message to server/socket and then to other users
@@ -97,13 +97,14 @@ const Chat = () => {
         socket.emit("chat", { channel_id });
     }
 
-    
-    
+
+
 
     return (user && (
         <div>
             <div className="previous-messages-container">
             {Object.values(dbMessages)?.map((message, ind) => (
+                message.channel_id === channel_id &&
                 <div key={ind} className='message-container'>
                     <div className="message-data-all">
                         <h1 className="message-profile-avatar">
@@ -130,7 +131,7 @@ const Chat = () => {
                                     on cancel, set isEditing to false
                                 */}
                                 { ( isEditing === message.id )  ?
-                                    
+
                                     <div>
                                         {/* {() => setEdittedMessage(message.content)} */}
                                         <form onSubmit={(e) => {
@@ -159,7 +160,7 @@ const Chat = () => {
                         {user.id && user.id === message.user_id && (
                             <div className="messages-edit-delete-buttons">
                                 <button onClick={() => {
-                                    setIsEditing(message.id) 
+                                    setIsEditing(message.id)
                                     setEdittedMessage(message.content)
                                 }}>
                                     <i className="fa-solid fa-pen-to-square"></i>
@@ -174,7 +175,7 @@ const Chat = () => {
                 </div>
             ))}
             </div>
-            {/* 
+            {/*
              */}
 
             {/* <div className='new-messages-container'>
@@ -214,7 +215,7 @@ const Chat = () => {
                     />
                     <button type="submit">Send</button>
                 </form>
-            </div> 
+            </div>
 
         </div>
     )
