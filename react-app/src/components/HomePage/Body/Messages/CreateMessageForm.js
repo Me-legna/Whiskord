@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import "../Messages/messages.css";
 import { useHistory } from 'react-router-dom';
-import {createMessage} from '../../../../store/message';
+import { createMessage } from '../../../../store/message';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 
