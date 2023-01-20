@@ -21,7 +21,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: auto;
-    padding: 10px 20px;
+    padding: 30px 20px;
 }
 
 nav ul {
@@ -54,6 +54,7 @@ nav a.active {
     align-items: center;
     font-size: larger;
     font-weight: 800;
+    color: white;
   }
 
 .navbar-logo-and-name img{
