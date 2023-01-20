@@ -1,0 +1,17 @@
+.icon-img {
+    border-radius: 50%;
+    width: 45px;
+}
+
+.icon-img:hover {
+    cursor: pointer;
+}
+
+.server-icon {
+    width: 60px;
+    transition: border-radius 150ms linear;
+}
+
+.server-icon:hover {
+    border-radius: 30%;
+}

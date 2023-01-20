@@ -1,0 +1,13 @@
+.members-individual-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* .members-individual-container i {
+    font-size: large;
+
+} */
+
