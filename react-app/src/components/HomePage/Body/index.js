@@ -143,7 +143,11 @@ function Body() {
                     ) : (<></>)}
                         {(channelDetails && channelName) &&
                         <>
-                            <h3>{channelName}</h3>
+                            <h3>
+                                <i className="fa-solid fa-hashtag"></i>
+                                &nbsp;
+                                {channelName}
+                            </h3>
                             <SingleChannel channel={channelDetails} />
                             <Chat />
                         </>

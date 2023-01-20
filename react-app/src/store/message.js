@@ -47,15 +47,20 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
     }
 }
 
-export const createMessage = (channelId, messageContent) => async (dispatch) => {
-    const response = await fetch('/api/messages', {
+export const createMessage = (channelId, messageContent, user_id) => async (dispatch) => {
+    console.log('GETTING TO CREATE MESSAGE THUNK')
+    console.log('createMessage thunk', {channelId}, {messageContent})
+
+    const response = await fetch('/api/messages/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             content: messageContent,
-            channel_id: channelId
+            channel_id: channelId,
+            user_id: user_id,
+            is_edited: 'False'
         })
     })
 

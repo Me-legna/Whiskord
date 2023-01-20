@@ -2,13 +2,26 @@
 .message-container {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-data-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
 .message-profile-avatar {
     width: 50px;
     margin-right: 0.05rem;
+}
+
+.message-profile-avatar h1 {
+    width: 50px;
+    margin-right: 0.05rem;
+    margin: 0%;
 }
 
 
@@ -33,4 +46,19 @@
 .message-date {
     font-size: smaller;
     font-weight: lighter;
+}
+
+.chat-form {
+    width: 100%;
+}
+
+.chat-form form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chat-form form input {
+    width: 100%;
 }
