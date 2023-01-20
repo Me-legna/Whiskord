@@ -27,7 +27,10 @@ import { useHistory } from "react-router-dom";
 import IconModal from "../../Icon/IconModal";
 import CreatePublicServerForm from "./ServerComps/CreatePublicServerForm";
 import CreatePrivateServerForm from "./ServerComps/CreatePrivateServerForm";
+
 import CreateMessageForm from "./Messages/CreateMessageForm";
+import EditMessageForm from "./Messages/EditMessageForm";
+import DeleteMessageForm from "./Messages/DeleteMessageForm";
 
 
 function Body() {
@@ -39,11 +42,13 @@ function Body() {
 
 
  const state = useSelector((state) => state);
+ const myMessage= useSelector((state) => state.messages);
 
 
-    const serverId = useSelector((state) => state?.servers?.singleServer.id);
+  const serverId = useSelector((state) => state?.servers?.singleServer.id);
 
-    const channelId = useSelector((state) => state?.channel?.channelDetails?.id);
+  const channelId = useSelector((state) => state?.channel?.channelDetails?.id);
+
 
 
 
@@ -150,9 +155,15 @@ function Body() {
 
        {currentUser && currentUser?.id === serverOwner ? (
           <div>
-            <EditChannelForm channel={channel} />
-            <CreateChannel channel={channel} />
-            <DeleteChannelForm />
+            <IconModal modalComponent={
+              <EditChannelForm channel={channel} />} />
+              imageUrl='https://img.icons8.com/material-outlined/512/ball-point-pen.png'
+            <IconModal modalComponent={
+              <CreateChannel channel={channel} />} />
+              imageUrl='https://img.icons8.com/material-rounded/512/plus-2-math.png'
+            <IconModal modalComponent={
+              <DeleteChannelForm />} />
+              imageUrl='https://img.icons8.com/material-rounded/512/delete-trash.png'
           </div>
         ) : (<></>)}
             {(channelDetails && channelName) &&
@@ -168,6 +179,19 @@ function Body() {
         {currentUser ? (
           <div>
             <CreateMessageForm />
+          </div>
+
+        ) : (<></>)}
+        {currentUser && currentUser?.id === myMessage?.userId ? (
+          <div>
+            <IconModal modalComponent={
+              <EditMessageForm />} />
+              imageUrl='https://img.icons8.com/material-outlined/512/ball-point-pen.png'
+
+            <IconModal modalComponent={
+              <DeleteMessageForm />} />
+              imageUrl='https://img.icons8.com/material-rounded/512/delete-trash.png'
+
           </div>
 
         ) : (<></>)}
