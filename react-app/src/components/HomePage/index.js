@@ -9,13 +9,13 @@ import Body from "./Body";
 // import { useHistory, useParams } from "react-router-dom";
 
 import "./HomePage.css";
-import ServerList from "./Body/ServerComps/ServerList";
-import PrivateServers from "./Body/ServerComps/PrivateServers";
+// import ServerList from "./Body/ServerComps/ServerList";
+// import PrivateServers from "./Body/ServerComps/PrivateServers";
 
-// import OpenModalButton from "../OpenModalButton";
-import Icon from "../Icon";
-import CreatePublicServerForm from "./Body/ServerComps/CreatePublicServerForm";
-import CreatePrivateServerForm from "./Body/ServerComps/CreatePrivateServerForm";
+// // import OpenModalButton from "../OpenModalButton";
+// import Icon from "../Icon";
+// import CreatePublicServerForm from "./Body/ServerComps/CreatePublicServerForm";
+// import CreatePrivateServerForm from "./Body/ServerComps/CreatePrivateServerForm";
 
 function HomePage() {
   //[variable, setVariable] = useState(true)
