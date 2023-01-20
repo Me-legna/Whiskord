@@ -4,277 +4,289 @@ from app.models import db, Channel, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_channels():
-    demo_channel = Channel(
+    thor_channel = Channel(
         name='channel1',
         server_id=1,
         type='Text',
         is_private=True
     )
-    marnie_channel = Channel(
+    flash_channel = Channel(
         name='channel2',
         server_id=2,
         type='Text',
         is_private=True
     )
-    bobbie_channel = Channel(
+    avenger_channel = Channel(
         name='channel3',
         server_id=3,
         type='Text',
         is_private=True
     )
-    batman_channel = Channel(
+    superman_channel = Channel(
         name='The Room',
         server_id=4,
         type='Text',
         is_private=False
     )
-    superman_channel = Channel(
+    zenith_channel = Channel(
         name='Cool Room',
         server_id=5,
         type='Text',
         is_private=False
     )
-    spiderman_channel = Channel(
+    hulk_channel = Channel(
         name='Gamegod Lounge',
         server_id=6,
         type='Text',
         is_private=False
     )
-    ironman_channel = Channel(
+    blackpanther_channel = Channel(
         name='Smarty pants',
         server_id=7,
         type='Text',
         is_private=False
     )
-    wolverine_channel = Channel(
+    wanda_channel = Channel(
         name='CStrikers',
         server_id=8,
         type='Text',
         is_private=False
     )
-    captain_channel = Channel(
+    spiderman_channel = Channel(
         name='minecraft legends',
         server_id=9,
         type='Text',
         is_private=False
     )
-    thor_channel = Channel(
+    batman_channel = Channel(
         name='Garbo',
         server_id=10,
         type='Text',
         is_private=False
     )
-    demo_channel = Channel(
+    thor2_channel = Channel(
         name='Callback Cats',
         server_id=1,
         type='Text',
         is_private=True
     )
-    marnie_channel = Channel(
+    flash2_channel = Channel(
         name='Babaganoush',
         server_id=2,
         type='Text',
         is_private=True
     )
-    bobbie_channel = Channel(
+    avenger2_channel = Channel(
         name='hex clans ',
         server_id=3,
         type='Text',
         is_private=True
     )
-    batman_channel = Channel(
+    superman2_channel = Channel(
         name='Data privates',
         server_id=4,
         type='Text',
         is_private=False
     )
-    superman_channel = Channel(
+    zenith2_channel = Channel(
         name='SCRUBBY DUBBY',
         server_id=5,
         type='Text',
         is_private=False
     )
-    spiderman_channel = Channel(
+    hulk2_channel = Channel(
         name='Command C gods ',
         server_id=6,
         type='Text',
         is_private=False
     )
-    ironman_channel = Channel(
+    blackpanther2_channel = Channel(
         name='Command V gods ',
         server_id=7,
         type='Text',
         is_private=False
     )
-    wolverine_channel = Channel(
+    wanda2_channel = Channel(
         name='CStrikers',
         server_id=8,
         type='Text',
         is_private=False
     )
-    captain_channel = Channel(
+    spiderman2_channel = Channel(
         name='Brogrammers ',
         server_id=9,
         type='Text',
         is_private=False
     )
-    thor_channel = Channel(
+    batman2_channel = Channel(
         name='ByteMe',
         server_id=10,
         type='Text',
         is_private=False
     )
-    demo_channel2 = Channel(
+    thor3_channel = Channel(
         name='404 brain not found ',
         server_id=1,
         type='Text',
         is_private=True
     )
-    marnie_channel2 = Channel(
+    flash3_channel = Channel(
         name='game of threads ',
         server_id=2,
         type='Text',
         is_private=True
     )
-    bobbie_channel2 = Channel(
+    avenger3_channel = Channel(
         name='return to sleep ',
         server_id=3,
         type='Text',
         is_private=True
     )
-    batman_channel2 = Channel(
+    superman3_channel = Channel(
         name='it worked on local',
         server_id=4,
         type='Text',
         is_private=False
     )
-    superman_channel2 = Channel(
+    zenith3_channel = Channel(
         name='Crash test dummies',
         server_id=5,
         type='Text',
         is_private=False
     )
-    spiderman_channel2 = Channel(
+    hulk3_channel = Channel(
         name='free lunch',
         server_id=6,
         type='Text',
         is_private=False
     )
-    ironman_channel2 = Channel(
+    blackpanther3_channel = Channel(
         name='1 render error away ',
         server_id=7,
         type='Text',
         is_private=False
     )
-    wolverine_channel2 = Channel(
+    wanda3_channel = Channel(
         name='Hackstreet boys',
         server_id=8,
         type='Text',
         is_private=False
     )
-    captain_channel2 = Channel(
+    spiderman3_channel = Channel(
         name='system error',
         server_id=9,
         type='Text',
         is_private=False
     )
-    thor_channel2 = Channel(
+    batman3_channel = Channel(
         name='jARGON',
         server_id=10,
         type='Text',
         is_private=False
     )
-    demo_channel3 = Channel(
+    thor4_channel = Channel(
         name='Chronic procrastinators ',
         server_id=1,
         type='Text',
         is_private=True
     )
-    marnie_channel3 = Channel(
+    flash4_channel = Channel(
         name='Reboot ',
         server_id=2,
         type='Text',
         is_private=True
     )
-    bobbie_channel3 = Channel(
+    avenger4_channel = Channel(
         name='Scared to deploy  ',
         server_id=3,
         type='Text',
         is_private=True
     )
-    batman_channel3 = Channel(
+    superman4_channel = Channel(
         name='Code of duty ',
         server_id=4,
         type='Text',
         is_private=False
     )
-    superman_channel3 = Channel(
+    zenith4_channel = Channel(
         name='Error makers ',
         server_id=5,
         type='Text',
         is_private=False
     )
-    spiderman_channel3 = Channel(
+    hulk4_channel = Channel(
         name='developed by developers',
         server_id=6,
         type='Text',
         is_private=False
     )
-    ironman_channel3 = Channel(
+    blackpanther4_channel = Channel(
         name='Bit by bit ',
         server_id=7,
         type='Text',
         is_private=False
     )
-    wolverine_channel3 = Channel(
+    wanda4_channel = Channel(
         name='Sore eyes and tired fingers',
         server_id=8,
         type='Text',
         is_private=False
     )
-    captain_channel3 = Channel(
+    spiderman4_channel = Channel(
         name='digital nomads',
         server_id=9,
         type='Text',
         is_private=False
     )
-    thor_channel3 = Channel(
+    batman4_channel = Channel(
         name='surviving with google',
         server_id=10,
         type='Text',
         is_private=False
     )
 
-    db.session.add(demo_channel)
-    db.sesson.add(demo_channel2)
-    db.session.add(demo_channel3)
-    db.session.add(marnie_channel)
-    db.session.add(marnie_channel2)
-    db.session.add(marnie_channel3)
-    db.session.add(bobbie_channel)
-    db.session.add(bobbie_channel2)
-    db.session.add(bobbie_channel3)
-    db.session.add(batman_channel)
-    db.session.add(batman_channel2)
-    db.session.add(batman_channel3)
-    db.session.add(superman_channel)
-    db.session.add(superman_channel2)
-    db.session.add(superman_channel3)
-    db.session.add(spiderman_channel)
-    db.session.add(spiderman_channel2)
-    db.session.add(spiderman_channel3)
-    db.session.add(ironman_channel)
-    db.session.add(ironman_channel2)
-    db.session.add(ironman_channel3)
-    db.session.add(wolverine_channel)
-    db.session.add(wolverine_channel2)
-    db.session.add(wolverine_channel3)
-    db.session.add(captain_channel)
-    db.session.add(captain_channel2)
-    db.session.add(captain_channel3)
     db.session.add(thor_channel)
-    db.session.add(thor_channel2)
-    db.session.add(thor_channel3)
+    db.session.add(thor2_channel)
+    db.session.add(thor3_channel)
+    db.session.add(thor4_channel)
+    db.session.add(flash_channel)
+    db.session.add(flash2_channel)
+    db.session.add(flash3_channel)
+    db.session.add(flash4_channel)
+    db.session.add(avenger_channel)
+    db.session.add(avenger2_channel)
+    db.session.add(avenger3_channel)
+    db.session.add(avenger4_channel)
+    db.session.add(superman_channel)
+    db.session.add(superman2_channel)
+    db.session.add(superman3_channel)
+    db.session.add(superman4_channel)
+    db.session.add(zenith_channel)
+    db.session.add(zenith2_channel)
+    db.session.add(zenith3_channel)
+    db.session.add(zenith4_channel)
+    db.session.add(hulk_channel)
+    db.session.add(hulk2_channel)
+    db.session.add(hulk3_channel)
+    db.session.add(hulk4_channel)
+    db.session.add(blackpanther_channel)
+    db.session.add(blackpanther2_channel)
+    db.session.add(blackpanther3_channel)
+    db.session.add(blackpanther4_channel)
+    db.session.add(wanda_channel)
+    db.session.add(wanda2_channel)
+    db.session.add(wanda3_channel)
+    db.session.add(wanda4_channel)
+    db.session.add(spiderman_channel)
+    db.session.add(spiderman2_channel)
+    db.session.add(spiderman3_channel)
+    db.session.add(spiderman4_channel)
+    db.session.add(batman_channel)
+    db.session.add(batman2_channel)
+    db.session.add(batman3_channel)
+    db.session.add(batman4_channel)
+
+
 
 
 
@@ -289,37 +301,48 @@ def seed_channels():
     user_9 = User.query.get(9)
     user_10 = User.query.get(10)
 
+    thor_channel.members.append(user_1,user_2,user_3)
+    flash_channel.members.append(user_4,user_5,user_6)
+    avenger_channel.members.append(user_7,user_8,user_9)
+    superman_channel.members.append(user_10,user_1,user_2)
+    zenith_channel.members.append(user_3,user_4,user_5)
+    hulk_channel.members.append(user_6,user_7,user_8)
+    blackpanther_channel.members.append(user_9,user_10,user_1)
+    wanda_channel.members.append(user_2,user_3,user_4)
+    spiderman_channel.members.append(user_5,user_6,user_7)
+    batman_channel.members.append(user_8,user_9,user_10)
+    thor2_channel.members.append(user_1,user_2,user_3)
+    flash2_channel.members.append(user_4,user_5,user_6)
+    avenger2_channel.members.append(user_7,user_8,user_9)
+    superman2_channel.members.append(user_10,user_1,user_2)
+    zenith2_channel.members.append(user_3,user_4,user_5)
+    hulk2_channel.members.append(user_6,user_7,user_8)
+    blackpanther2_channel.members.append(user_9,user_10,user_1)
+    wanda2_channel.members.append(user_2,user_3,user_4)
+    spiderman2_channel.members.append(user_5,user_6,user_7)
+    batman2_channel.members.append(user_8,user_9,user_10)
+    thor3_channel.members.append(user_1,user_2,user_3)
+    flash3_channel.members.append(user_4,user_5,user_6)
+    avenger3_channel.members.append(user_7,user_8,user_9)
+    superman3_channel.members.append(user_10,user_1,user_2)
+    zenith3_channel.members.append(user_3,user_4,user_5)
+    hulk3_channel.members.append(user_6,user_7,user_8)
+    blackpanther3_channel.members.append(user_9,user_10,user_1)
+    wanda3_channel.members.append(user_2,user_3,user_4)
+    spiderman3_channel.members.append(user_5,user_6,user_7)
+    batman3_channel.members.append(user_8,user_9,user_10)
+    thor4_channel.members.append(user_1,user_2,user_3)
+    flash4_channel.members.append(user_4,user_5,user_6)
+    avenger4_channel.members.append(user_7,user_8,user_9)
+    superman4_channel.members.append(user_10,user_1,user_2)
+    zenith4_channel.members.append(user_3,user_4,user_5)
+    hulk4_channel.members.append(user_6,user_7,user_8)
+    blackpanther4_channel.members.append(user_9,user_10,user_1)
+    wanda4_channel.members.append(user_2,user_3,user_4)
+    spiderman4_channel.members.append(user_5,user_6,user_7)
+    batman4_channel.members.append(user_8,user_9,user_10)
+    
 
-    demo_channel.members.append(user_1,user_2,user_3)
-    marnie_channel.members.append(user_2,user_10,user_3)
-    bobbie_channel.members.append(user_3,user_7,user_1,user_2)
-    batman_channel.members.append(user_1,user_5,user_3,user_2)
-    superman_channel.members.append(user_2,user_4,user_3,user_1)
-    spiderman_channel.members.append(user_3,user_6,user_1,user_2)
-    ironman_channel.members.append(user_1,user_8,user_3,user_2)
-    wolverine_channel.members.append(user_2,user_9,user_3,user_1)
-    captain_channel.members.append(user_3,user_10,user_1,user_2)
-    thor_channel.members.append(user_1,user_7,user_3,user_2)
-    demo_channel2.members.append(user_2, user_3)
-    marnie_channel2.members.append(user_3, user_1, user_2)
-    bobbie_channel2.members.append(user_1, user_2, user_3, user_4)
-    batman_channel2.members.append(user_2, user_3, user_4, user_5)
-    superman_channel2.members.append(user_3, user_4, user_5, user_6,user_10)
-    spiderman_channel2.members.append(user_1, user_2, user_3, user_4, user_5,user_8)
-    ironman_channel2.members.append(user_2,user_8,user_3,user_4,user_5,user_6)
-    wolverine_channel2.members.append(user_3,user_9,user_1,user_2,user_4,user_5)
-    captain_channel2.members.append(user_1,user_10,user_2,user_3,user_4,user_5)
-    thor_channel2.members.append(user_2,user_7,user_1,user_3,user_4,user_5)
-    demo_channel3.members.append(user_3, user_1)
-    marnie_channel3.members.append(user_1, user_2, user_3)
-    bobbie_channel3.members.append(user_2,user_4)
-    batman_channel3.members.append(user_3,user_7)
-    superman_channel3.members.append(user_1,user_5)
-    spiderman_channel3.members.append(user_2,user_6,user_10)
-    ironman_channel3.members.append(user_3,user_8)
-    wolverine_channel3.members.append(user_1,user_9)
-    captain_channel3.members.append(user_2,user_10)
-    thor_channel3.members.append(user_3,user_7,user_1,user_2,user_4,user_5)
 
 
     # demo_channel.members.append(demo)

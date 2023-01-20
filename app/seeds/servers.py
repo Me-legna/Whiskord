@@ -5,46 +5,46 @@ from app.models import db, User, Server, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_servers():
-    demo_server = Server(
-        name='Demo Server', owner_id=1, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
+    thor_server = Server(
+        name='Valhalla', owner_id=1, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    marnie_server = Server(
-        name='Marnie Server', owner_id=2, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
+    flash_server = Server(
+        name='Blinding Lights', owner_id=2, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
 
-    bobbie_server = Server(
-        name='Bobbie Server', owner_id=3, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
-
-    batman_server = Server(
-        name='Pixie Chicks', owner_id=4, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=True, capacity=100)
+    avenger_server = Server(
+        name='Avengers assemble', owner_id=3, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
     superman_server = Server(
+        name='Pixie Chicks', owner_id=4, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=True, capacity=100)
+
+    zenith_server = Server(
         name='Stuck Between Pixels ', owner_id=5, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    spider_man_server = Server(
+    hulk_server = Server(
         name='Master of Algo Lands', owner_id=6, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    iron_man_server = Server(
+    black_panther_server  = Server(
         name='Tiny Coders', owner_id=7, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    wolverine_server = Server(
+    wanda_server= Server(
         name='Caffeinated Fast Fingers', owner_id=8, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    captain_america_server = Server(
+    spiderman_server = Server(
         name='That IT guy', owner_id=9, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    thor_server = Server(
+    batman_server = Server(
         name='The Kickin Chickens', owner_id=10, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=False, is_dm=False, capacity=100)
 
-    db.session.add(demo_server)
-    db.session.add(marnie_server)
-    db.session.add(bobbie_server)
-    db.session.add(batman_server)
-    db.session.add(superman_server)
-    db.session.add(spider_man_server)
-    db.session.add(iron_man_server)
-    db.session.add(wolverine_server)
-    db.session.add(captain_america_server)
     db.session.add(thor_server)
+    db.session.add(flash_server)
+    db.session.add(avenger_server)
+    db.session.add(superman_server)
+    db.session.add(zenith_server)
+    db.session.add(hulk_server)
+    db.session.add(black_panther_server)
+    db.session.add(wanda_server)
+    db.session.add(spiderman_server)
+    db.session.add(batman_server)
 
     user_1 = User.query.get(1)
     user_2 = User.query.get(2)
@@ -57,16 +57,16 @@ def seed_servers():
     user_9 = User.query.get(9)
     user_10 = User.query.get(10)
 
-    demo_server.members.append(user_1,user_5,user_2,user_3,user_4,user_6,user_7,user_8,user_9,user_10)
-    marnie_server.members.append(user_2,user_5,user_1,user_3,user_4,user_6,user_7,user_8,user_9,user_10)
-    bobbie_server.members.append(user_2,user_5,user_1,user_3,user_4,user_6,user_7,user_8,user_9,user_10)
+    thor_server.members.append(user_1,user_5,user_2,user_3,user_4,user_6,user_7,user_8,user_9,user_10)
+    flash_server.members.append(user_2,user_5,user_1,user_3,user_4,user_6,user_7,user_8,user_9,user_10)
+    avenger_server.members.append(user_2,user_5,user_1,user_3,user_4,user_6,user_7,user_8,user_9,user_10)
     batman_server.members.append(user_3,user_1,user_10,user_2,user_5)
     superman_server.members.append(user_4,user_10,user_1)
-    spider_man_server.members.append(user_5,user_10)
-    iron_man_server.members.append(user_6,user_1)
-    wolverine_server.members.append(user_7,user_6)
-    captain_america_server.members.append(user_8,user_1)
-    thor_server.members.append(user_9,user_6,user_3)
+    zenith_server.members.append(user_5,user_10)
+    hulk_server.members.append(user_6,user_1)
+    black_panther_server.members.append(user_7,user_6)
+    wanda_server.members.append(user_8,user_1)
+    spiderman_server.members.append(user_9,user_6,user_3)
 
 
     # demo_server.members.append(users.demo)
