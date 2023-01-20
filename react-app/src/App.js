@@ -42,7 +42,6 @@ function App() {
 
     return (
         <div>
-
             {!user
                 ? (
                     <>
@@ -125,9 +124,6 @@ function App() {
                     </Switch>
                 )
             }
-            <ProtectedRoute path="/chat" exact={true}>
-                <Chat />
-            </ProtectedRoute>
 
         </div >
     );

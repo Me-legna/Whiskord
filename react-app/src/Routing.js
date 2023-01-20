@@ -21,8 +21,6 @@ function Routing() {
     return (
         <>
 
-
-                
         </>
     )
 }
