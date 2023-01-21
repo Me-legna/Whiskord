@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-function ServerForm() {
+function EditServerForm() {
 
     // get server data from redux store
     const server = useSelector(state => state.servers.singleServer);
@@ -26,7 +27,7 @@ function ServerForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-    
+
         if(Object.keys(errors).length === 0) {
             fetch(`api/servers/${server_id}`, {
                 method: 'PUT',
@@ -47,7 +48,7 @@ function ServerForm() {
             return
         }
     }
-    
+
 
 
     return (
@@ -123,4 +124,4 @@ function ServerForm() {
     );
 }
 
-export default ServerForm;
+export default EditServerForm;
