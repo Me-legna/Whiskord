@@ -67,3 +67,25 @@ nav a.active {
     flex-direction: row;
     align-items: center;
 }
+
+.app-container{
+    border: 3px solid yellow;
+}
+.sidebar{
+    border: 2px solid brown;
+}
+.body{
+    border: 5px solid blue;
+    width:100%
+}
+.body-inner{
+    border: 1px solid green;
+}
+
+.flex {
+    display: flex;
+}
+.column {
+    flex-direction: column;
+}
+

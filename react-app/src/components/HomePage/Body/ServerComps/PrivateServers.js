@@ -1,40 +1,80 @@
 //render list of servers where is_private == true
 import React, { useEffect } from "react";
-import { privateServers, publicServers, serverDetails } from "../../../../store/server";
+import { privateServers, publicServers, resetServerDetails, serverDetails } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import Icon from "../../../Icon"
+import { resetMessageState } from "../../../../store/message";
+import { resetChannelState, getChannels } from "../../../../store/channel";
+import OpenModalButton from "../../../OpenModalButton";
+import CreatePrivateServerForm from "./CreatePrivateServerForm";
+import EditServerForm from "./EditServerForm";
+import DeleteServerForm from "./DeleteServerForm";
+
 
 
 function PrivateServers() {
     const serversObj = useSelector((state) => state.servers.allPrivateServers.byId);
     const servers = Object.values(serversObj);
+    const singleServer = useSelector(state => state.servers.singleServer)
+    const channelId = useSelector(state => state.channels.allChannels.allIds[0])
 
     const dispatch = useDispatch();
     const history = useHistory()
 
     useEffect(() => {
-        dispatch(privateServers());
-    }, [dispatch]);
+        if (servers) {
+            if (!channelId) {
+                dispatch(getChannels(servers[0]?.id))
+            }
+        } else {
+            dispatch(privateServers());
+        }
+    }, [dispatch, servers, channelId]);
 
-    const privateServerDetails = async (serverId) => {
-        dispatch(serverDetails(serverId)).then(()=> history.push(`/home/@me/${serverId}`))
-
+    const privateServerDetails = (serverId) => {
+        dispatch(resetMessageState())
+        dispatch(resetChannelState())
+        dispatch(resetServerDetails())
+        dispatch(getChannels(serverId))
+        dispatch(serverDetails(serverId))
+        // history.push('/home/me/')
     }
+    if (channelId) history.push(`/home/@me/${channelId}`)
 
     return (
         <div className="private-servers-list">
-            {servers.map((server, idx) => {
-                // if(!idx) dispatch(serverDetails(server.id))
-                console.log('private', server)
-                return (
-                    <div key={server.id}>
-                        <Icon
-                            // imageUrl={server.img_url}
-                            faIcon={`fa-solid fa-circle-${server.name[0].toLowerCase()}`}
-                            clickEvent={() => privateServerDetails(server.id)}
+            <div className="flex">
+                <h6>
+                    Direct Messages
+                </h6>
+                {
+                    Object.keys(singleServer).length ?
+                    <div>
+                        <OpenModalButton
+                            faIcon={<i className="fa-solid fa-plus" />}
+                            modalComponent={<CreatePrivateServerForm />}
                         />
-                        {/* <NavLink to={`/home/@me`}>{server.name}</NavLink> */}
+                        <OpenModalButton
+                            faIcon={<i className="fa-solid fa-pen-to-square" />}
+                            modalComponent={<EditServerForm />}
+                        />
+                        <OpenModalButton
+                            faIcon={<i className="fa-solid fa-trash-can" />}
+                            modalComponent={<DeleteServerForm />}
+                        />
+                    </div>
+                    : <></>
+                }
+            </div>
+            {servers.map((server, idx) => {
+                return (
+                    <div className="server-list-button" key={server.id}>
+                        <NavLink to={`/home/@me/${server.id}`}>
+                            <button onClick={() => privateServerDetails(server.id)}>
+                                {server.name[0]}
+                            </button>
+                        </NavLink>
                     </div>
                 )
             })}

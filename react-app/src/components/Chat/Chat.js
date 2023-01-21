@@ -20,6 +20,7 @@ const Chat = () => {
     const dbMessagesById = useSelector(state => state?.messages?.byId)
     const dbMessages = Object.values(dbMessagesById)
     // const [testMessages, setTestMessages] = useState(dbMessages)
+    console.log('DB MESSAGES -------',dbMessages)
 
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state?.session?.user)

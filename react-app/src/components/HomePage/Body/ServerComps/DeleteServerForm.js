@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { useDispatch, useHistory } from "react-redux"
-import { destroyServer } from '../../store/server'
+import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom";
+import { destroyServer } from "../../../../store/server";
 
 function DeleteServerForm({ server }) {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function DeleteServerForm({ server }) {
         .catch(
             async (res) => {
                 const data = await res.json();
-                
+
                 if (data && data.errors) setErrors(data.errors);
             }
             // .then(closeModal)

@@ -8,7 +8,7 @@ import NavBar from './components/LandingPage/Navigation/NavBar';
 import LandingPage from './components/LandingPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Chat from './components/Chat/Chat';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import UsersList from './components/Users/UsersList';
@@ -19,15 +19,32 @@ import ServerList from './components/HomePage/Body/ServerComps/ServerList';
 import AllChannels from './components/HomePage/Body/Channels/AllChannels';
 import PrivateBody from './components/HomePage/Body/PrivateBodyRight';
 import PublicBody from './components/HomePage/Body/PublicBodyRight';
+import Icon from './components/Icon';
+import { addServer, privateServers, publicServers, resetServerDetails } from './store/server';
+import IconModal from './components/Icon/IconModal';
+import CreatePrivateServerForm from './components/HomePage/Body/ServerComps/CreatePrivateServerForm';
+import OpenModalButton from './components/OpenModalButton';
+import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
+import { resetMessageState } from './store/message';
+import { resetChannelState } from './store/channel';
+
+import './App.css'
 
 function App() {
     const dispatch = useDispatch();
+    const history = useHistory()
     const [loaded, setLoaded] = useState(false);
     const user = useSelector(state => state.session.user)
 
+    const singleServer = useSelector((state) => state?.servers?.singleServer);
+
+    const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
+    
+    // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
+        dispatch(publicServers());
     }, [dispatch]);
     // useEffect(() => {
     //     (async () => {
@@ -36,16 +53,25 @@ function App() {
     //     })();
     // }, [dispatch]);
 
+    const getPrivateServers = () => {
+        dispatch(resetMessageState())
+        dispatch(resetChannelState())
+        dispatch(resetServerDetails())
+        dispatch(privateServers())
+        history.push('/home/@me')
+    }
+
+
     if (!loaded) {
         return null;
     }
 
     return (
-        <div>
+        <div className='entire-homepage-div'>
             {!user
                 ? (
                     <>
-                        <NavBar />
+                        {/* <NavBar /> */}
                         <Switch>
                             < Route path="/" exact={true}>
                                 <LandingPage />
@@ -75,32 +101,64 @@ function App() {
                             <LandingPage />
                         </Route>
                         <ProtectedRoute path='/home'>
-                            <div className='app-container'>
-                                <div className='sidebar'>
-                                    {/* Icon component to load private servers here */}
+
+                            <div className='app-container main-body'>
+                                <div className='server-list-container sidebar'>
+                                
+                                    <div className="server-list-button">
+                                        <button className="" onClick={getPrivateServers}>Pr</button>
+                                    </div>
+
+
                                     {/* Load all public servers */}
                                     <ServerList />
-                                    {/* Icon component to Create server here*/}
+
+                                    <div className="server-list-button">
+                                        <OpenModalButton
+                                            buttonText={'+'}
+                                            modalComponent={<CreatePublicServerForm />} />
+                                    </div>
+
                                 </div>
+
                                 <div className='main-body'>
-                                    <div className='left'>
-                                        <div servername header>
+                                    <div className='channel-list-container left'>
+                                        <div className='server-name-header'>
+
                                             {/* servername header component here*/}
+                                            <h3>{singleServer.name}</h3>
+                                            {
+                                                user && user.id === singleServer.owner_id &&
+  
+                                                <i className="fa-solid fa-gear"></i>
+
+                                            }
                                         </div>
 
-                                        <div className='channel-list-container'>
+
+                                        <div className='app-channel-list-container'>
+
                                             {/* Route to load private server channel list */}
                                             <ProtectedRoute path="/home/@me" >
                                                 <PrivateServers />
                                             </ProtectedRoute>
                                             {/* Route to load public server channels list */}
                                             <ProtectedRoute path="/home/:serverId" >
-                                                <AllChannels />
+                                                {(singleServer) &&
+                                                    <AllChannels channels={allChannels} />
+                                                }
                                             </ProtectedRoute>
                                         </div>
+
+                                        <div className='app-logout-button'>
+                                            <LogoutButton />
+                                        </div>
+
                                     </div>
 
-                                    <div className='middle /right body'>
+
+                                    <div className='middle-right-body'>
+
 
                                         {/* Load messages, header, and members of Private Server */}
                                         <ProtectedRoute path="/home/@me/:channelId" >
