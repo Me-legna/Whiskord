@@ -8,7 +8,7 @@ import NavBar from './components/LandingPage/Navigation/NavBar';
 import LandingPage from './components/LandingPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Chat from './components/Chat/Chat';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import UsersList from './components/Users/UsersList';
@@ -19,15 +19,25 @@ import ServerList from './components/HomePage/Body/ServerComps/ServerList';
 import AllChannels from './components/HomePage/Body/Channels/AllChannels';
 import PrivateBody from './components/HomePage/Body/PrivateBodyRight';
 import PublicBody from './components/HomePage/Body/PublicBodyRight';
+import Icon from './components/Icon';
+import { addServer, privateServers, publicServers, resetServerDetails } from './store/server';
+import IconModal from './components/Icon/IconModal';
+import CreatePrivateServerForm from './components/HomePage/Body/ServerComps/CreatePrivateServerForm';
+import OpenModalButton from './components/OpenModalButton';
+import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
+import { resetMessageState } from './store/message';
+import { resetChannelState } from './store/channel';
 
 function App() {
     const dispatch = useDispatch();
+    const history = useHistory()
     const [loaded, setLoaded] = useState(false);
     const user = useSelector(state => state.session.user)
 
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
+        dispatch(publicServers());
     }, [dispatch]);
     // useEffect(() => {
     //     (async () => {
@@ -35,6 +45,15 @@ function App() {
     //         setLoaded(true);
     //     })();
     // }, [dispatch]);
+
+    const getPrivateServers = () => {
+        dispatch(resetMessageState())
+        dispatch(resetChannelState())
+        dispatch(resetServerDetails())
+        dispatch(privateServers())
+        history.push('/home/@me')
+    }
+
 
     if (!loaded) {
         return null;
@@ -45,7 +64,7 @@ function App() {
             {!user
                 ? (
                     <>
-                        <NavBar />
+                        {/* <NavBar /> */}
                         <Switch>
                             < Route path="/" exact={true}>
                                 <LandingPage />
@@ -75,20 +94,32 @@ function App() {
                             <LandingPage />
                         </Route>
                         <ProtectedRoute path='/home'>
-                            <div className='app-container'>
+                            <div className='app-container flex'>
+
                                 <div className='sidebar'>
-                                    {/* Icon component to load private servers here */}
+
+                                    <div className="server-list-button">
+                                        <button className="" onClick={getPrivateServers}>Pr</button>
+                                    </div>
+
                                     {/* Load all public servers */}
                                     <ServerList />
-                                    {/* Icon component to Create server here*/}
+
+                                    <div className="server-list-button">
+                                        <OpenModalButton
+                                            buttonText={'+'}
+                                            modalComponent={<CreatePublicServerForm />} />
+                                    </div>
+
                                 </div>
-                                <div className='main-body'>
-                                    <div className='left'>
+
+                                <div className='body flex'>
+                                    <div className='body-inner'>
                                         <div servername header>
                                             {/* servername header component here*/}
                                         </div>
 
-                                        <div className='channel-list-container'>
+                                        <div className='body-inner'>
                                             {/* Route to load private server channel list */}
                                             <ProtectedRoute path="/home/@me" >
                                                 <PrivateServers />
@@ -100,7 +131,7 @@ function App() {
                                         </div>
                                     </div>
 
-                                    <div className='middle /right body'>
+                                    <div className='body-inner'>
 
                                         {/* Load messages, header, and members of Private Server */}
                                         <ProtectedRoute path="/home/@me/:channelId" >
