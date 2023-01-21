@@ -64,7 +64,7 @@ function App() {
             {!user
                 ? (
                     <>
-                        <NavBar />
+                        {/* <NavBar /> */}
                         <Switch>
                             < Route path="/" exact={true}>
                                 <LandingPage />
