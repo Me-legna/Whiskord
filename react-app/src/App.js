@@ -29,6 +29,9 @@ import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
 
 import './App.css'
+// import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
+import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
+
 
 function App() {
     const dispatch = useDispatch();
@@ -105,8 +108,11 @@ function App() {
                             <div className='app-container main-body'>
                                 <div className='server-list-container sidebar'>
                                 
-                                    <div className="server-list-button">
-                                        <button className="" onClick={getPrivateServers}>Pr</button>
+                                    <div className="server-list-button" id='logo-button'>
+                                        <button className="" onClick={getPrivateServers}>
+                                            {/* <img src={WhiskordLogo} /> */}
+                                            {/* Pr */}
+                                        </button>
                                     </div>
 
 
@@ -144,7 +150,7 @@ function App() {
                                             </ProtectedRoute>
                                             {/* Route to load public server channels list */}
                                             <ProtectedRoute path="/home/:serverId" >
-                                                {(singleServer) &&
+                                                {(singleServer && !singleServer.is_private) &&
                                                     <AllChannels channels={allChannels} />
                                                 }
                                             </ProtectedRoute>
