@@ -68,7 +68,7 @@ def seed_servers():
     # wanda_server.members.append(user_8,user_1)
     # spiderman_server.members.append(user_9,user_6,user_3)
 
-    thor_server.members.extend([user_4,user_5])
+    thor_server.members.extend([user_1, user_4,user_5])
     flash_server.members.extend([user_3,user_5,user_1])
     avenger_server.members.extend([user_2,user_5,user_1])
     batman_server.members.extend([user_3,user_1,user_10])
