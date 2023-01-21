@@ -43,6 +43,7 @@ export default function ServerList() {
               <NavLink to={`/home/${server.id}`}>
                 <button onClick={() => {
                     // setIsPrivate(false)
+                    publicServerDetails(server.id)
                     dispatch(serverDetails(server.id))
                     .then(() => history.push(`/home/${server.id}`))
                 }}>

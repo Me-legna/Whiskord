@@ -92,6 +92,8 @@ function PublicBody() {
         //     dispatch(getChannelDetails(channelId))
         //     history.push(`/home/${serverId}/${channelId}`)
         // },[dispatch,channelId])
+
+        // console.log(currentUser)
     
         useEffect(() => {
             dispatch(publicServers());
@@ -102,7 +104,7 @@ function PublicBody() {
 
     return (
         <>
-            <div className='message-chat messages-container'>
+            <div className='message-chat previous-messages-container messages-container'>
                 <div className='chat-header'>
                     {/* channelname header */}
                     <h3>
@@ -129,7 +131,7 @@ function PublicBody() {
                     </div>
                     }
                 </div>
-                <div className='member list'>
+                <div className='member-list'>
                     {/* member list */}
                     {(channelDetails?.Members) &&
                     <div>

@@ -48,7 +48,7 @@ function App() {
     }
 
     return (
-        <div>
+        <div className='entire-homepage-div'>
             {!user
                 ? (
                     <>
@@ -82,21 +82,27 @@ function App() {
                             <LandingPage />
                         </Route>
                         <ProtectedRoute path='/home'>
-                            <div className='app-container'>
-                                <div className='sidebar'>
+                            <div className='app-container main-body'>
+                                <div className='server-list-container sidebar'>
                                     {/* Icon component to load private servers here */}
                                     {/* Load all public servers */}
                                     <ServerList />
                                     {/* Icon component to Create server here*/}
                                 </div>
                                 <div className='main-body'>
-                                    <div className='left'>
-                                        <div className='servername-header'>
+                                    <div className='channel-list-container left'>
+                                        <div className='server-name-header'>
                                             {/* servername header component here*/}
                                             <h3>{singleServer.name}</h3>
+                                            {
+                                                user && user.id === singleServer.owner_id &&
+  
+                                                <i className="fa-solid fa-gear"></i>
+
+                                            }
                                         </div>
 
-                                        <div className='channel-list-container'>
+                                        <div className='app-channel-list-container'>
                                             {/* Route to load private server channel list */}
                                             <ProtectedRoute path="/home/@me" >
                                                 <PrivateServers />
@@ -108,6 +114,11 @@ function App() {
                                                 }
                                             </ProtectedRoute>
                                         </div>
+
+                                        <div className='app-logout-button'>
+                                            <LogoutButton />
+                                        </div>
+
                                     </div>
 
                                     <div className='middle-right-body'>
