@@ -234,8 +234,8 @@ export default function reducer(state = initialState, action) {
             const newState = {
                 ...state,
                 allPublicServers: {
-                    byId: { ...state.allPublicServers.byId },
-                    allIds: [...state.allPublicServers.allIds]
+                    byId: {},
+                    allIds: []
                 }
             }
 
@@ -250,8 +250,8 @@ export default function reducer(state = initialState, action) {
             const newState = {
                 ...state,
                 allPrivateServers: {
-                    byId: { ...state.allPrivateServers.byId },
-                    allIds: [...state.allPrivateServers.allIds]
+                    byId: {},
+                    allIds: []
                 }
             }
 
