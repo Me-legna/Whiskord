@@ -1,13 +1,12 @@
-import { NavLink } from "react-router-dom";
 
 export default function Footer(){
     return (
         <div className='footer'>
             <div className='footer-links'>
-                <NavLink to='https://github.com/andrew-bierman'>BDAWG</NavLink>
-                <NavLink to='https://github.com/Me-legna'>IN THE ARMS OF AN ANGEL</NavLink>
-                <NavLink to='https://github.com/andrea-green'>PIGGYSMOLS</NavLink>
-                <NavLink to='https://github.com/sohinib12'>SOE</NavLink>
+                <a href='https://github.com/andrew-bierman'>BDAWG</a>
+                <a href='https://github.com/Me-legna'>IN THE ARMS OF AN ANGEL</a>
+                <a href='https://github.com/andrea-green'>PIGGYSMOLS</a>
+                <a href='https://github.com/sohinib12'>SOE</a>
             </div>
 
         </div>
