@@ -14,7 +14,7 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <div className='navbar-logo-and-name'>
+            <div className='navbar-logo-and-name' style={{fontWeight:'900'}}>
               <img src={WhiskordLogoCrop} alt='whiskord logo'/>
               Whiskord
             </div>
