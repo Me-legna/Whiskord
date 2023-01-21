@@ -20,11 +20,18 @@ import AllChannels from './components/HomePage/Body/Channels/AllChannels';
 import PrivateBody from './components/HomePage/Body/PrivateBodyRight';
 import PublicBody from './components/HomePage/Body/PublicBodyRight';
 
+import './App.css'
+
 function App() {
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const user = useSelector(state => state.session.user)
 
+    const singleServer = useSelector((state) => state?.servers?.singleServer);
+
+    const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
+    
+    // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
@@ -45,7 +52,7 @@ function App() {
             {!user
                 ? (
                     <>
-                        <NavBar />
+                        {/* <NavBar /> */}
                         <Switch>
                             < Route path="/" exact={true}>
                                 <LandingPage />
@@ -84,8 +91,9 @@ function App() {
                                 </div>
                                 <div className='main-body'>
                                     <div className='left'>
-                                        <div servername header>
+                                        <div className='servername-header'>
                                             {/* servername header component here*/}
+                                            <h3>{singleServer.name}</h3>
                                         </div>
 
                                         <div className='channel-list-container'>
@@ -95,12 +103,14 @@ function App() {
                                             </ProtectedRoute>
                                             {/* Route to load public server channels list */}
                                             <ProtectedRoute path="/home/:serverId" >
-                                                <AllChannels />
+                                                {(singleServer) &&
+                                                    <AllChannels channels={allChannels} />
+                                                }
                                             </ProtectedRoute>
                                         </div>
                                     </div>
 
-                                    <div className='middle /right body'>
+                                    <div className='middle-right-body'>
 
                                         {/* Load messages, header, and members of Private Server */}
                                         <ProtectedRoute path="/home/@me/:channelId" >

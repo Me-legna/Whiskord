@@ -11,10 +11,11 @@ export default function AllChannels({ channels }) {
     const dispatch = useDispatch();
 
     const state = useSelector(state => state)
-    console.log(state)
+    // console.log(state)
 
     const serverId = useSelector((state) => state.servers.singleServer.id);
-    const {channelId} = useParams()
+    const channelId = useSelector((state) => state?.channels?.channelDetails?.id);
+    // const {channelId} = useParams()
 
     const history = useHistory();
 
@@ -37,13 +38,18 @@ export default function AllChannels({ channels }) {
   return (
     <div>
       {
-        (channels?.allIds?.length > 0) &&
+        // (channels?.allIds?.length > 0) &&
+        (channels?.length > 0) &&
         <h6>TEXT-CHANNELS</h6>
       }
+      {/* <h6>TEXT-CHANNELS</h6> */}
       <div>
-        {channels?.allIds?.map((channelId) => {
-          const channel = channels?.byId[channelId];
+        {/* {channels?.allIds?.map((channelId) => { */}
+        {channels?.map((channel) => {
+          // const channel = channels?.byId[channelId]
+          const channelId = channel.id
           console.log({ channel });
+
           // replace navLink with button
           return (
             // <li key={channel.id}>

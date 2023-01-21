@@ -1,0 +1,23 @@
+.app-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    flex-grow: 1;
+    width: 100vh;
+    height: 100vh;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    height: 100vh;
+}
+
+.middle-right-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
