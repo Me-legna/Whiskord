@@ -6,6 +6,7 @@ import SplashBanner from './SplashBanner';
 import TextChannelBanner from './TextChannelBanner';
 import VoiceChatBanner from './VoiceChatBanner';
 import RolesBanner from './RolesBanner';
+import Footer from './Footer';
 
 function LandingPage() {
   return (
@@ -21,6 +22,10 @@ function LandingPage() {
           <VoiceChatBanner />
           <RolesBanner />
         </div>
+      </div>
+
+      <div className='footer-container'>
+        <Footer/>
       </div>
     </div>
   );
