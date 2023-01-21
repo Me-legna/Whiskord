@@ -1,11 +1,11 @@
   .splash-background-container {
     background-image:image('https://discord.com/assets/e6d57714479874c665b36c7adee76b1d.svg') #0d1cc4 ;
-    background-color: #0d1cc4;
+    background-color: #1044ffde;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
-  
+
   .splash-banner {
     display: flex;
     flex-direction: column;
@@ -14,22 +14,34 @@
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 0px;
+    font-weight: 300;
 
   }
-  
+
   .splash-banner h1 {
     margin-bottom: 10px;
     font-size: 40pt;
-    font-weight: 900;
     text-align: center;
-  }
-  
-  .splash-banner button {
-    background-color: darkgrey;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    font-weight: 900;
+    font-family: system-ui;
+  }
 
+  .splash-banner button {
+    color: white;
+    border-radius: 40px;
+    padding: 25px;
+    font-size: 20px;
+    font-weight: 150;
+    background-color:#1a1b1de6;
+    border: none;
+    margin-top:25px
+  }
+
+  .splash-banner p{
+    color:white;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .splash-images-container {
@@ -64,14 +76,14 @@
     bottom: 0;
   }
    */
-  
+
   .secondary-section {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 30px 0;
   }
-  
+
   .secondary-section img {
     max-width: 100%;
     margin-bottom: 10px;
@@ -83,4 +95,38 @@
     align-items: center;
     margin: 30px 0;
   }
-  
+
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    padding: 30px 20px;
+    background-color: #1a1b1de6;
+    justify-content: flex-end;
+    width: 100%;
+
+  }
+
+  .footer-links a {
+    padding:15px;
+    color:white;
+    font-size: 20px;
+    font-weight: 120;
+
+  }
+
+  .footer-links a::before{
+  content: "";
+  background-image:url("../../images/LandingPage/github-logo.svg");
+  display:inline-block;
+  height:30px;
+  width:30px;
+  padding:1px;
+
+
+
+
+}
