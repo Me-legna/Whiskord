@@ -27,8 +27,8 @@ import OpenModalButton from './components/OpenModalButton';
 import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
 import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
-import SignUpPage from './components/auth';
-
+import LoginSignUpPage
+ from './components/auth';
 import './App.css'
 
 function App() {
@@ -79,7 +79,7 @@ function App() {
                             </Route>
                             <Route path="/login" exact={true}>
                                 {/* <LoginForm /> */}
-                                <SignUpPage />
+                                <LoginSignUpPage />
                             </Route>
                             <Route path="/sign-up" exact={true}>
                                 <SignUpForm />

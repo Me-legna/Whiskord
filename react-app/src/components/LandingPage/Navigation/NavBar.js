@@ -35,16 +35,16 @@ const NavBar = () => {
             !user
             ?
             <div className='navbar-right-side'>
-              <li>
+              {/* <li>
                 <NavLink to='/sign-up' exact={true} activeClassName='active'>
                   <button>Sign Up</button>
                 </NavLink>
               </li>
-              <li>
+              <li> */}
                 <NavLink to='/login' exact={true} activeClassName='active'>
                   <button>Login</button>
                 </NavLink>
-              </li>
+              {/* </li> */}
               {/* <li>
                 <NavLink to='/users' exact={true} activeClassName='active'>
                   Users

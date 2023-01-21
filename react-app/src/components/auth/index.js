@@ -1,11 +1,10 @@
 import React from 'react';
-import './SignUp.css';
+import './LoginSignupPage.css';
 
-import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import qrCode from '../../images/discord-qr-code.png';
 
-export default function SignUpPage() {
+export default function LoginSignUpPage() {
 
     return(
         <div>
