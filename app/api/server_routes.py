@@ -70,6 +70,12 @@ def create_server():
     Creates and returns a new server.
     """
     # data = request.get_json()
+    memberIds = request.json['members']
+    print('memberIds', memberIds)
+    users = User.query.filter(User.id.in_(memberIds)).all()
+    print('users', users)
+    # members = request.json['members']
+    # members = data.get('members')
     # name = data.get("name")
     # image_url = data.get("image_url")
 
@@ -87,9 +93,28 @@ def create_server():
             image_url=form.data['image_url'],
             is_private=form.data['is_private'],
             is_dm=form.data['is_dm'],
-            capacity=form.data['capacity']
+            capacity=form.data['capacity'],
+            members=[current_user]
         )
+        if form.data['is_private'] == True:
+            channel = Channel(
+                name=form.data['name'],
+                type='Text',
+                is_private=False,
+                server=server,
+                members=[current_user]
+            )
+        else:
+            channel = Channel(
+                name='general',
+                type='Text',
+                is_private=False,
+                server=server,
+                members=[current_user]
+            )
         db.session.add(server)
+        server.members.extend(users)
+        channel.members.extend(users)
         db.session.commit()
         return server.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -202,8 +227,9 @@ def add_member(server_id):
 
     server.members.append(user)
     db.session.commit()
+    members = [user.to_dict for user in server.members]
 
-    return jsonify({'message': "Successfully added member", 'statusCode': 200}), 200
+    return members, 200
 
 @server_routes.route('/<int:server_id>/members', methods=['DELETE'])
 @login_required

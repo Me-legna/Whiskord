@@ -39,7 +39,7 @@ function App() {
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
     const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
-    
+
     // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
@@ -104,7 +104,7 @@ function App() {
 
                             <div className='app-container main-body'>
                                 <div className='server-list-container sidebar'>
-                                
+
                                     <div className="server-list-button">
                                         <button className="" onClick={getPrivateServers}>Pr</button>
                                     </div>
@@ -126,10 +126,10 @@ function App() {
                                         <div className='server-name-header'>
 
                                             {/* servername header component here*/}
-                                            <h3>{singleServer.name}</h3>
+                                            <h3>{singleServer && singleServer.name}</h3>
                                             {
                                                 user && user.id === singleServer.owner_id &&
-  
+
                                                 <i className="fa-solid fa-gear"></i>
 
                                             }
@@ -144,7 +144,7 @@ function App() {
                                             </ProtectedRoute>
                                             {/* Route to load public server channels list */}
                                             <ProtectedRoute path="/home/:serverId" >
-                                                {(singleServer) &&
+                                                {(singleServer && !singleServer.is_private) &&
                                                     <AllChannels channels={allChannels} />
                                                 }
                                             </ProtectedRoute>

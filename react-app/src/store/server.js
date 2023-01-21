@@ -42,14 +42,14 @@ const deleteServer = (deletedServerId, is_private) => ({
     conditional: is_private
 });
 
-const addServerMember = (userId) => ({
+const addServerMember = (members) => ({
     type: ADD_SERVER_MEMBER,
-    payload: userId
+    payload: members
 })
 
-const removeServerMember = (memberId) => ({
+const removeServerMember = (members) => ({
     type: REMOVE_SERVER_MEMBER,
-    payload: memberId
+    payload: members
 })
 
 export const resetServerDetails = () => ({
@@ -134,8 +134,6 @@ export const addServer = (newServer) => async (dispatch) => {
     console.log('response', response)
     if (response.ok) {
         const data = await response.json();
-        data.Members = [data.owner_id]
-        data.Channels = []
         dispatch(createServer(data));
 
         return data
@@ -196,8 +194,10 @@ export const appendServerMember = (serverId, userId) => async (dispatch) => {
         body: JSON.stringify({user_id:userId})
     })
 
+    console.log('members', response)
     if (response.ok) {
-        dispatch(addServerMember(userId));
+        const data = await response.json()
+        dispatch(addServerMember(data));
     }
 }
 
@@ -376,14 +376,14 @@ export default function reducer(state = initialState, action) {
         case ADD_SERVER_MEMBER: {
             const newState = {...state, singleServer: {...state.singleServer}}
 
-            newState.singleServer.Members.push(action.payload)
+            newState.singleServer.Members = action.payload
 
             return newState
         }
         case REMOVE_SERVER_MEMBER: {
             const newState = {...state, singleServer: {...state.singleServer}}
 
-            newState.singleServer.Members = newState.singleServer.Members.filter((memberId) => memberId !== action.payload)
+            newState.singleServer.Members = action.payload
 
             return newState
         }
