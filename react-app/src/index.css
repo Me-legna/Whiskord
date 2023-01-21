@@ -1,5 +1,5 @@
-* {
-    font-family: 'Open Sans', sans-serif;
+*:not(.splash-banner h1){
+    font-family: "Uni Sans", sans-serif;
 }
 
 a {
@@ -25,7 +25,7 @@ nav {
 }
 
 nav ul {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -41,11 +41,11 @@ nav li {
 }
 
 nav a {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 nav a.active {
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .navbar-logo-and-name {
@@ -53,7 +53,7 @@ nav a.active {
     flex-direction: row;
     align-items: center;
     font-size: larger;
-    font-weight: 800;
+    font-weight: 1000;
     color: white;
   }
 
@@ -67,4 +67,3 @@ nav a.active {
     flex-direction: row;
     align-items: center;
 }
-  
