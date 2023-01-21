@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import SignUpForm from './SignUpForm';
+import { useHistory} from 'react-router-dom';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -9,6 +11,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -58,6 +61,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
+      <button className='signup-button' onClick={()=>(history.push('/sign-up'))}>Register</button>
     </form>
   );
 };

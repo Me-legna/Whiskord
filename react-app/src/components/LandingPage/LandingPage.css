@@ -73,19 +73,24 @@
     margin-right: -50%;
     overflow: hidden;
   }
-  
+
   .splash-images-container img:last-child {
     margin-left: -50%;
     overflow: hidden;
   }
-  
+
+  .navbar-links a{
+    color: white;
+    padding: 20px;
+  }
+
   /* .splash-image-one {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
 
-    margin-right: auto; 
+    margin-right: auto;
 
   } */
 
@@ -98,7 +103,7 @@
     position: absolute;
 
     margin-left: -2000px;
-    margin-right: auto; 
+    margin-right: auto;
 
     overflow: hidden;
 
@@ -121,7 +126,7 @@
     position: absolute;
 
     margin-right: -1000px;
-    margin-left: auto; 
+    margin-left: auto;
 
   } */
 
