@@ -130,7 +130,7 @@ function App() {
                                             {
                                                 user && user.id === singleServer.owner_id &&
   
-                                                <i className="fa-solid fa-gear"></i>
+                                                <i className="fas fa-solid fa-gear"></i>
 
                                             }
                                         </div>
