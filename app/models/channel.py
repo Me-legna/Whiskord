@@ -36,7 +36,9 @@ class Channel(db.Model):
             'name': self.name,
             'server_id': self.server_id,
             'type': self.type,
-            'is_private': self.is_private
+            'is_private': self.is_private,
+            'Members': [user.to_dict() for user in self.members],
+            'Messages': [message.to_dict() for message in self.messages]
         }
 
 
