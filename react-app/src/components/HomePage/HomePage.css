@@ -62,7 +62,8 @@
    text-overflow: clip;
    overflow: hidden;
    padding: 0.25rem;
-   margin: 0.25rem;
+   margin-top: 0.25rem;
+margin-bottom: 0.25rem;
 }
 
 .app-messages-container{

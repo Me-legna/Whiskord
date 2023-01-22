@@ -97,11 +97,12 @@
     /* width:inherit; */
 
     position:relative;
-    margin-top: auto;
+    margin-top: auto ;
     top: auto;
     bottom: 0;
     left: 0;
     right: 0;
+
 }
 
 .chat-form form {

@@ -156,7 +156,13 @@ function App() {
                                             </ProtectedRoute>
                                         </div>
 
-                                        <div className='app-logout-button'>
+                                        <div className='app-user-and-logout-button'>
+                                            <div className='user-details'>
+                                                <i className="fa-solid fa-circle-user fa-xl"></i>
+                                                &nbsp; 
+                                                &nbsp; 
+                                                {user.username}
+                                            </div>
                                             <LogoutButton />
                                         </div>
 
