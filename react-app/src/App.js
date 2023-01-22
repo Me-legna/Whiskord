@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { authenticate } from './store/session';
-import LogoutButton from '../src/components/auth/LogoutButton'
-import Routing from './Routing';
-import HomePage from './components/HomePage';
-import NavBar from './components/LandingPage/Navigation/NavBar';
-import LandingPage from './components/LandingPage';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import Chat from './components/Chat/Chat';
-import { Route, Switch, useHistory } from 'react-router-dom';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import UsersList from './components/Users/UsersList';
-import User from './components/Users/User';
-import NotFoundPage from './components/404Page';
-import PrivateServers from './components/HomePage/Body/ServerComps/PrivateServers';
-import ServerList from './components/HomePage/Body/ServerComps/ServerList';
-import AllChannels from './components/HomePage/Body/Channels/AllChannels';
-import PrivateBody from './components/HomePage/Body/PrivateBodyRight';
-import PublicBody from './components/HomePage/Body/PublicBodyRight';
-import Icon from './components/Icon';
-import { addServer, privateServers, publicServers, resetServerDetails } from './store/server';
-import IconModal from './components/Icon/IconModal';
-import CreatePrivateServerForm from './components/HomePage/Body/ServerComps/CreatePrivateServerForm';
-import OpenModalButton from './components/OpenModalButton';
-import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
-import { resetMessageState } from './store/message';
-import { resetChannelState } from './store/channel';
-import LoginSignUpPage
-    from './components/auth';
-import UnderDevelopment from './components/UnderDevelopment';
-import './App.css'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticate } from "./store/session";
+import LogoutButton from "../src/components/auth/LogoutButton";
+import Routing from "./Routing";
+import HomePage from "./components/HomePage";
+import NavBar from "./components/LandingPage/Navigation/NavBar";
+import LandingPage from "./components/LandingPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Chat from "./components/Chat/Chat";
+import { Route, Switch, useHistory } from "react-router-dom";
+import LoginForm from "./components/auth/LoginForm";
+import SignUpForm from "./components/auth/SignUpForm";
+import UsersList from "./components/Users/UsersList";
+import User from "./components/Users/User";
+import NotFoundPage from "./components/404Page";
+import PrivateServers from "./components/HomePage/Body/ServerComps/PrivateServers";
+import ServerList from "./components/HomePage/Body/ServerComps/ServerList";
+import AllChannels from "./components/HomePage/Body/Channels/AllChannels";
+import PrivateBody from "./components/HomePage/Body/PrivateBodyRight";
+import PublicBody from "./components/HomePage/Body/PublicBodyRight";
+import Icon from "./components/Icon";
+import {
+  addServer,
+  privateServers,
+  publicServers,
+  resetServerDetails,
+} from "./store/server";
+import IconModal from "./components/Icon/IconModal";
+import CreatePrivateServerForm from "./components/HomePage/Body/ServerComps/CreatePrivateServerForm";
+import OpenModalButton from "./components/OpenModalButton";
+import CreatePublicServerForm from "./components/HomePage/Body/ServerComps/CreatePublicServerForm";
+import { resetMessageState } from "./store/message";
+import { resetChannelState } from "./store/channel";
+import LoginSignUpPage from "./components/auth";
+import UnderDevelopment from "./components/UnderDevelopment";
+import "./App.css";
 // import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
+
 import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
 import EditServerForm from './components/HomePage/Body/ServerComps/EditServerForm';
 import DeleteServerForm from './components/HomePage/Body/Channels/DeleteChannelForm';
@@ -81,11 +86,11 @@ function App() {
         modalComponent={<DeleteServerForm />}
     />
 
-
-    if (!loaded) {
-        return null;
+  useEffect(() => {
+    dispatch(authenticate()).then(() => setLoaded(true));
+    if (user) {
+      dispatch(publicServers());
     }
-
     return (
         <div className='entire-homepage-div'>
             {!user
@@ -257,6 +262,7 @@ function App() {
 
         </div >
     );
+
 }
 
 export default App;

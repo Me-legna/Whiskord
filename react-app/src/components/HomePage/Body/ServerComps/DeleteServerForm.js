@@ -10,6 +10,7 @@ function DeleteServerForm({ server }) {
     const [checked, setChecked] = useState(false)
     const [errors, setErrors] = useState([]);
 
+    console.log(server)
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
@@ -30,7 +31,7 @@ function DeleteServerForm({ server }) {
     return (
         <>
             <div className="modal-header">
-                <h1>Delete this Spot? {checked ? '😳' : '🤔'}</h1>
+                <h1>Delete this Server? {checked ? '😳' : '🤔'}</h1>
             </div>
             <div className="modal-body-container">
 
