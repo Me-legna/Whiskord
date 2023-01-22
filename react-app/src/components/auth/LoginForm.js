@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import { useHistory } from "react-router-dom";
+import SignUpForm from './SignUpForm';
+import { useHistory} from 'react-router-dom';
+
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,7 +13,6 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory()
-
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ const LoginForm = () => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+      <div className='login-form'>
         <label htmlFor='email'>Email</label>
         <input
           name='email'
@@ -51,7 +52,7 @@ const LoginForm = () => {
           onChange={updateEmail}
         />
       </div>
-      <div>
+      <div className='login-form'>
         <label htmlFor='password'>Password</label>
         <input
           name='password'
@@ -62,6 +63,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
+      <button className='signup-button' onClick={()=>(history.push('/sign-up'))}>Sign Up for Whiskord!</button>
     </form>
   );
 };

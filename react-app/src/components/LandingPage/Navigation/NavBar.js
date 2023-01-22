@@ -14,28 +14,37 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <div className='navbar-logo-and-name'>
+            <div className='navbar-logo-and-name' style={{fontWeight:'900'}}>
               <img src={WhiskordLogoCrop} alt='whiskord logo'/>
               Whiskord
             </div>
           </NavLink>
         </li>
 
+        <li className="navbar-links">
+          <NavLink to='/' exact={true} activeClassName='active'>Download</NavLink>
+          <NavLink to='/' exact={true} activeClassName='active'>Nitro</NavLink>
+          <NavLink to='/' exact={true} activeClassName='active'>Discover</NavLink>
+          <NavLink to='/' exact={true} activeClassName='active'>Safety</NavLink>
+          <NavLink to='/' exact={true} activeClassName='active'>Support</NavLink>
+          <NavLink to='/' exact={true} activeClassName='active'>Blog</NavLink>
+          <NavLink to='/' exact={true} activeClassName='active'>Careers</NavLink>
+        </li>
 
           {
-            !user 
+            !user
             ?
             <div className='navbar-right-side'>
-              <li>
+              {/* <li>
                 <NavLink to='/sign-up' exact={true} activeClassName='active'>
                   <button>Sign Up</button>
                 </NavLink>
               </li>
-              <li>
+              <li> */}
                 <NavLink to='/login' exact={true} activeClassName='active'>
                   <button>Login</button>
                 </NavLink>
-              </li>
+              {/* </li> */}
               {/* <li>
                 <NavLink to='/users' exact={true} activeClassName='active'>
                   Users
@@ -57,7 +66,7 @@ const NavBar = () => {
                   <button>Open Whiskord</button>
                 </NavLink>
               </li>
-            </div>          
+            </div>
           }
 
       </ul>

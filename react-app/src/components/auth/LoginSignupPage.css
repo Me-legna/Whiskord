@@ -1,0 +1,117 @@
+/* .entire-homepage-div {
+} */
+
+.login-page {
+    background-image:url('../../images/background.jpeg');
+    background-repeat:no-repeat;
+    /* background-color: #5865f2; */
+    background-size: 100%;
+    width: 100vw;
+    height: 100vh;
+ }
+
+.qr-code-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    float: right;
+
+}
+
+.qr-code-container img{
+    display: flex;
+    justify-content: right;
+    width: 250px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: white;
+}
+
+.qr-code-container h3{
+    color: white;
+
+}
+
+.main-container{
+    display: flex;
+    border:1px black solid;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    padding: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+
+}
+
+.welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.welcome h1{
+    font-size: 25px;
+}
+
+.sign-up-container{
+    padding: 50px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.login-form label{
+    color: white;
+    font-size: 15px;
+    font-weight:bold;
+    display: flex;
+    flex-direction: column;
+    margin-bottom:10px
+}
+
+.login-form input{
+    width: 400px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 15px;
+
+}
+
+.login-form button{
+    margin-top: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #5865f2;
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    border-radius: 5px;
+}
+
+.signup-button{
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
+    background-color: #5865f2;
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    border-radius: 5px;
+
+}

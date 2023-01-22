@@ -27,8 +27,9 @@ import OpenModalButton from './components/OpenModalButton';
 import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
 import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
+import LoginSignUpPage
+ from './components/auth';
 import UnderDevelopment from './components/UnderDevelopment';
-
 import './App.css'
 // import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
 import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
@@ -84,7 +85,7 @@ function App() {
                                 <LandingPage />
                             </Route>
                             <Route path="/login" exact={true}>
-                                <LoginForm />
+                                <LoginSignUpPage />
                             </Route>
                             <Route path="/sign-up" exact={true}>
                                 <SignUpForm />
@@ -114,7 +115,8 @@ function App() {
 
                             <div className='app-container main-body'>
 
-                                
+                                <div className='server-list-container sidebar'>
+
                                     <div className="server-list-button" id='logo-button'>
                                         <button className="" onClick={getPrivateServers}>
                                             {/* <img src={WhiskordLogo} /> */}
