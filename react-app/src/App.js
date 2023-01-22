@@ -153,75 +153,93 @@ function App() {
                                     <div className='channel-list-container left'>
                                         <div className='server-name-header'>
 
-                                            {/* servername header component here*/}
                                             {/* <h3>{singleServer && singleServer.name}</h3> */}
                                             {
 
                                                 user && user.id === singleServer.owner_id &&
+                                                <div className=''>
+                                                    <div className="owner-tools">
+                                                        <h6>Server CRUD</h6>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-gears"></i>}
+                                                                modalComponent={<EditServerForm />}
+                                                            />
+                                                            <span className="hover-message">Edit my server!</span>
+                                                        </div>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-trash"></i>}
+                                                                modalComponent={<DeleteServerForm />}
+                                                            />
+                                                            <span className="hover-message">Delete my server!</span>
+                                                        </div>
+                                                    </div>
 
-                                                <div className="owner-tools">
-                                                    <div className="owner-button">
-                                                        <OpenModalButton
-                                                            faIcon={<i className="fa-solid fa-gears"></i>}
-                                                            modalComponent={<EditServerForm />}
-                                                        />
-                                                        <span className="hover-message">Edit my server!</span>
+                                                    <div className="owner-tools">
+                                                        <h6>Channel CRUD</h6>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-gears"></i>}
+                                                                modalComponent={<EditServerForm />}
+                                                            />
+                                                            <span className="hover-message">Edit my server!</span>
+                                                        </div>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-trash"></i>}
+                                                                modalComponent={<DeleteServerForm />}
+                                                            />
+                                                            <span className="hover-message">Delete my server!</span>
+                                                        </div>
                                                     </div>
-                                                    {/* <div className="hover-message">Edit my server!</div> */}
-                                                    <div className="owner-button">
-                                                        <OpenModalButton
-                                                            faIcon={<i className="fa-solid fa-trash"></i>}
-                                                            modalComponent={<DeleteServerForm />}
-                                                        />
-                                                    </div>
-                                                    {/* <div className="hover-message">Delete my server!</div> */}
                                                 </div>
                                             }
-                                        </div> 
-
-
-                                            <div className='app-channel-list-container'>
-
-                                                {/* Route to load private server channel list */}
-                                                <ProtectedRoute path="/home/@me" >
-                                                    <PrivateServers />
-                                                </ProtectedRoute>
-                                                {/* Route to load public server channels list */}
-                                                <ProtectedRoute path="/home/:serverId" >
-                                                    {(singleServer && !singleServer.is_private) &&
-                                                        <AllChannels channels={allChannels} />
-                                                    }
-                                                </ProtectedRoute>
-                                            </div>
-
-                                            <div className='app-user-and-logout-button'>
-                                                <div className='user-details'>
-                                                    <i className="fa-solid fa-circle-user fa-xl"></i>
-                                                    &nbsp;
-                                                    &nbsp;
-                                                    {user.username}
-                                                </div>
-                                                <LogoutButton />
-                                            </div>
-
                                         </div>
 
 
-                                        <div className='middle-right-body'>
+                                        <div className='app-channel-list-container'>
 
-
-                                            {/* Load messages, header, and members of Private Server */}
-                                            <ProtectedRoute path="/home/@me/:channelId" >
-                                                <PrivateBody />
+                                            {/* Route to load private server channel list */}
+                                            <ProtectedRoute path="/home/@me" >
+                                                <PrivateServers />
                                             </ProtectedRoute>
-
-                                            {/* Load messages, header, and members of Public Server */}
-                                            <ProtectedRoute path="/home/:serverId/:channelId" >
-                                                <PublicBody />
+                                            {/* Route to load public server channels list */}
+                                            <ProtectedRoute path="/home/:serverId" >
+                                                {(singleServer && !singleServer.is_private) &&
+                                                    <AllChannels channels={allChannels} />
+                                                }
                                             </ProtectedRoute>
                                         </div>
+
+                                        <div className='app-user-and-logout-button'>
+                                            <div className='user-details'>
+                                                <i className="fa-solid fa-circle-user fa-xl"></i>
+                                                &nbsp;
+                                                &nbsp;
+                                                {user.username}
+                                            </div>
+                                            <LogoutButton />
+                                        </div>
+
+                                    </div>
+
+
+                                    <div className='middle-right-body'>
+
+
+                                        {/* Load messages, header, and members of Private Server */}
+                                        <ProtectedRoute path="/home/@me/:channelId" >
+                                            <PrivateBody />
+                                        </ProtectedRoute>
+
+                                        {/* Load messages, header, and members of Public Server */}
+                                        <ProtectedRoute path="/home/:serverId/:channelId" >
+                                            <PublicBody />
+                                        </ProtectedRoute>
                                     </div>
                                 </div>
+                            </div>
                         </ProtectedRoute>
 
                         {/* Error Page */}

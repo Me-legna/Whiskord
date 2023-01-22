@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./UnderDevelopment.css";
+// import "./UnderDevelopment.css";
 
 export default function UnderDevelopment() {
   return (

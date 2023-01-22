@@ -81,8 +81,8 @@
 .owner-tools {
     position: relative;
     width: 200px;
-    height: 200px;
     cursor: pointer;
+
 
 }
 
@@ -101,6 +101,7 @@
     width: 120px;
     font-size: smaller;
     font-weight: 100;
+
 }
 
 .owner-button:hover .hover-message {
