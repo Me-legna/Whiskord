@@ -171,7 +171,8 @@ export const editChannel =
       if (response.ok) {
         const data = await response.json();
 
-        dispatch(updateChannel(data.Channel));
+        dispatch(updateChannel(data));
+        return response
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -230,7 +231,7 @@ export const getChannelMembers =
 
         dispatch(loadChannelMembers(data.Members));
         return data.Members
-        
+
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -359,8 +360,9 @@ export default function channelReducer(state = initialState, action) {
         ...state,
         allChannels: {
           byId: {...state.allChannels.byId},
-          allIds: [...state.allChannels.allIds, newChannel.id],
+          allIds: [...state.allChannels.allIds, updatedChannel.id],
         },
+        channelDetails: updatedChannel
       };
 
       updatedChannelState.allChannels.byId[updatedChannel.id] = updatedChannel;
