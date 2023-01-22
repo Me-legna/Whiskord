@@ -90,7 +90,7 @@ function App() {
     dispatch(authenticate()).then(() => setLoaded(true));
     if (user) {
       dispatch(publicServers());
-    }
+    }},[dispatch])
     return (
         <div className='entire-homepage-div'>
             {!user

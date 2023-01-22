@@ -116,6 +116,14 @@
 
 }
 
+.signup-page{
+    background-image:url('../../images/signup-background.png');
+    background-repeat:no-repeat;
+    background-size: 100%;
+    width: 100vw;
+    height: 100vh;
+}
+
 .signup-main-container {
     background-color: #2c2f33;
     border-radius: 10px;
@@ -151,4 +159,12 @@
     border-radius: 5px;
     border: none;
     margin-bottom: 15px;
+}
+
+.signup-page-button{
+    position: fixed;
+    width: 190px;
+    border: none;
+    background-color: #5865f2;
+    color: white;
 }
