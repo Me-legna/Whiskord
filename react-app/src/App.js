@@ -186,16 +186,16 @@ function App() {
                                                         <div className="owner-button">
                                                             <OpenModalButton
                                                                 faIcon={<i className="fa-solid fa-gears"></i>}
-                                                                modalComponent={<EditServerForm />}
+                                                                modalComponent={<EditChannelForm />}
                                                             />
-                                                            <span className="hover-message">Edit my server!</span>
+                                                            <span className="hover-message">Edit my Channel!</span>
                                                         </div>
                                                         <div className="owner-button">
                                                             <OpenModalButton
                                                                 faIcon={<i className="fa-solid fa-trash"></i>}
-                                                                modalComponent={<DeleteServerForm />}
+                                                                modalComponent={<DeleteChannelForm />}
                                                             />
-                                                            <span className="hover-message">Delete my server!</span>
+                                                            <span className="hover-message">Delete my channel!</span>
                                                         </div>
                                                     </div>
                                                 </div>
