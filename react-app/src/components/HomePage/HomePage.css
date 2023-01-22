@@ -96,11 +96,10 @@ margin-bottom: 0.25rem;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
-
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+/* 
+    margin-top: .25rem;
+    margin-bottom: .25rem; */
 }
-
 
 .private-server-list-button button {
     display: flex;
@@ -108,7 +107,16 @@ margin-bottom: 0.25rem;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
+    white-space: nowrap;
+
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+
     text-align: left;
+    text-overflow: clip;
+    width: 100%;
+    /* overflow: hidden; */
 }
 
 .private-server-name-number {
@@ -119,4 +127,14 @@ margin-bottom: 0.25rem;
     flex-wrap: nowrap;
 
     margin-left: .5rem;
+}
+
+.private-server-name {
+    font-weight: bold;
+}
+
+.private-server-member-num {
+    font-weight: 500;
+    font-size: smaller;
+
 }
