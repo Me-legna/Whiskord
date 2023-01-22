@@ -12,8 +12,8 @@ export default function LoginSignUpPage() {
         <div className='login-page'>
             <div className='main-container'>
                 <div className='welcome'>
-                    <h1 style={{ marginLeft: '160px' }}>Welcome back!</h1>
-                    <p style={{ margin: '0px 125px 0px 125px' }}>We're so excited to see you again!</p>
+                    <h1 style={{ marginLeft: '130px' }}>Welcome back!</h1>
+                    <p style={{marginTop:'0px',marginLeft: '100px'}}>We're so excited to see you again!</p>
                     <div className='sign-up-container' style={{ padding: '30px 100px 0px 0px' }}>
                         <LoginForm />
                     </div>
