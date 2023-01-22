@@ -104,10 +104,10 @@ function PrivateServers() {
                                     <i className="fa-solid fa-user-group fa-xl"></i>
                                 </div>
                                 <div className="private-server-name-number">
-                                    <div>
+                                    <div className="private-server-name">
                                         {server.name}
                                     </div>
-                                    <div>
+                                    <div className="private-server-member-num">
                                         {server.Members.length}
                                         &nbsp;
                                         Members
