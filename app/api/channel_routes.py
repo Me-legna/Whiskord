@@ -194,8 +194,8 @@ def get_channel_messages(channel_id):
     Get all Messages the Current Channel that Current User is a member
     """
     # Get query parameters for pagination
-    page = request.args.get('page', 1, type=int)
-    per_page = request.args.get('per_page', 20, type=int)
+    # page = request.args.get('page', 1, type=int)
+    # per_page = request.args.get('per_page', 20, type=int)
 
     # Get the channel to ensure the user is a member and the channel exists
     channel = Channel.query.get(channel_id)
@@ -207,6 +207,8 @@ def get_channel_messages(channel_id):
         return jsonify({'message': "You are not a member of this channel", 'statusCode': 403}), 403
 
     # Get the messages for the channel
-    messages = Message.query.filter(Message.channel_id == channel_id).paginate(page, per_page, False)
+    # messages = Message.query.filter(Message.channel_id == channel_id).paginate(page, per_page, False)
+    messages = Message.query.filter(Message.channel_id == channel_id).all()
 
-    return jsonify({'Messages': [message.to_dict() for message in messages.items]})
+    # return jsonify({'Messages': [message.to_dict() for message in messages.items]})
+    return jsonify({'Messages': [message.to_dict() for message in messages]})

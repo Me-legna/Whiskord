@@ -4,6 +4,7 @@ import { io } from 'socket.io-client';
 import './Chat.css'
 import { createMessage, editMessage, destroyMessage, getChannelMessages, resetMessageState } from "../../store/message";
 import { getChannelMembers, resetChannelDetails } from "../../store/channel";
+import { useParams } from "react-router-dom";
 
 let socket;
 
@@ -27,11 +28,16 @@ const Chat = () => {
     const channel = useSelector(state => state.channels.channelDetails)
     const channel_id = channel.id
 
+    // const { channelId } = useParams();
+    // const channel_id = channelId
 
-    useEffect(() => {
-        dispatch(getChannelMessages(channel_id))
-        dispatch(getChannelMembers(channel_id))
-    }, [dispatch, channel_id]);
+    // console.log('channel_id in func -----', channel_id)
+
+
+    // useEffect(() => {
+    //     dispatch(getChannelMessages(channel_id))
+    //     dispatch(getChannelMembers(channel_id))
+    // }, [dispatch, channel_id]);
 
     useEffect(() => {
         // open socket connection
@@ -47,7 +53,8 @@ const Chat = () => {
 
         socket.on("chat", (chat) => {
             // setMessages(messages => [...messages, chat])
-            console.log('printing???')
+            // console.log('printing???')
+            // console.log('channelid in socket -----', channel_id)
             dispatch(getChannelMessages(channel_id))
         })
 
@@ -60,10 +67,10 @@ const Chat = () => {
         return (() => {
             socket.emit('leave', channel_id)
             socket.disconnect()
-            dispatch(resetMessageState())
-            dispatch(resetChannelDetails())
+            // dispatch(resetMessageState())
+            // dispatch(resetChannelDetails())
         })
-    }, [])
+    }, [channel_id, dispatch])
 
     // useEffect(() => {
     //     // dispatch(getChannelMessages(channel_id))

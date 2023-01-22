@@ -1,11 +1,12 @@
 import React, { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { destroyServer } from "../../../../store/server";
 
-function DeleteServerForm({ server }) {
+function DeleteServerForm() {
     const dispatch = useDispatch();
     const history = useHistory()
+    const server = useSelector(state => state.servers.singleServer)
     // const { closeModal } = useModal()
     const [checked, setChecked] = useState(false)
     const [errors, setErrors] = useState([]);
@@ -25,7 +26,7 @@ function DeleteServerForm({ server }) {
             // .then(closeModal)
             );
 
-        history.push('/servers')
+        history.push(`/home/@me/`)
     };
 
     return (
