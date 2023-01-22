@@ -27,7 +27,7 @@ export default function DeleteChannelForm() {
             });
     }
     return (
-        <div>
+        <div className='delete-channel'>
             <div className='form-header'>
                 <h1>Are you sure you want to delete this channel?</h1>
             </div>
@@ -64,8 +64,6 @@ export default function DeleteChannelForm() {
                     >Confirm</button>
                 </form>
             </section>
-
-
         </div>
 
     )
