@@ -1,5 +1,9 @@
-*:not(.splash-banner h1){
+/* *:not(.splash-banner h1){
     font-family: "Uni Sans", sans-serif;
+} */
+
+* {
+    font-family: 'Open Sans', sans-serif;
 }
 
 a {
@@ -88,4 +92,3 @@ nav a.active {
 .column {
     flex-direction: column;
 }
-

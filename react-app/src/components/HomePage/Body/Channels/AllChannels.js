@@ -46,7 +46,7 @@ export default function AllChannels({ channels }) {
             TEXT-CHANNELS
           </h6>
           {/* <button> */}
-          <i className="fa-solid fa-plus"></i>
+          <i className="fas fa-solid fa-plus"></i>
           {/* </button> */}
         </div>
       }

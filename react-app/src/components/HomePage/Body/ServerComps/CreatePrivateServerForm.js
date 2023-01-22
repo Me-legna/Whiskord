@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addServer, appendServerMember, serverDetails } from "../../../../store/server";
 import { addChannelMember, createNewChannel } from "../../../../store/channel";
+import { useModal } from "../../../../context/Modal";
+
 
 function CreatePrivateServerForm() {
     const user = useSelector(state => state.session.user)
@@ -15,6 +17,7 @@ function CreatePrivateServerForm() {
     const [users, setUsers] = useState([]);
     const dispatch = useDispatch()
     const history = useHistory()
+    const {closeModal} = useModal()
     // setAllUsers(users)
 
 
@@ -29,31 +32,34 @@ function CreatePrivateServerForm() {
             image_url: 'https://bit.ly/3CZn1ML',
             is_private: true,
             is_dm: isDM,
-            capacity
+            capacity,
+            members: selectedUserIds
         }
 
         const server = await dispatch(addServer(newServer))
 
-        const newChannel = {
-            name,
-            server_id: server.id,
-            type: 'Text',
-            is_private: 'False',
-            server: newServer
-        }
+        // const newChannel = {
+        //     name,
+        //     server_id: server.id,
+        //     type: 'Text',
+        //     is_private: 'False',
+        //     server: newServer
+        // }
 
-        const channel = await dispatch(createNewChannel(server.id, newChannel))
+        // const channel = await dispatch(createNewChannel(server.id, newChannel))
 
-        selectedUserIds.forEach(async userId => {
-            await dispatch(appendServerMember(server.id, userId))
-            await dispatch(addChannelMember(channel.id, userId))
-        })
+        // selectedUserIds.forEach(async userId => {
+        //     await dispatch(appendServerMember(server.id, userId))
+        //     await dispatch(addChannelMember(server.Channels[0].id, userId))
+        // })
 
-        await dispatch(serverDetails(server.id))
-            .then(() => history.push(`/home/@me/${channel.id}`))
+        // await dispatch(serverDetails(server.id))
+
+        closeModal()
+        // history.push(`/home/@me/${channel.id}`)
 
 
-        console.log('newServer', server)
+        // console.log('newServer', server)
         // console.log('newChannel', channel)
 
     }
@@ -61,9 +67,9 @@ function CreatePrivateServerForm() {
     useEffect(() => {
         if (numSelected === 0) setName('Unnamed')
         else {
-            let groupName = ''
+            let groupName = `${user.username}, `
 
-            selectedUsers.forEach(user => groupName += `${user}, `)
+            selectedUsers.forEach(user => groupName += `${user.username} `)
             setName(groupName)
         }
         if (numSelected === 1) setIsDM(true)
@@ -71,7 +77,7 @@ function CreatePrivateServerForm() {
 
         if (isDM) setCapacity(2)
         else setCapacity(10)
-    }, [numSelected, selectedUsers,isDM])
+    }, [numSelected, selectedUsers,isDM, user])
 
     useEffect(() => {
         async function fetchData() {
@@ -85,12 +91,14 @@ function CreatePrivateServerForm() {
 
     function userSelected(e, user) {
         if (e.target.checked) {
-            selectedUsers.push(user.username)
+            selectedUsers.push(user)
             selectedUserIds.push(user.id)
+            // selectedUsers.push(user.username)
             setNumSelected(numSelected + 1)
         } else {
-            setSelectedUsers(selectedUsers.filter(username => username !== user.username))
+            setSelectedUsers(selectedUsers.filter(user => user !== user.user))
             setSelectedUserIds(selectedUserIds.filter(id => id !== user.id))
+            // setSelectedUsers(selectedUsers.filter(username => username !== user.username))
             setNumSelected(numSelected - 1)
         }
     }

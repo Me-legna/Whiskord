@@ -104,42 +104,50 @@ function PublicBody() {
 
     return (
         <>
-            <div className='message-chat previous-messages-container messages-container'>
-                <div className='chat-header'>
-                    {/* channelname header */}
-                    <h3>
-                        <i className="fa-solid fa-hashtag"></i>
-                        &nbsp;
-                        {channelName}
-                    </h3>
-                </div>
-                <div className='messages-and-input'>
-                    {/* Route for chat component */}
-                    <Chat />
-                </div>
-            </div>
-            <div className='member-list-container members'>
-                <div className='member-header'>
-                    {/* members header */}
-                    {(channelDetails?.Members) &&
-                    <div>
-                        <h3>
-                            <i className="fa-solid fa-user-group"></i>
-                            &nbsp;
-                            Members
-                        </h3>
+        {
+            !singleServer.is_private && (
+                <>
+                    <div className='message-chat app-messages-container'>
+                        <div className='chat-header'>
+                            {/* channelname header */}
+                            <h3>
+                                <i className="fa-solid fa-hashtag"></i>
+                                &nbsp;
+                                {channelName}
+                            </h3>
+                        </div>
+                        <div className='messages-and-input'>
+                            {/* Route for chat component */}
+                            <Chat />
+                        </div>
                     </div>
-                    }
-                </div>
-                <div className='member-list'>
-                    {/* member list */}
-                    {(channelDetails?.Members) &&
-                    <div>
-                        <ChannelMembers channel={channelDetails} />
+                    <div className='member-list-container members'>
+                        <div className='member-header'>
+                            {/* members header */}
+                            {(channelDetails?.Members) &&
+                            <div>
+                                <h3>
+                                    <i className="fa-solid fa-user-group"></i>
+                                    &nbsp;
+                                    Members
+                                </h3>
+                            </div>
+                            }
+                        </div>
+                        <div className='member-list'>
+                            {/* member list */}
+                            {(channelDetails?.Members) &&
+                            <div>
+                                <ChannelMembers channel={channelDetails} />
+                            </div>
+                            }
+                        </div>
                     </div>
-                    }
-                </div>
-            </div>
+                </>
+
+            )
+
+        }
         </>
     )
 }
