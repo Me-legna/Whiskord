@@ -83,11 +83,11 @@ function CreatePublicServerForm() {
           {name > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label>
-          Server Name
+          Server name
           <input
             className="modal-input"
             type="text"
-            placeholder="Enter a Server Name"
+            placeholder="Enter a name for your server."
             minLength={2}
             maxLength={100}
             value={name}

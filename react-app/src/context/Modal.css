@@ -21,9 +21,11 @@
 
   #modal-content {
     position: absolute;
-    background-color:white;
+    background-color:#2C2F33;
     border-radius: 10px;
-    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
     overflow-y: auto;
-    background-image: url('../images/technology-discord-wallpaper-thumb.jpeg')
+    height: 60%;
+    width: 20%;
   }
