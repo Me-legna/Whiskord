@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { editChannel } from '../../../../store/channel';
 import "../Channels/channels.css";
 import Select from 'react-select'
-
+import {useModal} from '../../../../context/Modal'
 
 export default function EditChannelForm() {
     const dispatch = useDispatch();
@@ -20,6 +20,7 @@ export default function EditChannelForm() {
 
     // grab the channel from the redux store.
     const myChannel = useSelector(state => state?.channels?.channelDetails)
+    const singleServer = useSelector(state => state.servers.singleServer)
 
     //hooks
     const [name, setName] = useState(myChannel?.name || '');
@@ -27,7 +28,7 @@ export default function EditChannelForm() {
 
     // setting errors here so that all field are filled out.
     const [errors, setErrors] = useState([]);
-
+    const {closeModal} = useModal()
     const updateName = (e) => setName(e.target.value);
     const updateIsPrivate = (e) => setIsPrivate(e.target.value);
 
@@ -43,16 +44,16 @@ export default function EditChannelForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("my channel", myChannel)
         const modifiedChannel = {
             name,
-            is_private,
+            // is_private,
         }
 
         //params grabbed from the referencing the thunk
-        await dispatch(editChannel(serverId, myChannel.id, modifiedChannel))
-            .then(history.push(`/home/channels/${serverId}/${myChannel.id}`))
-            // .then(closeModal)
+        await dispatch(editChannel(singleServer.id, myChannel.id, modifiedChannel))
+        .then(closeModal)
+        .then(history.push(`/home/${singleServer.id}/${myChannel.id}`))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
@@ -79,16 +80,17 @@ export default function EditChannelForm() {
                             placeholder={myChannel.name}
                             required
                             value={name}
-                            onChange={setName}
+                            onChange={(e)=>setName(e.target.value)}
                         />
-                    <label> Channel Privacy Status </label>
+                    {/* <label> Channel Privacy Status </label>
                         <Select
                         options={options}
                         placeholder={myChannel.is_private}
                         value={selectedOption}
                         onChange={(selectedOption)=>
                             setSelectedOption(selectedOption)}
-                        />
+                        /> */}
+                        <button type='submit'>Submit</button>
                 </form>
 
             </section>

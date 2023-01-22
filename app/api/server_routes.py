@@ -325,17 +325,19 @@ def create_channel(server_id):
 
     # if errors:
     #     return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
-
+    server = Server.query.get(server_id)
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("VALIDATED")
         channel = Channel(
             name=form.data['name'],
-            server_id=server_id,
-            type=form.data['type'],
-            is_private=form.data['is_private']
+            server_id=server.id,
+            type="Text",
+            is_private=False
         )
         db.session.add(channel)
+        channel.members.extend(server.members)
         db.session.commit()
         return channel.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400

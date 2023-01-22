@@ -5,11 +5,15 @@ import { useHistory } from 'react-router-dom';
 import { createNewChannel } from '../../../../store/channel';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
+import { useModal } from '../../../../context/Modal';
 
-export default function CreateChannel(){
+export default function CreateChannel({serverId}){
     const dispatch= useDispatch();
     const history = useHistory();
-    const {serverId} = useParams();
+    const {closeModal} = useModal();
+    // const {serverId} = useParams();
+    console.log('serverId', serverId)
+
 
     const [name, setName] = useState('');
     const [type, setType] = useState(null);
@@ -21,23 +25,23 @@ export default function CreateChannel(){
     const [errors, setErrors] = useState([]);
 
     // drop down menu setup
-    const [selectedType,setSelectedType] = useState('');
-    const types = [
-        {value:'text', label:'Text'},
-        {value:'voice', label:'Voice'}
-    ];
+    // const [selectedType,setSelectedType] = useState('');
+    // const types = [
+    //     {value:'text', label:'Text'},
+    //     {value:'voice', label:'Voice'}
+    // ];
 
-    const [selectedOption, setSelectedOption] = useState('');
-    const options = [
-        {value:'true', label:'Private'},
-        {value:'false', label:'Public'}
-    ];
+    // const [selectedOption, setSelectedOption] = useState('');
+    // const options = [
+    //     {value:'true', label:'Private'},
+    //     {value:'false', label:'Public'}
+    // ];
 
     useEffect(() => {
         const errors = [];
 
         if (name.length === 0) errors.push('Please provide a name for your channel.');
-        if (!serverId) errors.push('Please provide a server id for your channel.');
+        // if (!serverId) errors.push('Please provide a server id for your channel.');
 
         setErrors(errors);
     }, [name])
@@ -46,11 +50,12 @@ export default function CreateChannel(){
         e.preventDefault();
         const payload = {
             name,
-            type,
-            isPrivate
+            // type,
+            // isPrivate
         }
         return dispatch(createNewChannel(serverId, payload))
-            .then(() => history.push(`/servers/${serverId}/channels`))
+            .then((channel) => history.push(`/home/${serverId}/${channel.id}}`))
+            .then(closeModal())
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
@@ -77,7 +82,8 @@ export default function CreateChannel(){
                             value={name}
                             onChange={enterName}
                         />
-                    <label>Server</label>
+                        <button type="submit">Submit</button>
+                    {/* <label>Server</label>
                         <input className='channel-form-input'
                             type="text"
                             // placeholder={`Server #: ${serverId}`}
@@ -96,7 +102,7 @@ export default function CreateChannel(){
                         placeholder="Select Channel Privacy Status"
                         value={selectedOption}
                         onchange={(selectedOption)=>setSelectedOption(selectedOption)}
-                        />
+                        /> */}
                 </form>
             </section>
 

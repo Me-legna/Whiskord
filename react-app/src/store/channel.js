@@ -81,11 +81,13 @@ export const getChannels = (serverId) => async (dispatch) => {
     },
   });
 
-  console.log('GETTING HERE --------')
+  // console.log('GETTING HERE --------')
 
   if (response.ok) {
     const data = await response.json();
     dispatch(loadChannels(data.Channels));
+    return data.Channels
+
   } else if (response.status < 500) {
     const data = await response.json();
 
@@ -111,6 +113,7 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(loadChannelDetails(data?.Channel));
+    return data.Channel
 
   } else if (response.status < 500) {
     const data = await response.json();
@@ -126,7 +129,6 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
 export const createNewChannel =
   (serverId, channel) =>
     async (dispatch) => {
-      console.log(serverId)
       const response = await fetch(`/api/servers/${serverId}/channels`, {
         method: "POST",
         headers: {
@@ -134,10 +136,8 @@ export const createNewChannel =
         },
         body: JSON.stringify(channel),
       });
-      console.log('response', response)
       if (response.ok) {
         const data = await response.json();
-        console.log('data', data)
         dispatch(createChannel(data));
         return data
       } else if (response.status < 500) {
@@ -155,7 +155,7 @@ export const editChannel =
   (serverId = 1, channelId, updatedChannel) =>
     async (dispatch) => {
       const response = await fetch(
-        `/api/servers/${serverId}/channels/${channelId}`,
+        `/api/channels/${channelId}`,
         {
           method: "PUT",
           headers: {
@@ -168,7 +168,8 @@ export const editChannel =
       if (response.ok) {
         const data = await response.json();
 
-        dispatch(updateChannel(data.Channel));
+        dispatch(updateChannel(data));
+        return response
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -226,6 +227,8 @@ export const getChannelMembers =
         const data = await response.json();
 
         dispatch(loadChannelMembers(data.Members));
+        return data.Members
+
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -338,13 +341,20 @@ export default function channelReducer(state = initialState, action) {
     case CREATE_CHANNEL:
       const newChannel = action.payload;
       const newChannelState = {
-        ...state,
         allChannels: {
           byId: {...state.allChannels.byId},
           allIds: [...state.allChannels.allIds, newChannel.id],
         },
-      };
+        channelDetails: newChannel,
+        members: {
+          byId: { },
+          allIds: newChannel.Members.map((member) => member.id),
+        },
 
+      };
+      newChannel.Members.forEach((member) => {
+        newChannelState.members.byId[member.id] = member;
+      });
       newChannelState.allChannels.byId[newChannel.id] = newChannel
       return newChannelState
 
@@ -354,8 +364,9 @@ export default function channelReducer(state = initialState, action) {
         ...state,
         allChannels: {
           byId: {...state.allChannels.byId},
-          allIds: [...state.allChannels.allIds, newChannel.id],
+          allIds: [...state.allChannels.allIds, updatedChannel.id],
         },
+        channelDetails: updatedChannel
       };
 
       updatedChannelState.allChannels.byId[updatedChannel.id] = updatedChannel;

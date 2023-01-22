@@ -90,6 +90,7 @@ export const privateServers = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(loadPrivateServers(data.Servers));
+        return data.Servers
 
     } else if (response.status < 500) {
         const data = await response.json();
@@ -111,6 +112,7 @@ export const serverDetails = (serverId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(getServerDetails(data));
+        return data.Server
 
     } else if (response.status < 500) {
         const data = await response.json();
@@ -181,7 +183,9 @@ export const destroyServer = (serverId, is_private) => async (dispatch) => {
     });
 
     if (response.ok) {
+        const data = await response.json();
         dispatch(deleteServer(serverId, is_private));
+        return data
     }
 }
 

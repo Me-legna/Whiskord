@@ -10,17 +10,17 @@ def seed_messages():
     thor_message2 = Message(
         content = "Why was the JavaScript developer always calm? He knew how to handle promises.'",
         user_id = 1,
-        channel_id = 1
+        channel_id = 2
         )
     thor_message3 = Message(
         content = "I told my wife I was a programmer, she said 'Prove it.' So I wrote 'Hello World' on the kitchen whiteboard.",
         user_id = 1,
-        channel_id = 1
+        channel_id = 3
         )
     flash_message1 = Message(
         content = "Python is an easier language to learn. No brackets, no main. Life changes when you get errors for writing an extra space ????????",
         user_id = 2,
-        channel_id = 2
+        channel_id = 1
         )
     flash_message2 = Message(
         content = "Why was the computer cold? It left its Windows open",
@@ -30,17 +30,17 @@ def seed_messages():
     flash_message3 = Message(
         content = "Why did the programmer go to the doctor? He had a case of the loops.",
         user_id = 2,
-        channel_id = 2
+        channel_id = 3
         )
     avenger_message1 = Message(
         content = "What do we want? An end to acronyms. When do we want it? ASAP!",
         user_id = 3,
-        channel_id = 3
+        channel_id = 1
         )
     avenger_message2 = Message(
         content = "Why did the developer go bankrupt? He used up all his cache.",
         user_id = 3,
-        channel_id = 3
+        channel_id = 2
         )
     avenger_message3 = Message(
         content = "The developer's favorite hobby? Debugging.",
@@ -55,17 +55,17 @@ def seed_messages():
     superman_message2 = Message(
         content = "What is the best thing about living in Switzerland? I do not know, but the flag is a big plus.",
         user_id = 4,
-        channel_id = 4
+        channel_id = 5
         )
     superman_message3 = Message(
         content = "What is the difference between a fish and a piano? You cannot tuna fish.",
         user_id = 4,
-        channel_id = 4
+        channel_id = 6
         )
     zenith_message1 = Message(
         content = "Why did the belt go to jail? For holding up the pants!",
         user_id = 5,
-        channel_id = 5
+        channel_id = 4
         )
     zenith_message2 = Message(
         content = "A SQL query walks into a bar and sees two tables. He approaches them and asks 'Can I join you?",
@@ -75,17 +75,17 @@ def seed_messages():
     zenith_message3 = Message(
         content = "Coding is just a bunch of if statements and coffee breaks!",
         user_id = 5,
-        channel_id = 5
+        channel_id = 6
         )
     hulk_message1 = Message(
         content = "How do you explain the movie Inception? when you run a VM inside another VM, inside another VM, inside another VM…, everything runs real slow.",
         user_id = 6,
-        channel_id = 6
+        channel_id = 4
         )
     hulk_message2 = Message(
         content = "A developer's favorite phrase is 'It works on my machine",
         user_id = 6,
-        channel_id = 6
+        channel_id = 5
         )
     hulk_message3 = Message(
         content = "Coding is like a game of hide and seek, except you're the one hiding and the bugs are seeking.",
@@ -100,17 +100,17 @@ def seed_messages():
     blackpanther_message2 = Message(
         content = "Knock, knock Who is it? very long pause...Java.",
         user_id = 7,
-        channel_id = 7
+        channel_id = 8
         )
     blackpanther_message3 = Message(
         content = "Why did the two Java methods get a divorce? they had constant arguments.",
         user_id = 7,
-        channel_id = 7
+        channel_id = 9
         )
     wanda_message1 = Message(
         content = "A good plan today is better than a perfect plan tomorrow.",
         user_id = 8,
-        channel_id = 8
+        channel_id = 7
         )
     wanda_message2 = Message(
         content = "To understand recursion, you must first understand recursion.",
@@ -120,17 +120,17 @@ def seed_messages():
     wanda_message3 = Message(
         content = "A coder's to-do list is like a never-ending story.",
         user_id = 8,
-        channel_id = 8
+        channel_id = 9
         )
     spiderman_message1 = Message(
         content = "What is the object-oriented way to become wealthy? Inheritance.",
         user_id = 9,
-        channel_id = 9
+        channel_id = 7
         )
     spiderman_message2 = Message(
         content = "Why did the developer go to the gym? To get some byte-lifting in.",
         user_id = 9,
-        channel_id = 9
+        channel_id = 8
         )
     spiderman_message3 = Message(
         content = "Coding is like a science experiment, except the only thing blowing up is my computer.",
@@ -140,12 +140,12 @@ def seed_messages():
     batman_message1 = Message(
         content = "Why did the chicken go to the seance? To talk to the other side!",
         user_id = 10,
-        channel_id = 10
+        channel_id = 8
         )
     batman_message2 = Message(
         content = "How do you tell HTML from HTML5? Try it out in Internet Explorer. Did it work? No? It is HTML5.",
         user_id = 10,
-        channel_id = 10
+        channel_id = 9
         )
     batman_message3 = Message(
         content = "Coding is like a puzzle, but with more coffee and less sleep.",
