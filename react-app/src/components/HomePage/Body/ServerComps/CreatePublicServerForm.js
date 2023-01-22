@@ -50,7 +50,7 @@ function CreatePublicServerForm() {
         // await dispatch(addChannelMember(server.Channels[0].id, ownerId))
 
         // await dispatch(serverDetails(server.id))
-        server && history.push(`/home/${server.id}/${server.Channels[0]?.id}`)
+        // server && history.push(`/home/${server.id}/${server.Channels[0]?.id}`)
     }
 
 

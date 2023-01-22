@@ -28,7 +28,7 @@ import CreatePublicServerForm from './components/HomePage/Body/ServerComps/Creat
 import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
 import LoginSignUpPage
- from './components/auth';
+    from './components/auth';
 import UnderDevelopment from './components/UnderDevelopment';
 import './App.css'
 // import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
@@ -50,7 +50,7 @@ function App() {
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
-        if(user){
+        if (user) {
             dispatch(publicServers());
         }
     }, [dispatch]);
@@ -100,8 +100,8 @@ function App() {
                                 <NotFoundPage />
                             </Route>
                             <Route path='/next'>
-                            < UnderDevelopment />
-                        </Route>
+                                < UnderDevelopment />
+                            </Route>
                         </Switch>
                     </>
                 )
@@ -122,10 +122,12 @@ function App() {
                                             {/* <img src={WhiskordLogo} /> */}
                                             {/* Pr */}
                                         </button>
+                                    </div>
 
 
                                     {/* Load all public servers */}
                                     <ServerList />
+
 
                                     <div className="server-list-button">
                                         <OpenModalButton
@@ -143,7 +145,7 @@ function App() {
                                             <h3>{singleServer && singleServer.name}</h3>
                                             {
                                                 user && user.id === singleServer.owner_id &&
-                                                
+
                                                 <i className="fa-solid fa-gear"></i>
 
                                             }
@@ -167,8 +169,8 @@ function App() {
                                         <div className='app-user-and-logout-button'>
                                             <div className='user-details'>
                                                 <i className="fa-solid fa-circle-user fa-xl"></i>
-                                                &nbsp; 
-                                                &nbsp; 
+                                                &nbsp;
+                                                &nbsp;
                                                 {user.username}
                                             </div>
                                             <LogoutButton />
