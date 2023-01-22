@@ -1,10 +1,10 @@
 //render list of servers where is_private == true
 import React, { useEffect } from "react";
 import {
-  privateServers,
-  publicServers,
-  resetServerDetails,
-  serverDetails,
+    privateServers,
+    publicServers,
+    resetServerDetails,
+    serverDetails,
 } from "../../../../store/server";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
@@ -20,20 +20,20 @@ import DeleteServerForm from "./DeleteServerForm";
 import { useModal } from "../../../../context/Modal";
 
 function PrivateServers() {
-  const serversObj = useSelector(
-    (state) => state.servers.allPrivateServers.byId
-  );
-  const servers = Object.values(serversObj);
-  const singleServer = useSelector((state) => state.servers.singleServer);
-  const channel = useSelector((state) => state.channels.channelDetails);
-  const { setModalContent, setOnModalClose } = useModal();
+    const serversObj = useSelector(
+        (state) => state.servers.allPrivateServers.byId
+    );
+    const servers = Object.values(serversObj);
+    const singleServer = useSelector((state) => state.servers.singleServer);
+    const channel = useSelector((state) => state.channels.channelDetails);
+    const { setModalContent, setOnModalClose } = useModal();
 
-  const channelId = channel.id;
+    const channelId = channel.id;
 
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
- 
+
     // useEffect(() => {
     //     (async () => {
     //         // await dispatch(privateServers())
@@ -49,7 +49,7 @@ function PrivateServers() {
     //     // } else {
     //     // }
     // }, [dispatch]);
-    
+
     useEffect(() => {
         // console.log('activating useffect')
         dispatch(getChannelMessages(channelId))
@@ -62,8 +62,8 @@ function PrivateServers() {
         // dispatch(resetServerDetails())
         await dispatch(serverDetails(serverId))
         await dispatch(getChannels(serverId))
-        .then((channels) => dispatch(getChannelDetails(channels[0].id)))
-        .then((channel) => history.push(`/home/@me/${channel.id}`))
+            .then((channels) => dispatch(getChannelDetails(channels[0].id)))
+            .then((channel) => history.push(`/home/@me/${channel.id}`))
         // history.push('/home/me/')
     }
     // if (channelId) history.push(`/home/@me/${channelId}`)
@@ -119,56 +119,32 @@ function PrivateServers() {
                     </div>
                 )
             })}
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
         </div>
-        {Object.keys(singleServer).length ? (
-          <div>
-            <button onClick={() => handleEditServerModal()}>
-              <i className="fa-solid fa-pen-to-square" />
-            </button>
-            <button onClick={() => handleDeleteServerModal(singleServer)}>
-              <i className="fa-solid fa-trash-can" />
-            </button>
-            {/* <OpenModalButton
-              faIcon={<i className="fa-solid fa-pen-to-square" />}
-              modalComponent={
-                <EditServerForm onClose={handleEditServerModal} />
-              }
-            />
-            <OpenModalButton
-              faIcon={<i className="fa-solid fa-trash-can" />}
-              modalComponent={<DeleteServerForm />}
-            /> */}
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
-      {servers.map((server, idx) => {
-        return (
-          <div className="server-list-button" key={server.id}>
-            <NavLink to={`/home/@me/${server.id}`}>
-              <button onClick={() => privateServerDetails(server.id)}>
-                {server.name[0]}
-              </button>
-            </NavLink>
-          </div>
-        );
-      })}
-    </div>
-  );
+        //         {
+        //         Object.keys(singleServer).length ? (
+        //             <div>
+        //                 <button onClick={() => handleEditServerModal()}>
+        //                     <i className="fa-solid fa-pen-to-square" />
+        //                 </button>
+        //                 <button onClick={() => handleDeleteServerModal(singleServer)}>
+        //                     <i className="fa-solid fa-trash-can" />
+        //                 </button>
+        //                 {/* <OpenModalButton
+        //               faIcon={<i className="fa-solid fa-pen-to-square" />}
+        //               modalComponent={
+        //                 <EditServerForm onClose={handleEditServerModal} />
+        //               }
+        //             />
+        //             <OpenModalButton
+        //               faIcon={<i className="fa-solid fa-trash-can" />}
+        //               modalComponent={<DeleteServerForm />}
+        //             /> */}
+        //             </div>
+        //         ) : (
+        //         <></>
+        //     )
+        //     }
+    );
 }
 
 export default PrivateServers;
