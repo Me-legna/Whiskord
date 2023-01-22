@@ -5,6 +5,7 @@
         "marnie",
         "Spiderman",
         "sqlalchemy",
+        "wtforms",
         "Zoomer"
     ]
 }

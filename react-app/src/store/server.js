@@ -183,7 +183,9 @@ export const destroyServer = (serverId, is_private) => async (dispatch) => {
     });
 
     if (response.ok) {
+        const data = await response.json();
         dispatch(deleteServer(serverId, is_private));
+        return data
     }
 }
 

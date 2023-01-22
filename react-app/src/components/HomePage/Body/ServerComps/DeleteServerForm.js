@@ -2,12 +2,13 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { destroyServer } from "../../../../store/server";
+import { useModal } from "../../../../context/Modal";
 
 function DeleteServerForm() {
     const dispatch = useDispatch();
     const history = useHistory()
     const server = useSelector(state => state.servers.singleServer)
-    // const { closeModal } = useModal()
+    const { closeModal } = useModal()
     const [checked, setChecked] = useState(false)
     const [errors, setErrors] = useState([]);
 
@@ -16,17 +17,18 @@ function DeleteServerForm() {
         e.preventDefault();
         setErrors([]);
 
-        await dispatch(destroyServer(server.id, server.is_private))
+        await dispatch(destroyServer(server.id, server.is_private)).then(()=>{
+            history.push(`/home/@me/`);
+            closeModal()
+        })
         .catch(
             async (res) => {
                 const data = await res.json();
 
                 if (data && data.errors) setErrors(data.errors);
             }
-            // .then(closeModal)
             );
 
-        history.push(`/home/@me/`)
     };
 
     return (
