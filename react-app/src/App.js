@@ -41,6 +41,8 @@ import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
 import EditServerForm from './components/HomePage/Body/ServerComps/EditServerForm';
 import DeleteServerForm from './components/HomePage/Body/Channels/DeleteChannelForm';
 import SignUpPage from './components/auth/SignUpIndex';
+import EditChannelForm from "./components/HomePage/Body/Channels/EditChannelForm";
+import DeleteChannelForm from "./components/HomePage/Body/Channels/DeleteChannelForm";
 
 function App() {
     const dispatch = useDispatch();
@@ -90,7 +92,7 @@ function App() {
     dispatch(authenticate()).then(() => setLoaded(true));
     if (user) {
       dispatch(publicServers());
-    }
+    }}, [dispatch]);
     return (
         <div className='entire-homepage-div'>
             {!user
@@ -186,16 +188,16 @@ function App() {
                                                         <div className="owner-button">
                                                             <OpenModalButton
                                                                 faIcon={<i className="fa-solid fa-gears"></i>}
-                                                                modalComponent={<EditServerForm />}
+                                                                modalComponent={<EditChannelForm />}
                                                             />
-                                                            <span className="hover-message">Edit my server!</span>
+                                                            <span className="hover-message">Edit my channel!</span>
                                                         </div>
                                                         <div className="owner-button">
                                                             <OpenModalButton
                                                                 faIcon={<i className="fa-solid fa-trash"></i>}
-                                                                modalComponent={<DeleteServerForm />}
+                                                                modalComponent={<DeleteChannelForm />}
                                                             />
-                                                            <span className="hover-message">Delete my server!</span>
+                                                            <span className="hover-message">Delete my channel!</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -261,7 +263,7 @@ function App() {
             }
 
         </div >
-    );
+    )
 
 }
 
