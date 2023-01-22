@@ -27,8 +27,10 @@ import OpenModalButton from './components/OpenModalButton';
 import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
 import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
+import UnderDevelopment from './components/UnderDevelopment';
 
 import './App.css'
+
 
 function App() {
     const dispatch = useDispatch();
@@ -39,7 +41,7 @@ function App() {
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
     const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
-    
+
     // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
@@ -88,9 +90,12 @@ function App() {
                             <ProtectedRoute path="/users/:userId" exact={true}>
                                 <User />
                             </ProtectedRoute>
-                            <Route path='/'>
+                            <Route path='/404'>
                                 <NotFoundPage />
                             </Route>
+                            <Route path='/next'>
+                            < UnderDevelopment />
+                        </Route>
                         </Switch>
                     </>
                 )
@@ -104,7 +109,7 @@ function App() {
 
                             <div className='app-container main-body'>
                                 <div className='server-list-container sidebar'>
-                                
+
                                     <div className="server-list-button">
                                         <button className="" onClick={getPrivateServers}>Pr</button>
                                     </div>
@@ -129,7 +134,7 @@ function App() {
                                             <h3>{singleServer.name}</h3>
                                             {
                                                 user && user.id === singleServer.owner_id &&
-  
+
                                                 <i className="fa-solid fa-gear"></i>
 
                                             }
@@ -175,10 +180,14 @@ function App() {
                         </ProtectedRoute>
 
                         {/* Error Page */}
-                        <Route path='/'>
+                        <Route path='/404'>
                             <NotFoundPage />
                         </Route>
                         <LogoutButton />
+                        {/* UnderDevelopment Page */}
+                        <Route path='/next'>
+                            < UnderDevelopment />
+                        </Route>
                     </Switch>
                 )
             }
