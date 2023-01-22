@@ -17,20 +17,27 @@ function PrivateServers() {
     const serversObj = useSelector((state) => state.servers.allPrivateServers.byId);
     const servers = Object.values(serversObj);
     const singleServer = useSelector(state => state.servers.singleServer)
-    const channelId = useSelector(state => state.channels.allChannels.allIds[0])
+    const channel = useSelector(state => state.channels.channelDetails)
+    const channelId = channel.id
 
     const dispatch = useDispatch();
     const history = useHistory()
 
     useEffect(() => {
-        if (servers) {
-            if (!channelId) {
-                dispatch(getChannels(servers[0]?.id))
-            }
-        } else {
-            dispatch(privateServers());
-        }
-    }, [dispatch, servers, channelId]);
+        (async () => {
+            await dispatch(privateServers())
+            await dispatch(serverDetails(servers[0]?.id))
+            await dispatch(getChannels(singleServer.id))
+
+        })();
+        // if (servers) {
+        //     if(singleServer){
+        //         if (!channelId) {
+        //         }
+        //     }
+        // } else {
+        // }
+    }, [dispatch]);
 
     const privateServerDetails = (serverId) => {
         dispatch(resetMessageState())
