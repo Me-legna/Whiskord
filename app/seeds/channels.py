@@ -244,6 +244,68 @@ def seed_channels():
         type='Text',
         is_private=False
     )
+    thor_pr_channel = Channel(
+        name='private',
+        server_id=11,
+        type='Text',
+        is_private=True
+    )
+    flash_pr_channel = Channel(
+        name='private',
+        server_id=12,
+        type='Text',
+        is_private=True
+    )
+    avenger_pr_channel = Channel(
+        name='private',
+        server_id=13,
+        type='Text',
+        is_private=True
+    )
+    superman_pr_channel = Channel(
+        name='private',
+        server_id=14,
+        type='Text',
+        is_private=True
+    )
+    zenith_pr_channel = Channel(
+        name='private',
+        server_id=15,
+        type='Text',
+        is_private=True
+    )
+    hulk_pr_channel = Channel(
+        name='private',
+        server_id=16,
+        type='Text',
+        is_private=True
+    )
+    blackpanther_pr_channel = Channel(
+        name='private',
+        server_id=17,
+        type='Text',
+        is_private=True
+    )
+    wanda_pr_channel = Channel(
+        name='private',
+        server_id=18,
+        type='Text',
+        is_private=True
+    )
+    spiderman_pr_channel = Channel(
+        name='private',
+        server_id=19,
+        type='Text',
+        is_private=True
+    )
+    batman_pr_channel = Channel(
+        name='private',
+        server_id=20,
+        type='Text',
+        is_private=True
+    )
+
+
 
     db.session.add(thor_channel)
     db.session.add(thor2_channel)
@@ -285,6 +347,17 @@ def seed_channels():
     db.session.add(batman2_channel)
     db.session.add(batman3_channel)
     db.session.add(batman4_channel)
+    
+    db.session.add(thor_pr_channel)
+    db.session.add(flash_pr_channel)
+    db.session.add(avenger_pr_channel)
+    db.session.add(superman_pr_channel)
+    db.session.add(zenith_pr_channel)
+    db.session.add(hulk_pr_channel)
+    db.session.add(blackpanther_pr_channel)
+    db.session.add(wanda_pr_channel)
+    db.session.add(spiderman_pr_channel)
+    db.session.add(batman_pr_channel)
 
 
 
@@ -301,90 +374,69 @@ def seed_channels():
     user_9 = User.query.get(9)
     user_10 = User.query.get(10)
 
-    # thor_channel.members.append(user_1,user_2,user_3)
-    # flash_channel.members.append(user_4,user_5,user_6)
-    # avenger_channel.members.append(user_7,user_8,user_9)
-    # superman_channel.members.append(user_10,user_1,user_2)
-    # zenith_channel.members.append(user_3,user_4,user_5)
-    # hulk_channel.members.append(user_6,user_7,user_8)
-    # blackpanther_channel.members.append(user_9,user_10,user_1)
-    # wanda_channel.members.append(user_2,user_3,user_4)
-    # spiderman_channel.members.append(user_5,user_6,user_7)
-    # batman_channel.members.append(user_8,user_9,user_10)
-    # thor2_channel.members.append(user_1,user_2,user_3)
-    # flash2_channel.members.append(user_4,user_5,user_6)
-    # avenger2_channel.members.append(user_7,user_8,user_9)
-    # superman2_channel.members.append(user_10,user_1,user_2)
-    # zenith2_channel.members.append(user_3,user_4,user_5)
-    # hulk2_channel.members.append(user_6,user_7,user_8)
-    # blackpanther2_channel.members.append(user_9,user_10,user_1)
-    # wanda2_channel.members.append(user_2,user_3,user_4)
-    # spiderman2_channel.members.append(user_5,user_6,user_7)
-    # batman2_channel.members.append(user_8,user_9,user_10)
-    # thor3_channel.members.append(user_1,user_2,user_3)
-    # flash3_channel.members.append(user_4,user_5,user_6)
-    # avenger3_channel.members.append(user_7,user_8,user_9)
-    # superman3_channel.members.append(user_10,user_1,user_2)
-    # zenith3_channel.members.append(user_3,user_4,user_5)
-    # hulk3_channel.members.append(user_6,user_7,user_8)
-    # blackpanther3_channel.members.append(user_9,user_10,user_1)
-    # wanda3_channel.members.append(user_2,user_3,user_4)
-    # spiderman3_channel.members.append(user_5,user_6,user_7)
-    # batman3_channel.members.append(user_8,user_9,user_10)
-    # thor4_channel.members.append(user_1,user_2,user_3)
-    # flash4_channel.members.append(user_4,user_5,user_6)
-    # avenger4_channel.members.append(user_7,user_8,user_9)
-    # superman4_channel.members.append(user_10,user_1,user_2)
-    # zenith4_channel.members.append(user_3,user_4,user_5)
-    # hulk4_channel.members.append(user_6,user_7,user_8)
-    # blackpanther4_channel.members.append(user_9,user_10,user_1)
-    # wanda4_channel.members.append(user_2,user_3,user_4)
-    # spiderman4_channel.members.append(user_5,user_6,user_7)
-    # batman4_channel.members.append(user_8,user_9,user_10)
 
     thor_channel.members.extend([user_1,user_2,user_3])
-    flash_channel.members.extend([user_4,user_5,user_6])
-    avenger_channel.members.extend([user_1, user_7,user_8,user_9])
-    superman_channel.members.extend([user_10,user_1,user_2])
-    zenith_channel.members.extend([user_3,user_4,user_5])
-    hulk_channel.members.extend([user_1, user_6,user_7,user_8])
-    blackpanther_channel.members.extend([user_9,user_10,user_1])
-    wanda_channel.members.extend([user_1, user_2,user_3,user_4])
-    spiderman_channel.members.extend([user_5,user_6,user_7])
-    batman_channel.members.extend([user_1, user_8,user_9,user_10])
     thor2_channel.members.extend([user_1,user_2,user_3])
-    flash2_channel.members.extend([user_4,user_5,user_6])
-    avenger2_channel.members.extend([user_1, user_7,user_8,user_9])
-    superman2_channel.members.extend([user_10,user_1,user_2])
-    zenith2_channel.members.extend([user_3,user_4,user_5])
-    hulk2_channel.members.extend([user_1, user_6,user_7,user_8])
-    blackpanther2_channel.members.extend([user_9,user_10,user_1])
-    wanda2_channel.members.extend([user_1, user_2,user_3,user_4])
-    spiderman2_channel.members.extend([user_5,user_6,user_7])
-    batman2_channel.members.extend([user_1, user_8,user_9,user_10])
     thor3_channel.members.extend([user_1,user_2,user_3])
-    flash3_channel.members.extend([user_4,user_5,user_6])
-    avenger3_channel.members.extend([user_1, user_7,user_8,user_9])
-    superman3_channel.members.extend([user_10,user_1,user_2])
-    zenith3_channel.members.extend([user_3,user_4,user_5])
-    hulk3_channel.members.extend([user_1, user_6,user_7,user_8])
-    blackpanther3_channel.members.extend([user_9,user_10,user_1])
-    wanda3_channel.members.extend([user_1, user_2,user_3,user_4])
-    spiderman3_channel.members.extend([user_5,user_6,user_7])
-    batman3_channel.members.extend([user_1, user_8,user_9,user_10])
     thor4_channel.members.extend([user_1,user_2,user_3])
-    flash4_channel.members.extend([user_4,user_5,user_6])
-    avenger4_channel.members.extend([user_1, user_7,user_8,user_9])
-    superman4_channel.members.extend([user_10,user_1,user_2])
-    zenith4_channel.members.extend([user_3,user_4,user_5])
-    hulk4_channel.members.extend([user_1, user_6,user_7,user_8])
-    blackpanther4_channel.members.extend([user_9,user_10,user_1])
-    wanda4_channel.members.extend([user_1, user_2,user_3,user_4])
-    spiderman4_channel.members.extend([user_5,user_6,user_7])
-    batman4_channel.members.extend([user_1, user_8,user_9,user_10])
+
+    flash_channel.members.extend([user_1,user_2,user_3])
+    flash2_channel.members.extend([user_1,user_2,user_3])
+    flash3_channel.members.extend([user_1,user_2,user_3])
+    flash4_channel.members.extend([user_1,user_2,user_3])
+
+    avenger_channel.members.extend([user_1,user_2,user_3])
+    avenger2_channel.members.extend([user_1,user_2,user_3])
+    avenger3_channel.members.extend([user_1,user_2,user_3])
+    avenger4_channel.members.extend([user_1,user_2,user_3])
 
 
+    superman_channel.members.extend([user_4,user_5,user_6])
+    superman2_channel.members.extend([user_4,user_5,user_6])
+    superman3_channel.members.extend([user_4,user_5,user_6])
+    superman4_channel.members.extend([user_4,user_5,user_6])
 
+    zenith_channel.members.extend([user_4,user_5,user_6])
+    zenith2_channel.members.extend([user_4,user_5,user_6])
+    zenith3_channel.members.extend([user_4,user_5,user_6])
+    zenith4_channel.members.extend([user_4,user_5,user_6])
+
+    hulk_channel.members.extend([user_4,user_5,user_6])
+    hulk2_channel.members.extend([user_4,user_5,user_6])
+    hulk3_channel.members.extend([user_4,user_5,user_6])
+    hulk4_channel.members.extend([user_4,user_5,user_6])
+
+
+    blackpanther_channel.members.extend([user_7,user_8,user_9,user_10])
+    blackpanther2_channel.members.extend([user_7,user_8,user_9,user_10])
+    blackpanther3_channel.members.extend([user_7,user_8,user_9,user_10])
+    blackpanther4_channel.members.extend([user_7,user_8,user_9,user_10])
+
+    wanda_channel.members.extend([user_7,user_8,user_9,user_10])
+    wanda2_channel.members.extend([user_7,user_8,user_9,user_10])
+    wanda3_channel.members.extend([user_7,user_8,user_9,user_10])
+    wanda4_channel.members.extend([user_7,user_8,user_9,user_10])
+
+    spiderman_channel.members.extend([user_7,user_8,user_9,user_10])
+    spiderman2_channel.members.extend([user_7,user_8,user_9,user_10])
+    spiderman3_channel.members.extend([user_7,user_8,user_9,user_10])
+    spiderman4_channel.members.extend([user_7,user_8,user_9,user_10])
+
+    batman_channel.members.extend([user_7,user_8,user_9,user_10])
+    batman2_channel.members.extend([user_7,user_8,user_9,user_10])
+    batman3_channel.members.extend([user_7,user_8,user_9,user_10])
+    batman4_channel.members.extend([user_7,user_8,user_9,user_10])
+
+    thor_pr_channel.members.extend([user_1, user_2,user_3])
+    flash_pr_channel.members.extend([user_1, user_2,user_3])
+    avenger_pr_channel.members.extend([user_1, user_2,user_3])
+    superman_pr_channel.members.extend([user_4,user_5,user_6])
+    zenith_pr_channel.members.extend([user_4,user_5,user_6])
+    hulk_pr_channel.members.extend([user_4,user_5,user_6])
+    blackpanther_pr_channel.members.extend([user_7,user_8,user_9,user_10])
+    wanda_pr_channel.members.extend([user_7,user_8,user_9,user_10])
+    spiderman_pr_channel.members.extend([user_7,user_8,user_9,user_10])
+    batman_pr_channel.members.extend([user_7,user_8,user_9,user_10])
 
     # demo_channel.members.append(demo)
     # marnie_channel.members.append(marnie)
