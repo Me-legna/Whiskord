@@ -83,7 +83,10 @@
 .login-form input{
     width: 400px;
     height: 35px;
-    margin-bottom: 30px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 15px;
+
 }
 
 .login-form button{
@@ -99,5 +102,16 @@
 }
 
 .signup-button{
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
     background-color: #5865f2;
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    border-radius: 5px;
+
 }
