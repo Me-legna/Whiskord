@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { publicServers, serverDetails } from "../../../../store/server";
+import { getChannelDetails, getChannelMembers, getChannels } from "../../../../store/channel";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { resetMessageState } from "../../../../store/message";
@@ -19,12 +20,18 @@ export default function ServerList() {
     dispatch(publicServers());
   }, [dispatch]);
 
-  const publicServerDetails = (serverId) => {
-    dispatch(resetMessageState())
-    dispatch(resetChannelState())
-    dispatch(resetServerDetails())
-    dispatch(serverDetails(serverId))
-      .then(() => history.push(`/home/${serverId}`))
+  const publicServerDetails = async (serverId) => {
+    // dispatch(resetMessageState())
+    // dispatch(resetChannelState())
+    // dispatch(resetServerDetails())
+    console.log('SERVER ID', serverId)
+    await dispatch(serverDetails(serverId))
+    await dispatch(getChannels(serverId))
+    .then((channels) => dispatch(getChannelDetails(channels[0].id)))
+    .then((channel) => history.push(`/home/${serverId}/${channel.id}`))
+
+    // dispatch(getChannelMembers(channelId))
+
   }
 
   return (

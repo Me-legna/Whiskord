@@ -81,11 +81,13 @@ export const getChannels = (serverId) => async (dispatch) => {
     },
   });
 
-  console.log('GETTING HERE --------')
+  // console.log('GETTING HERE --------')
 
   if (response.ok) {
     const data = await response.json();
     dispatch(loadChannels(data.Channels));
+    return data.Channels
+    
   } else if (response.status < 500) {
     const data = await response.json();
 
@@ -111,6 +113,7 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(loadChannelDetails(data?.Channel));
+    return data.Channel
 
   } else if (response.status < 500) {
     const data = await response.json();

@@ -28,7 +28,7 @@
     /* height: 100%; */
     padding: 0.5rem;
 
-        overflow-y: auto;
+    overflow-y: auto;
 
 }
 
@@ -90,10 +90,13 @@ margin-bottom: 0.25rem;
     overflow-y: auto;
 }
 
-.member-individual-container {
+.members-individual-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: nowrap;
+
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }

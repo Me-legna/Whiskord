@@ -25,7 +25,7 @@ function PrivateServers() {
 
     useEffect(() => {
         (async () => {
-            await dispatch(privateServers())
+            // await dispatch(privateServers())
             await dispatch(serverDetails(servers[0]?.id))
             await dispatch(getChannels(singleServer.id))
 

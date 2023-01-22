@@ -33,6 +33,8 @@ export const resetMessageState = () => ({
 
 //thunks
 export const getChannelMessages = (channelId) => async (dispatch) => {
+    console.log('GETTING TO GET CHANNEL MESSAGES THUNK')
+    console.log('getChannelMessages thunk', {channelId})
     const response = await fetch(`/api/channels/${channelId}/messages`)
 
     if (response.ok) {
@@ -51,8 +53,8 @@ export const getChannelMessages = (channelId) => async (dispatch) => {
 }
 
 export const createMessage = (channelId, messageContent, user_id) => async (dispatch) => {
-    // console.log('GETTING TO CREATE MESSAGE THUNK')
-    // console.log('createMessage thunk', {channelId}, {messageContent})
+    console.log('GETTING TO CREATE MESSAGE THUNK')
+    console.log('createMessage thunk', {channelId}, {messageContent})
 
     const response = await fetch('/api/messages/', {
         method: 'POST',

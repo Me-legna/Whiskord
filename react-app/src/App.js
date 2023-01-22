@@ -42,6 +42,8 @@ function App() {
     const [loaded, setLoaded] = useState(false);
     const user = useSelector(state => state.session.user)
 
+    const servers = useSelector((state) => state?.servers?.allPublicServers);
+
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
     const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
@@ -49,11 +51,20 @@ function App() {
     // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
+        console.log(51.5)
         dispatch(authenticate()).then(() => setLoaded(true));
-        if (user) {
-            dispatch(publicServers());
-        }
+        // if (user && !servers) {
+        //     console.log('WE HAVE A USER')
+        //     dispatch(publicServers());
+        // } else {
+
+        // }
     }, [dispatch]);
+
+    // useEffect(() => {
+    //     user && dispatch(publicServers());
+    // }, [dispatch])
+
     // useEffect(() => {
     //     (async () => {
     //         await dispatch(authenticate());
@@ -116,7 +127,7 @@ function App() {
                             <div className='app-container main-body'>
 
                                 <div className='server-list-container sidebar'>
-
+                                    
                                     <div className="server-list-button" id='logo-button'>
                                         <button className="" onClick={getPrivateServers}>
                                             {/* <img src={WhiskordLogo} /> */}
@@ -189,7 +200,9 @@ function App() {
 
                                         {/* Load messages, header, and members of Public Server */}
                                         <ProtectedRoute path="/home/:serverId/:channelId" >
-                                            <PublicBody />
+                                            {(singleServer && !singleServer.is_private) &&
+                                                <PublicBody />
+                                            }
                                         </ProtectedRoute>
                                     </div>
                                 </div>
