@@ -4,8 +4,8 @@ import { privateServers, publicServers, resetServerDetails, serverDetails } from
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import Icon from "../../../Icon"
-import { resetMessageState } from "../../../../store/message";
-import { resetChannelState, getChannels } from "../../../../store/channel";
+import { resetMessageState, getChannelMessages } from "../../../../store/message";
+import { resetChannelState, getChannels, getChannelDetails, getChannelMembers } from "../../../../store/channel";
 import OpenModalButton from "../../../OpenModalButton";
 import CreatePrivateServerForm from "./CreatePrivateServerForm";
 import EditServerForm from "./EditServerForm";
@@ -23,31 +23,39 @@ function PrivateServers() {
     const dispatch = useDispatch();
     const history = useHistory()
 
+    // useEffect(() => {
+    //     (async () => {
+    //         // await dispatch(privateServers())
+    //         await dispatch(serverDetails(servers[0]?.id))
+    //         await dispatch(getChannels(singleServer.id))
+
+    //     })();
+    //     // if (servers) {
+    //     //     if(singleServer){
+    //     //         if (!channelId) {
+    //     //         }
+    //     //     }
+    //     // } else {
+    //     // }
+    // }, [dispatch]);
+    
     useEffect(() => {
-        (async () => {
-            // await dispatch(privateServers())
-            await dispatch(serverDetails(servers[0]?.id))
-            await dispatch(getChannels(singleServer.id))
+        // console.log('activating useffect')
+        dispatch(getChannelMessages(channelId))
+        dispatch(getChannelMembers(channelId))
+    }, [dispatch, channelId]);
 
-        })();
-        // if (servers) {
-        //     if(singleServer){
-        //         if (!channelId) {
-        //         }
-        //     }
-        // } else {
-        // }
-    }, [dispatch]);
-
-    const privateServerDetails = (serverId) => {
-        dispatch(resetMessageState())
-        dispatch(resetChannelState())
-        dispatch(resetServerDetails())
-        dispatch(getChannels(serverId))
-        dispatch(serverDetails(serverId))
+    const privateServerDetails = async (serverId) => {
+        // dispatch(resetMessageState())
+        // dispatch(resetChannelState())
+        // dispatch(resetServerDetails())
+        await dispatch(serverDetails(serverId))
+        await dispatch(getChannels(serverId))
+        .then((channels) => dispatch(getChannelDetails(channels[0].id)))
+        .then((channel) => history.push(`/home/@me/${channel.id}`))
         // history.push('/home/me/')
     }
-    if (channelId) history.push(`/home/@me/${channelId}`)
+    // if (channelId) history.push(`/home/@me/${channelId}`)
 
     return (
         <div className="private-servers-list">
@@ -78,10 +86,23 @@ function PrivateServers() {
             </div>
             {servers.map((server, idx) => {
                 return (
-                    <div className="server-list-button" key={server.id}>
-                        <NavLink to={`/home/@me/${server.id}`}>
+                    <div className="private-server-list-button" key={server.id}>
+                        <NavLink to={`/home/@me/${server.Channels[0].id}`}>
                             <button onClick={() => privateServerDetails(server.id)}>
-                                {server.name[0]}
+                                <div>
+                                    <i className="fa-solid fa-user-group fa-xl"></i>
+                                </div>
+                                <div className="private-server-name-number">
+                                    <div>
+                                        {server.name}
+                                    </div>
+                                    <div>
+                                        {server.Members.length}
+                                        &nbsp;
+                                        Members
+                                    </div>
+                                    {/* {server.name[0]} */}
+                                </div>
                             </button>
                         </NavLink>
                     </div>

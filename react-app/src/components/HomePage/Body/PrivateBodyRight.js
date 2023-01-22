@@ -78,34 +78,39 @@ function PrivateBody() {
         history.push('/home/@me')
     }
 
-
     useEffect(() => {
-        if (isPrivate) {
-            dispatch(privateServers())
-            // history.push(`/home/@me/$`)
-        }
-        else {
-            console.log('Here we get all channels')
-            dispatch(getChannels(serverId))
-            dispatch(getChannelDetails(channelId))
-            history.push(`/home/${serverId}/${channelId}`)
-        }
+        dispatch(getChannelMessages(channelId))
+        dispatch(getChannelMembers(channelId))
+    }, [dispatch, channelId]);
 
-        return (()=>{
-            console.log('dismounting body')
-        })
-    }, [dispatch, history, isPrivate, singleServer, serverId, channelId])
+    // useEffect(() => {
+    //     dispatch(publicServers());
+    //     console.log('publicServers')
+
+    // }, [dispatch])
+
+    // useEffect(() => {
+    //     if (isPrivate) {
+    //         dispatch(privateServers())
+    //         // history.push(`/home/@me/$`)
+    //     }
+    //     else {
+    //         console.log('Here we get all channels')
+    //         dispatch(getChannels(serverId))
+    //         dispatch(getChannelDetails(channelId))
+    //         history.push(`/home/${serverId}/${channelId}`)
+    //     }
+
+    //     return (()=>{
+    //         console.log('dismounting body')
+    //     })
+    // }, [dispatch, history, isPrivate, singleServer, serverId, channelId])
 
     // useEffect(()=> {
     //     dispatch(getChannelDetails(channelId))
     //     history.push(`/home/${serverId}/${channelId}`)
     // },[dispatch,channelId])
 
-    useEffect(() => {
-        dispatch(publicServers());
-        console.log('publicServers')
-
-    }, [dispatch])
 
         
     return (

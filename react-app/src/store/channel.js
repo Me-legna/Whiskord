@@ -87,7 +87,7 @@ export const getChannels = (serverId) => async (dispatch) => {
     const data = await response.json();
     dispatch(loadChannels(data.Channels));
     return data.Channels
-    
+
   } else if (response.status < 500) {
     const data = await response.json();
 
@@ -229,6 +229,8 @@ export const getChannelMembers =
         const data = await response.json();
 
         dispatch(loadChannelMembers(data.Members));
+        return data.Members
+        
       } else if (response.status < 500) {
         const data = await response.json();
 

@@ -53,8 +53,8 @@ const Chat = () => {
 
         socket.on("chat", (chat) => {
             // setMessages(messages => [...messages, chat])
-            console.log('printing???')
-            console.log('channelid in socket -----', channel_id)
+            // console.log('printing???')
+            // console.log('channelid in socket -----', channel_id)
             dispatch(getChannelMessages(channel_id))
         })
 

@@ -100,3 +100,23 @@ margin-bottom: 0.25rem;
     margin-top: .5rem;
     margin-bottom: .5rem;
 }
+
+
+.private-server-list-button button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-align: left;
+}
+
+.private-server-name-number {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+
+    margin-left: .5rem;
+}
