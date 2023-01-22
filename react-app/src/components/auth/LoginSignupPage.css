@@ -125,10 +125,15 @@
     height: 100vh;
 }
 
+.signup-page h1{
+    display:flex;
+    justify-content: center;
+}
+
 .signup-main-container {
     background-color: #2c2f33;
     border-radius: 10px;
-    padding: 40px 60px 80px 30px;
+    padding: 40px 150px 80px 20px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -169,7 +174,7 @@
     border: none;
     background-color: #5865f2;
     color: white;
-    width: 86%;
+    width: 84%;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 5px;
