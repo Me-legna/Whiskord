@@ -86,7 +86,8 @@
     border-radius: 5px;
     border: none;
     margin-bottom: 15px;
-    background-color:#202225
+    background-color:#202225;
+    color:white;
 
 }
 
@@ -166,7 +167,8 @@
     border-radius: 5px;
     border: none;
     margin-bottom: 15px;
-    background-color:#202225
+    background-color:#202225;
+    color:white;   
 }
 
 .signup-page-button{

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import "../Channels/channels.css";
+import "./channels.css";
 import { useHistory } from 'react-router-dom';
 import { createNewChannel } from '../../../../store/channel';
 import { useParams } from 'react-router-dom';
@@ -59,7 +59,7 @@ export default function CreateChannel(){
 
 
     return (
-        <>
+        <div className='create-channel-form'>
             <div className="create-channel-form-header">
                 <h1>Create a Channel</h1>
             </div>
@@ -100,7 +100,7 @@ export default function CreateChannel(){
                 </form>
             </section>
 
-        </>
+        </div>
 
     )
 }
