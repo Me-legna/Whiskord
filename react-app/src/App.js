@@ -44,7 +44,9 @@ function App() {
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
-        dispatch(publicServers());
+        if(user){
+            dispatch(publicServers());
+        }
     }, [dispatch]);
     // useEffect(() => {
     //     (async () => {
