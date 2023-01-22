@@ -10,6 +10,11 @@
     height: 100vh;
  }
 
+ .login a{
+    color: #575c71;
+    font-weight: bold;
+ }
+
 .qr-code-container{
     display: flex;
     flex-direction: column;
@@ -105,6 +110,7 @@
 
 .signup-button{
     margin-top: 15px;
+    margin-bottom: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 150px;
@@ -168,7 +174,7 @@
     border: none;
     margin-bottom: 15px;
     background-color:#202225;
-    color:white;   
+    color:white;
 }
 
 .signup-page-button{
