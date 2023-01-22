@@ -35,7 +35,7 @@ import './App.css'
 import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
 import EditServerForm from './components/HomePage/Body/ServerComps/EditServerForm';
 import DeleteServerForm from './components/HomePage/Body/Channels/DeleteChannelForm';
-
+import SignUpPage from './components/auth/SignUpIndex';
 
 function App() {
     const dispatch = useDispatch();
@@ -100,7 +100,7 @@ function App() {
                                 <LoginSignUpPage />
                             </Route>
                             <Route path="/sign-up" exact={true}>
-                                <SignUpForm />
+                                <SignUpPage />
                             </Route>
                             <ProtectedRoute path="/users" exact={true}>
                                 <UsersList />

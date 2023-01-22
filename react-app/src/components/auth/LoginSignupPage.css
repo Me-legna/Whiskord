@@ -115,3 +115,18 @@
     border-radius: 5px;
 
 }
+
+.signup-main-container {
+    background-color: #2c2f33;
+    border-radius: 10px;
+    padding: 60px 80px 80px 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+}
+
