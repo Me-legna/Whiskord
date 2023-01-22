@@ -20,13 +20,13 @@ import AllChannels from './components/HomePage/Body/Channels/AllChannels';
 import PrivateBody from './components/HomePage/Body/PrivateBodyRight';
 import PublicBody from './components/HomePage/Body/PublicBodyRight';
 import Icon from './components/Icon';
-import { addServer, privateServers, publicServers, resetServerDetails } from './store/server';
+import { addServer, privateServers, publicServers, resetServerDetails, serverDetails } from './store/server';
 import IconModal from './components/Icon/IconModal';
 import CreatePrivateServerForm from './components/HomePage/Body/ServerComps/CreatePrivateServerForm';
 import OpenModalButton from './components/OpenModalButton';
 import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
 import { resetMessageState } from './store/message';
-import { resetChannelState } from './store/channel';
+import { getChannels, resetChannelState, getChannelDetails } from './store/channel';
 import LoginSignUpPage
     from './components/auth';
 import UnderDevelopment from './components/UnderDevelopment';
@@ -42,6 +42,10 @@ function App() {
     const [loaded, setLoaded] = useState(false);
     const user = useSelector(state => state.session.user)
 
+    const servers = useSelector((state) => state?.servers?.allPublicServers);
+
+    // const privateServersList = useSelector((state) => state?.servers?.allPrivateServers);
+
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
     const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
@@ -49,11 +53,20 @@ function App() {
     // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
+        console.log(51.5)
         dispatch(authenticate()).then(() => setLoaded(true));
-        if (user) {
-            dispatch(publicServers());
-        }
+        // if (user && !servers) {
+        //     console.log('WE HAVE A USER')
+        //     dispatch(publicServers());
+        // } else {
+
+        // }
     }, [dispatch]);
+
+    // useEffect(() => {
+    //     user && dispatch(publicServers());
+    // }, [dispatch])
+
     // useEffect(() => {
     //     (async () => {
     //         await dispatch(authenticate());
@@ -61,12 +74,21 @@ function App() {
     //     })();
     // }, [dispatch]);
 
-    const getPrivateServers = () => {
-        dispatch(resetMessageState())
-        dispatch(resetChannelState())
-        dispatch(resetServerDetails())
-        dispatch(privateServers())
-        history.push('/home/@me')
+
+    const privateServerInfo = async (privateServersList) => {
+        console.log('PRIVATE SERVER LIST ',privateServersList[2].id)
+            await dispatch(serverDetails(privateServersList[2].id))
+            .then((server) => dispatch(getChannelDetails(server.Channels[0].id)))
+            .then((channel) => history.push(`/home/@me/${channel.id}`))
+    }
+
+    const getPrivateServers = async () => {
+        // dispatch(resetMessageState())
+        // dispatch(resetChannelState())
+        // dispatch(resetServerDetails())
+        await dispatch(privateServers())
+            .then((privateServersList) => privateServerInfo(privateServersList)  )
+
     }
 
 
@@ -189,7 +211,9 @@ function App() {
 
                                         {/* Load messages, header, and members of Public Server */}
                                         <ProtectedRoute path="/home/:serverId/:channelId" >
-                                            <PublicBody />
+                                            {(singleServer && !singleServer.is_private) &&
+                                                <PublicBody />
+                                            }
                                         </ProtectedRoute>
                                     </div>
                                 </div>

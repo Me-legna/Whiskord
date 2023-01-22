@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { NavLink, Redirect, useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getChannelDetails } from "../../../../store/channel";
+import { getChannelDetails, getChannelMembers } from "../../../../store/channel";
 import { getChannelMessages } from "../../../../store/message";
 import { useEffect } from "react";
 
@@ -19,6 +19,12 @@ export default function AllChannels({ channels }) {
 
   const history = useHistory();
 
+  useEffect(() => {
+      dispatch(getChannelMessages(channelId))
+      dispatch(getChannelMembers(channelId))
+  }, [dispatch, channelId]);
+
+
   const handleRoute = (channelId) => {
     history.push(`/home/${serverId}/${channelId}`);
   }
@@ -28,9 +34,12 @@ export default function AllChannels({ channels }) {
   //   history.push(`/home/${serverId}/${channelId}`);
   // }, [dispatch, history, channelId,serverId])
 
-  const handleClick = (channelId) => {
-    dispatch(getChannelDetails(channelId))
-    dispatch(getChannelMessages(channelId))
+
+
+  const handleClick = async (channelId) => {
+    await dispatch(getChannelDetails(channelId))
+    await dispatch(getChannelMessages(channelId))
+    await dispatch(getChannelMembers(channelId))
     // handleRoute(channelId)
   }
 

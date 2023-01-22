@@ -71,22 +71,22 @@ function PublicBody() {
         }
     
     
-        useEffect(() => {
-            if (isPrivate) {
-                dispatch(privateServers())
-                // history.push(`/home/@me/$`)
-            }
-            else {
-                console.log('Here we get all channels')
-                dispatch(getChannels(serverId))
-                dispatch(getChannelDetails(channelId))
-                history.push(`/home/${serverId}/${channelId}`)
-            }
+        // useEffect(() => {
+        //     if (isPrivate) {
+        //         dispatch(privateServers())
+        //         // history.push(`/home/@me/$`)
+        //     }
+        //     else {
+        //         console.log('Here we get all channels')
+        //         // dispatch(getChannels(serverId))
+        //         // dispatch(getChannelDetails(channelId))
+        //         history.push(`/home/${serverId}/${channelId}`)
+        //     }
     
-            return (()=>{
-                console.log('dismounting body')
-            })
-        }, [dispatch, history, isPrivate, singleServer, serverId, channelId])
+        //     return (()=>{
+        //         console.log('dismounting body')
+        //     })
+        // }, [dispatch, history, isPrivate, singleServer, serverId, channelId])
     
         // useEffect(()=> {
         //     dispatch(getChannelDetails(channelId))
@@ -95,11 +95,11 @@ function PublicBody() {
 
         // console.log(currentUser)
     
-        useEffect(() => {
-            dispatch(publicServers());
-            console.log('publicServers')
+        // useEffect(() => {
+        //     dispatch(publicServers());
+        //     console.log('publicServers')
     
-        }, [dispatch])
+        // }, [dispatch])
     
 
     return (
