@@ -61,7 +61,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
-      <button className='signup-button' onClick={()=>(history.push('/sign-up'))}>Register</button>
+      <button className='signup-button' onClick={()=>(history.push('/sign-up'))}>Sign Up for Whiskord!</button>
     </form>
   );
 };
