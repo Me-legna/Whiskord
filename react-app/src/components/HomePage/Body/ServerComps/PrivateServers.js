@@ -45,26 +45,28 @@ function PrivateServers() {
     return (
         <div className="private-servers-list">
             <div className="flex">
-                <h6>
-                    Direct Messages
-                </h6>
+                <div className="flex">
+                    <h6>
+                        Direct Messages
+                    </h6>
+                    <OpenModalButton
+                        faIcon={<i className="fa-solid fa-plus" />}
+                        modalComponent={<CreatePrivateServerForm />}
+                    />
+                </div>
                 {
                     Object.keys(singleServer).length ?
-                    <div>
-                        <OpenModalButton
-                            faIcon={<i className="fa-solid fa-plus" />}
-                            modalComponent={<CreatePrivateServerForm />}
-                        />
-                        <OpenModalButton
-                            faIcon={<i className="fa-solid fa-pen-to-square" />}
-                            modalComponent={<EditServerForm />}
-                        />
-                        <OpenModalButton
-                            faIcon={<i className="fa-solid fa-trash-can" />}
-                            modalComponent={<DeleteServerForm />}
-                        />
-                    </div>
-                    : <></>
+                        <div>
+                            <OpenModalButton
+                                faIcon={<i className="fa-solid fa-pen-to-square" />}
+                                modalComponent={<EditServerForm />}
+                            />
+                            <OpenModalButton
+                                faIcon={<i className="fa-solid fa-trash-can" />}
+                                modalComponent={<DeleteServerForm />}
+                            />
+                        </div>
+                        : <></>
                 }
             </div>
             {servers.map((server, idx) => {

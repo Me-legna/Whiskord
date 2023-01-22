@@ -34,23 +34,23 @@ function CreatePublicServerForm() {
 
         const server = await dispatch(addServer(newServer))
 
-        const newChannel = {
-            name: 'general',
-            server_id: server.id,
-            type: 'Text',
-            is_private: 'False',
-            server: newServer
-        }
-        console.log('server', server)
+        // const newChannel = {
+        //     name: 'general',
+        //     server_id: server.id,
+        //     type: 'Text',
+        //     is_private: 'False',
+        //     server: newServer
+        // }
+        // console.log('server', server)
 
-        const channel = await dispatch(createNewChannel(server.id, newChannel))
-        console.log('channel', channel)
+        // const channel = await dispatch(createNewChannel(server.id, newChannel))
+        // console.log('channel', channel)
 
-        await dispatch(appendServerMember(server.id, ownerId))
-        await dispatch(addChannelMember(channel.id, ownerId))
+        // await dispatch(appendServerMember(server.id, ownerId))
+        // await dispatch(addChannelMember(server.Channels[0].id, ownerId))
 
-        await dispatch(serverDetails(server.id))
-            .then(() => history.push(`/home/channels/${server.id}/${channel.id}`))
+        // await dispatch(serverDetails(server.id))
+        server && history.push(`/home/${server.id}/${server.Channels[0]?.id}`)
     }
 
 

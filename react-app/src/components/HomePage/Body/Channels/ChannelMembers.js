@@ -13,8 +13,8 @@ export default function ChannelMembers({ channel }) {
 
   return (
     <div>
-        {members?.allIds?.map((memberId) => {
-          const member = members.byId[memberId];
+        {members?.allIds?.map((member) => {
+          const memberId = member.id;
           return (
           <div key={member.id} className='members-individual-container'>
 

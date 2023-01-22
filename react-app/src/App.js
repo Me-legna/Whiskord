@@ -42,12 +42,14 @@ function App() {
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
     const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
-    
+
     // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
-        dispatch(publicServers());
+        if(user){
+            dispatch(publicServers());
+        }
     }, [dispatch]);
     // useEffect(() => {
     //     (async () => {
@@ -113,7 +115,7 @@ function App() {
                                             {/* <img src={WhiskordLogo} /> */}
                                             {/* Pr */}
                                         </button>
-                                    </div>
+
 
 
                                     {/* Load all public servers */}
@@ -132,11 +134,12 @@ function App() {
                                         <div className='server-name-header'>
 
                                             {/* servername header component here*/}
-                                            <h3>{singleServer.name}</h3>
+                                            <h3>{singleServer && singleServer.name}</h3>
                                             {
                                                 user && user.id === singleServer.owner_id &&
-  
-                                                <i className="fas fa-solid fa-gear"></i>
+
+
+                                                <i className="fa-solid fa-gear"></i>
 
                                             }
                                         </div>

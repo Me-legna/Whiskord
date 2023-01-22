@@ -36,7 +36,9 @@ class Server(db.Model):
             'image_url': self.image_url,
             'is_private': self.is_private,
             'is_dm': self.is_dm,
-            'capacity': self.capacity
+            'capacity': self.capacity,
+            'Members': [user.to_dict() for user in self.members],
+            'Channels': [channel.to_dict() for channel in self.channels],
         }
 
     # @property
