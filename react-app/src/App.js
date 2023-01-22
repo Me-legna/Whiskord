@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from './store/session';
@@ -31,10 +32,15 @@ import LoginSignUpPage
     from './components/auth';
 import UnderDevelopment from './components/UnderDevelopment';
 import './App.css'
+
 // import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
+
 import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
-
-
+import EditServerForm from './components/HomePage/Body/ServerComps/EditServerForm';
+import DeleteServerForm from './components/HomePage/Body/Channels/DeleteChannelForm';
+import SignUpPage from './components/auth/SignUpIndex';
+import EditChannelForm from "./components/HomePage/Body/Channels/EditChannelForm";
+import DeleteChannelForm from "./components/HomePage/Body/Channels/DeleteChannelForm";
 
 function App() {
     const dispatch = useDispatch();
@@ -75,6 +81,7 @@ function App() {
     // }, [dispatch]);
 
 
+
     const privateServerInfo = async (privateServersList) => {
         console.log('PRIVATE SERVER LIST ',privateServersList[2].id)
             await dispatch(serverDetails(privateServersList[2].id))
@@ -89,13 +96,24 @@ function App() {
         await dispatch(privateServers())
             .then((privateServersList) => privateServerInfo(privateServersList)  )
 
+
     }
 
+    const editMyServer = <OpenModalButton
+        faIcon={<i className="fa-solid fa-gears"></i>}
+        modalComponent={<EditServerForm />}
+    />
 
-    if (!loaded) {
-        return null;
-    }
+    const deleteMyServer = <OpenModalButton
+        faIcon={<i className="fa-solid fa-trash"></i>}
+        modalComponent={<DeleteServerForm />}
+    />
 
+  useEffect(() => {
+    dispatch(authenticate()).then(() => setLoaded(true));
+    if (user) {
+      dispatch(publicServers());
+    }}, [dispatch]);
     return (
         <div className='entire-homepage-div'>
             {!user
@@ -110,7 +128,7 @@ function App() {
                                 <LoginSignUpPage />
                             </Route>
                             <Route path="/sign-up" exact={true}>
-                                <SignUpForm />
+                                <SignUpPage />
                             </Route>
                             <ProtectedRoute path="/users" exact={true}>
                                 <UsersList />
@@ -163,13 +181,47 @@ function App() {
                                     <div className='channel-list-container left'>
                                         <div className='server-name-header'>
 
-                                            {/* servername header component here*/}
-                                            <h3>{singleServer && singleServer.name}</h3>
+                                            {/* <h3>{singleServer && singleServer.name}</h3> */}
                                             {
+
                                                 user && user.id === singleServer.owner_id &&
+                                                <div>
+                                                    <div className="owner-tools">
+                                                        <h6>Server CRUD</h6>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-gears"></i>}
+                                                                modalComponent={<EditServerForm />}
+                                                            />
+                                                            <span className="hover-message">Edit my server!</span>
+                                                        </div>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-trash"></i>}
+                                                                modalComponent={<DeleteServerForm />}
+                                                            />
+                                                            <span className="hover-message">Delete my server!</span>
+                                                        </div>
+                                                    </div>
 
-                                                <i className="fa-solid fa-gear"></i>
-
+                                                    <div className="owner-tools">
+                                                        <h6>Channel CRUD</h6>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-gears"></i>}
+                                                                modalComponent={<EditChannelForm />}
+                                                            />
+                                                            <span className="hover-message">Edit my channel!</span>
+                                                        </div>
+                                                        <div className="owner-button">
+                                                            <OpenModalButton
+                                                                faIcon={<i className="fa-solid fa-trash"></i>}
+                                                                modalComponent={<DeleteChannelForm />}
+                                                            />
+                                                            <span className="hover-message">Delete my channel!</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             }
                                         </div>
 
@@ -234,7 +286,8 @@ function App() {
             }
 
         </div >
-    );
+    )
+
 }
 
 export default App;

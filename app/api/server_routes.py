@@ -7,6 +7,7 @@ from .validation_to_error_formatter import validation_errors_to_error_messages
 
 server_routes = Blueprint('servers', __name__)
 
+
 @server_routes.route('/')
 @login_required
 def get_user_servers():
@@ -16,14 +17,17 @@ def get_user_servers():
     servers = Server.query.filter(Server.members.any(id=current_user.id)).all()
     return jsonify({'Servers': [server.to_dict() for server in servers]})
 
+
 @server_routes.route('/private')
 @login_required
 def get_user_private_servers():
     """
     Get all private servers where the current user is a member
     """
-    servers = Server.query.filter(Server.members.any(id=current_user.id), Server.is_private == True).all()
+    servers = Server.query.filter(Server.members.any(
+        id=current_user.id), Server.is_private == True).all()
     return jsonify({'Servers': [server.to_dict() for server in servers]})
+
 
 @server_routes.route('/public')
 @login_required
@@ -31,7 +35,8 @@ def get_user_public_servers():
     """
     Get all public servers where the current user is a member
     """
-    servers = Server.query.filter(Server.members.any(id=current_user.id), Server.is_private == False, Server.is_dm == False).all()
+    servers = Server.query.filter(Server.members.any(
+        id=current_user.id), Server.is_private == False, Server.is_dm == False).all()
     return jsonify({'Servers': [server.to_dict() for server in servers]})
 
 
@@ -140,6 +145,8 @@ def create_server():
 @server_routes.route("/<int:server_id>", methods=["PUT"])
 @login_required
 def update_server(server_id):
+
+    print(">>>>>>>")
     server = Server.query.get(server_id)
     if server is None:
         return jsonify({'message': "Server couldn't be found", 'statusCode': 404}), 404
@@ -153,13 +160,20 @@ def update_server(server_id):
 
     form = ServerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    print(form.data)
+    print("--------")
+    print(server)
+    print(">>>>>>>")
+
     if form.validate_on_submit():
+
         server.name = form.data['name']
-        server.image_url = form.data['image_url'],
         server.is_private = form.data['is_private']
         server.is_dm = form.data['is_dm']
         server.capacity = form.data['capacity']
-        db.session.commit()
+
+        # db.session.commit()
         return server.to_dict(), 200
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
@@ -179,6 +193,7 @@ def update_server(server_id):
     # db.session.commit()
 
     # return jsonify(server.to_dict()), 200
+
 
 @server_routes.route("/<int:server_id>", methods=["DELETE"])
 @login_required
@@ -230,6 +245,7 @@ def add_member(server_id):
     members = [user.to_dict for user in server.members]
 
     return members, 200
+
 
 @server_routes.route('/<int:server_id>/members', methods=['DELETE'])
 @login_required

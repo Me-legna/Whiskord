@@ -158,7 +158,7 @@ export const editChannel =
   (serverId = 1, channelId, updatedChannel) =>
     async (dispatch) => {
       const response = await fetch(
-        `/api/servers/${serverId}/channels/${channelId}`,
+        `/api/channels/${channelId}`,
         {
           method: "PUT",
           headers: {

@@ -69,7 +69,7 @@ def update_channel(channel_id):
     if form.validate_on_submit():
         channel.name = form.data['name']
         # channel.type = form.data['type']
-        channel.is_private = form.data['is_private']
+        # channel.is_private = form.data['is_private']
         db.session.commit()
         return channel.to_dict(), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400

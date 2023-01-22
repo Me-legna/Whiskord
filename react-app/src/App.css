@@ -5,6 +5,7 @@
     align-items: flex-start;
     height: 95vh;
     width: 99vw;
+    cursor:pointer;
 }
 
 .app-container {
@@ -78,6 +79,38 @@
     /* margin: 0.5rem; */
 }
 
+.owner-tools {
+    position: relative;
+    width: 200px;
+    cursor: pointer;
+
+
+}
+
+.hover-message {
+    transform: translate(-50%, -50%);
+    display: none;
+    background: white;
+    margin: 0px;
+    top: 10%;
+    left: 50%;
+    position: relative;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-right: 0px;
+    width: 120px;
+    font-size: smaller;
+    font-weight: 100;
+
+}
+
+.owner-button:hover .hover-message {
+    display: block;
+}
+
+
+
 .app-channels-and-button {
     display: flex;
     flex-direction: column;
@@ -107,7 +140,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
 .user-details {

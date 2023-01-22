@@ -43,15 +43,15 @@ export default function EditChannelForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("my channel", myChannel)
         const modifiedChannel = {
             name,
-            is_private,
+            // is_private,
         }
 
         //params grabbed from the referencing the thunk
         await dispatch(editChannel(serverId, myChannel.id, modifiedChannel))
-            .then(history.push(`/home/channels/${serverId}/${myChannel.id}`))
+            .then(history.push(`/home/${serverId}/${myChannel.id}`))
             // .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
@@ -79,16 +79,16 @@ export default function EditChannelForm() {
                             placeholder={myChannel.name}
                             required
                             value={name}
-                            onChange={setName}
+                            onChange={(e)=>setName(e.target.value)}
                         />
-                    <label> Channel Privacy Status </label>
+                    {/* <label> Channel Privacy Status </label>
                         <Select
                         options={options}
                         placeholder={myChannel.is_private}
                         value={selectedOption}
                         onChange={(selectedOption)=>
                             setSelectedOption(selectedOption)}
-                        />
+                        /> */}
                 </form>
 
             </section>

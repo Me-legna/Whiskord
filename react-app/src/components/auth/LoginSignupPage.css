@@ -115,3 +115,40 @@
     border-radius: 5px;
 
 }
+
+.signup-main-container {
+    background-color: #2c2f33;
+    border-radius: 10px;
+    padding: 40px 60px 80px 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.signup-form label{
+    color: white;
+    font-size: 15px;
+    font-weight:bold;
+    display: flex;
+    flex-direction: column;
+    margin-bottom:10px
+}
+
+.signup-form input{
+    width: 130%;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 15px;
+}

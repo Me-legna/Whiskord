@@ -4,6 +4,10 @@ import { useDispatch } from "react-redux";
 import { getChannelDetails, getChannelMembers } from "../../../../store/channel";
 import { getChannelMessages } from "../../../../store/message";
 import { useEffect } from "react";
+import CreateChannel from "./CreateChannelForm";
+import OpenModalButton from "../../../OpenModalButton";
+// import '../../../../App.css'
+
 
 // import { useSelector } from "react-redux";
 
@@ -48,18 +52,17 @@ export default function AllChannels({ channels }) {
   return (
     <div>
       {
-      (channels?.length > 0) &&
+        (channels?.length > 0) &&
         <div className='channels-and-button'>
-          {/* // (channels?.allIds?.length > 0) && */}
-          <h6>
-            TEXT-CHANNELS
-          </h6>
-          {/* <button> */}
-          <i className="fas fa-solid fa-plus"></i>
-          {/* </button> */}
+          <h6>TEXT-CHANNELS</h6>
+          <div className='create-channel-button'>
+            <OpenModalButton
+              modalComponent={<CreateChannel />}
+              faIcon={<i className="fa-solid fa-plus"></i>}
+            />
+          </div>
         </div>
       }
-      {/* <h6>TEXT-CHANNELS</h6> */}
       <div>
         {/* {channels?.allIds?.map((channelId) => { */}
         {channels?.map((channel) => {
