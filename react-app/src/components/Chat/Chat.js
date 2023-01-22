@@ -114,7 +114,7 @@ const Chat = () => {
 
 
     return (user && (
-        <div>
+        <div className='entire-chat-comp'>
             <div className="previous-messages-container">
                 {dbMessages?.map((message, ind) => (
                     message.channel_id === channel_id &&
@@ -231,15 +231,16 @@ const Chat = () => {
                 ))}
             </div>
             */}
-
-            <div className="chat-form">
-                <form onSubmit={sendChat}>
-                    <input
-                        value={chatInput}
-                        onChange={updateChatInput}
-                    />
-                    <button type="submit">Send</button>
-                </form>
+            <div className="chat-spacer">
+                <div className="chat-form">
+                    <form onSubmit={sendChat}>
+                        <input
+                            value={chatInput}
+                            onChange={updateChatInput}
+                        />
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
             </div>
 
         </div>

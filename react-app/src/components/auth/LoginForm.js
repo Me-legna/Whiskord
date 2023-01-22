@@ -5,13 +5,14 @@ import { login } from '../../store/session';
 import SignUpForm from './SignUpForm';
 import { useHistory} from 'react-router-dom';
 
+
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useHistory()
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    history.push('/home')
   };
 
   const updateEmail = (e) => {

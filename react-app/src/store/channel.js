@@ -126,6 +126,7 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
 export const createNewChannel =
   (serverId, channel) =>
     async (dispatch) => {
+      console.log(serverId)
       const response = await fetch(`/api/servers/${serverId}/channels`, {
         method: "POST",
         headers: {
@@ -421,7 +422,7 @@ export default function channelReducer(state = initialState, action) {
 
       return resetDetails
     case RESET_CHANNEL_STATE:
-      
+
       return initialState
 
     default:

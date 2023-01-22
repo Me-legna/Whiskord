@@ -29,7 +29,12 @@ import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
 import LoginSignUpPage
  from './components/auth';
+import UnderDevelopment from './components/UnderDevelopment';
 import './App.css'
+// import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
+import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
+
+
 
 function App() {
     const dispatch = useDispatch();
@@ -45,7 +50,9 @@ function App() {
 
     useEffect(() => {
         dispatch(authenticate()).then(() => setLoaded(true));
-        dispatch(publicServers());
+        if(user){
+            dispatch(publicServers());
+        }
     }, [dispatch]);
     // useEffect(() => {
     //     (async () => {
@@ -89,9 +96,12 @@ function App() {
                             <ProtectedRoute path="/users/:userId" exact={true}>
                                 <User />
                             </ProtectedRoute>
-                            <Route path='/'>
+                            <Route path='/404'>
                                 <NotFoundPage />
                             </Route>
+                            <Route path='/next'>
+                            < UnderDevelopment />
+                        </Route>
                         </Switch>
                     </>
                 )
@@ -104,11 +114,14 @@ function App() {
                         <ProtectedRoute path='/home'>
 
                             <div className='app-container main-body'>
+
                                 <div className='server-list-container sidebar'>
 
-                                    <div className="server-list-button">
-                                        <button className="" onClick={getPrivateServers}>Pr</button>
-                                    </div>
+                                    <div className="server-list-button" id='logo-button'>
+                                        <button className="" onClick={getPrivateServers}>
+                                            {/* <img src={WhiskordLogo} /> */}
+                                            {/* Pr */}
+                                        </button>
 
 
                                     {/* Load all public servers */}
@@ -127,11 +140,11 @@ function App() {
                                         <div className='server-name-header'>
 
                                             {/* servername header component here*/}
-                                            <h3>{singleServer.name}</h3>
+                                            <h3>{singleServer && singleServer.name}</h3>
                                             {
                                                 user && user.id === singleServer.owner_id &&
-
-                                                <i className="fas fa-solid fa-gear"></i>
+                                                
+                                                <i className="fa-solid fa-gear"></i>
 
                                             }
                                         </div>
@@ -145,13 +158,19 @@ function App() {
                                             </ProtectedRoute>
                                             {/* Route to load public server channels list */}
                                             <ProtectedRoute path="/home/:serverId" >
-                                                {(singleServer) &&
+                                                {(singleServer && !singleServer.is_private) &&
                                                     <AllChannels channels={allChannels} />
                                                 }
                                             </ProtectedRoute>
                                         </div>
 
-                                        <div className='app-logout-button'>
+                                        <div className='app-user-and-logout-button'>
+                                            <div className='user-details'>
+                                                <i className="fa-solid fa-circle-user fa-xl"></i>
+                                                &nbsp; 
+                                                &nbsp; 
+                                                {user.username}
+                                            </div>
                                             <LogoutButton />
                                         </div>
 
@@ -176,10 +195,14 @@ function App() {
                         </ProtectedRoute>
 
                         {/* Error Page */}
-                        <Route path='/'>
+                        <Route path='/404'>
                             <NotFoundPage />
                         </Route>
                         <LogoutButton />
+                        {/* UnderDevelopment Page */}
+                        <Route path='/next'>
+                            < UnderDevelopment />
+                        </Route>
                     </Switch>
                 )
             }
