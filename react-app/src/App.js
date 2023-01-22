@@ -37,7 +37,7 @@ import './App.css'
 
 import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
 import EditServerForm from './components/HomePage/Body/ServerComps/EditServerForm';
-import DeleteServerForm from './components/HomePage/Body/Channels/DeleteChannelForm';
+import DeleteServerForm from './components/HomePage/Body/ServerComps/DeleteServerForm';
 import SignUpPage from './components/auth/SignUpIndex';
 import EditChannelForm from "./components/HomePage/Body/Channels/EditChannelForm";
 import DeleteChannelForm from "./components/HomePage/Body/Channels/DeleteChannelForm";
@@ -83,8 +83,8 @@ function App() {
 
 
     const privateServerInfo = async (privateServersList) => {
-        console.log('PRIVATE SERVER LIST ',privateServersList[2].id)
-            await dispatch(serverDetails(privateServersList[2].id))
+        // console.log('PRIVATE SERVER LIST ',privateServersList[2].id)
+            await dispatch(serverDetails(privateServersList[0].id))
             .then((server) => dispatch(getChannelDetails(server.Channels[0].id)))
             .then((channel) => history.push(`/home/@me/${channel.id}`))
     }

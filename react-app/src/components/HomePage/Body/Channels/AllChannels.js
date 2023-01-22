@@ -13,21 +13,15 @@ import OpenModalButton from "../../../OpenModalButton";
 
 export default function AllChannels({ channels }) {
   const dispatch = useDispatch();
-
   const state = useSelector(state => state)
-  // console.log(state)
-
   const serverId = useSelector((state) => state.servers.singleServer.id);
   const channelId = useSelector((state) => state?.channels?.channelDetails?.id);
-  // const {channelId} = useParams()
-
   const history = useHistory();
 
   useEffect(() => {
       dispatch(getChannelMessages(channelId))
       dispatch(getChannelMembers(channelId))
   }, [dispatch, channelId]);
-
 
   const handleRoute = (channelId) => {
     history.push(`/home/${serverId}/${channelId}`);
@@ -39,7 +33,6 @@ export default function AllChannels({ channels }) {
   // }, [dispatch, history, channelId,serverId])
 
 
-
   const handleClick = async (channelId) => {
     await dispatch(getChannelDetails(channelId))
     await dispatch(getChannelMessages(channelId))
@@ -47,7 +40,6 @@ export default function AllChannels({ channels }) {
     // handleRoute(channelId)
   }
 
-  // console.log('ALLCHANNEL channels', channels)
 
   return (
     <div>
@@ -57,7 +49,7 @@ export default function AllChannels({ channels }) {
           <h6>TEXT-CHANNELS</h6>
           <div className='create-channel-button'>
             <OpenModalButton
-              modalComponent={<CreateChannel />}
+              modalComponent={<CreateChannel serverId={serverId}/>}
               faIcon={<i className="fa-solid fa-plus"></i>}
             />
           </div>
@@ -68,9 +60,8 @@ export default function AllChannels({ channels }) {
         {channels?.map((channel) => {
           // const channel = channels?.byId[channelId]
           const channelId = channel.id
-          console.log({ channel });
 
-          // replace navLink with button
+
           return (
             // <li key={channel.id}>
             <button onClick={() => {

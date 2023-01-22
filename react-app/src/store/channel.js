@@ -129,7 +129,6 @@ export const getChannelDetails = (channelId) => async (dispatch) => {
 export const createNewChannel =
   (serverId, channel) =>
     async (dispatch) => {
-      console.log(serverId)
       const response = await fetch(`/api/servers/${serverId}/channels`, {
         method: "POST",
         headers: {
@@ -137,10 +136,8 @@ export const createNewChannel =
         },
         body: JSON.stringify(channel),
       });
-      console.log('response', response)
       if (response.ok) {
         const data = await response.json();
-        console.log('data', data)
         dispatch(createChannel(data));
         return data
       } else if (response.status < 500) {
@@ -344,13 +341,20 @@ export default function channelReducer(state = initialState, action) {
     case CREATE_CHANNEL:
       const newChannel = action.payload;
       const newChannelState = {
-        ...state,
         allChannels: {
           byId: {...state.allChannels.byId},
           allIds: [...state.allChannels.allIds, newChannel.id],
         },
-      };
+        channelDetails: newChannel,
+        members: {
+          byId: { },
+          allIds: newChannel.Members.map((member) => member.id),
+        },
 
+      };
+      newChannel.Members.forEach((member) => {
+        newChannelState.members.byId[member.id] = member;
+      });
       newChannelState.allChannels.byId[newChannel.id] = newChannel
       return newChannelState
 
