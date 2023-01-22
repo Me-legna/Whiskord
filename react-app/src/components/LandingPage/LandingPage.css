@@ -1,5 +1,6 @@
   .splash-background-container {
-    background-image:image('https://discord.com/assets/e6d57714479874c665b36c7adee76b1d.svg') #0d1cc4 ;
+    background-image:url('../../images/LandingPage/splash-section-background-clouds-and-stars.svg');
+
     background-color: #1044ffde;
     background-position: center;
     background-repeat: no-repeat;
@@ -14,11 +15,13 @@
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 0px;
+    padding: 0px;
     font-weight: 300;
 
   }
 
   .splash-banner h1 {
+    font-family: "Uni Sans", sans-serif;
     margin-bottom: 10px;
     font-size: 40pt;
     text-align: center;
@@ -49,21 +52,91 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-top: 30px;
-    margin-bottom: 0px;
+    margin-bottom: -5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 100%;
 
     position: relative;
+    overflow: hidden;
   }
 
   .splash-images-container img {
-    flex: 1 0 50%;
+    /* flex: 1 1 50%; */
+    max-width: 45%;
+    box-sizing: border-box;
   }
 
-  .splash-images-container img:first-child,
+
+  .splash-images-container img:first-child {
+    margin-right: -50%;
+    overflow: hidden;
+  }
+  
+  .splash-images-container img:last-child {
+    margin-left: -50%;
+    overflow: hidden;
+  }
+  
+  /* .splash-image-one {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    margin-right: auto; 
+
+  } */
+
+  /* .splash-image-one img {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    position: absolute;
+
+    margin-left: -2000px;
+    margin-right: auto; 
+
+    overflow: hidden;
+
+  } */
+
+  /* .splash-image-two {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+
+  } */
+
+  /* .splash-image-two img {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    position: absolute;
+
+    margin-right: -1000px;
+    margin-left: auto; 
+
+  } */
+
+
+
+  /* .splash-images-spacer {
+    margin-left: 100px;
+    margin-right: 100px;
+  } */
+
+  /* .splash-images-container img:first-child,
   .splash-images-container img:nth-child(2) {
     width: 50%;
-  }
+  } */
 
 
 

@@ -16,8 +16,15 @@ function SplashBanner() {
                 to talk every day and hang out more often.</p>
             <button onClick={() => history.push('/home')}>Open Whiskord in your browser</button>
             <div className='splash-images-container'>
-                <img src={splash_section_primary_image_1} alt='Splash Image' />
-                <img src={splash_section_image_2} alt='Splash Image 2' />
+                {/* <div className='splash-img-one'> */}
+                    <img src={splash_section_primary_image_1} alt='Splash Image' />
+                {/* </div> */}
+                {/* <div className='splash-images-spacer'> */}
+                    &nbsp;
+                {/* </div> */}
+                {/* <div className='splash-img-two'> */}
+                    <img src={splash_section_image_2} alt='Splash Image 2' />
+                {/* </div> */}
                 {/* <img src={splash_section_background_image} alt='Splash Background Image' /> */}
             </div>
         </div>

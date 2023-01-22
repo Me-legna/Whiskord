@@ -6,8 +6,10 @@
 
 }
 
-/* .members-individual-container i {
-    font-size: large;
+.members-individual-container i {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 
-} */
+}
 

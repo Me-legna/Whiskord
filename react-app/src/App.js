@@ -29,6 +29,9 @@ import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
 
 import './App.css'
+// import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
+import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
+
 
 function App() {
     const dispatch = useDispatch();
@@ -106,10 +109,13 @@ function App() {
 
                             <div className='app-container main-body'>
                                 <div className='server-list-container sidebar'>
+                                
+                                    <div className="server-list-button" id='logo-button'>
+                                        <button className="" onClick={getPrivateServers}>
+                                            {/* <img src={WhiskordLogo} /> */}
+                                            {/* Pr */}
+                                        </button>
 
-                                    <div className="server-list-button">
-                                        <button className="" onClick={getPrivateServers}>Pr</button>
-                                    </div>
 
 
                                     {/* Load all public servers */}
@@ -132,6 +138,7 @@ function App() {
                                             {
                                                 user && user.id === singleServer.owner_id &&
 
+
                                                 <i className="fa-solid fa-gear"></i>
 
                                             }
@@ -152,7 +159,13 @@ function App() {
                                             </ProtectedRoute>
                                         </div>
 
-                                        <div className='app-logout-button'>
+                                        <div className='app-user-and-logout-button'>
+                                            <div className='user-details'>
+                                                <i className="fa-solid fa-circle-user fa-xl"></i>
+                                                &nbsp; 
+                                                &nbsp; 
+                                                {user.username}
+                                            </div>
                                             <LogoutButton />
                                         </div>
 
