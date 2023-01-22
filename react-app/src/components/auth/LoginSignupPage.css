@@ -1,3 +1,14 @@
+/* .entire-homepage-div {
+} */
+
+.login-page {
+    background-image:url('../../images/background.jpeg');
+    background-repeat:no-repeat;
+    /* background-color: #5865f2; */
+    background-size: 100%;
+    width: 100vw;
+    height: 100vh;
+ }
 
 .qr-code-container{
     display: flex;
@@ -85,4 +96,3 @@
     border: none;
     border-radius: 5px;
 }
-

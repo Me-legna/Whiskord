@@ -78,7 +78,6 @@ function App() {
                                 <LandingPage />
                             </Route>
                             <Route path="/login" exact={true}>
-                                {/* <LoginForm /> */}
                                 <LoginSignUpPage />
                             </Route>
                             <Route path="/sign-up" exact={true}>
