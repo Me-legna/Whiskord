@@ -157,7 +157,7 @@ function App() {
                                             {
 
                                                 user && user.id === singleServer.owner_id &&
-                                                <div className=''>
+                                                <div>
                                                     <div className="owner-tools">
                                                         <h6>Server CRUD</h6>
                                                         <div className="owner-button">
