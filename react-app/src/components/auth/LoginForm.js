@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import SignUpForm from './SignUpForm';
-import { useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 const LoginForm = () => {
@@ -36,7 +36,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form className='login' onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -63,7 +63,10 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
-      <button className='signup-button' onClick={()=>(history.push('/sign-up'))}>Sign Up for Whiskord!</button>
+      <button className='signup-button' onClick={() => (history.push('/sign-up'))}>Sign Up for Whiskord!</button>
+
+      <NavLink to='/'>Take me home!</NavLink>
+
     </form>
   );
 };

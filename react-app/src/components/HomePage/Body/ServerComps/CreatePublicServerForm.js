@@ -9,6 +9,8 @@ import { addChannelMember, createNewChannel } from "../../../../store/channel";
 import { useHistory } from "react-router-dom";
 import Members from "../Members";
 import { useModal } from "../../../../context/Modal";
+import './servers.css';
+
 
 function CreatePublicServerForm() {
   const user = useSelector((state) => state.session.user);
@@ -66,7 +68,7 @@ function CreatePublicServerForm() {
 
   return (
     // <h1>hello</h1>
-    <div>
+    <div className='create-server'>
       <h1>Create a Server</h1>
       <form onSubmit={createServer}>
         {/* <label>
@@ -81,11 +83,11 @@ function CreatePublicServerForm() {
           {name > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label>
-          Server Name
+          Server name
           <input
             className="modal-input"
             type="text"
-            placeholder="Enter a Server Name"
+            placeholder="Enter a name for your server."
             minLength={2}
             maxLength={100}
             value={name}

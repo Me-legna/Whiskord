@@ -1,0 +1,29 @@
+
+.delete-channel h1{
+    font-size: x-large;
+    font-weight: 370;
+    color: white;
+}
+
+.delete-channel label{
+    color: white;
+    font-size: small;
+    font-weight: 800;
+    margin: 20px;
+}
+
+.delete-channel input{
+    cursor: pointer;
+}
+
+.delete-channel button{
+    border-radius: 3px;
+    background-color: #008334;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 105%;
+    text-align: center;
+    margin-top: 20px;
+}

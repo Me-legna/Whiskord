@@ -114,6 +114,7 @@ function App() {
     if (user) {
       dispatch(publicServers());
     }}, [dispatch]);
+
     return (
         <div className='entire-homepage-div'>
             {!user
@@ -211,7 +212,9 @@ function App() {
                                                                 faIcon={<i className="fa-solid fa-gears"></i>}
                                                                 modalComponent={<EditChannelForm />}
                                                             />
-                                                            <span className="hover-message">Edit my channel!</span>
+
+                                                            <span className="hover-message">Edit my Channel!</span>
+                                                            
                                                         </div>
                                                         <div className="owner-button">
                                                             <OpenModalButton

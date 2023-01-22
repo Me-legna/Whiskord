@@ -64,7 +64,7 @@ function EditServerForm() {
   };
 
   return (
-    <div>
+    <div className="edit-server-modal">
       <h1>Edit Server</h1>
 
       <div>
@@ -76,7 +76,7 @@ function EditServerForm() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Server Name:</label>
+          <label htmlFor="name">Server Name</label>
           <input
             type="text"
             name="name"

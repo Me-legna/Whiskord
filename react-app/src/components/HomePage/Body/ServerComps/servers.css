@@ -1,0 +1,78 @@
+.create-server{
+    border-radius: 5px;
+    margin-top: 30px;
+    padding-top: 1px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    height: 70%;
+    position: relative;
+}
+
+.create-server h1{
+    color: white;
+    font-weight: 400;
+}
+
+.create-server input{
+    background-color: #23272a;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 9px 5px 5px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.create-server label{
+    color: white;
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 10px;
+
+}
+
+.create-server button{
+    border-radius: 3px;
+    background-color: #008334;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 105%;
+    text-align: center;
+
+}
+
+.edit-server-modal h1{
+    color: white;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.edit-server-modal label{
+    color: white;
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.edit-server-modal input{
+    background-color: #23272a;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 9px 5px 5px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-server-modal button{
+    border-radius: 3px;
+    background-color: #008334;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 105%;
+    text-align: center;
+}
