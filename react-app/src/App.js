@@ -27,10 +27,12 @@ import OpenModalButton from './components/OpenModalButton';
 import CreatePublicServerForm from './components/HomePage/Body/ServerComps/CreatePublicServerForm';
 import { resetMessageState } from './store/message';
 import { resetChannelState } from './store/channel';
+import UnderDevelopment from './components/UnderDevelopment';
 
 import './App.css'
 // import WhiskordLogoCrop from './images/WhiskordLogoCrop.png'
 import WhiskordLogo from './images/Logo/WhiskordLogoCrop.png';
+
 
 
 function App() {
@@ -93,9 +95,12 @@ function App() {
                             <ProtectedRoute path="/users/:userId" exact={true}>
                                 <User />
                             </ProtectedRoute>
-                            <Route path='/'>
+                            <Route path='/404'>
                                 <NotFoundPage />
                             </Route>
+                            <Route path='/next'>
+                            < UnderDevelopment />
+                        </Route>
                         </Switch>
                     </>
                 )
@@ -108,14 +113,13 @@ function App() {
                         <ProtectedRoute path='/home'>
 
                             <div className='app-container main-body'>
-                                <div className='server-list-container sidebar'>
+
                                 
                                     <div className="server-list-button" id='logo-button'>
                                         <button className="" onClick={getPrivateServers}>
                                             {/* <img src={WhiskordLogo} /> */}
                                             {/* Pr */}
                                         </button>
-
 
 
                                     {/* Load all public servers */}
@@ -137,8 +141,7 @@ function App() {
                                             <h3>{singleServer && singleServer.name}</h3>
                                             {
                                                 user && user.id === singleServer.owner_id &&
-
-
+                                                
                                                 <i className="fa-solid fa-gear"></i>
 
                                             }
@@ -190,10 +193,14 @@ function App() {
                         </ProtectedRoute>
 
                         {/* Error Page */}
-                        <Route path='/'>
+                        <Route path='/404'>
                             <NotFoundPage />
                         </Route>
                         <LogoutButton />
+                        {/* UnderDevelopment Page */}
+                        <Route path='/next'>
+                            < UnderDevelopment />
+                        </Route>
                     </Switch>
                 )
             }
