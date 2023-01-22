@@ -41,6 +41,7 @@ def update_channel(channel_id):
     Updates and returns an existing channel.
     """
     channel = Channel.query.get(channel_id)
+    print(channel)
     if channel is None:
         return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
 
@@ -53,7 +54,7 @@ def update_channel(channel_id):
     # name = data.get("name")
     # type = data.get("type")
     # is_private = data.get("is_private")
-
+    print("we're here-------")
     # # Perform validation on the data, MOVE TO WTF FORMS LATER
     # errors = []
     # if not name:
@@ -63,12 +64,12 @@ def update_channel(channel_id):
 
     # if errors:
     #     return jsonify({"message": "Validation Error", "statusCode": 400, "errors": errors}), 400
-
+    print(channel.type)
     form = ChannelForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         channel.name = form.data['name']
-        # channel.type = form.data['type']
+        channel.type = channel.type
         # channel.is_private = form.data['is_private']
         db.session.commit()
         return channel.to_dict(), 201
