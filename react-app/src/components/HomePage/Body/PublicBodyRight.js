@@ -34,37 +34,37 @@ function PublicBody() {
 
         const dispatch = useDispatch()
         const history = useHistory()
-        
+
         const state = useSelector((state) => state);
-    
+
         // const serverId = useSelector((state) => state?.servers?.singleServer.id);
         const { serverId } = useParams();
-      
+
         const singleServer = useSelector((state) => state?.servers?.singleServer);
-    
+
         const allChannels = useSelector((state) => state?.channels?.allChannels);
         const channelId = allChannels.allIds[0]
-    
+
         const channelDetails = useSelector((state) => state?.channels?.channelDetails);
-    
+
         // grab the channel/server from the redux store.
         const myServer = useSelector(state => state.servers.singleServer)
-    
+
         //setting current user and server owner
         const currentUser = useSelector(state => state.session.user);
         const serverOwner = myServer.owner_id;
-    
+
         const channelName = channelDetails?.name;
-    
+
         // const handleSetChannel = (channel) => {
         //     setChannel(channel);
         // };
-    
+
         // const publicServerDetails = (serverId) => {
-    
+
         //     dispatch(serverDetails(serverId)).then(() => history.push(`/home/${serverId}`))
         // }
-    
+
         const logoClick = () => {
             setIsPrivate(true)
             history.push('/home/@me')
@@ -84,25 +84,25 @@ function PublicBody() {
         //         // dispatch(getChannelDetails(channelId))
         //         history.push(`/home/${serverId}/${channelId}`)
         //     }
-    
+
         //     return (()=>{
         //         console.log('dismounting body')
         //     })
         // }, [dispatch, history, isPrivate, singleServer, serverId, channelId])
-    
+
         // useEffect(()=> {
         //     dispatch(getChannelDetails(channelId))
         //     history.push(`/home/${serverId}/${channelId}`)
         // },[dispatch,channelId])
 
         // console.log(currentUser)
-    
+
         // useEffect(() => {
         //     dispatch(publicServers());
         //     console.log('publicServers')
-    
+
         // }, [dispatch])
-    
+
 
     return (
         <>
@@ -128,11 +128,11 @@ function PublicBody() {
                             {/* members header */}
                             {(channelDetails?.Members) &&
                             <div>
-                                <h3>
+                                <h4 className="Members-title">
                                     <i className="fa-solid fa-user-group"></i>
                                     &nbsp;
                                     Members
-                                </h3>
+                                </h4>
                             </div>
                             }
                         </div>

@@ -113,7 +113,7 @@ function PrivateBody() {
     // },[dispatch,channelId])
 
 
-        
+
     return (
         <>
         {
@@ -138,11 +138,11 @@ function PrivateBody() {
                             {/* members header */}
                             {(channelDetails?.Members) &&
                             <div>
-                                <h3>
+                                <h4 className="Members-title">
                                     <i className="fa-solid fa-user-group"></i>
                                     &nbsp;
                                     Members
-                                </h3>
+                                </h4>
                             </div>
                             }
                         </div>
