@@ -41,6 +41,7 @@ import DeleteServerForm from './components/HomePage/Body/ServerComps/DeleteServe
 import SignUpPage from './components/auth/SignUpIndex';
 import EditChannelForm from "./components/HomePage/Body/Channels/EditChannelForm";
 import DeleteChannelForm from "./components/HomePage/Body/Channels/DeleteChannelForm";
+import ChatPlaceHolder from './components/HomePage/Body/PlaceHolder/ChatPlaceHolder';
 
 function App() {
     const dispatch = useDispatch();
@@ -267,7 +268,13 @@ function App() {
 
 
                                     <div className='middle-right-body'>
-
+                                        {/* Placeholder when Channel or Private Server not available */}
+                                        <ProtectedRoute path='/home' exact={true}>
+                                            <ChatPlaceHolder />
+                                        </ProtectedRoute>
+                                        <ProtectedRoute path='/home/:serverId' exact={true}>
+                                            <ChatPlaceHolder />
+                                        </ProtectedRoute>
 
                                         {/* Load messages, header, and members of Private Server */}
                                         <ProtectedRoute path="/home/@me/:channelId" >
