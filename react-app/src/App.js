@@ -86,7 +86,7 @@ function App() {
 
     const privateServerInfo = async (privateServersList) => {
         // console.log('PRIVATE SERVER LIST ',privateServersList[2].id)
-            await dispatch(serverDetails(privateServersList[0]?.id))
+        await dispatch(serverDetails(privateServersList[0]?.id))
             .then((server) => dispatch(getChannelDetails(server.Channels[0]?.id)))
             .then((channel) => history.push(`/home/@me/${channel?.id}`))
     }
@@ -96,14 +96,14 @@ function App() {
         // dispatch(resetChannelState())
         // dispatch(resetServerDetails())
         await dispatch(privateServers())
-            .then((privateServersList) =>  { 
-                if(privateServersList.length){
-                    privateServerInfo(privateServersList) 
+            .then((privateServersList) => {
+                if (privateServersList.length) {
+                    privateServerInfo(privateServersList)
                 } else {
                     dispatch(resetServerDetails())
                     history.push('/home/@me')
                 }
-            } )
+            })
 
 
     }
@@ -118,11 +118,12 @@ function App() {
         modalComponent={<DeleteServerForm />}
     />
 
-  useEffect(() => {
-    dispatch(authenticate()).then(() => setLoaded(true));
-    if (user) {
-      dispatch(publicServers());
-    }}, [dispatch]);
+    useEffect(() => {
+        dispatch(authenticate()).then(() => setLoaded(true));
+        if (user) {
+            dispatch(publicServers());
+        }
+    }, [dispatch]);
 
     return (
         <div className='entire-homepage-div'>
@@ -146,11 +147,11 @@ function App() {
                             <ProtectedRoute path="/users/:userId" exact={true}>
                                 <User />
                             </ProtectedRoute>
-                            <Route path='/404'>
-                                <NotFoundPage />
-                            </Route>
                             <Route path='/next'>
                                 < UnderDevelopment />
+                            </Route>
+                            <Route path='/'>
+                                <NotFoundPage />
                             </Route>
                         </Switch>
                     </>
@@ -191,49 +192,27 @@ function App() {
                                     <div className='channel-list-container left'>
                                         <div className='server-name-header'>
 
-                                            {/* <h3>{singleServer && singleServer.name}</h3> */}
                                             {
 
-                                                user && user.id === singleServer.owner_id &&
-                                                <div>
-                                                    <div className="owner-tools">
-                                                        <h6>Server CRUD</h6>
-                                                        <div className="owner-button">
-                                                            <OpenModalButton
-                                                                faIcon={<i className="fa-solid fa-gears"></i>}
-                                                                modalComponent={<EditServerForm />}
-                                                            />
-                                                            <span className="hover-message">Edit my server!</span>
-                                                        </div>
-                                                        <div className="owner-button">
-                                                            <OpenModalButton
-                                                                faIcon={<i className="fa-solid fa-trash"></i>}
-                                                                modalComponent={<DeleteServerForm />}
-                                                            />
-                                                            <span className="hover-message">Delete my server!</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="owner-tools">
-                                                        <h6>Channel CRUD</h6>
-                                                        <div className="owner-button">
-                                                            <OpenModalButton
-                                                                faIcon={<i className="fa-solid fa-gears"></i>}
-                                                                modalComponent={<EditChannelForm />}
-                                                            />
-
-                                                            <span className="hover-message">Edit my Channel!</span>
-                                                            
-                                                        </div>
-                                                        <div className="owner-button">
-                                                            <OpenModalButton
-                                                                faIcon={<i className="fa-solid fa-trash"></i>}
-                                                                modalComponent={<DeleteChannelForm />}
-                                                            />
-                                                            <span className="hover-message">Delete my channel!</span>
+                                                user && user.id === singleServer.owner_id && !singleServer.is_private &&
+                                                <>
+                                                    <h3>{singleServer && singleServer.name}</h3>
+                                                    <div>
+                                                        <div className="owner-tools">
+                                                            <h6>Server CRUD</h6>
+                                                            <div>
+                                                                <OpenModalButton
+                                                                    faIcon={<i className="fa-solid fa-pen-to-square" />}
+                                                                    modalComponent={<EditServerForm />}
+                                                                />
+                                                                <OpenModalButton
+                                                                    faIcon={<i className="fa-solid fa-trash-can" />}
+                                                                    modalComponent={<DeleteServerForm />}
+                                                                />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </>
                                             }
                                         </div>
 

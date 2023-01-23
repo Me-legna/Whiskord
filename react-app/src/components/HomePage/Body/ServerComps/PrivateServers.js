@@ -80,7 +80,7 @@ function PrivateServers() {
                         modalComponent={<CreatePrivateServerForm />}
                     />
                 </div>
-                {
+                {/* {
                     Object.keys(singleServer).length ?
                         <div>
                             <OpenModalButton
@@ -93,7 +93,7 @@ function PrivateServers() {
                             />
                         </div>
                         : <></>
-                }
+                } */}
             </div>
             {servers.map((server, idx) => {
                 return (
@@ -105,7 +105,10 @@ function PrivateServers() {
                                 </div>
                                 <div className="private-server-name-number">
                                     <div className="private-server-name">
-                                        {server.name}
+                                        {server.name.length > 12
+                                        ? (server.name.slice(0,12) + '...')
+                                        : server.name
+                                    }
                                     </div>
                                     <div className="private-server-member-num">
                                         {server.Members.length}
@@ -113,6 +116,16 @@ function PrivateServers() {
                                         Members
                                     </div>
                                     {/* {server.name[0]} */}
+                                </div>
+                                <div>
+                                    <OpenModalButton
+                                        faIcon={<i className="fa-solid fa-pen-to-square" />}
+                                        modalComponent={<EditServerForm />}
+                                    />
+                                    <OpenModalButton
+                                        faIcon={<i className="fa-solid fa-trash-can" />}
+                                        modalComponent={<DeleteServerForm />}
+                                    />
                                 </div>
                             </button>
                         </NavLink>

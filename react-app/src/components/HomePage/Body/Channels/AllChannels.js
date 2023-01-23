@@ -6,6 +6,8 @@ import { getChannelMessages } from "../../../../store/message";
 import { useEffect } from "react";
 import CreateChannel from "./CreateChannelForm";
 import OpenModalButton from "../../../OpenModalButton";
+import EditChannelForm from "./EditChannelForm";
+import DeleteChannelForm from "./DeleteChannelForm";
 // import { useParams } from "react-router-dom";
 // import '../../../../App.css'
 
@@ -48,7 +50,7 @@ export default function AllChannels() {
 
   return (
     <div>
-      <h3>{singleServer && singleServer.name}</h3>
+      {/* <h3>{singleServer && singleServer.name}</h3> */}
       {
         (Object.values(singleServer).length !== 0 && !singleServer.is_private) &&
         <>
@@ -68,17 +70,24 @@ export default function AllChannels() {
               // const channelId = channel.id
 
               return (
-                // <li key={channel.id}>
-                <button onClick={() => {
+                <button key={channel.id} onClick={() => {
                   handleClick(channelId)
                   handleRoute(channelId)
                 }}>
                   <i className="fa-solid fa-hashtag"></i>
                   &nbsp;
                   {channel.name}
+                  <div>
+                    <OpenModalButton
+                      faIcon={<i className="fa-solid fa-pen-to-square" />}
+                      modalComponent={<EditChannelForm />}
+                    />
+                    <OpenModalButton
+                      faIcon={<i className="fa-solid fa-trash-can" />}
+                      modalComponent={<DeleteChannelForm />}
+                    />
+                  </div>
                 </button>
-
-                // </li>
               );
             })}
           </div>
