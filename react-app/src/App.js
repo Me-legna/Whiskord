@@ -54,7 +54,9 @@ function App() {
 
     const singleServer = useSelector((state) => state?.servers?.singleServer);
 
-    const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
+    // const allChannels = useSelector((state) => state?.servers?.singleServer?.Channels);
+
+    const allChannels = useSelector((state) => state?.channels?.allChannels?.byId);
 
     // const allChannels = useSelector((state) => state?.channels?.allChannels);
 
@@ -84,9 +86,9 @@ function App() {
 
     const privateServerInfo = async (privateServersList) => {
         // console.log('PRIVATE SERVER LIST ',privateServersList[2].id)
-            await dispatch(serverDetails(privateServersList[0].id))
-            .then((server) => dispatch(getChannelDetails(server.Channels[0].id)))
-            .then((channel) => history.push(`/home/@me/${channel.id}`))
+            await dispatch(serverDetails(privateServersList[0]?.id))
+            .then((server) => dispatch(getChannelDetails(server.Channels[0]?.id)))
+            .then((channel) => history.push(`/home/@me/${channel?.id}`))
     }
 
     const getPrivateServers = async () => {
@@ -94,7 +96,14 @@ function App() {
         // dispatch(resetChannelState())
         // dispatch(resetServerDetails())
         await dispatch(privateServers())
-            .then((privateServersList) => privateServerInfo(privateServersList)  )
+            .then((privateServersList) =>  { 
+                if(privateServersList.length){
+                    privateServerInfo(privateServersList) 
+                } else {
+                    dispatch(resetServerDetails())
+                    history.push('/home/@me')
+                }
+            } )
 
 
     }

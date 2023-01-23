@@ -62,8 +62,8 @@ function PrivateServers() {
         // dispatch(resetServerDetails())
         await dispatch(serverDetails(serverId))
         await dispatch(getChannels(serverId))
-            .then((channels) => dispatch(getChannelDetails(channels[0].id)))
-            .then((channel) => history.push(`/home/@me/${channel.id}`))
+            .then((channels) => dispatch(getChannelDetails(channels[0]?.id)))
+            .then((channel) => history.push(`/home/@me/${channel?.id}`))
         // history.push('/home/me/')
     }
     // if (channelId) history.push(`/home/@me/${channelId}`)

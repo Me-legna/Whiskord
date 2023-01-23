@@ -27,8 +27,14 @@ export default function ServerList() {
     // console.log('SERVER ID', serverId)
     await dispatch(serverDetails(serverId))
     await dispatch(getChannels(serverId))
-    .then((channels) => dispatch(getChannelDetails(channels[0].id)))
-    .then((channel) => history.push(`/home/${serverId}/${channel.id}`))
+    .then((channels) => {
+      if(channels.length){
+        dispatch(getChannelDetails(channels[0].id))
+        .then((channel) => history.push(`/home/${serverId}/${channel.id}`))
+      } else {
+        history.push(`/home/${serverId}`)
+      }
+    })
 
     // dispatch(getChannelMembers(channelId))
 

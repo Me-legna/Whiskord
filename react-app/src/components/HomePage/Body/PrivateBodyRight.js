@@ -57,6 +57,7 @@ function PrivateBody() {
 
     // grab the channel/server from the redux store.
     const myServer = useSelector(state => state.servers.singleServer)
+    const myServerName = myServer?.name
 
     //setting current user and server owner
     const currentUser = useSelector(state => state.session.user);
@@ -122,9 +123,9 @@ function PrivateBody() {
                         <div className='chat-header'>
                             {/* channelname header */}
                             <h3>
-                                <i className="fa-solid fa-hashtag"></i>
+                                <i className="fa-solid fa-user-group"></i>
                                 &nbsp;
-                                {channelName}
+                                {myServerName}
                             </h3>
                         </div>
                         <div className='messages-and-input'>
