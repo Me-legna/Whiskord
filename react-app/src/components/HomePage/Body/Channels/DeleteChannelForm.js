@@ -19,11 +19,13 @@ export default function DeleteChannelForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log('myChannel id ------', myChannel.id)
+
         await dispatch(deleteChannel(myChannel.id))
             .then(history.push(`/home/${myServer.id}`))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
+            .catch(async (err) => {
+                console.log('errors', err)
+                if (err) setErrors(err);
             });
     }
     return (

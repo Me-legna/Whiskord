@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { destroyServer } from "../../../../store/server";
 import { useModal } from "../../../../context/Modal";
+import { resetChannelDetails } from "../../../../store/channel";
+import { resetMessageState } from "../../../../store/message";
 
 function DeleteServerForm() {
     const dispatch = useDispatch();
     const history = useHistory()
     const server = useSelector(state => state.servers.singleServer)
+    const privateServerIds = useSelector(state => state.servers.allPrivateServers.allIds)
     const { closeModal } = useModal()
     const [checked, setChecked] = useState(false)
     const [errors, setErrors] = useState([]);
@@ -18,7 +21,15 @@ function DeleteServerForm() {
         setErrors([]);
 
         await dispatch(destroyServer(server.id, server.is_private)).then(()=>{
-            history.push(`/home/@me/`);
+            dispatch(resetMessageState())
+            dispatch(resetChannelDetails())
+            if(server.is_private){
+                if(privateServerIds.length){
+                    history.push(`/home/@me/${privateServerIds[0]}`);
+                }
+            }else{
+                history.push('/home/@me')
+            }
             closeModal()
         })
         .catch(
@@ -34,7 +45,7 @@ function DeleteServerForm() {
     return (
         <>
             <div className="modal-header">
-                <h1>Delete this Server? {checked ? '😳' : '🤔'}</h1>
+                <h1>Are you sure you want to delete this server?</h1>
             </div>
             <div className="modal-body-container">
 

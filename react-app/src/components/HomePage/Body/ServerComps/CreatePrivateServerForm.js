@@ -7,7 +7,7 @@ import { useModal } from "../../../../context/Modal";
 
 
 function CreatePrivateServerForm() {
-    const user = useSelector(state => state.session.user)
+    const currentUser = useSelector(state => state.session.user)
     const [name, setName] = useState('');
     const [isDM, setIsDM] = useState(false)
     const [capacity, setCapacity] = useState(2)
@@ -17,13 +17,13 @@ function CreatePrivateServerForm() {
     const [users, setUsers] = useState([]);
     const dispatch = useDispatch()
     const history = useHistory()
-    const {closeModal} = useModal()
+    const { closeModal } = useModal()
     // setAllUsers(users)
 
 
 
     const createServer = async (e) => {
-        const ownerId = user.id
+        const ownerId = currentUser.id
         e.preventDefault()
 
         const newServer = {
@@ -36,8 +36,9 @@ function CreatePrivateServerForm() {
             members: selectedUserIds
         }
 
-        const server = await dispatch(addServer(newServer))
-
+        await dispatch(addServer(newServer))
+            .then((server) => history.push(`/home/@me/${server.Channels[0].id}`))
+            .then(() => closeModal())
         // const newChannel = {
         //     name,
         //     server_id: server.id,
@@ -55,7 +56,7 @@ function CreatePrivateServerForm() {
 
         // await dispatch(serverDetails(server.id))
 
-        closeModal()
+        // closeModal()
         // history.push(`/home/@me/${channel.id}`)
 
 
@@ -67,7 +68,7 @@ function CreatePrivateServerForm() {
     useEffect(() => {
         if (numSelected === 0) setName('Unnamed')
         else {
-            let groupName = `${user.username}, `
+            let groupName = `${currentUser.username}, `
 
             selectedUsers.forEach(user => groupName += `${user.username} `)
             setName(groupName)
@@ -77,7 +78,7 @@ function CreatePrivateServerForm() {
 
         if (isDM) setCapacity(2)
         else setCapacity(10)
-    }, [numSelected, selectedUsers,isDM, user])
+    }, [numSelected, selectedUsers, isDM, currentUser])
 
     useEffect(() => {
         async function fetchData() {
@@ -103,9 +104,9 @@ function CreatePrivateServerForm() {
         }
     }
 
-    // if (users) {
-    const userComponents = users.map(user => {
-        return (
+
+    const userComponents = users.map(user => (
+        user.id !== currentUser.id && (
             <label key={user.id}>
                 {user.username}
                 <input
@@ -117,8 +118,8 @@ function CreatePrivateServerForm() {
                 />
             </label>
         )
-    })
-    // }
+    ))
+
 
 
     return (
