@@ -60,7 +60,7 @@
     width: 100%;
     margin-top: 5px;
     margin-bottom: 20px;
-    border:none; 
+    border:none;
 }
 
 .channel-form-body label{
@@ -72,6 +72,93 @@
 }
 
 .channel-form-body button{
+    border-radius: 3px;
+    background-color: #008334;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 105%;
+    text-align: center;
+
+}
+
+
+
+.edit-channel-form h1{
+    font-size: x-large;
+    font-weight: 800;
+    color: white;
+}
+
+.edit-channel-form-body label{
+    color: white;
+    font-size: small;
+    font-weight: 800;
+    margin-left: 0px;
+}
+
+.edit-channel-form-body input{
+    cursor: pointer;
+}
+
+.edit-channel-form-body button{
+    border-radius: 3px;
+    background-color: #008334;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 105%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* .create-channel{
+    border-radius: 5px;
+    margin-top: 30px;
+    padding-top: 1px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    height: 70%;
+    position: relative;
+} */
+
+.edit-channel-errors ul{
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    text-align: center;
+}
+
+.edit-channel-form-body h1{
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+
+}
+
+.edit-channel-form-body input{
+    background-color: #23272a;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 9px 5px 5px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border:none;
+    color:white;
+}
+
+.edit-channel-form-body label{
+    color: white;
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 10px;
+
+}
+
+.edit-channel-form-body button{
     border-radius: 3px;
     background-color: #008334;
     border: none;
