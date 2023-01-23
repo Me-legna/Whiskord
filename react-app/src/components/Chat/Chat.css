@@ -113,6 +113,11 @@
     color: white;
 }
 
+.message-content button{
+    border: none;
+    border-radius: 5px;
+}
+
 .chat-spacer {
     min-width: 100%;
 
