@@ -7,11 +7,11 @@
     cursor: pointer;
 }
 
-.server-icon {
+.open-modal-button {
     width: 60px;
     transition: border-radius 150ms linear;
 }
 
-.server-icon:hover {
+.open-modal-button:hover {
     border-radius: 30%;
 }

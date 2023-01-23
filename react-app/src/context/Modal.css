@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    z-index: 9999;
   }
 
   #modal-background {
@@ -17,6 +18,7 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
   }
 
   #modal-content {
@@ -28,4 +30,5 @@
     overflow-y: auto;
     height: 60%;
     width: 20%;
+    z-index: 9999;
   }

@@ -35,11 +35,14 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: #7289DA;
-    border-radius: 15px;
-
+    /* border-radius: 15px; */
+    /* width: 60px; */
+    transition: border-radius 150ms linear;
 }
 
-
+#logo-button button:hover {
+    border-radius: 30%;
+}
 
 /* .main-body {
     display: flex;
