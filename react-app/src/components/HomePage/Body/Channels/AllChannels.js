@@ -11,6 +11,7 @@ import CreateChannel from "./CreateChannelForm";
 import OpenModalButton from "../../../OpenModalButton";
 import EditChannelForm from "./EditChannelForm";
 import DeleteChannelForm from "./DeleteChannelForm";
+
 // import { useParams } from "react-router-dom";
 // import '../../../../App.css'
 
@@ -18,6 +19,7 @@ import DeleteChannelForm from "./DeleteChannelForm";
 
 export default function AllChannels() {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
   const state = useSelector((state) => state);
   const singleServer = useSelector((state) => state?.servers?.singleServer);
   const serverId = useSelector((state) => state.servers.singleServer.id);
@@ -55,14 +57,17 @@ export default function AllChannels() {
 
           <h3 style={{color: "white",fontSize:"25px",marginBottom:'0px'}}>{singleServer && singleServer.name}</h3>
           <div className='channels-and-button'>
-          <h6>TEXT-CHANNELS</h6>
-          <div className='create-channel-button' style={{cursor:'pointer'}}>
-            <OpenModalButton
-              modalComponent={<CreateChannel serverId={serverId}/>}
-              faIcon={<i style={{color:"#9d9d9f"}}className="fa-solid fa-plus"></i>}
-            />
 
-            </div>
+            <h6>TEXT-CHANNELS</h6>
+            {singleServer && singleServer.owner_id === user.id &&
+              <div className='create-channel-button' style={{cursor:'pointer'}}>
+                <OpenModalButton
+                  modalComponent={<CreateChannel serverId={serverId} />}
+                  faIcon={<i style={{ color: "#9d9d9f" }} className="fa-solid fa-plus"></i>}
+                />
+              </div>
+            }
+
           </div>
           <div>
             {channels?.allIds?.map((channelId) => {
@@ -71,19 +76,19 @@ export default function AllChannels() {
               // const channelId = channel.id
 
               return (
-                <button
-                  className="channel-button"
-                  key={channel.id}
-                  onClick={() => {
-                    handleClick(channelId);
-                    handleRoute(channelId);
-                  }}
-                >
+
+                <button className="single-channel" key={channel.id} onClick={() => {
+                  handleClick(channelId)
+                  handleRoute(channelId)
+                }}>
+
                   <div>
                     <i className="fa-solid fa-hashtag"></i>
                     &nbsp;
                     {channel.name}
                   </div>
+
+                    {singleServer && singleServer.owner_id === user.id &&
 
                   <div className="channel-action-btns">
                     <OpenModalButton
@@ -94,6 +99,7 @@ export default function AllChannels() {
                       faIcon={<i className="fa-solid fa-trash-can" />}
                       modalComponent={<DeleteChannelForm />}
                     />
+
                   </div>
                 </button>
               );

@@ -26,6 +26,7 @@ function PrivateServers() {
     const servers = Object.values(serversObj);
     const singleServer = useSelector((state) => state.servers.singleServer);
     const channel = useSelector((state) => state.channels.channelDetails);
+    const user = useSelector(state => state.session.user)
     const { setModalContent, setOnModalClose } = useModal();
 
     const channelId = channel.id;
@@ -72,11 +73,13 @@ function PrivateServers() {
         <div className="private-servers-list">
             <div className="flex">
                 <div className="flex">
-                    <h6 style={{marginBottom:'0px',color:'white',fontSize:"19px"}}>
+                    <h6 style={{ marginBottom: '0px', color: 'white', fontSize: "19px" }}>
                         Direct Messages
                     </h6>
                     <OpenModalButton
+
                         faIcon={<i style={{color: "white",cursor:'pointer'}}className="fa-solid fa-plus" />}
+
                         modalComponent={<CreatePrivateServerForm />}
                     />
                 </div>
@@ -106,9 +109,9 @@ function PrivateServers() {
                                 <div className="private-server-name-number">
                                     <div className="private-server-name">
                                         {server.name.length > 12
-                                        ? (server.name.slice(0,12) + '...')
-                                        : server.name
-                                    }
+                                            ? (server.name.slice(0, 12) + '...')
+                                            : server.name
+                                        }
                                     </div>
                                     <div className="private-server-member-num">
                                         {server.Members.length}
@@ -122,10 +125,12 @@ function PrivateServers() {
                                         faIcon={<i className="fa-solid fa-pen-to-square" />}
                                         modalComponent={<EditServerForm />}
                                     />
-                                    <OpenModalButton
-                                        faIcon={<i className="fa-solid fa-trash-can" />}
-                                        modalComponent={<DeleteServerForm />}
-                                    />
+                                    {server && server.owner_id === user.id &&
+                                        <OpenModalButton
+                                            faIcon={<i className="fa-solid fa-trash-can" />}
+                                            modalComponent={<DeleteServerForm />}
+                                        />
+                                    }
                                 </div>
                             </button>
                         </NavLink>
