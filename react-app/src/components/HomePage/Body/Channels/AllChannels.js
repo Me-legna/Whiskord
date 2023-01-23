@@ -55,10 +55,10 @@ export default function AllChannels() {
 
         (Object.values(singleServer).length !== 0 && !singleServer.is_private) &&
         <>
-          <h3>{singleServer && singleServer.name}</h3>
+          <h3 style={{color: "white",fontSize:"25px",marginBottom:'0px'}}>{singleServer && singleServer.name}</h3>
           <div className='channels-and-button'>
           <h6>TEXT-CHANNELS</h6>
-          <div className='create-channel-button'>
+          <div className='create-channel-button' style={{cursor:'pointer'}}>
             <OpenModalButton
               modalComponent={<CreateChannel serverId={serverId}/>}
               faIcon={<i style={{color:"#9d9d9f"}}className="fa-solid fa-plus"></i>}
