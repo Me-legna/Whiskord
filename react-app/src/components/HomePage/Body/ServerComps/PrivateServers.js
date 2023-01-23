@@ -76,7 +76,7 @@ function PrivateServers() {
                         Direct Messages
                     </h6>
                     <OpenModalButton
-                        faIcon={<i style={{color: "white"}}className="fa-solid fa-plus" />}
+                        faIcon={<i style={{color: "white",cursor:'pointer'}}className="fa-solid fa-plus" />}
                         modalComponent={<CreatePrivateServerForm />}
                     />
                 </div>

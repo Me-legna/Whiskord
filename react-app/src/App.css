@@ -78,7 +78,7 @@
     color: white;
     font-size: 35px;
     margin-bottom: 0px;
-    
+
 }
 
 .server-name-header i {
@@ -225,4 +225,10 @@
     color:#9d9d9f;
     font-size: 15px;
     margin-bottom: 1px;
+}
+
+.friends-list fieldset{
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
 }
