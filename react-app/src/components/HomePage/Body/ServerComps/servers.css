@@ -76,3 +76,34 @@
     width: 105%;
     text-align: center;
 }
+
+
+
+.modal-header h1{
+    font-size: x-large;
+    font-weight: 800;
+    color: white;
+}
+
+.modal-body label{
+    color: white;
+    font-size: small;
+    font-weight: 800;
+    margin: 20px;
+}
+
+.modal-body input{
+    cursor: pointer;
+}
+
+.modal-body button{
+    border-radius: 3px;
+    background-color: #008334;
+    border: none;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 105%;
+    text-align: center;
+    margin-top: 20px;
+}
