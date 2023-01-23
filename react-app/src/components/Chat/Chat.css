@@ -27,7 +27,7 @@
 .message-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     width: 100%;
     /* padding: 8px; */
@@ -40,8 +40,9 @@
 .message-data-all {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
+    width: 90%;
     /* padding: 0px 4px; */
 }
 
@@ -62,6 +63,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    width: 100%;
 }
 
 .message-name-and-date {
@@ -197,3 +199,21 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  .message-content{
+    width: 100%;
+    margin-top: 4px;
+  }
+.message-edit-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.edit-form {
+    display: grid;
+    grid-template-columns: 1fr 0.1fr 0.1fr;
+    gap: 4px;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+    width: 100%;
+}

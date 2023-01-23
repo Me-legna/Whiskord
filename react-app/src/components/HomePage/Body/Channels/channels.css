@@ -175,3 +175,13 @@
     color: #9d9d9f;
     margin-bottom: 2px;
 }
+.channel-button {
+    display: grid;
+    grid-template-columns: 1fr 0.4fr;
+    height: 40px;
+    align-items: center;
+}
+.channel-action-btns {
+    display: flex;
+    justify-content: space-evenly;
+}
