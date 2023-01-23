@@ -1,0 +1,224 @@
+  .splash-background-container {
+    background-image:url('../../images/LandingPage/splash-section-background-clouds-and-stars.svg');
+
+    background-color: #1044ffde;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .splash-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 0px;
+    padding: 0px;
+    font-weight: 300;
+
+  }
+
+  .splash-banner h1 {
+    font-size: 40pt;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    font-family: system-ui;
+    margin-top: 0px;
+    margin-bottom: 60px;
+  }
+
+  .splash-banner button {
+    color: white;
+    border-radius: 40px;
+    padding: 25px;
+    font-size: 20px;
+    font-weight: 150;
+    background-color:#1a1b1de6;
+    border: none;
+    margin-top:25px
+  }
+
+  .splash-banner p{
+    color:white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .splash-images-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    margin-top: 30px;
+    margin-bottom: -5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    max-width: 100%;
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  .splash-images-container img {
+    /* flex: 1 1 50%; */
+    max-width: 45%;
+    box-sizing: border-box;
+  }
+
+
+  .splash-images-container img:first-child {
+    margin-right: -50%;
+    overflow: hidden;
+  }
+
+  .splash-images-container img:last-child {
+    margin-left: -50%;
+    overflow: hidden;
+  }
+
+  .navbar-links a{
+    color: white;
+    padding: 20px;
+  }
+
+  .navbar-right-side button {
+    font-weight: 500;
+    background-color: white;
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 15px;
+    border: 1px;
+    margin-right: 50px;
+  }
+
+  /* .navbar-logo-and-name {
+    font-weight: 900;
+  } */
+
+  /* .splash-image-one {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    margin-right: auto;
+
+  } */
+
+  /* .splash-image-one img {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    position: absolute;
+
+    margin-left: -2000px;
+    margin-right: auto;
+
+    overflow: hidden;
+
+  } */
+
+  /* .splash-image-two {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+
+  } */
+
+  /* .splash-image-two img {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    position: absolute;
+
+    margin-right: -1000px;
+    margin-left: auto;
+
+  } */
+
+
+
+  /* .splash-images-spacer {
+    margin-left: 100px;
+    margin-right: 100px;
+  } */
+
+  /* .splash-images-container img:first-child,
+  .splash-images-container img:nth-child(2) {
+    width: 50%;
+  } */
+
+
+
+  /* .splash-images-container img:last-child {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+   */
+
+  .secondary-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+  .secondary-section img {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .secondary-section-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+  }
+
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    padding: 30px 20px;
+    background-color: #1a1b1de6;
+    justify-content: flex-end;
+    width: 100%;
+
+  }
+
+  .footer-links a {
+    padding:15px;
+    color:white;
+    font-size: 20px;
+    font-weight: 120;
+
+  }
+
+  .footer-links a::before{
+  content: "";
+  background-image:url("../../images/LandingPage/github-logo.svg");
+  display:inline-block;
+  height:30px;
+  width:30px;
+  padding:1px;
+
+}

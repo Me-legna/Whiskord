@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
@@ -11,13 +11,16 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password))
       if (data) {
         setErrors(data)
+      }else{
+        return history.push('/home/@me')
       }
     }
   };
@@ -39,7 +42,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home/@me' />;
   }
 
   return (
@@ -47,10 +50,10 @@ const SignUpForm = () => {
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-        ))}
+          ))}
       </div>
-      <div>
-        <label>User Name</label>
+      <div className='signup-form'>
+        <label>Username</label>
         <input
           type='text'
           name='username'
@@ -58,7 +61,7 @@ const SignUpForm = () => {
           value={username}
         ></input>
       </div>
-      <div>
+      <div className='signup-form'>
         <label>Email</label>
         <input
           type='text'
@@ -67,7 +70,7 @@ const SignUpForm = () => {
           value={email}
         ></input>
       </div>
-      <div>
+      <div className='signup-form'>
         <label>Password</label>
         <input
           type='password'
@@ -76,8 +79,8 @@ const SignUpForm = () => {
           value={password}
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className='signup-form'>
+        <label>Confirm Password</label>
         <input
           type='password'
           name='repeat_password'
@@ -86,7 +89,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button className='signup-page-button' type='submit'>Sign Up</button>
     </form>
   );
 };

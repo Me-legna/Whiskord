@@ -1,1 +1,95 @@
-/* TODO Add site wide styles */
+/* *:not(.splash-banner h1){
+    font-family: "Uni Sans", sans-serif;
+} */
+
+* {
+    /* font-family: 'Open Sans', sans-serif */
+    font-family:'Uni Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    padding: 30px 20px;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a.active {
+    font-weight: bold;
+}
+
+.navbar-logo-and-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: larger;
+    font-weight: 1000;
+    color: white;
+  }
+
+.navbar-logo-and-name img{
+    width: 40px;
+    margin-right: 1rem;
+}
+
+.navbar-right-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.app-container{
+    border: 3px solid yellow;
+}
+/* .sidebar{
+    border: 2px solid brown;
+} */
+.body{
+    border: 5px solid blue;
+    width:100%
+}
+.body-inner{
+    border: 1px solid green;
+}
+
+.flex {
+    display: flex;
+}
+.column {
+    flex-direction: column;
+}

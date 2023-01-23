@@ -1,0 +1,17 @@
+.icon-img {
+    border-radius: 50%;
+    width: 45px;
+}
+
+.icon-img:hover {
+    cursor: pointer;
+}
+
+.open-modal-button {
+    width: 60px;
+    transition: border-radius 150ms linear;
+}
+
+.open-modal-button:hover {
+    border-radius: 30%;
+}

@@ -1,0 +1,228 @@
+.entire-homepage-div{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    height: 95vh;
+    width: 99vw;
+    /* cursor:pointer; */
+}
+
+.app-container {
+    /* display: grid; */
+    /* grid-template-columns: .1fr 2fr 5fr; */
+    /* min-height: 100vh;
+    min-width: 100vw; */
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.main-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    width: 100%;
+}
+
+#logo-button button {
+    padding: 10px;
+    background-image: url('./images/Logo/WhiskordLogoCrop.png');
+    /* background-color: transparent; */
+    background-size: 65%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #7289DA;
+    /* border-radius: 15px; */
+    /* width: 60px; */
+    transition: border-radius 150ms linear;
+}
+
+#logo-button button:hover {
+    border-radius: 30%;
+}
+
+/* .main-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+} */
+
+/* .app-container .main-body{
+    display: grid;
+    grid-template-columns: 0.1fr 0.5fr 1fr 0.5fr;
+    gap: 0px;
+    height: 100%;
+    width: auto;
+} */
+
+.left {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    /* width: 100vh;
+    height: 100vh; */
+}
+
+.server-name-header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.server-name-header h3{
+    color: white;
+    font-size: 35px;
+    margin-bottom: 0px;
+    
+}
+
+.server-name-header i {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    /* margin: 0.5rem; */
+}
+
+.owner-tools {
+    position: relative;
+    width: 200px;
+    cursor: pointer;
+
+
+}
+
+.hover-message {
+    transform: translate(-50%, -50%);
+    display: none;
+    background: white;
+    margin: 0px;
+    top: 10%;
+    left: 50%;
+    position: relative;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-right: 0px;
+    width: 120px;
+    font-size: smaller;
+    font-weight: 100;
+
+}
+
+.owner-button:hover .hover-message {
+    display: block;
+}
+
+
+
+.app-channels-and-button {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: 0.5rem; */
+}
+
+.channels-and-button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: 0.5rem; */
+}
+
+.app-user-and-logout-button {
+    position: relative;
+    margin-top: auto;
+    top:auto;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.user-details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /* justify-content: space-between; */
+    align-items: center;
+    color: white;
+    font-weight: 900;
+}
+
+.app-user-and-logout-button button {
+    background-color: red;
+    outline: none;
+    border: none;
+    text-align: center;
+
+    border-radius: 10px;
+
+    width: 20%;
+
+}
+
+
+.middle-right-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    /* justify-content: space-around; */
+    /* flex-grow: 1;
+     */
+    width: 100%;
+    /* width: 100vw;
+    height: 100vh;  */
+}
+
+.messages-and-input {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.member-list-container {
+    display: flex;
+    flex-direction: column;
+    /* flex-shrink: 1;
+    flex-grow: 1; */
+    /* width: 100vh;
+    height: 100vh; */
+}
+
+.member-list-container .members {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* width: 100vh;
+    height: 100vh; */
+}
+
+[class = 'channel-list-container left']{
+    background-color: #36393e;
+}
+
+.owner-tools h6 {
+    color:#9d9d9f;
+    font-size: 15px;
+    margin-bottom: 1px;
+}
