@@ -175,9 +175,22 @@
     margin-bottom: 2px;
 }
 
+
 .single-channel {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
+.channel-button {
+    display: grid;
+    grid-template-columns: 1fr 0.4fr;
+    height: 40px;
+    align-items: center;
+}
+.channel-action-btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+
