@@ -33,9 +33,9 @@ const updateChannel = (channel) => ({
   payload: channel,
 });
 
-const deleteChannelAction = (channel) => ({
+const deleteChannelAction = (channelId) => ({
   type: DELETE_CHANNEL,
-  payload: channel,
+  payload: channelId,
 });
 
 // const joinChannel = (channel) => ({
@@ -182,10 +182,10 @@ export const editChannel =
     };
 
 export const deleteChannel =
-  (serverId = 1, channelId) =>
+  (channelId) =>
     async (dispatch) => {
       const response = await fetch(
-        `/api/servers/${serverId}/channels/${channelId}`,
+        `/api/channels/${channelId}`,
         {
           method: "DELETE",
           headers: {
@@ -195,9 +195,10 @@ export const deleteChannel =
       );
 
       if (response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
 
-        dispatch(deleteChannelAction(data.Channel));
+        dispatch(deleteChannelAction(channelId));
+
       } else if (response.status < 500) {
         const data = await response.json();
 
@@ -373,17 +374,19 @@ export default function channelReducer(state = initialState, action) {
       return updatedChannelState
 
     case DELETE_CHANNEL:
-      const deletedChannel = action.payload;
+      const deletedChannelId = action.payload;
       const newState = {
         ...state,
         allChannels: {
           byId: { ...state.allChannels.byId },
           allIds: state.allChannels.allIds.filter(
-            (id) => id !== deletedChannel.id
+            (id) => id !== deletedChannelId
           ),
         },
+        channelDetails: {}
       };
-      delete newState.byId[deletedChannel.id];
+
+      delete newState.allChannels.byId[deletedChannelId];
       return newState
 
     case LOAD_CHANNEL_MEMBERS:

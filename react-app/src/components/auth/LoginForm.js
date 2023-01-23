@@ -19,8 +19,10 @@ const LoginForm = () => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+      // history.push('/login')
+    }else{
+      history.push('/home')
     }
-    history.push('/home')
   };
 
   const updateEmail = (e) => {

@@ -5,7 +5,7 @@ import {
   appendServerMember,
   serverDetails,
 } from "../../../../store/server";
-import { addChannelMember, createNewChannel } from "../../../../store/channel";
+import { addChannelMember, createNewChannel, getChannelDetails, getChannels } from "../../../../store/channel";
 import { useHistory } from "react-router-dom";
 import Members from "../Members";
 import { useModal } from "../../../../context/Modal";
@@ -43,9 +43,14 @@ function CreatePublicServerForm() {
       members: [],
     };
 
-    const server = await dispatch(addServer(newServer)).then(() => {
-      closeModal();
-    });
+    const server = await dispatch(addServer(newServer))
+    .then(async (newServer) => {
+      await dispatch(getChannels(newServer.id))
+      await dispatch(getChannelDetails(newServer.Channels[0]?.id))
+      history.push(`/home/${newServer.id}/${newServer.Channels[0]?.id}`)
+    })
+    .then(server => closeModal());
+    // 
 
     // const newChannel = {
     //     name: 'general',

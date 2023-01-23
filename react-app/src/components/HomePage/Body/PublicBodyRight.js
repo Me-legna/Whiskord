@@ -70,6 +70,8 @@ function PublicBody() {
             history.push('/home/@me')
         }
     
+        useEffect(() => {
+        }, [dispatch, channelId, channelDetails])
     
         // useEffect(() => {
         //     if (isPrivate) {
