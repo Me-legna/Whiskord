@@ -1,9 +1,9 @@
  .home-page-main-div{
     height: 100vh;
  }
- h3{
+ .Members-title {
     color: #f5f5f5;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     /* padding: 0.5rem; */
     display: flex;
@@ -71,18 +71,20 @@ margin-bottom: 0.25rem;
     flex-direction: column;
     /* justify-content: space-between; */
     border-right: 0.2px solid #f5f5f5;
-    background: #333333;
+    background: #424549;
     padding: 0.5rem;
 
     overflow-y: auto;
 
     max-height: 100%;
     width: 75%;
+    color: #fff;
+    scroll-behavior: smooth;
 }
 
 .member-list-container{
     border-right: 0.2px solid #f5f5f5;
-    background: #333333;
+    background: #36373a;
     width: 25%;
     /* height: 100%; */
     padding: 0.5rem;
@@ -96,10 +98,19 @@ margin-bottom: 0.25rem;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
-/* 
+    height: 30px;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 100;
+/*
     margin-top: .25rem;
     margin-bottom: .25rem; */
 }
+.members-individual-container:hover {
+    background-color: #3d3f42;
+}
+
 
 .private-server-list-button button {
     display: flex;
@@ -137,4 +148,9 @@ margin-bottom: 0.25rem;
     font-weight: 500;
     font-size: smaller;
 
+}
+
+.member-list {
+    color: white;
+    padding: 5px;
 }
