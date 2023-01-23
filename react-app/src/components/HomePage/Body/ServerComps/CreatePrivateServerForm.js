@@ -115,6 +115,8 @@ function CreatePrivateServerForm() {
                     name={user.username}
                     value={user.username}
                     onChange={(e) => userSelected(e, user)}
+                    style={{cursor:'pointer'}}
+
                 />
             </label>
         )
@@ -124,16 +126,16 @@ function CreatePrivateServerForm() {
 
     return (
         // <h1>hello</h1>
-        <div>
-            <h1>Select Friends</h1>
+        <div className='friends-list'>
+            <h1 style={{color:"white"}}>Select Friends</h1>
             {numSelected >= 9
                 ?
-                <h4>This group has a 10 member limit.</h4>
+                <h4 style={{color:'#9d9d9f',fontWeight:'600',fontSize:'smaller',marginTop:'5px'}}>This group has a 10 member limit.</h4>
                 :
-                <h4>{`You can add ${9 - numSelected} more friends.`}</h4>
+                <h4 style={{color:'#9d9d9f',fontWeight:'600',fontSize:'smaller',marginTop:'5px'}}>{`You can add ${9 - numSelected} more friends.`}</h4>
             }
             <form onSubmit={createServer}>
-                <fieldset>
+                <fieldset style={{marginRight:'12px',color:'#9d9d9f'}}>
                     {userComponents}
                 </fieldset>
                 <button type="submit" disabled={numSelected >= 9}>{numSelected === 1 ? 'Create DM' : 'Create Group'}</button>
