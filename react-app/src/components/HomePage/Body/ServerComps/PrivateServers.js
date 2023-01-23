@@ -117,7 +117,7 @@ function PrivateServers() {
                                     </div>
                                     {/* {server.name[0]} */}
                                 </div>
-                                <div>
+                                <div className="private-server-action-btns">
                                     <OpenModalButton
                                         faIcon={<i className="fa-solid fa-pen-to-square" />}
                                         modalComponent={<EditServerForm />}

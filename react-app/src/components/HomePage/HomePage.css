@@ -14,6 +14,9 @@
     font-weight: bold;
     /* justify-content: space-between; */
 }
+.member-header {
+    padding-bottom: 12px;
+}
 
 .main-body{
     display: grid;
@@ -121,18 +124,20 @@
     align-items: flex-start;
     flex-wrap: nowrap;
 
-    height: 30px;
-    padding: 4px;
+    height: 18px;
+    padding: 6px;
     border-radius: 4px;
     font-size: 14px;
     font-weight: 100;
+    background-color: #3d3f42;
+    margin: 4px 0px;
 
 /*
     margin-top: .25rem;
     margin-bottom: .25rem; */
 }
 .members-individual-container:hover {
-    background-color: #3d3f42;
+    /* background-color: #3d3f42; */
 }
 
 
@@ -157,11 +162,13 @@
 .private-server-name-number {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     flex-wrap: nowrap;
 
     margin-left: .5rem;
+    width: 70%;
+    height: 40px;
 }
 
 .private-server-name {
@@ -177,4 +184,9 @@
 .member-list {
     color: white;
     padding: 5px;
+}
+.private-server-action-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
 }
