@@ -50,7 +50,7 @@ export default function AllChannels({ channels }) {
           <div className='create-channel-button'>
             <OpenModalButton
               modalComponent={<CreateChannel serverId={serverId}/>}
-              faIcon={<i className="fa-solid fa-plus"></i>}
+              faIcon={<i style={{color:"#9d9d9f"}}className="fa-solid fa-plus"></i>}
             />
           </div>
         </div>

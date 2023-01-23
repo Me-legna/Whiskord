@@ -64,7 +64,7 @@
 
 .server-name-header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
@@ -149,6 +149,8 @@
     flex-wrap: nowrap;
     /* justify-content: space-between; */
     align-items: center;
+    color: white;
+    font-weight: 900;
 }
 
 .app-user-and-logout-button button {
@@ -201,4 +203,14 @@
     justify-content: space-between;
     /* width: 100vh;
     height: 100vh; */
+}
+
+[class = 'channel-list-container left']{
+    background-color: #36393e;
+}
+
+.owner-tools h6 {
+    color:#9d9d9f;
+    font-size: 15px;
+    margin-bottom: 1px;
 }
