@@ -101,8 +101,8 @@ def seed_servers():
     # spiderman_server.members.append(user_9,user_6,user_3)
 
     thor_server.members.extend([user_1, user_2,user_3])
-    flash_server.members.extend([user_1, user_2,user_3])
-    avenger_server.members.extend([user_1, user_2,user_3])
+    flash_server.members.extend([user_1, user_2,user_3, user_9])
+    avenger_server.members.extend([user_1, user_2,user_3, user_9, user_10])
     superman_server.members.extend([user_4,user_5,user_6])
     zenith_server.members.extend([user_4,user_5,user_6])
     hulk_server.members.extend([user_4,user_5,user_6])

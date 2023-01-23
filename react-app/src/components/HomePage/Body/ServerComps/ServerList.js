@@ -3,7 +3,7 @@ import { publicServers, serverDetails } from "../../../../store/server";
 import { getChannelDetails, getChannelMembers, getChannels } from "../../../../store/channel";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { resetMessageState } from "../../../../store/message";
+import { resetMessageState, getChannelMessages } from "../../../../store/message";
 import { resetChannelState } from "../../../../store/channel";
 import { resetServerDetails } from "../../../../store/server";
 
@@ -29,6 +29,8 @@ export default function ServerList() {
     await dispatch(getChannels(serverId))
     .then((channels) => {
       if(channels.length){
+        dispatch(getChannelMessages(channels[0].id))
+        dispatch(getChannelMembers(channels[0].id))
         dispatch(getChannelDetails(channels[0].id))
         .then((channel) => history.push(`/home/${serverId}/${channel.id}`))
       } else {

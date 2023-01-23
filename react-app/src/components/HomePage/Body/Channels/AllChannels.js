@@ -55,6 +55,7 @@ export default function AllChannels() {
 
         (Object.values(singleServer).length !== 0 && !singleServer.is_private) &&
         <>
+          <h3>{singleServer && singleServer.name}</h3>
           <div className='channels-and-button'>
           <h6>TEXT-CHANNELS</h6>
           <div className='create-channel-button'>
