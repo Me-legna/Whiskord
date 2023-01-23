@@ -5,7 +5,7 @@
     align-items: flex-start;
     height: 95vh;
     width: 99vw;
-    cursor:pointer;
+    /* cursor:pointer; */
 }
 
 .app-container {
@@ -67,6 +67,12 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+.server-name-header h3{
+    color: white;
+    font-size: 35px;
+    margin-bottom: 0px;
 }
 
 .server-name-header i {
