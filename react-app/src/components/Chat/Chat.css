@@ -88,6 +88,18 @@
 
     margin-left: 20px;
     margin-right: 16px;
+    /* background-color: #585c61;; */
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.messages-edit-delete-buttons button{
+    background-color: #9d9d9f;
+    border: none;
+    border-radius: 3px;
+    color: white;
 }
 
 .chat-spacer {
