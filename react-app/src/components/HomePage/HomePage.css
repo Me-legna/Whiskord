@@ -4,10 +4,11 @@
  h3{
     color: #f5f5f5;
     font-size: 1.5rem;
-    font-weight: 500;
     /* padding: 0.5rem; */
     display: flex;
     align-items: center;
+    margin-bottom: 0px;
+    font-weight: bold;
     /* justify-content: space-between; */
 }
 
@@ -46,24 +47,26 @@
 }
 
 .channel-list-container{
-    border-right: 0.2px solid #f5f5f5;
     background: #333333;
-    /* height: 100%; */
     width: 15%;
-    /* padding: 0.5rem; */
-
+    border: none;
     overflow-y: auto;
 }
 
 .channel-list-container button {
-   width: 100%;
-   text-align: left;
-   font-weight: bold;
-   text-overflow: clip;
-   overflow: hidden;
-   padding: 0.25rem;
-   margin-top: 0.25rem;
-margin-bottom: 0.25rem;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    text-overflow: clip;
+    overflow: hidden;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    background-color: #2C2F33;
+    border: none;
+    border-radius: 3px;
+    color: #9d9d9f;
+    font-size: 12px;
 }
 
 .app-messages-container{
@@ -96,7 +99,7 @@ margin-bottom: 0.25rem;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
-/* 
+/*
     margin-top: .25rem;
     margin-bottom: .25rem; */
 }

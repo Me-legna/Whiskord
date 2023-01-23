@@ -12,8 +12,8 @@ const LogoutButton = () => {
     history.push('/')
   };
 
-  return <button onClick={onLogout}>
-      <i className="fa-solid fa-arrow-right-from-bracket"></i>
+  return <button style={{backgroundColor:"#2C2F33"}}onClick={onLogout}>
+      <i  className="fa-solid fa-arrow-right-from-bracket"></i>
     </button>;
 };
 

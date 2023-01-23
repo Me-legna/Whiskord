@@ -45,7 +45,7 @@ function DeleteServerForm() {
     return (
         <>
             <div className="modal-header">
-                <h1>Delete this Server? {checked ? '😳' : '🤔'}</h1>
+                <h1>Are you sure you want to delete this server?</h1>
             </div>
             <div className="modal-body-container">
 
