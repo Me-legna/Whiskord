@@ -87,6 +87,9 @@ def update_channel(channel_id):
 @channel_routes.route("/<int:channel_id>", methods=["DELETE"])
 @login_required
 def delete_channel(channel_id):
+    """
+    Delete a channel
+    """
     channel = Channel.query.get(channel_id)
     if channel is None:
         return jsonify({'message': "Channel couldn't be found", 'statusCode': 404}), 404
