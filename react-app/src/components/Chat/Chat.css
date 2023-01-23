@@ -102,6 +102,17 @@
     color: white;
 }
 
+.message-content input{
+    border: none;
+    background-color: #23272a;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+}
+
 .chat-spacer {
     min-width: 100%;
 
