@@ -1,20 +1,11 @@
 /* *:not(.splash-banner h1){
     font-family: "Uni Sans", sans-serif;
 } */
+
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
+    /* font-family: 'Open Sans', sans-serif; */
     font-family:'Uni Sans', sans-serif;
 }
-/* * { */
-    /* font-family: 'Open Sans', sans-serif; */
-    /* font-family:'Uni Sans', sans-serif; */
-/* } */
 
 a {
     text-decoration: none;

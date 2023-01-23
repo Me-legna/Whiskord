@@ -55,12 +55,12 @@ export default function AllChannels() {
       {Object.values(singleServer).length !== 0 && !singleServer.is_private && (
         <>
 
-          <h3 style={{color: "white",fontSize:"25px",marginBottom:'0px'}}>{singleServer && singleServer.name}</h3>
+          <h3 style={{ color: "white", fontSize: "25px", marginBottom: '0px' }}>{singleServer && singleServer.name}</h3>
           <div className='channels-and-button'>
 
             <h6>TEXT-CHANNELS</h6>
             {singleServer && singleServer.owner_id === user.id &&
-              <div className='create-channel-button' style={{cursor:'pointer'}}>
+              <div className='create-channel-button' style={{ cursor: 'pointer' }}>
                 <OpenModalButton
                   modalComponent={<CreateChannel serverId={serverId} />}
                   faIcon={<i style={{ color: "#9d9d9f" }} className="fa-solid fa-plus"></i>}
@@ -88,19 +88,19 @@ export default function AllChannels() {
                     {channel.name}
                   </div>
 
-                    {singleServer && singleServer.owner_id === user.id &&
+                  {singleServer && singleServer.owner_id === user.id &&
 
-                  <div className="channel-action-btns">
-                    <OpenModalButton
-                      faIcon={<i className="fa-solid fa-pen-to-square" />}
-                      modalComponent={<EditChannelForm />}
-                    />
-                    <OpenModalButton
-                      faIcon={<i className="fa-solid fa-trash-can" />}
-                      modalComponent={<DeleteChannelForm />}
-                    />
-
-                  </div>
+                    <div className="channel-action-btns">
+                      <OpenModalButton
+                        faIcon={<i className="fa-solid fa-pen-to-square" />}
+                        modalComponent={<EditChannelForm />}
+                      />
+                      <OpenModalButton
+                        faIcon={<i className="fa-solid fa-trash-can" />}
+                        modalComponent={<DeleteChannelForm />}
+                      />
+                    </div>
+                  }
                 </button>
               );
             })}
