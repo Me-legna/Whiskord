@@ -138,10 +138,6 @@
     margin-top: .25rem;
     margin-bottom: .25rem; */
 }
-.members-individual-container:hover {
-    /* background-color: #3d3f42; */
-}
-
 
 .private-server-list-button button {
     display: flex;

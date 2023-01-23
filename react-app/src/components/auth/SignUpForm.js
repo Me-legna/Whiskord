@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { NavLink } from 'react-router-dom';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -19,7 +20,7 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password))
       if (data) {
         setErrors(data)
-      }else{
+      } else {
         return history.push('/home/@me')
       }
     }
@@ -50,7 +51,7 @@ const SignUpForm = () => {
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
-          ))}
+        ))}
       </div>
       <div className='signup-form'>
         <label>Username</label>
@@ -87,10 +88,12 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+        />
       </div>
       <button className='signup-page-button' type='submit'>Sign Up</button>
+      
     </form>
+
   );
 };
 
