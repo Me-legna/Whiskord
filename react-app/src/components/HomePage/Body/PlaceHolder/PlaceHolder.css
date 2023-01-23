@@ -1,0 +1,25 @@
+.place-holder {
+    /* background-color: #36393e; */
+    background: url('../../../../images/app-background.png') no-repeat center;
+    background-size: cover;
+    width: 80%;
+    height: 70%;
+    z-index: 11;
+    margin-bottom: 0px;
+}
+
+.place-holder-container {
+    border-left: 1px solid white;
+    background-color: #36393e;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.place-holder-text {
+    position: relative;
+    z-index: 12;
+    left: 50%;
+}

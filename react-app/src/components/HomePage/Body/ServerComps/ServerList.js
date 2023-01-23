@@ -25,6 +25,7 @@ export default function ServerList() {
     // dispatch(resetChannelState())
     // dispatch(resetServerDetails())
     // console.log('SERVER ID', serverId)
+    await dispatch(resetChannelState())
     await dispatch(serverDetails(serverId))
     await dispatch(getChannels(serverId))
     .then((channels) => {

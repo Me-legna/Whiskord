@@ -5,7 +5,7 @@
     align-items: flex-start;
     height: 95vh;
     width: 99vw;
-    cursor:pointer;
+    /* cursor:pointer; */
 }
 
 .app-container {
