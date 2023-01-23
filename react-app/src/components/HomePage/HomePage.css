@@ -5,6 +5,7 @@
  .Members-title {
      color: #f5f5f5;
 
+<<<<<<< Updated upstream
      font-size: 1.2rem;
      font-weight: 500;
 
@@ -23,12 +24,42 @@
      height: 100%;
  }
 
+=======
+     color: #f5f5f5;
+
+     font-size: 1.2rem;
+     font-weight: 500;
+
+     /* padding: 0.5rem; */
+     display: flex;
+     align-items: center;
+     margin-bottom: 0px;
+     font-weight: bold;
+     /* justify-content: space-between; */
+ }
+
+ .member-header {
+     padding-bottom: 12px;
+ }
+
+ .main-body {
+     display: grid;
+     grid-template-columns: 0.1fr 0.5fr 1fr 0.5fr;
+     gap: 0px;
+     height: 100%;
+ }
+
+>>>>>>> Stashed changes
  .server-list-container {
      display: flex;
      flex-direction: column;
 
 
+<<<<<<< Updated upstream
      border-right: 0.2px solid #f5f5f5;
+=======
+     /* border-right: 0.2px solid #f5f5f5; */
+>>>>>>> Stashed changes
      background: #333333;
      /* height: 100%; */
      padding: 0.5rem;
@@ -49,6 +80,7 @@
      color: white;
      font-weight: 500;
      font-size: large;
+<<<<<<< Updated upstream
      transition: border-radius 150ms linear;
  }
 
@@ -132,13 +164,124 @@
      font-size: 14px;
      font-weight: 100;
 
+=======
+     /* transition: background-color 150ms; */
+     transition: border-radius 150ms linear, background-color 150ms;
+ }
+
+ .server-list-button button:hover {
+     border-radius: 30%;
+     background-color: #7289DA;
+ }
+
+ .server-list-button button:focus {
+     border-radius: 30%;
+     background-color: #7289DA;
+ }
+
+ .public-server-list-button button {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     outline: 0;
+     border: none;
+     padding: 0.25rem;
+     margin: 0.25rem;
+     background-color: #424549;
+     font-size: 26px;
+     font-weight: 900;
+     color: green;
+     transition: border-radius 150ms linear, background-color 150ms, color 150ms;
+ }
+
+ .public-server-list-button :hover {
+     border-radius: 30%;
+     background-color: rgb(70, 200, 109);
+     color: white;
+ }
+
+ .public-server-list-button :focus {
+     border-radius: 30%;
+     background-color:rgb(70, 200, 109);
+     color: white;
+ }
+
+ .channel-list-container {
+     background: #333333;
+     width: 15%;
+     border: none;
+     overflow-y: auto;
+ }
+
+ .channel-list-container button {
+     width: 100%;
+     text-align: left;
+     font-weight: bold;
+     text-overflow: clip;
+     overflow: hidden;
+     padding: 0.25rem;
+     margin-top: 0.25rem;
+     margin-bottom: 0.25rem;
+     background-color: #2C2F33;
+     border: none;
+     border-radius: 3px;
+     color: #9d9d9f;
+     font-size: 12px;
+ }
+
+ .app-messages-container {
+     display: flex;
+     flex-direction: column;
+     /* justify-content: space-between; */
+     /* border-right: 0.2px solid #f5f5f5; */
+     background: #424549;
+     padding: 0.5rem;
+
+     overflow-y: auto;
+
+     max-height: 100%;
+     width: 75%;
+     color: #fff;
+     scroll-behavior: smooth;
+ }
+
+ .member-list-container {
+     border-right: 0.2px solid #f5f5f5;
+     background: #36373a;
+     width: 25%;
+     /* height: 100%; */
+     padding: 0.5rem;
+     /* margin: .25rem; */
+     overflow-y: auto;
+ }
+
+ .members-individual-container {
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-start;
+     align-items: flex-start;
+     flex-wrap: nowrap;
+
+     height: 18px;
+     padding: 6px;
+     border-radius: 4px;
+     font-size: 14px;
+     font-weight: 100;
+     background-color: #3d3f42;
+     margin: 4px 0px;
+
+>>>>>>> Stashed changes
      /*
     margin-top: .25rem;
     margin-bottom: .25rem; */
  }
 
  .members-individual-container:hover {
+<<<<<<< Updated upstream
      background-color: #3d3f42;
+=======
+     /* background-color: #3d3f42; */
+>>>>>>> Stashed changes
  }
 
 
@@ -163,11 +306,20 @@
  .private-server-name-number {
      display: flex;
      flex-direction: column;
+<<<<<<< Updated upstream
      justify-content: flex-start;
+=======
+     justify-content: center;
+>>>>>>> Stashed changes
      align-items: flex-start;
      flex-wrap: nowrap;
 
      margin-left: .5rem;
+<<<<<<< Updated upstream
+=======
+     width: 70%;
+     height: 40px;
+>>>>>>> Stashed changes
  }
 
  .private-server-name {
@@ -184,3 +336,12 @@
      color: white;
      padding: 5px;
  }
+<<<<<<< Updated upstream
+=======
+
+ .private-server-action-btns {
+     display: flex;
+     justify-content: space-between;
+     width: 20%;
+ }
+>>>>>>> Stashed changes

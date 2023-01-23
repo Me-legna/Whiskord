@@ -1,3 +1,4 @@
+
 .entire-homepage-div{
     /* display: flex; */
     flex-direction: row;
@@ -27,6 +28,12 @@
     width: 100%;
 }
 
+#logo-button {
+    border-bottom: 1px solid white;
+    padding: 6px 0px;
+    margin-bottom: 12px;
+}
+
 #logo-button button {
     padding: 10px;
     background-image: url('./images/Logo/WhiskordLogoCrop.png');
@@ -34,14 +41,21 @@
     background-size: 65%;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #7289DA;
+    background-color: #424549;
+    /* background-color: #7289DA; */
     /* border-radius: 15px; */
     /* width: 60px; */
-    transition: border-radius 150ms linear;
+    transition: border-radius 150ms linear, background-color 150ms;
 }
 
 #logo-button button:hover {
     border-radius: 30%;
+    background-color: #7289DA;
+}
+
+#logo-button button:focus {
+    border-radius: 30%;
+    background-color: #7289DA;
 }
 
 /* .main-body {
@@ -74,7 +88,7 @@
     justify-content: space-between;
 }
 
-.server-name-header h3{
+.server-name-header h3 {
     color: white;
     font-size: 35px;
     margin-bottom: 0px;
@@ -143,7 +157,7 @@
 .app-user-and-logout-button {
     position: relative;
     margin-top: auto;
-    top:auto;
+    top: auto;
     bottom: 0;
 
     display: flex;
@@ -216,12 +230,18 @@
     height: 100vh; */
 }
 
-[class = 'channel-list-container left']{
+[class='channel-list-container left'] {
     background-color: #36393e;
 }
 
 .owner-tools h6 {
-    color:#9d9d9f;
+    color: #9d9d9f;
     font-size: 15px;
     margin-bottom: 1px;
+}
+
+.friends-list fieldset {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
 }
