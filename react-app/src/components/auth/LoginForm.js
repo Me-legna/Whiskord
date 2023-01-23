@@ -4,6 +4,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import SignUpForm from './SignUpForm';
 import { useHistory } from 'react-router-dom';
+import ThorLogin from '../DemoUserLogin/Thor';
 
 
 const LoginForm = () => {
@@ -68,6 +69,7 @@ const LoginForm = () => {
       <button className='signup-button' onClick={() => (history.push('/sign-up'))}>Sign Up for Whiskord!</button>
 
       <NavLink to='/'>Take me home!</NavLink>
+      
 
     </form>
   );

@@ -1,22 +1,21 @@
-
-.delete-channel h1{
+.delete-channel h1 {
     font-size: x-large;
     font-weight: 800;
     color: white;
 }
 
-.delete-channel label{
+.delete-channel label {
     color: white;
     font-size: small;
     font-weight: 800;
     margin: 20px;
 }
 
-.delete-channel input{
+.delete-channel input {
     cursor: pointer;
 }
 
-.delete-channel button{
+.delete-channel button {
     border-radius: 3px;
     background-color: #008334;
     border: none;
@@ -28,7 +27,7 @@
     margin-top: 20px;
 }
 
-.create-channel{
+.create-channel {
     border-radius: 5px;
     margin-top: 30px;
     padding-top: 1px;
@@ -38,21 +37,21 @@
     position: relative;
 }
 
-.channel-form-container ul{
+.channel-form-container ul {
     color: white;
     font-weight: 400;
     font-size: small;
     text-align: center;
 }
 
-.create-channel-form h1{
+.create-channel-form h1 {
     color: white;
     font-size: 30px;
     font-weight: 800;
 
 }
 
-.channel-form-body input{
+.channel-form-body input {
     background-color: #23272a;
     border: none;
     border-radius: 3px;
@@ -60,10 +59,10 @@
     width: 100%;
     margin-top: 5px;
     margin-bottom: 20px;
-    border:none;
+    border: none;
 }
 
-.channel-form-body label{
+.channel-form-body label {
     color: white;
     font-size: small;
     font-weight: 500;
@@ -71,7 +70,7 @@
 
 }
 
-.channel-form-body button{
+.channel-form-body button {
     border-radius: 3px;
     background-color: #008334;
     border: none;
@@ -85,24 +84,24 @@
 
 
 
-.edit-channel-form h1{
+.edit-channel-form h1 {
     font-size: x-large;
     font-weight: 800;
     color: white;
 }
 
-.edit-channel-form-body label{
+.edit-channel-form-body label {
     color: white;
     font-size: small;
     font-weight: 800;
     margin-left: 0px;
 }
 
-.edit-channel-form-body input{
+.edit-channel-form-body input {
     cursor: pointer;
 }
 
-.edit-channel-form-body button{
+.edit-channel-form-body button {
     border-radius: 3px;
     background-color: #008334;
     border: none;
@@ -124,21 +123,21 @@
     position: relative;
 } */
 
-.edit-channel-errors ul{
+.edit-channel-errors ul {
     color: white;
     font-weight: 400;
     font-size: small;
     text-align: center;
 }
 
-.edit-channel-form-body h1{
+.edit-channel-form-body h1 {
     color: white;
     font-size: 30px;
     font-weight: 800;
 
 }
 
-.edit-channel-form-body input{
+.edit-channel-form-body input {
     background-color: #23272a;
     border: none;
     border-radius: 3px;
@@ -146,11 +145,11 @@
     width: 100%;
     margin-top: 5px;
     margin-bottom: 20px;
-    border:none;
-    color:white;
+    border: none;
+    color: white;
 }
 
-.edit-channel-form-body label{
+.edit-channel-form-body label {
     color: white;
     font-size: small;
     font-weight: 500;
@@ -158,7 +157,7 @@
 
 }
 
-.edit-channel-form-body button{
+.edit-channel-form-body button {
     border-radius: 3px;
     background-color: #008334;
     border: none;
@@ -171,7 +170,14 @@
 }
 
 
-.channels-and-button h6{
+.channels-and-button h6 {
     color: #9d9d9f;
     margin-bottom: 2px;
+}
+
+.single-channel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
