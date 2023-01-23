@@ -72,11 +72,11 @@ function PrivateServers() {
         <div className="private-servers-list">
             <div className="flex">
                 <div className="flex">
-                    <h6>
+                    <h6 style={{marginBottom:'0px',color:'white',fontSize:"19px"}}>
                         Direct Messages
                     </h6>
                     <OpenModalButton
-                        faIcon={<i className="fa-solid fa-plus" />}
+                        faIcon={<i style={{color: "white"}}className="fa-solid fa-plus" />}
                         modalComponent={<CreatePrivateServerForm />}
                     />
                 </div>
