@@ -365,7 +365,7 @@ export default function channelReducer(state = initialState, action) {
         ...state,
         allChannels: {
           byId: {...state.allChannels.byId},
-          allIds: [...state.allChannels.allIds, updatedChannel.id],
+          allIds: [...state.allChannels.allIds],
         },
         channelDetails: updatedChannel
       };
