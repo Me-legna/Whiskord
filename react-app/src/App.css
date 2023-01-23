@@ -34,6 +34,8 @@
     background-size: 65%;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: #7289DA;
+    border-radius: 15px;
 
 }
 
@@ -67,6 +69,12 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+.server-name-header h3{
+    color: white;
+    font-size: 35px;
+    margin-bottom: 0px;
 }
 
 .server-name-header i {

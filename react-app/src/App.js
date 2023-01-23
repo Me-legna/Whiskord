@@ -180,7 +180,7 @@ function App() {
                                     <ServerList />
 
 
-                                    <div className="server-list-button">
+                                    <div className="public-server-list-button">
                                         <OpenModalButton
                                             buttonText={'+'}
                                             modalComponent={<CreatePublicServerForm />} />

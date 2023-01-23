@@ -21,16 +21,7 @@ const NavBar = () => {
           </NavLink>
         </li>
 
-        <li className="navbar-links">
-          <NavLink to='/' exact={true} activeClassName='active'>Download</NavLink>
-          <NavLink to='/' exact={true} activeClassName='active'>Nitro</NavLink>
-          <NavLink to='/' exact={true} activeClassName='active'>Discover</NavLink>
-          <NavLink to='/' exact={true} activeClassName='active'>Safety</NavLink>
-          <NavLink to='/' exact={true} activeClassName='active'>Support</NavLink>
-          <NavLink to='/' exact={true} activeClassName='active'>Blog</NavLink>
-          <NavLink to='/' exact={true} activeClassName='active'>Careers</NavLink>
-        </li>
-
+       
           {
             !user
             ?

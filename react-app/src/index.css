@@ -76,9 +76,9 @@ nav a.active {
 .app-container{
     border: 3px solid yellow;
 }
-.sidebar{
+/* .sidebar{
     border: 2px solid brown;
-}
+} */
 .body{
     border: 5px solid blue;
     width:100%

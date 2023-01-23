@@ -21,12 +21,13 @@
   }
 
   .splash-banner h1 {
-    margin-bottom: 10px;
     font-size: 40pt;
     text-align: center;
     color: white;
     font-weight: 900;
     font-family: system-ui;
+    margin-top: 0px;
+    margin-bottom: 60px;
   }
 
   .splash-banner button {

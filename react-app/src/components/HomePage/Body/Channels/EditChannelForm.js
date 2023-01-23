@@ -6,6 +6,7 @@ import "../Channels/channels.css";
 import Select from 'react-select'
 import {useModal} from '../../../../context/Modal'
 
+
 export default function EditChannelForm() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -94,6 +95,7 @@ export default function EditChannelForm() {
                 </form>
 
             </section>
+
         </>
 
     )
