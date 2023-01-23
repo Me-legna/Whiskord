@@ -126,9 +126,9 @@
     width: 100%;
     height: 30px;
     border-radius: 6px;
-    background-color: #5e6268;
-    border-color: #5e6268;
-    color: #fff;
+    background-color: #23272a;
+    border: none;
+    color: #9d9d9f
 }
 .chat-form-form {
     display: grid;
