@@ -192,74 +192,50 @@ function App() {
                                     <div className='channel-list-container left'>
                                         <div className='server-name-header'>
 
-//  ---------------- Andrea Updates
-                                            <h3>{singleServer && singleServer.name}</h3>
-                                            {
 
-                                                user && user.id === singleServer.owner_id &&
-                                                <div>
+
+                                           {
+
+                                               user && user.id === singleServer.owner_id && !singleServer.is_private &&
+                                               <>
+                                                   <h3>{singleServer && singleServer.name}</h3>
+
                                                     <div className="owner-tools">
                                                         <h6>Server Tools</h6>
                                                         <div className="owner-button">
                                                             <OpenModalButton
-                                                                faIcon={<i style={{color:"#9d9d9f"}} className="fa-solid fa-gears"></i>}
+                                                                faIcon={<i style={{ color: "#9d9d9f" }} className="fa-solid fa-gears"></i>}
                                                                 modalComponent={<EditServerForm />}
                                                             />
                                                             <span className="hover-message">Edit my server!</span>
                                                         </div>
                                                         <div className="owner-button">
                                                             <OpenModalButton
-                                                                faIcon={<i style={{color:"#9d9d9f"}} className="fa-solid fa-trash"></i>}
+                                                                faIcon={<i style={{ color: "#9d9d9f" }} className="fa-solid fa-trash"></i>}
                                                                 modalComponent={<DeleteServerForm />}
                                                             />
                                                             <span className="hover-message">Delete my server!</span>
                                                         </div>
                                                     </div>
+                                                   {/* <div>
+                                                       <div className="owner-tools">
+                                                           <h6>Server CRUD</h6>
+                                                           <div>
+                                                               <OpenModalButton
+                                                                   faIcon={<i className="fa-solid fa-pen-to-square" />}
+                                                                   modalComponent={<EditServerForm />}
+                                                               />
+                                                               <OpenModalButton
+                                                                   faIcon={<i className="fa-solid fa-trash-can" />}
+                                                                   modalComponent={<DeleteServerForm />}
+                                                               />
+                                                           </div>
 
-                                                    <div className="owner-tools">
-                                                        <h6>Channel Tools</h6>
-                                                        <div className="owner-button">
-                                                            <OpenModalButton
-                                                                faIcon={<i style={{color:"#9d9d9f"}} className="fa-solid fa-gears"></i>}
-                                                                modalComponent={<EditChannelForm />}
-                                                            />
+                                                       </div>
+                                                   </div> */}
+                                               </>
+                                            }
 
-                                                            <span className="hover-message">Edit my Channel!</span>
-
-                                                        </div>
-                                                        <div className="owner-button">
-                                                            <OpenModalButton
-                                                                faIcon={<i style={{color:"#9d9d9f"}} className="fa-solid fa-trash"></i>}
-                                                                modalComponent={<DeleteChannelForm />}
-                                                            />
-                                                            <span className="hover-message">Delete my channel!</span>
-======= 
-//  ---------------- Angel Updates
-
-                                           // {
-
-                                             //   user && user.id === singleServer.owner_id && !singleServer.is_private &&
-                                               // <>
-                                                 //   <h3>{singleServer && singleServer.name}</h3>
-                                                   // <div>
-                                                     //   <div className="owner-tools">
-                                                       //     <h6>Server CRUD</h6>
-                                                         //   <div>
-                                                           //     <OpenModalButton
-                                                                  //  faIcon={<i className="fa-solid fa-pen-to-square" />}
-                                                                //    modalComponent={<EditServerForm />}
-                                                              //  />
-                                                            //    <OpenModalButton
-                                                          //          faIcon={<i className="fa-solid fa-trash-can" />}
-                                                        //            modalComponent={<DeleteServerForm />}
-                                                      //          />
-                                                    //        </div>
-
-                                                  //      </div>
-                                                //    </div>
-                                              //  </>
-                                            //}
-// -----------------------
                                         </div>
 
 
