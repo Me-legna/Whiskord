@@ -137,10 +137,13 @@
     align-items: center;
 }
 .chat-form-btn{
-    height: 36px;
+    height: 32px;
     /* background-color: #5e6268;
     color: white; */
     border-radius: 7px;
+    background-color: #36393e;
+    border: none;
+    color: white;
 }
 ::-webkit-scrollbar {
     width: 6px;
