@@ -42,6 +42,7 @@ import SignUpPage from './components/auth/SignUpIndex';
 import EditChannelForm from "./components/HomePage/Body/Channels/EditChannelForm";
 import DeleteChannelForm from "./components/HomePage/Body/Channels/DeleteChannelForm";
 import ChatPlaceHolder from './components/HomePage/Body/PlaceHolder/ChatPlaceHolder';
+import ThorLogin from './components/DemoUserLogin/Thor';
 
 function App() {
     const dispatch = useDispatch();

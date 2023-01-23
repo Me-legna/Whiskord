@@ -143,7 +143,10 @@ const Chat = () => {
                             {message.user.username}
                           </div>
                           &nbsp; &nbsp;
-                          <div className="message-date" style={{fontSize:"0.65em", color: "#a4a6aa"}}>
+                          <div
+                            className="message-date"
+                            style={{ fontSize: "0.65em", color: "#a4a6aa" }}
+                          >
                             {new Date(message.created_at).toLocaleString([], {
                               year: "numeric",
                               month: "numeric",
@@ -162,9 +165,10 @@ const Chat = () => {
                                     on cancel, set isEditing to false
                                 */}
                           {isEditing === message.id ? (
-                            <div>
+                            <div className="message-edit-container">
                               {/* {() => setEdittedMessage(message.content)} */}
                               <form
+                                className="edit-form"
                                 onSubmit={(e) => {
                                   e.preventDefault();
 
@@ -178,16 +182,17 @@ const Chat = () => {
                                 }}
                               >
                                 <input
+                                  style={{ height: "25px" }}
                                   value={edittedMessage}
                                   onChange={(e) =>
                                     setEdittedMessage(e.target.value)
                                   }
                                 />
                                 <button type="submit">Update</button>
+                                <button onClick={() => setIsEditing(false)}>
+                                  Cancel
+                                </button>
                               </form>
-                              <button onClick={() => setIsEditing(false)}>
-                                Cancel
-                              </button>
                             </div>
                           ) : (
                             <div>{message.content}</div>
@@ -196,7 +201,7 @@ const Chat = () => {
                       </div>
                     </div>
 
-                    <div>
+                    <div style={{ width: "10%" }}>
                       {user.id && user.id === message.user_id && (
                         <div className="messages-edit-delete-buttons">
                           <button

@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../../auth/LogoutButton';
 import WhiskordLogoCrop from '../../../images/Logo/WhiskordLogoCrop.png';
+import ThorLogin from '../../DemoUserLogin/Thor';
+import FlashLogin from '../../DemoUserLogin/Flash';
 
 const NavBar = () => {
 
@@ -14,16 +16,16 @@ const NavBar = () => {
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <div className='navbar-logo-and-name' style={{fontWeight:'900'}}>
-              <img src={WhiskordLogoCrop} alt='whiskord logo'/>
+            <div className='navbar-logo-and-name' style={{ fontWeight: '900' }}>
+              <img src={WhiskordLogoCrop} alt='whiskord logo' />
               Whiskord
             </div>
           </NavLink>
         </li>
 
-       
-          {
-            !user
+
+        {
+          !user
             ?
             <div className='navbar-right-side'>
               {/* <li>
@@ -32,9 +34,16 @@ const NavBar = () => {
                 </NavLink>
               </li>
               <li> */}
-                <NavLink to='/login' exact={true} activeClassName='active'>
-                  <button>Login</button>
-                </NavLink>
+              <div>
+                <ThorLogin />
+              </div>
+              {/* &nbsp; */}
+              <div>
+                <FlashLogin />
+              </div>
+              <NavLink to='/login' exact={true} activeClassName='active'>
+                <button>Login</button>
+              </NavLink>
               {/* </li> */}
               {/* <li>
                 <NavLink to='/users' exact={true} activeClassName='active'>
@@ -58,7 +67,7 @@ const NavBar = () => {
                 </NavLink>
               </li>
             </div>
-          }
+        }
 
       </ul>
     </nav>

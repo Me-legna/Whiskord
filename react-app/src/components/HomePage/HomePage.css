@@ -3,6 +3,8 @@
  }
 
  .Members-title {
+
+
      color: #f5f5f5;
 
      font-size: 1.2rem;
@@ -14,6 +16,10 @@
      margin-bottom: 0px;
      font-weight: bold;
      /* justify-content: space-between; */
+ }
+
+ .member-header {
+     padding-bottom: 12px;
  }
 
  .main-body {
@@ -28,7 +34,7 @@
      flex-direction: column;
 
 
-     border-right: 0.2px solid #f5f5f5;
+     /* border-right: 0.2px solid #f5f5f5; */
      background: #333333;
      /* height: 100%; */
      padding: 0.5rem;
@@ -49,11 +55,18 @@
      color: white;
      font-weight: 500;
      font-size: large;
-     transition: border-radius 150ms linear;
+     /* transition: background-color 150ms; */
+     transition: border-radius 150ms linear, background-color 150ms;
  }
 
-  .server-list-button button:hover {
-    border-radius: 30%;
+ .server-list-button button:hover {
+     border-radius: 30%;
+     background-color: #7289DA;
+ }
+
+ .server-list-button button:focus {
+     border-radius: 30%;
+     background-color: #7289DA;
  }
 
  .public-server-list-button button {
@@ -67,7 +80,20 @@
      background-color: #424549;
      font-size: 26px;
      font-weight: 900;
-     color: green
+     color: green;
+     transition: border-radius 150ms linear, background-color 150ms, color 150ms;
+ }
+
+ .public-server-list-button :hover {
+     border-radius: 30%;
+     background-color: rgb(70, 200, 109);
+     color: white;
+ }
+
+ .public-server-list-button :focus {
+     border-radius: 30%;
+     background-color:rgb(70, 200, 109);
+     color: white;
  }
 
  .channel-list-container {
@@ -97,7 +123,7 @@
      display: flex;
      flex-direction: column;
      /* justify-content: space-between; */
-     border-right: 0.2px solid #f5f5f5;
+     /* border-right: 0.2px solid #f5f5f5; */
      background: #424549;
      padding: 0.5rem;
 
@@ -126,11 +152,13 @@
      align-items: flex-start;
      flex-wrap: nowrap;
 
-     height: 30px;
-     padding: 4px;
+     height: 18px;
+     padding: 6px;
      border-radius: 4px;
      font-size: 14px;
      font-weight: 100;
+     background-color: #3d3f42;
+     margin: 4px 0px;
 
      /*
     margin-top: .25rem;
@@ -138,7 +166,7 @@
  }
 
  .members-individual-container:hover {
-     background-color: #3d3f42;
+     /* background-color: #3d3f42; */
  }
 
 
@@ -163,11 +191,13 @@
  .private-server-name-number {
      display: flex;
      flex-direction: column;
-     justify-content: flex-start;
+     justify-content: center;
      align-items: flex-start;
      flex-wrap: nowrap;
 
      margin-left: .5rem;
+     width: 70%;
+     height: 40px;
  }
 
  .private-server-name {
@@ -183,4 +213,10 @@
  .member-list {
      color: white;
      padding: 5px;
+ }
+
+ .private-server-action-btns {
+     display: flex;
+     justify-content: space-between;
+     width: 20%;
  }

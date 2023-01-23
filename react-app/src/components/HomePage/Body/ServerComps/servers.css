@@ -21,6 +21,7 @@
     width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .create-server label{
@@ -107,4 +108,16 @@
     width: 105%;
     text-align: center;
     margin-top: 20px;
+}
+
+
+.friends-list button{
+    background-color: green;
+    border: none;
+    border-radius: 3px;
+    width: 95%;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 300;
 }
