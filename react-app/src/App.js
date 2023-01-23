@@ -198,7 +198,7 @@ function App() {
 
                                                user && user.id === singleServer.owner_id && !singleServer.is_private &&
                                                <>
-                                                   <h3>{singleServer && singleServer.name}</h3>
+                                                   {/* <h3>{singleServer && singleServer.name}</h3> */}
 
                                                     <div className="owner-tools">
                                                         <h6>Server Tools</h6>

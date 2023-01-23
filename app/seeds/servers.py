@@ -38,13 +38,13 @@ def seed_servers():
 
 
     thor_server2 = Server(
-        name='Valhalla', owner_id=1, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
+        name='The Hammer Squad', owner_id=1, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
 
     flash_server2 = Server(
-        name='Blinding Lights', owner_id=2, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
+        name='Need for Speed', owner_id=2, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
 
     avenger_server2 = Server(
-        name='Avengers assemble', owner_id=3, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
+        name='Thanos is Lame', owner_id=3, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
 
     superman_server2 = Server(
         name='Pixie Chicks', owner_id=4, image_url='https://cdn.discordapp.com/icons/799118662555099146/8b5d8b0f3b0b3b3b3b3b3b3b3b3b3b3b.png?size=128', is_private=True, is_dm=False, capacity=100)
@@ -101,8 +101,8 @@ def seed_servers():
     # spiderman_server.members.append(user_9,user_6,user_3)
 
     thor_server.members.extend([user_1, user_2,user_3])
-    flash_server.members.extend([user_1, user_2,user_3])
-    avenger_server.members.extend([user_1, user_2,user_3])
+    flash_server.members.extend([user_1, user_2,user_3, user_9])
+    avenger_server.members.extend([user_1, user_2,user_3, user_9, user_10])
     superman_server.members.extend([user_4,user_5,user_6])
     zenith_server.members.extend([user_4,user_5,user_6])
     hulk_server.members.extend([user_4,user_5,user_6])
@@ -112,8 +112,8 @@ def seed_servers():
     batman_server.members.extend([user_7,user_8,user_9,user_10])
 
     thor_server2.members.extend([user_1, user_2,user_3])
-    flash_server2.members.extend([user_1, user_2,user_3])
-    avenger_server2.members.extend([user_1, user_2,user_3])
+    flash_server2.members.extend([user_1, user_2,user_3, user_10])
+    avenger_server2.members.extend([user_1, user_2,user_3, user_9])
     superman_server2.members.extend([user_4,user_5,user_6])
     zenith_server2.members.extend([user_4,user_5,user_6])
     hulk_server2.members.extend([user_4,user_5,user_6])

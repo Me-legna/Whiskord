@@ -10,15 +10,87 @@ def seed_channels():
         type='Text',
         is_private=True
     )
+    thor2_channel = Channel(
+        name='Callback Cats',
+        server_id=1,
+        type='Text',
+        is_private=True
+    )
+    thor3_channel = Channel(
+        name='404 brain not found ',
+        server_id=1,
+        type='Text',
+        is_private=True
+    )
+    thor4_channel = Channel(
+        name='Chronic procrastinators ',
+        server_id=1,
+        type='Text',
+        is_private=True
+    )
+    thor_pr_channel = Channel(
+        name='private',
+        server_id=11,
+        type='Text',
+        is_private=True
+    )
     flash_channel = Channel(
         name='channel2',
         server_id=2,
         type='Text',
         is_private=True
     )
+    flash2_channel = Channel(
+        name='Babaganoush',
+        server_id=2,
+        type='Text',
+        is_private=True
+    )
+    flash3_channel = Channel(
+        name='game of threads ',
+        server_id=2,
+        type='Text',
+        is_private=True
+    )
+    flash4_channel = Channel(
+        name='Reboot ',
+        server_id=2,
+        type='Text',
+        is_private=True
+    )
+    flash_pr_channel = Channel(
+        name='private',
+        server_id=12,
+        type='Text',
+        is_private=True
+    )
     avenger_channel = Channel(
         name='channel3',
         server_id=3,
+        type='Text',
+        is_private=True
+    )
+    avenger2_channel = Channel(
+        name='hex clans ',
+        server_id=3,
+        type='Text',
+        is_private=True
+    )
+    avenger3_channel = Channel(
+        name='return to sleep ',
+        server_id=3,
+        type='Text',
+        is_private=True
+    )
+    avenger4_channel = Channel(
+        name='Scared to deploy  ',
+        server_id=3,
+        type='Text',
+        is_private=True
+    )
+    avenger_pr_channel = Channel(
+        name='private',
+        server_id=13,
         type='Text',
         is_private=True
     )
@@ -64,24 +136,6 @@ def seed_channels():
         type='Text',
         is_private=False
     )
-    thor2_channel = Channel(
-        name='Callback Cats',
-        server_id=1,
-        type='Text',
-        is_private=True
-    )
-    flash2_channel = Channel(
-        name='Babaganoush',
-        server_id=2,
-        type='Text',
-        is_private=True
-    )
-    avenger2_channel = Channel(
-        name='hex clans ',
-        server_id=3,
-        type='Text',
-        is_private=True
-    )
     superman2_channel = Channel(
         name='Data privates',
         server_id=4,
@@ -123,24 +177,6 @@ def seed_channels():
         server_id=10,
         type='Text',
         is_private=False
-    )
-    thor3_channel = Channel(
-        name='404 brain not found ',
-        server_id=1,
-        type='Text',
-        is_private=True
-    )
-    flash3_channel = Channel(
-        name='game of threads ',
-        server_id=2,
-        type='Text',
-        is_private=True
-    )
-    avenger3_channel = Channel(
-        name='return to sleep ',
-        server_id=3,
-        type='Text',
-        is_private=True
     )
     superman3_channel = Channel(
         name='it worked on local',
@@ -184,24 +220,6 @@ def seed_channels():
         type='Text',
         is_private=False
     )
-    thor4_channel = Channel(
-        name='Chronic procrastinators ',
-        server_id=1,
-        type='Text',
-        is_private=True
-    )
-    flash4_channel = Channel(
-        name='Reboot ',
-        server_id=2,
-        type='Text',
-        is_private=True
-    )
-    avenger4_channel = Channel(
-        name='Scared to deploy  ',
-        server_id=3,
-        type='Text',
-        is_private=True
-    )
     superman4_channel = Channel(
         name='Code of duty ',
         server_id=4,
@@ -243,24 +261,6 @@ def seed_channels():
         server_id=10,
         type='Text',
         is_private=False
-    )
-    thor_pr_channel = Channel(
-        name='private',
-        server_id=11,
-        type='Text',
-        is_private=True
-    )
-    flash_pr_channel = Channel(
-        name='private',
-        server_id=12,
-        type='Text',
-        is_private=True
-    )
-    avenger_pr_channel = Channel(
-        name='private',
-        server_id=13,
-        type='Text',
-        is_private=True
     )
     superman_pr_channel = Channel(
         name='private',
@@ -380,15 +380,15 @@ def seed_channels():
     thor3_channel.members.extend([user_1,user_2,user_3])
     thor4_channel.members.extend([user_1,user_2,user_3])
 
-    flash_channel.members.extend([user_1,user_2,user_3])
-    flash2_channel.members.extend([user_1,user_2,user_3])
-    flash3_channel.members.extend([user_1,user_2,user_3])
-    flash4_channel.members.extend([user_1,user_2,user_3])
+    flash_channel.members.extend([user_1,user_2,user_3, user_9])
+    flash2_channel.members.extend([user_1,user_2,user_3, user_9])
+    flash3_channel.members.extend([user_1,user_2,user_3, user_9])
+    flash4_channel.members.extend([user_1,user_2,user_3, user_9])
 
-    avenger_channel.members.extend([user_1,user_2,user_3])
-    avenger2_channel.members.extend([user_1,user_2,user_3])
-    avenger3_channel.members.extend([user_1,user_2,user_3])
-    avenger4_channel.members.extend([user_1,user_2,user_3])
+    avenger_channel.members.extend([user_1,user_2,user_3, user_9, user_10])
+    avenger2_channel.members.extend([user_1,user_2,user_3, user_9, user_10])
+    avenger3_channel.members.extend([user_1,user_2,user_3, user_9, user_10])
+    avenger4_channel.members.extend([user_1,user_2,user_3, user_9, user_10])
 
 
     superman_channel.members.extend([user_4,user_5,user_6])

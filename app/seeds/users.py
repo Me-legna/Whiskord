@@ -4,25 +4,25 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     thor = User(
-        username='Thor', email='thor@aa.io', password='password1')
+        username='Thor', email='thor@aa.io', password='password')
     flash = User(
-        username='CaptainAmerica', email='cap@aa.io', password='password2')
+        username='Flash', email='flash@aa.io', password='password')
     avenger = User(
-        username='Avenger', email='avenger@aa.io', password='password3')
+        username='Avenger', email='avenger@aa.io', password='password')
     superman = User(
-        username='Superman', email='superman@aa.io', password='password4')
+        username='Superman', email='superman@aa.io', password='password')
     zenith = User(
-        username='Zenith', email='zenith@aa.io', password='password5')
+        username='Zenith', email='zenith@aa.io', password='password')
     hulk = User(
-        username='Hulk', email='hulk@aa.io', password='password6')
+        username='Hulk', email='hulk@aa.io', password='password')
     blackpanther = User(
-        username='BlackPanther', email='panther@aa.io', password='password7')
+        username='BlackPanther', email='panther@aa.io', password='password')
     wanda = User(
-        username='Wanda', email='wander@aa.io', password='password8')
+        username='Wanda', email='wander@aa.io', password='password')
     spiderman = User(
-        username='Spiderman', email='spiderman@aa.io', password='password9')
+        username='Spiderman', email='spiderman@aa.io', password='password')
     batman = User(
-        username='Batman', email='batman@aa.io', password='password10')
+        username='Batman', email='batman@aa.io', password='password')
 
     db.session.add(thor)
     db.session.add(flash)
